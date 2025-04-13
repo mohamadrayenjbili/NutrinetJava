@@ -45,6 +45,8 @@
             <Button fx:id="btnChoisirImage" text="Parcourir..." onAction="#handleChoisirImage"/>
         </HBox>
 
+
+
         <!-- Image Preview -->
         <Label text="Aperçu de l'image:" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
         <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
@@ -53,6 +55,10 @@
         <HBox GridPane.columnIndex="0" GridPane.rowIndex="5"
               GridPane.columnSpan="4" spacing="10"
               alignment="CENTER_RIGHT">
+            <Button fx:id="btnVoirDetails"
+                    text="Voir Détails"
+                    onAction="#handleVoirDetails"
+                    style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
             <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler"
                     style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
             <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter"

@@ -1,181 +1,264 @@
-//package Controllers;
-//
-//import javafx.event.ActionEvent;
-//import javafx.fxml.FXML;
-//import javafx.fxml.Initializable;
-//import javafx.scene.control.*;
-//import javafx.stage.FileChooser;
-//import javafx.stage.Stage;
-//import models.Produit;
-//import services.IProduitService;
-//import services.ProduitService;
-//
-//import java.io.File;
-//import java.net.URL;
-//import java.sql.SQLException;
-//import java.util.ResourceBundle;
-//
-//public class ModifierProduitController implements Initializable {
-//
-//    @FXML
-//    private TextField tfNomProduit;
-//
-//    @FXML
-//    private TextField tfPrix;
-//
-//    @FXML
-//    private TextArea taDescription;
-//
-//    @FXML
-//    private ComboBox<String> cbCategorie;
-//
-//    @FXML
-//    private TextField tfImagePath;
-//
-//    @FXML
-//    private TextField tfStock;
-//
-//    @FXML
-//    private Button btnModifier;
-//
-//    @FXML
-//    private Button btnAnnuler;
-//
-//    @FXML
-//    private Button btnChoisirImage;
-//
-//    private IProduitService produitService;
-//    private Produit produitActuel;
-//    private String imagePath = "";
-//
-//    @Override
-//    public void initialize(URL url, ResourceBundle rb) {
-//        // Initialiser le service
-//        produitService = new ProduitService();
-//
-//        // Charger les catégories dans le ComboBox
-//        cbCategorie.getItems().addAll("Électronique", "Vêtements", "Alimentation", "Maison", "Loisirs", "Autres");
-//    }
-//
-//    // Méthode pour charger les détails du produit à modifier
-//    public void setProduit(Produit produit) {
-//        this.produitActuel = produit;
-//
-//        // Remplir les champs avec les données du produit
-//        tfNomProduit.setText(produit.getNomProduit());
-//        tfPrix.setText(String.valueOf(produit.getPrix()));
-//        taDescription.setText(produit.getDescription());
-//        cbCategorie.setValue(produit.getCategorie());
-//        tfImagePath.setText(produit.getImage());
-//        tfStock.setText(String.valueOf(produit.getStock()));
-//
-//        imagePath = produit.getImage();
-//    }
-//
-//    @FXML
-//    private void handleChoisirImage(ActionEvent event) {
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.setTitle("Sélectionner une image");
-//        fileChooser.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.jpeg", "*.gif")
-//        );
-//
-//        File selectedFile = fileChooser.showOpenDialog(new Stage());
-//        if (selectedFile != null) {
-//            imagePath = selectedFile.getAbsolutePath();
-//            tfImagePath.setText(imagePath);
-//        }
-//    }
-//
-//    @FXML
-//    private void handleModifier(ActionEvent event) {
-//        try {
-//            // Validation des champs
-//            if (validateFields()) {
-//                // Mettre à jour les données du produit
-//                produitActuel.setNomProduit(tfNomProduit.getText());
-//                produitActuel.setPrix(Double.parseDouble(tfPrix.getText()));
-//                produitActuel.setDescription(taDescription.getText());
-//                produitActuel.setCategorie(cbCategorie.getValue());
-//                produitActuel.setImage(imagePath);
-//                produitActuel.setStock(Integer.parseInt(tfStock.getText()));
-//
-//                // Mettre à jour dans la base de données
-//                produitService.updateProduit(produitActuel);
-//
-//                // Afficher un message de succès
-//                showAlert(Alert.AlertType.INFORMATION, "Succès", "Produit modifié avec succès!");
-//
-//                // Fermer la fenêtre
-//                ((Stage) btnModifier.getScene().getWindow()).close();
-//            }
-//        } catch (SQLException e) {
-//            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de la modification du produit: " + e.getMessage());
-//        } catch (NumberFormatException e) {
-//            showAlert(Alert.AlertType.ERROR, "Erreur", "Veuillez saisir des valeurs numériques valides pour le prix et le stock.");
-//        }
-//    }
-//
-//    @FXML
-//    private void handleAnnuler(ActionEvent event) {
-//        // Fermer la fenêtre
-//        ((Stage) btnAnnuler.getScene().getWindow()).close();
-//    }
-//
-//    private boolean validateFields() {
-//        StringBuilder errors = new StringBuilder();
-//
-//        if (tfNomProduit.getText().isEmpty()) {
-//            errors.append("- Le nom du produit est requis.\n");
-//        }
-//
-//        if (tfPrix.getText().isEmpty()) {
-//            errors.append("- Le prix est requis.\n");
-//        } else {
-//            try {
-//                double prix = Double.parseDouble(tfPrix.getText());
-//                if (prix <= 0) {
-//                    errors.append("- Le prix doit être supérieur à 0.\n");
-//                }
-//            } catch (NumberFormatException e) {
-//                errors.append("- Le prix doit être un nombre valide.\n");
-//            }
-//        }
-//
-//        if (taDescription.getText().isEmpty()) {
-//            errors.append("- La description est requise.\n");
-//        }
-//
-//        if (cbCategorie.getValue() == null) {
-//            errors.append("- La catégorie est requise.\n");
-//        }
-//
-//        if (tfStock.getText().isEmpty()) {
-//            errors.append("- Le stock est requis.\n");
-//        } else {
-//            try {
-//                int stock = Integer.parseInt(tfStock.getText());
-//                if (stock < 0) {
-//                    errors.append("- Le stock ne peut pas être négatif.\n");
-//                }
-//            } catch (NumberFormatException e) {
-//                errors.append("- Le stock doit être un nombre entier.\n");
-//            }
-//        }
-//
-//        if (errors.length() > 0) {
-//            showAlert(Alert.AlertType.ERROR, "Erreur de validation", errors.toString());
-//            return false;
-//        }
-//
-//        return true;
-//    }
-//
-//    private void showAlert(Alert.AlertType type, String title, String content) {
-//        Alert alert = new Alert(type);
-//        alert.setTitle(title);
-//        alert.setHeaderText(null);
-//        alert.setContentText(content);
-//        alert.showAndWait();
-//    }
-//}
+package controllers;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Font;
+import javafx.stage.Stage;
+import models.Produit;
+import services.ProduitService;
+
+public class ModifierProduitController implements Initializable {
+
+    @FXML private ListView<Produit> listViewProduits;
+    @FXML private Label lblId;
+
+    @FXML private TextField txtNom;
+    @FXML private TextField txtPrix;
+    @FXML private TextArea txtDescription;
+    @FXML private ComboBox<String> comboCategorie;
+    @FXML private TextField txtImage;
+    @FXML private TextField txtStock;
+
+    @FXML private Button btnModifier;
+    @FXML private Button btnAnnuler;
+    @FXML private Button btnSupprimer;
+    @FXML private Button btnVoirDetails;
+
+    private ProduitService produitService;
+    private ObservableList<Produit> produitsList;
+    private Produit produitSelectionne;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        produitService = new ProduitService();
+        produitsList = FXCollections.observableArrayList();
+
+        // Configuration des boutons
+        configurerBoutons();
+
+        // Charger les catégories
+        chargerCategories();
+
+        // Charger les produits
+        chargerProduits();
+
+        // Désactiver les boutons initialement
+        desactiverBoutons();
+
+        // Configuration de la ListView pour afficher le nom des produits
+        listViewProduits.setCellFactory(lv -> new javafx.scene.control.ListCell<Produit>() {
+            @Override
+            protected void updateItem(Produit produit, boolean empty) {
+                super.updateItem(produit, empty);
+                setText(empty ? null : produit.getNomProduit() + " (" + produit.getPrix() + "€)");
+            }
+        });
+
+        // Gestion de la sélection dans la liste
+        listViewProduits.getSelectionModel().selectedItemProperty().addListener(
+                (obs, oldSelection, newSelection) -> {
+                    if (newSelection != null) {
+                        selectionnerProduit(newSelection);
+                    } else {
+                        deselectionnerProduit();
+                    }
+                });
+    }
+
+    private void configurerBoutons() {
+        // Style des boutons
+        btnModifier.setStyle("-fx-background-color: #5cb85c; -fx-text-fill: white;");
+        btnModifier.setFont(Font.font("System Bold", 14));
+
+        btnAnnuler.setStyle("-fx-background-color: #f0ad4e; -fx-text-fill: white;");
+        btnAnnuler.setFont(Font.font("System Bold", 14));
+
+        btnSupprimer.setStyle("-fx-background-color: #5bc0de; -fx-text-fill: white;");
+        btnSupprimer.setFont(Font.font("System Bold", 14));
+    }
+
+    private void chargerCategories() {
+        comboCategorie.getItems().addAll(
+                "Électronique",
+                "Vêtements",
+                "Alimentation",
+                "Maison",
+                "Sport"
+        );
+    }
+
+    private void chargerProduits() {
+        try {
+            List<Produit> produits = produitService.getAllProduits();
+            produitsList.setAll(produits);
+            listViewProduits.setItems(produitsList);
+        } catch (SQLException e) {
+            afficherAlerte(AlertType.ERROR, "Erreur",
+                    "Erreur lors du chargement des produits: " + e.getMessage());
+        }
+    }
+
+    private void selectionnerProduit(Produit produit) {
+        this.produitSelectionne = produit;
+
+        // Remplir les champs avec les données du produit
+        lblId.setText(String.valueOf(produit.getId()));
+        txtNom.setText(produit.getNomProduit());
+        txtPrix.setText(String.valueOf(produit.getPrix()));
+        txtDescription.setText(produit.getDescription());
+        comboCategorie.setValue(produit.getCategorie());
+        txtImage.setText(produit.getImage());
+        txtStock.setText(String.valueOf(produit.getStock()));
+
+        // Activer les boutons
+        btnModifier.setDisable(false);
+        btnSupprimer.setDisable(false);
+    }
+
+    private void deselectionnerProduit() {
+        this.produitSelectionne = null;
+
+        // Vider les champs
+        lblId.setText("");
+        txtNom.clear();
+        txtPrix.clear();
+        txtDescription.clear();
+        comboCategorie.getSelectionModel().clearSelection();
+        txtImage.clear();
+        txtStock.clear();
+
+        // Désactiver les boutons
+        desactiverBoutons();
+    }
+
+    private void desactiverBoutons() {
+        btnModifier.setDisable(true);
+        btnSupprimer.setDisable(true);
+    }
+
+    @FXML
+    private void handleModifier(ActionEvent event) {
+        if (produitSelectionne == null) return;
+
+        try {
+            // Mettre à jour l'objet produit
+            produitSelectionne.setNomProduit(txtNom.getText());
+            produitSelectionne.setPrix(Double.parseDouble(txtPrix.getText()));
+            produitSelectionne.setDescription(txtDescription.getText());
+            produitSelectionne.setCategorie(comboCategorie.getValue());
+            produitSelectionne.setImage(txtImage.getText());
+            produitSelectionne.setStock(Integer.parseInt(txtStock.getText()));
+
+            // Mettre à jour dans la base
+            produitService.updateProduit(produitSelectionne);
+
+            // Rafraîchir la liste
+            chargerProduits();
+
+            afficherAlerte(AlertType.INFORMATION, "Succès",
+                    "Produit modifié avec succès !");
+
+        } catch (NumberFormatException e) {
+            afficherAlerte(AlertType.ERROR, "Erreur",
+                    "Veuillez entrer des valeurs numériques valides pour le prix et le stock");
+        } catch (SQLException e) {
+            afficherAlerte(AlertType.ERROR, "Erreur",
+                    "Erreur lors de la modification: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleSupprimer(ActionEvent event) {
+        if (produitSelectionne == null) return;
+
+        Alert confirmation = new Alert(AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirmation de suppression");
+        confirmation.setHeaderText("Suppression du produit");
+        confirmation.setContentText("Êtes-vous sûr de vouloir supprimer le produit: "
+                + produitSelectionne.getNomProduit() + " ?");
+
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == javafx.scene.control.ButtonType.OK) {
+                try {
+                    produitService.deleteProduit(produitSelectionne.getId());
+                    chargerProduits();
+                    deselectionnerProduit();
+                    afficherAlerte(AlertType.INFORMATION, "Succès",
+                            "Produit supprimé avec succès !");
+                } catch (SQLException e) {
+                    afficherAlerte(AlertType.ERROR, "Erreur",
+                            "Erreur lors de la suppression: " + e.getMessage());
+                }
+            }
+        });
+    }
+
+    @FXML
+    private void handleVoirDetails(ActionEvent event) {
+        try {
+            System.out.println("Chargement de la vue DetailProduit...");
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailProduit.fxml"));
+            Parent root = loader.load();
+
+            DetailProduitController controller = loader.getController();
+
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) btnVoirDetails.getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle("Liste des Produits");
+
+            System.out.println("Navigation vers la liste des produits réussie");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleAnnuler(ActionEvent event) {
+        deselectionnerProduit();
+        listViewProduits.getSelectionModel().clearSelection();
+    }
+
+    private void afficherAlerte(AlertType type, String titre, String message) {
+        Alert alert = new Alert(type);
+        alert.setTitle(titre);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    public void loadProduitDirectly(Produit produit) {
+        this.produitSelectionne = produit;
+        // Update the UI fields directly
+        lblId.setText(String.valueOf(produit.getId()));
+        txtNom.setText(produit.getNomProduit());
+        txtPrix.setText(String.valueOf(produit.getPrix()));
+        txtDescription.setText(produit.getDescription());
+        comboCategorie.setValue(produit.getCategorie());
+        txtImage.setText(produit.getImage());
+        txtStock.setText(String.valueOf(produit.getStock()));
+        btnModifier.setDisable(false);
+        btnSupprimer.setDisable(false);
+    }
+}
