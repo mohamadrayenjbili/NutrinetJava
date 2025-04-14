@@ -19,55 +19,85 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Files;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class AjouterProduitController implements Initializable {
 
     private File selectedFile;
 
-    @FXML
-    private TextField tfNomProduit;
-
-    @FXML
-    private TextField tfPrix;
-
-    @FXML
-    private TextArea taDescription;
-
-    @FXML
-    private ComboBox<String> cbCategorie;
-
-    @FXML
-    private TextField tfImagePath;
-
-    @FXML
-    private TextField tfStock;
-
-    @FXML
-    private Button btnAjouter;
-
-    @FXML
-    private Button btnAnnuler;
-
-    @FXML
-    private Button btnChoisirImage;
-
-    @FXML
-    private Button btnVoirDetails; // Nouveau bouton ajouté
-
-    @FXML
-    private ImageView imagePreview;
+    @FXML private TextField tfNomProduit;
+    @FXML private TextField tfPrix;
+    @FXML private TextArea taDescription;
+    @FXML private ComboBox<String> cbCategorie;
+    @FXML private TextField tfImagePath;
+    @FXML private TextField tfStock;
+    @FXML private Button btnAjouter;
+    @FXML private Button btnAnnuler;
+    @FXML private Button btnChoisirImage;
+    @FXML private Button btnVoirDetails;
+    @FXML private ImageView imagePreview;
+    @FXML private Label lblNomError;
+    @FXML private Label lblPrixError;
+    @FXML private Label lblDescError;
+    @FXML private Label lblStockError;
+    @FXML private Label lblCategorieError;
 
     private IProduitService produitService;
     private String imagePath = "";
-
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         produitService = new ProduitService();
         cbCategorie.getItems().addAll("Whey", "Creatine", "Pré-workout", "Post-workout", "Vitamines");
+        setupInputValidation();
+        hideErrorLabels();
+    }
+
+    private void setupInputValidation() {
+        // Validation du nom (3-50 caractères)
+        tfNomProduit.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.length() > 50) {
+                tfNomProduit.setText(oldVal);
+            }
+            validateNom();
+        });
+
+        // Validation du prix (format numérique)
+        tfPrix.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.matches("\\d*(\\.\\d{0,2})?")) {
+                tfPrix.setText(oldVal);
+            }
+            validatePrix();
+        });
+
+        // Validation du stock (entier positif)
+        tfStock.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (!newVal.matches("\\d*")) {
+                tfStock.setText(oldVal);
+            }
+            validateStock();
+        });
+
+        // Limite la description (500 caractères max)
+        taDescription.textProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal.length() > 500) {
+                taDescription.setText(oldVal);
+            }
+            validateDescription();
+        });
+
+        // Validation catégorie
+        cbCategorie.valueProperty().addListener((obs, oldVal, newVal) -> {
+            validateCategorie();
+        });
+    }
+
+    private void hideErrorLabels() {
+        lblNomError.setVisible(false);
+        lblPrixError.setVisible(false);
+        lblDescError.setVisible(false);
+        lblStockError.setVisible(false);
+        lblCategorieError.setVisible(false);
     }
 
     @FXML
@@ -87,53 +117,143 @@ public class AjouterProduitController implements Initializable {
         }
     }
 
-    private String getFileExtension(String filename) {
-        int index = filename.lastIndexOf('.');
-        return (index > 0 && index < filename.length() - 1)
-                ? filename.substring(index + 1)
-                : "png";
-    }
-
-    private String getProjectResourceImagePath() {
-        return System.getProperty("user.dir") + "/src/main/resources/images";
-    }
-
     @FXML
     private void handleAjouter(ActionEvent event) {
-        try {
-            if (validateFields()) {
-                Produit produit = new Produit();
-                produit.setNomProduit(tfNomProduit.getText());
-                produit.setPrix(Double.parseDouble(tfPrix.getText()));
-                produit.setDescription(taDescription.getText());
-                produit.setCategorie(cbCategorie.getValue());
-                produit.setStock(Integer.parseInt(tfStock.getText()));
-
-                if (selectedFile != null) {
-                    String extension = getFileExtension(selectedFile.getName());
-                    String uniqueName = java.util.UUID.randomUUID().toString().replaceAll("-", "") + "." + extension;
-
-                    String destDirPath = getProjectResourceImagePath();
-                    File destDir = new File(destDirPath);
-                    if (!destDir.exists()) {
-                        destDir.mkdirs();
-                    }
-
-                    File destFile = new File(destDir, uniqueName);
-                    Files.copy(selectedFile.toPath(), destFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                    produit.setImage(uniqueName);
-                } else {
-                    produit.setImage(null);
-                }
-
+        if (validateAllFields()) {
+            try {
+                Produit produit = createProduitFromInput();
                 produitService.ajouterProduit(produit);
+
                 showAlert(Alert.AlertType.INFORMATION, "Succès", "Produit ajouté avec succès!");
                 clearFields();
+            } catch (Exception e) {
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ajout: " + e.getMessage());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ajout du produit: " + e.getMessage());
         }
+    }
+
+    private Produit createProduitFromInput() throws IOException {
+        Produit produit = new Produit();
+        produit.setNomProduit(tfNomProduit.getText());
+        produit.setPrix(Double.parseDouble(tfPrix.getText()));
+        produit.setDescription(taDescription.getText());
+        produit.setCategorie(cbCategorie.getValue());
+        produit.setStock(Integer.parseInt(tfStock.getText()));
+
+        if (selectedFile != null) {
+            String uniqueName = saveImageToResources();
+            produit.setImage(uniqueName);
+        }
+        return produit;
+    }
+
+    private String saveImageToResources() throws IOException {
+        String extension = getFileExtension(selectedFile.getName());
+        String uniqueName = java.util.UUID.randomUUID().toString().replaceAll("-", "") + "." + extension;
+        String destDirPath = System.getProperty("user.dir") + "/src/main/resources/images";
+
+        File destDir = new File(destDirPath);
+        if (!destDir.exists()) destDir.mkdirs();
+
+        File destFile = new File(destDir, uniqueName);
+        Files.copy(selectedFile.toPath(), destFile.toPath());
+        return uniqueName;
+    }
+
+    private boolean validateAllFields() {
+        boolean isValid = true;
+
+        if (!validateNom()) isValid = false;
+        if (!validatePrix()) isValid = false;
+        if (!validateDescription()) isValid = false;
+        if (!validateStock()) isValid = false;
+        if (!validateCategorie()) isValid = false;
+
+        return isValid;
+    }
+
+    private boolean validateNom() {
+        if (tfNomProduit.getText().isEmpty()) {
+            showError(lblNomError, "Le nom est requis");
+            return false;
+        } else if (tfNomProduit.getText().length() < 3) {
+            showError(lblNomError, "Minimum 3 caractères");
+            return false;
+        }
+        hideError(lblNomError);
+        return true;
+    }
+
+    private boolean validatePrix() {
+        if (tfPrix.getText().isEmpty()) {
+            showError(lblPrixError, "Le prix est requis");
+            return false;
+        }
+
+        try {
+            double prix = Double.parseDouble(tfPrix.getText());
+            if (prix <= 0) {
+                showError(lblPrixError, "Doit être > 0");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showError(lblPrixError, "Format invalide");
+            return false;
+        }
+
+        hideError(lblPrixError);
+        return true;
+    }
+
+    private boolean validateDescription() {
+        if (taDescription.getText().isEmpty()) {
+            showError(lblDescError, "Description requise");
+            return false;
+        } else if (taDescription.getText().length() < 10) {
+            showError(lblDescError, "Minimum 10 caractères");
+            return false;
+        }
+        hideError(lblDescError);
+        return true;
+    }
+
+    private boolean validateStock() {
+        if (tfStock.getText().isEmpty()) {
+            showError(lblStockError, "Stock requis");
+            return false;
+        }
+
+        try {
+            int stock = Integer.parseInt(tfStock.getText());
+            if (stock < 0) {
+                showError(lblStockError, "Doit être ≥ 0");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showError(lblStockError, "Nombre entier");
+            return false;
+        }
+
+        hideError(lblStockError);
+        return true;
+    }
+
+    private boolean validateCategorie() {
+        if (cbCategorie.getValue() == null) {
+            showError(lblCategorieError, "Catégorie requise");
+            return false;
+        }
+        hideError(lblCategorieError);
+        return true;
+    }
+
+    private void showError(Label label, String message) {
+        label.setText(message);
+        label.setVisible(true);
+    }
+
+    private void hideError(Label label) {
+        label.setVisible(false);
     }
 
     @FXML
@@ -141,87 +261,17 @@ public class AjouterProduitController implements Initializable {
         clearFields();
     }
 
-    // Nouvelle méthode pour gérer la navigation vers DetailProduit.fxml
     @FXML
     private void handleVoirDetails(ActionEvent event) {
         try {
-            System.out.println("Chargement de la vue DetailProduit...");
-
-            // Charger le FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailProduit.fxml"));
             Parent root = loader.load();
-
-            // Obtenir le contrôleur et s'assurer qu'il est initialisé
-            DetailProduitController controller = loader.getController();
-
-            // Note: il n'est pas nécessaire d'appeler manuellement initialize() car
-            // JavaFX l'appelle automatiquement lors du chargement
-
-            // Créer une nouvelle scène
-            Scene scene = new Scene(root);
-
-            // Obtenir la fenêtre actuelle et changer sa scène
             Stage stage = (Stage) btnVoirDetails.getScene().getWindow();
-            stage.setScene(scene);
+            stage.setScene(new Scene(root));
             stage.setTitle("Liste des Produits");
-
-            System.out.println("Navigation vers la liste des produits réussie");
-
         } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d'afficher la liste: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur", e.getMessage());
         }
-    }
-
-
-
-    private boolean validateFields() {
-        StringBuilder errors = new StringBuilder();
-
-        if (tfNomProduit.getText().isEmpty()) {
-            errors.append("- Le nom du produit est requis.\n");
-        }
-
-        if (tfPrix.getText().isEmpty()) {
-            errors.append("- Le prix est requis.\n");
-        } else {
-            try {
-                double prix = Double.parseDouble(tfPrix.getText());
-                if (prix <= 0) {
-                    errors.append("- Le prix doit être supérieur à 0.\n");
-                }
-            } catch (NumberFormatException e) {
-                errors.append("- Le prix doit être un nombre valide.\n");
-            }
-        }
-
-        if (taDescription.getText().isEmpty()) {
-            errors.append("- La description est requise.\n");
-        }
-
-        if (cbCategorie.getValue() == null) {
-            errors.append("- La catégorie est requise.\n");
-        }
-
-        if (tfStock.getText().isEmpty()) {
-            errors.append("- Le stock est requis.\n");
-        } else {
-            try {
-                int stock = Integer.parseInt(tfStock.getText());
-                if (stock < 0) {
-                    errors.append("- Le stock ne peut pas être négatif.\n");
-                }
-            } catch (NumberFormatException e) {
-                errors.append("- Le stock doit être un nombre entier.\n");
-            }
-        }
-
-        if (errors.length() > 0) {
-            showAlert(Alert.AlertType.ERROR, "Erreur de validation", errors.toString());
-            return false;
-        }
-
-        return true;
     }
 
     private void clearFields() {
@@ -229,10 +279,18 @@ public class AjouterProduitController implements Initializable {
         tfPrix.clear();
         taDescription.clear();
         cbCategorie.setValue(null);
-        tfImagePath.clear();
         tfStock.clear();
-        imagePath = "";
+        tfImagePath.clear();
         imagePreview.setImage(null);
+        selectedFile = null;
+        hideErrorLabels();
+    }
+
+    private String getFileExtension(String filename) {
+        int index = filename.lastIndexOf('.');
+        return (index > 0 && index < filename.length() - 1)
+                ? filename.substring(index + 1)
+                : "png";
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {
