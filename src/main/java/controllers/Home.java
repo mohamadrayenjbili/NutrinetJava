@@ -18,7 +18,7 @@ public class Home extends Application {
     public void start(Stage stage) {
         try {
             // Charge le formulaire de consultation
-            Parent root = FXMLLoader.load(getClass().getResource("/Panier.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/AjouterProduit.fxml"));
 
             Scene scene = new Scene(root);
             stage.setTitle("Ajouter Consultation");
