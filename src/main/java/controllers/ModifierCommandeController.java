@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import models.Commande;
 import models.Produit;
 import services.CommandeService;
+import services.ICommandeService;
 
 public class ModifierCommandeController implements Initializable {
 
