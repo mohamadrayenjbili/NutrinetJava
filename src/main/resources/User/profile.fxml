@@ -55,7 +55,7 @@
         </VBox>
 
         <VBox alignment="BOTTOM_CENTER" spacing="10" style="-fx-padding: 20;">
-            <Button text="LOGOUT" maxWidth="Infinity" onAction="#handleBack"
+            <Button text="BACK" maxWidth="Infinity" onAction="#handleBack"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15;">
                 <graphic>
                     <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z';" />
