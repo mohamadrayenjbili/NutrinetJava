@@ -96,16 +96,18 @@ public class userlistcontroller implements Initializable {
         VBox parent = (VBox) usersListView.getParent();
         parent.getChildren().add(0, headerBox);
     }
-    
+
     @FXML
     private void handleLogout() {
         // Clear the current session
         session.clearSession();
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
             Parent root = loader.load();
 
-            Stage stage = (Stage) users_list.getScene().getWindow();
+            // Get the current stage from any UI element
+            Stage stage = (Stage) usersListView.getScene().getWindow();
 
             // Set the new scene (sign in) on the same stage
             stage.setTitle("Sign In");
