@@ -2,18 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.ModifierProduitController"
-            prefHeight="700" prefWidth="900">
+            fx:controller="controllers.ModifierCommandeController"
+            prefHeight="700" prefWidth="1000">
 
     <top>
         <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #f8f9fa;">
-            <Label text="Gestion des Produits" style="-fx-font-weight: bold;" textAlignment="CENTER">
+            <Label text="Gestion des Commandes" style="-fx-font-weight: bold;" textAlignment="CENTER">
                 <font>
                     <Font name="System Bold" size="24"/>
                 </font>
@@ -21,7 +20,7 @@
                     <Insets top="20"/>
                 </padding>
             </Label>
-            <Label text="Sélectionnez un produit pour le modifier ou le supprimer">
+            <Label text="Sélectionnez une commande pour la modifier ou la supprimer">
                 <font>
                     <Font size="14"/>
                 </font>
@@ -36,22 +35,23 @@
         <SplitPane dividerPositions="0.4" orientation="HORIZONTAL">
             <items>
                 <VBox spacing="10" style="-fx-padding: 10;">
-                    <Label text="Liste des produits:" style="-fx-font-weight: bold;">
+                    <Label text="Liste des commandes:" style="-fx-font-weight: bold;">
                         <font>
                             <Font size="14"/>
                         </font>
                     </Label>
-                    <ListView fx:id="listViewProduits" VBox.vgrow="ALWAYS"/>
+                    <ListView fx:id="listViewCommandes" VBox.vgrow="ALWAYS"/>
                 </VBox>
 
                 <ScrollPane fitToWidth="true">
                     <GridPane hgap="15" vgap="15" style="-fx-padding: 15;">
                         <columnConstraints>
                             <ColumnConstraints minWidth="120" prefWidth="150" halignment="RIGHT"/>
-                            <ColumnConstraints minWidth="200" prefWidth="250" hgrow="SOMETIMES"/>
+                            <ColumnConstraints minWidth="200" prefWidth="300" hgrow="SOMETIMES"/>
                         </columnConstraints>
 
                         <rowConstraints>
+                            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="20" prefHeight="25" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
@@ -59,16 +59,17 @@
                             <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="20" prefHeight="25" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="100" prefHeight="120" vgrow="SOMETIMES"/>
-                            <RowConstraints minHeight="20" prefHeight="25" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="20" prefHeight="25" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="20" prefHeight="25" vgrow="SOMETIMES"/>
                             <RowConstraints minHeight="150" prefHeight="200" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="20" prefHeight="25" vgrow="SOMETIMES"/>
+                            <RowConstraints minHeight="150" prefHeight="200" vgrow="SOMETIMES"/>
                         </rowConstraints>
 
                         <!-- ID -->
-                        <Label text="ID Produit:" GridPane.rowIndex="0">
+                        <Label text="ID Commande:" GridPane.rowIndex="0">
                             <font>
                                 <Font name="System Bold" size="14"/>
                             </font>
@@ -76,80 +77,78 @@
                         <Label fx:id="lblId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
                         <!-- Nom -->
-                        <Label text="Nom:" GridPane.rowIndex="2">
+                        <Label text="Nom client:" GridPane.rowIndex="1">
                             <font>
                                 <Font name="System Bold" size="14"/>
                             </font>
                         </Label>
-                        <TextField fx:id="txtNom" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                        <TextField fx:id="txtNom" GridPane.rowIndex="1" GridPane.columnIndex="1">
                             <tooltip>
                                 <Tooltip text="3-50 caractères"/>
                             </tooltip>
                         </TextField>
-                        <Label fx:id="lblNomError" style="-fx-text-fill: red;" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                        <Label fx:id="lblNomError" style="-fx-text-fill: red;" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-                        <!-- Prix -->
-                        <Label text="Prix (€):" GridPane.rowIndex="4">
+                        <!-- Email -->
+                        <Label text="Email:" GridPane.rowIndex="3">
                             <font>
                                 <Font name="System Bold" size="14"/>
                             </font>
                         </Label>
-                        <TextField fx:id="txtPrix" GridPane.rowIndex="4" GridPane.columnIndex="1">
+                        <TextField fx:id="txtMail" GridPane.rowIndex="3" GridPane.columnIndex="1">
                             <tooltip>
-                                <Tooltip text="Format: 19.99"/>
+                                <Tooltip text="exemple@domaine.com"/>
                             </tooltip>
                         </TextField>
-                        <Label fx:id="lblPrixError" style="-fx-text-fill: red;" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                        <Label fx:id="lblMailError" style="-fx-text-fill: red;" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-                        <!-- Description -->
-                        <Label text="Description:" GridPane.rowIndex="6">
+                        <!-- Adresse -->
+                        <Label text="Adresse:" GridPane.rowIndex="5">
                             <font>
                                 <Font name="System Bold" size="14"/>
                             </font>
                         </Label>
-                        <TextArea fx:id="txtDescription" wrapText="true" GridPane.rowIndex="6" GridPane.columnIndex="1">
+                        <TextArea fx:id="txtAdresse" wrapText="true" GridPane.rowIndex="5" GridPane.columnIndex="1">
                             <tooltip>
-                                <Tooltip text="10-500 caractères"/>
+                                <Tooltip text="10 caractères minimum"/>
                             </tooltip>
                         </TextArea>
-                        <Label fx:id="lblDescError" style="-fx-text-fill: red;" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                        <Label fx:id="lblAdresseError" style="-fx-text-fill: red;" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
 
-                        <!-- Catégorie -->
-                        <Label text="Catégorie:" GridPane.rowIndex="8">
+                        <!-- Date -->
+                        <Label text="Date:" GridPane.rowIndex="7">
                             <font>
                                 <Font name="System Bold" size="14"/>
                             </font>
                         </Label>
-                        <ComboBox fx:id="comboCategorie" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
-                        <Label fx:id="lblCategorieError" style="-fx-text-fill: red;" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+                        <DatePicker fx:id="datePicker" GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                        <Label fx:id="lblDateError" style="-fx-text-fill: red;" GridPane.rowIndex="8" GridPane.columnIndex="1"/>
 
-                        <!-- Stock -->
-                        <Label text="Stock:" GridPane.rowIndex="10">
+                        <!-- Statut -->
+                        <Label text="Statut:" GridPane.rowIndex="9">
                             <font>
                                 <Font name="System Bold" size="14"/>
                             </font>
                         </Label>
-                        <TextField fx:id="txtStock" GridPane.rowIndex="10" GridPane.columnIndex="1">
-                            <tooltip>
-                                <Tooltip text="Nombre entier ≥ 0"/>
-                            </tooltip>
-                        </TextField>
-                        <Label fx:id="lblStockError" style="-fx-text-fill: red;" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+                        <ComboBox fx:id="comboStatus" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+                        <Label fx:id="lblStatusError" style="-fx-text-fill: red;" GridPane.rowIndex="10" GridPane.columnIndex="1"/>
 
-                        <!-- Image -->
-                        <Label text="Image:" GridPane.rowIndex="12">
+                        <!-- Méthode de paiement -->
+                        <Label text="Paiement:" GridPane.rowIndex="11">
                             <font>
                                 <Font name="System Bold" size="14"/>
                             </font>
                         </Label>
-                        <VBox spacing="5" GridPane.rowIndex="12" GridPane.columnIndex="1">
-                            <HBox spacing="5">
-                                <TextField fx:id="txtImage" editable="false" HBox.hgrow="ALWAYS"/>
-                                <Button fx:id="btnChoisirImage" text="Parcourir..." onAction="#handleChoisirImage"/>
-                            </HBox>
-                            <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150" preserveRatio="true"/>
-                            <Label fx:id="lblImageError" style="-fx-text-fill: red;"/>
-                        </VBox>
+                        <ComboBox fx:id="comboPaiement" GridPane.rowIndex="11" GridPane.columnIndex="1"/>
+                        <Label fx:id="lblPaiementError" style="-fx-text-fill: red;" GridPane.rowIndex="12" GridPane.columnIndex="1"/>
+
+                        <!-- Produits de la commande -->
+                        <Label text="Produits:" GridPane.rowIndex="13">
+                            <font>
+                                <Font name="System Bold" size="14"/>
+                            </font>
+                        </Label>
+                        <ListView fx:id="listViewProduits" GridPane.rowIndex="14" GridPane.columnIndex="1"/>
                     </GridPane>
                 </ScrollPane>
             </items>
