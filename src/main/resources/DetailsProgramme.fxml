@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Programme.DetailsProgramme"
+      spacing="25" alignment="TOP_CENTER"
+      stylesheets="@details_style.css"
+      fx:id="rootPane"
+      styleClass="background">
+
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40" />
+    </padding>
+
+    <Label text="📋 Détails du Programme" styleClass="header"/>
+
+    <ImageView fx:id="imgProgramme"
+               fitHeight="200" fitWidth="200"
+               styleClass="image-preview"/>
+
+    <GridPane hgap="15" vgap="12" styleClass="info-grid">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" />
+            <ColumnConstraints prefWidth="300" />
+        </columnConstraints>
+
+        <Label text="🎓 Titre :" styleClass="label-title" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="lblTitre" styleClass="label-value" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="📂 Type :" styleClass="label-title" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="lblType" styleClass="label-value" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="🧑 Auteur :" styleClass="label-title" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label fx:id="lblAuteur" styleClass="label-value" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="📄 Description :" styleClass="label-title" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextArea fx:id="lblDescription"
+                  wrapText="true" editable="false"
+                  prefRowCount="4" maxWidth="300"
+                  styleClass="description"
+                  GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="🎬 Vidéo URL :" styleClass="label-title" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <Label fx:id="lblVideoUrl" wrapText="true" maxWidth="300"
+               styleClass="label-value link-label"
+               GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    </GridPane>
+</VBox>
+
+
