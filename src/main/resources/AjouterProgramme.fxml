@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Programme.AjouterProgramme"
+            prefHeight="700.0" prefWidth="550.0"
+            stylesheets="@style.css"
+            styleClass="root-pane">
+
+    <VBox alignment="TOP_CENTER" spacing="15" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label text="Ajouter un programme" styleClass="title"/>
+
+        <HBox spacing="10">
+            <TextField fx:id="tfTitre" promptText="Titre" prefWidth="200" styleClass="text-field"/>
+            <TextField fx:id="tfAuteur" promptText="Auteur" prefWidth="200" styleClass="text-field"/>
+        </HBox>
+
+        <TextField fx:id="tfVideoUrl" promptText="Vidéo (URL)" prefWidth="420" styleClass="text-field"/>
+
+        <ComboBox fx:id="cbType" promptText="Type" prefWidth="420" styleClass="combo-box"/>
+
+        <HBox spacing="10">
+            <TextField fx:id="tfImagePath" promptText="Image sélectionnée..." editable="false" prefWidth="320" styleClass="text-field"/>
+            <Button fx:id="btnChoisirImage" text="Parcourir..." onAction="#handleChoisirImage" styleClass="btn-secondary"/>
+        </HBox>
+
+        <TextArea fx:id="taDescription" promptText="Description" prefWidth="420" prefHeight="100" wrapText="true" styleClass="text-area"/>
+
+        <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150" styleClass="image-preview"/>
+
+        <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter" styleClass="btn-primary"/>
+    </VBox>
+</AnchorPane>
+
+

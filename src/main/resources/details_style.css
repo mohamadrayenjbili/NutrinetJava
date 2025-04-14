@@ -1,0 +1,58 @@
+.background {
+    -fx-background-color: linear-gradient(to bottom right, #f0f0f0, #ffffff);
+}
+
+.header {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.5, 0, 1);
+}
+
+.image-preview {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-scale-x: 1;
+    -fx-scale-y: 1;
+    -fx-transition: all 0.3s ease;
+}
+
+.image-preview:hover {
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.info-grid {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.3, 0, 2);
+}
+
+.label-title {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.label-value {
+    -fx-text-fill: #34495e;
+    -fx-font-size: 14px;
+}
+
+.description {
+    -fx-control-inner-background: #ecf0f1;
+    -fx-background-insets: 0;
+    -fx-font-size: 13px;
+    -fx-padding: 8;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.link-label:hover {
+    -fx-text-fill: #2980b9;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
