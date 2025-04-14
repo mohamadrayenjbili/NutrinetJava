@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.user.Sign_InController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox spacing="15" alignment="CENTER" layoutX="100" layoutY="80">
+        <Text text="Sign In">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Text>
+
+        <HBox spacing="10">
+            <Label text="Email" minWidth="100"/>
+            <TextField fx:id="emailField" promptText="Enter email"/>
+        </HBox>
+
+        <HBox spacing="10">
+            <Label text="Password" minWidth="100"/>
+            <PasswordField fx:id="passwordField" promptText="Enter password"/>
+        </HBox>
+
+        <Button text="Login" onAction="#handleLogin" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+    </VBox>
+</AnchorPane>
