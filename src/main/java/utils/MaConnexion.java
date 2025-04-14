@@ -28,7 +28,16 @@ public class MaConnexion {
         return instance;
     }
 
+
     public Connection getConnection() {
+        try {
+            if (connection == null || connection.isClosed()) {
+                System.out.println("🔁 Reconnexion à la base de données...");
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
+            }
+        } catch (SQLException e) {
+            System.err.println("❌ Impossible de récupérer la connexion : " + e.getMessage());
+        }
         return connection;
     }
 }

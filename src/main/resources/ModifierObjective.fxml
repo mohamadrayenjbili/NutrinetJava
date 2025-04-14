@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.GridPane?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Objective.ModifierObjectiveController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <GridPane AnchorPane.bottomAnchor="10"
+              AnchorPane.leftAnchor="10"
+              AnchorPane.rightAnchor="10"
+              AnchorPane.topAnchor="10"
+              hgap="10" vgap="15">
+
+        <!-- Titre -->
+        <Label text="Modifier un objectif"
+               GridPane.columnIndex="0" GridPane.rowIndex="0"
+               GridPane.columnSpan="2"
+               style="-fx-font-weight: bold; -fx-font-size: 18px;"/>
+
+        <!-- Nom de l'objectif -->
+        <Label text="Nom de l'objectif:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="tfName" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <!-- Valeur cible -->
+        <Label text="Valeur cible:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="tfTargetValue" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <!-- Unité -->
+        <Label text="Unité:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <ComboBox fx:id="cbUnit" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <!-- Date de début -->
+        <Label text="Date de début:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <DatePicker fx:id="dpStartDate" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <!-- Date de fin -->
+        <Label text="Date de fin:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+        <DatePicker fx:id="dpEndDate" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+        <!-- Boutons -->
+        <HBox GridPane.columnIndex="0" GridPane.rowIndex="6"
+              GridPane.columnSpan="2" spacing="10"
+              alignment="CENTER_RIGHT">
+            <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler"
+                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+            <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
+        </HBox>
+
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="150"/>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="200"/>
+        </columnConstraints>
+
+        <rowConstraints>
+            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="30" prefHeight="50" vgrow="SOMETIMES"/>
+        </rowConstraints>
+    </GridPane>
+
+</AnchorPane>
