@@ -189,4 +189,7 @@ public class DetailProduitController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    public void setProduit(Produit produit) {
+    }
 }
