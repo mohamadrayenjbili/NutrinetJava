@@ -12,32 +12,46 @@ public class MaConnexion {
     private static MaConnexion instance;
     private Connection connection;
 
-    private MaConnexion() {
+    private MaConnexion() throws SQLException {
         try {
+            // Chargement du driver MySQL
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            // Création de la connexion
             connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            // Configuration supplémentaire
+            connection.setAutoCommit(true); // Mode auto-commit activé
             System.out.println("Connexion à la base de données réussie!");
+        } catch (ClassNotFoundException e) {
+            throw new SQLException("Driver JDBC MySQL non trouvé", e);
         } catch (SQLException e) {
-            System.err.println("Erreur de connexion à la base de données: " + e.getMessage());
+            throw new SQLException("Échec de la connexion à la base de données", e);
         }
     }
 
-    public static synchronized MaConnexion getInstance() {
-        if (instance == null) {
+    public static synchronized MaConnexion getInstance() throws SQLException {
+        if (instance == null || instance.getConnection().isClosed()) {
             instance = new MaConnexion();
         }
         return instance;
     }
 
-
-    public Connection getConnection() {
-        try {
-            if (connection == null || connection.isClosed()) {
-                System.out.println("🔁 Reconnexion à la base de données...");
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
-            }
-        } catch (SQLException e) {
-            System.err.println("❌ Impossible de récupérer la connexion : " + e.getMessage());
+    public Connection getConnection() throws SQLException {
+        // Vérifie si la connexion est toujours valide
+        if (connection == null || connection.isClosed()) {
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
         }
         return connection;
+    }
+
+    public static void closeConnection() {
+        if (instance != null && instance.connection != null) {
+            try {
+                instance.connection.close();
+                System.out.println("Connexion à la base de données fermée");
+            } catch (SQLException e) {
+                System.err.println("Erreur lors de la fermeture de la connexion: " + e.getMessage());
+            }
+        }
+        instance = null;
     }
 }

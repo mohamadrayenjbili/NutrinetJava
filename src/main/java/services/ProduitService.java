@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProduitService implements IProduitService {
-    // Utiliser la classe MaConnexion pour gérer la connexion à la base de données
+
+    // Méthode helper pour obtenir une nouvelle connexion
     private Connection getConnection() throws SQLException {
         return MaConnexion.getInstance().getConnection();
     }
@@ -25,19 +26,24 @@ public class ProduitService implements IProduitService {
             pstmt.setDouble(2, produit.getPrix());
             pstmt.setString(3, produit.getDescription());
             pstmt.setString(4, produit.getCategorie());
-            pstmt.setString(5, produit.getImage()); // ✅ here
+            pstmt.setString(5, produit.getImage());
             pstmt.setInt(6, produit.getStock());
 
-            pstmt.executeUpdate();
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Échec de l'ajout du produit, aucune ligne affectée.");
+            }
 
             try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     produit.setId(generatedKeys.getInt(1));
+                } else {
+                    throw new SQLException("Échec de la récupération de l'ID généré.");
                 }
             }
         }
     }
-
 
     @Override
     public List<Produit> getAllProduits() throws SQLException {
@@ -73,6 +79,7 @@ public class ProduitService implements IProduitService {
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, id);
+
             try (ResultSet rs = pstmt.executeQuery()) {
                 if (rs.next()) {
                     produit = new Produit();
@@ -86,6 +93,11 @@ public class ProduitService implements IProduitService {
                 }
             }
         }
+
+        if (produit == null) {
+            throw new SQLException("Produit non trouvé avec l'ID: " + id);
+        }
+
         return produit;
     }
 
@@ -105,7 +117,11 @@ public class ProduitService implements IProduitService {
             pstmt.setInt(6, produit.getStock());
             pstmt.setInt(7, produit.getId());
 
-            pstmt.executeUpdate();
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Échec de la mise à jour, produit non trouvé avec l'ID: " + produit.getId());
+            }
         }
     }
 
@@ -117,7 +133,17 @@ public class ProduitService implements IProduitService {
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+
+            int affectedRows = pstmt.executeUpdate();
+
+            if (affectedRows == 0) {
+                throw new SQLException("Échec de la suppression, produit non trouvé avec l'ID: " + id);
+            }
         }
+    }
+    @Override
+    public void closeConnection() throws SQLException {
+        // Si MaConnexion gère un pool de connexions, cette méthode peut être vide
+        // Ou implémentez la logique de fermeture si nécessaire
     }
 }
