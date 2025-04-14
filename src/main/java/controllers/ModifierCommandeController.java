@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -22,7 +21,6 @@ import javafx.stage.Stage;
 import models.Commande;
 import models.Produit;
 import services.CommandeService;
-import services.ICommandeService;
 
 public class ModifierCommandeController implements Initializable {
 

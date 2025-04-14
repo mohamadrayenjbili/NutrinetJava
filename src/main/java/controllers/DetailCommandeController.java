@@ -10,7 +10,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Commande;
 import models.Produit;
-import services.ICommandeService;
 import services.CommandeService;
 
 import java.net.URL;
