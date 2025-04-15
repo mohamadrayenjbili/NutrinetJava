@@ -5,7 +5,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,16 +13,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCommandeController">
-    <top>
-        <Label alignment="CENTER" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #2196F3;" text="Finaliser votre commande" textFill="WHITE" BorderPane.alignment="CENTER">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterCommandeController">
+    <children>
+        <!-- Top Label -->
+        <Label alignment="CENTER" layoutY="0.0" prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #2196F3;" text="Finaliser votre commande" textFill="WHITE">
             <font>
                 <Font name="System Bold" size="20.0" />
             </font>
+            <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
+            <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
+            <AnchorPane.topAnchor>0.0</AnchorPane.topAnchor>
         </Label>
-    </top>
-    <center>
-        <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+
+        <!-- Center Content -->
+        <VBox layoutY="50.0" prefHeight="270.0" prefWidth="600.0" spacing="10.0">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
             <children>
                 <GridPane>
                     <columnConstraints>
@@ -71,13 +78,12 @@
                     </VBox.margin>
                 </Label>
             </children>
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
+            <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
+            <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
         </VBox>
-    </center>
-    <bottom>
-        <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" spacing="30.0" BorderPane.alignment="CENTER">
+
+        <!-- Bottom Buttons -->
+        <HBox alignment="CENTER" layoutY="320.0" prefHeight="80.0" prefWidth="600.0" spacing="30.0">
             <children>
                 <Button fx:id="btnAnnuler" mnemonicParsing="false" onAction="#annulerCommande" style="-fx-background-color: #f44336;" text="Annuler" textFill="WHITE">
                     <font>
@@ -90,6 +96,9 @@
                     </font>
                 </Button>
             </children>
+            <AnchorPane.bottomAnchor>0.0</AnchorPane.bottomAnchor>
+            <AnchorPane.leftAnchor>0.0</AnchorPane.leftAnchor>
+            <AnchorPane.rightAnchor>0.0</AnchorPane.rightAnchor>
         </HBox>
-    </bottom>
-</BorderPane>
+    </children>
+</AnchorPane>
