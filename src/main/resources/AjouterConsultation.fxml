@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #f4f6f9;" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AjouterConsultationController">
+    <children>
+        <VBox layoutX="35.0" layoutY="35.0" prefHeight="630.0" prefWidth="530.0" spacing="20.0">
+            <children>
+                <Label text="Ajouter une consultation" textFill="#2c3e50">
+                    <font>
+                        <Font name="System Bold" size="24.0"/>
+                    </font>
+                </Label>
+
+                <Separator prefWidth="200.0"/>
+
+                <VBox spacing="30.0">
+
+                    <!-- Nom et Prénom -->
+                    <HBox spacing="15.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Nom *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TextField fx:id="nomTextField" promptText="Nom" prefHeight="40.0"
+                                       style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                            <Label fx:id="nomErrorLabel" textFill="red" visible="false"/>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Prénom *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TextField fx:id="prenomTextField" promptText="Prénom" prefHeight="40.0"
+                                       style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                            <Label fx:id="prenomErrorLabel" textFill="red" visible="false"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Contact -->
+                    <HBox spacing="15.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Téléphone *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TextField fx:id="telTextField" promptText="Téléphone" prefHeight="40.0"
+                                       style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                            <Label fx:id="telErrorLabel" textFill="red" visible="false"/>
+                        </VBox>
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Email *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TextField fx:id="mailTextField" promptText="Email" prefHeight="40.0"
+                                       style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                            <Label fx:id="mailErrorLabel" textFill="red" visible="false"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Type et Statut -->
+                    <HBox spacing="15.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Type de consultation *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <ComboBox fx:id="type" promptText="Type (en ligne / présentiel)" prefHeight="40.0"
+                                      style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                        </VBox>
+
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Statut *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <TextField fx:id="statusTextField" promptText="Statut" text="En attente" prefHeight="40.0"
+                                       style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                            <Label fx:id="statusErrorLabel" textFill="red" visible="false"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Date et Heure -->
+                    <HBox spacing="15.0">
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Date *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <DatePicker fx:id="date" promptText="Date" prefHeight="40.0"
+                                        style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                            <Label fx:id="dateErrorLabel" textFill="red" visible="false"/>
+                        </VBox>
+
+                        <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                            <Label text="Heure *" textFill="#2c3e50">
+                                <font><Font name="System Bold" size="14.0"/></font>
+                            </Label>
+                            <ComboBox fx:id="heureComboBox" promptText="Heure" prefHeight="40.0"
+                                      style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                            <Label fx:id="heureErrorLabel" textFill="red" visible="false"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Note -->
+                    <VBox spacing="5.0">
+                        <Label text="Note (facultatif)" textFill="#2c3e50">
+                            <font><Font name="System Bold" size="14.0"/></font>
+                        </Label>
+                        <TextField fx:id="noteTextField" promptText="Note" prefHeight="40.0"
+                                   style="-fx-background-radius: 5; -fx-border-radius: 5;"/>
+                    </VBox>
+
+                    <!-- Boutons -->
+                    <HBox alignment="CENTER_RIGHT" spacing="15.0">
+                        <Button text="Voir Détails des Consultations" onAction="#goToDetailsConsultation"
+                                prefHeight="40.0" prefWidth="200.0"
+                                style="-fx-background-color: #bdc3c7; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+                        <Button text="Ajouter" onAction="#ajouterConsultationAction"
+                                prefHeight="40.0" prefWidth="150.0"
+                                style="-fx-background-color: #a8d5ba; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+                        <Button fx:id="backButton" text="Back" onAction="#goToBackConsultation"/>
+
+
+                    </HBox>
+                </VBox>
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </VBox>
+    </children>
+</AnchorPane>

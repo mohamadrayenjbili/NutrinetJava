@@ -3,106 +3,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.user.Sign_InController"
-            prefHeight="500.0" prefWidth="700.0"
-            style="-fx-background-color: linear-gradient(to bottom right, #f5f7fa, #e9f5e9);">
+            prefHeight="400.0" prefWidth="600.0">
 
-    <!-- Decorative shape on the left side -->
-    <StackPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
-               style="-fx-background-color: #4CAF50; -fx-background-radius: 0 20 20 0;"
-               prefWidth="250">
-        <VBox alignment="CENTER" spacing="20">
-            <ImageView fitWidth="150" fitHeight="150" preserveRatio="true">
-                <Image url="@/images/app_logo.png" />
-                <!-- You can replace with your actual logo path or remove if not available -->
-            </ImageView>
-            <Label text="Welcome Back" style="-fx-text-fill: white; -fx-font-weight: bold;">
-                <font>
-                    <Font name="System Bold" size="22.0" />
-                </font>
-            </Label>
-            <Label text="Please sign in to continue" style="-fx-text-fill: white; -fx-font-style: italic;">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Label>
-        </VBox>
-    </StackPane>
-
-    <!-- Main content -->
-    <VBox spacing="20" alignment="CENTER"
-          AnchorPane.leftAnchor="280" AnchorPane.rightAnchor="40"
-          AnchorPane.topAnchor="60" AnchorPane.bottomAnchor="60">
-
-        <Text text="Sign In" style="-fx-fill: #2e7d32;">
+    <VBox spacing="15" alignment="CENTER" layoutX="100" layoutY="80">
+        <Text text="Sign In">
             <font>
-                <Font name="System Bold" size="28.0" />
+                <Font size="24.0" />
             </font>
         </Text>
 
-        <Separator prefWidth="200" style="-fx-background-color: #c8e6c9;" />
+        <HBox spacing="10">
+            <Label text="Email" minWidth="100"/>
+            <TextField fx:id="emailField" promptText="Enter email"/>
+        </HBox>
 
-        <VBox spacing="25" alignment="TOP_LEFT" style="-fx-padding: 20 0 0 0;">
-            <VBox spacing="5">
-                <Label text="Email Address" style="-fx-text-fill: #1b5e20; -fx-font-weight: bold;">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Label>
-                <TextField fx:id="emailField" promptText="Enter your email"
-                           style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #a5d6a7; -fx-border-width: 1; -fx-padding: 10 15; -fx-background-color: white;">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </TextField>
-            </VBox>
+        <HBox spacing="10">
+            <Label text="Password" minWidth="100"/>
+            <PasswordField fx:id="passwordField" promptText="Enter password"/>
+        </HBox>
 
-            <VBox spacing="5">
-                <Label text="Password" style="-fx-text-fill: #1b5e20; -fx-font-weight: bold;">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Label>
-                <PasswordField fx:id="passwordField" promptText="Enter your password"
-                               style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #a5d6a7; -fx-border-width: 1; -fx-padding: 10 15; -fx-background-color: white;">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </PasswordField>
-            </VBox>
-
-            <HBox alignment="CENTER_RIGHT">
-                <Hyperlink text="Forgot password?" style="-fx-text-fill: #66bb6a; -fx-border-color: transparent;">
-                    <font>
-                        <Font size="12.0" />
-                    </font>
-                </Hyperlink>
-            </HBox>
-
-            <Button text="LOGIN" onAction="#handleLogin" maxWidth="Infinity"
-                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 12 15; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Button>
-
-            <HBox alignment="CENTER" style="-fx-padding: 15 0 0 0;">
-                <Label text="Don't have an account? " style="-fx-text-fill: #424242;">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Label>
-                <Hyperlink text="Sign Up" onAction="#goToSignUp" style="-fx-text-fill: #4CAF50; -fx-border-color: transparent; -fx-font-weight: bold;">
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Hyperlink>
-            </HBox>
-        </VBox>
+        <Button text="Login" onAction="#handleLogin" style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
     </VBox>
 </AnchorPane>

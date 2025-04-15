@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="Controllers.VoirPrescriptionController"
+      spacing="10" alignment="CENTER" padding="20.0">
+
+    <Label text="Détails de la Prescription" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+    <Label text="Nom:"/>
+    <Label fx:id="lblNom" font="$labelFont"/>
+
+    <Label text="Prénom:"/>
+    <Label fx:id="lblPrenom" font="$labelFont"/>
+
+    <Label text="Date:"/>
+    <Label fx:id="lblDate" font="$labelFont"/>
+
+    <Label text="Objectif:"/>
+    <Label fx:id="lblObjectif" wrapText="true" font="$labelFont"/>
+
+    <Label text="Programme:"/>
+    <Label fx:id="lblProgramme" wrapText="true" font="$labelFont"/>
+
+    <fx:define>
+        <Font fx:id="labelFont" name="Arial" size="14"/>
+    </fx:define>
+</VBox>
