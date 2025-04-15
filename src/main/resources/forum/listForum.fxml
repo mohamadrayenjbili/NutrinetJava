@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.forum.ForumController"
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom, #e3f2fd, #ffffff);">
+
+    <VBox spacing="25.0"
+          alignment="TOP_CENTER"
+          AnchorPane.topAnchor="20.0"
+          AnchorPane.leftAnchor="30.0"
+          AnchorPane.rightAnchor="30.0"
+          AnchorPane.bottomAnchor="20.0"
+          style="-fx-background-color: white; -fx-background-radius: 12px; -fx-padding: 25px; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+
+        <!-- Titre -->
+        <Label text="📚 Forum - Messages"
+               style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+
+        <!-- Scroll des messages -->
+        <ScrollPane fitToWidth="true" prefHeight="450.0" style="-fx-background-color: transparent; -fx-background-insets: 0;">
+            <content>
+                <VBox fx:id="messageContainer"
+                      spacing="15.0"
+                      style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+                    </padding>
+                </VBox>
+            </content>
+        </ScrollPane>
+
+        <!-- Boutons -->
+        <HBox spacing="15.0" alignment="CENTER">
+            <Button text="➕ Ajouter un message"
+                    onAction="#handleAjouterMessage"
+                    style="-fx-background-color: #43a047; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 10 24 10 24; -fx-background-radius: 10px;" />
+
+            <Button text="⬅ Retour"
+                    onAction="#handleRetour"
+                    style="-fx-background-color: #1e88e5; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 10 24 10 24; -fx-background-radius: 10px;" />
+        </HBox>
+
+    </VBox>
+</AnchorPane>

@@ -38,4 +38,29 @@ public class UserService {
             ps.executeUpdate();
         }
     }
+
+public User getUserById(int id) throws Exception {
+        String query = "SELECT * FROM user WHERE id = ?";
+        try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, id);
+            var rs = ps.executeQuery();
+            if (rs.next()) {
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setPrename(rs.getString("prename"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setAge(rs.getInt("age"));
+                user.setPhoneNumber(rs.getString("phone_number"));
+                user.setAddress(rs.getString("address"));
+                user.setRole(rs.getString("role"));
+                user.setIsBanned(rs.getString("is_banned"));
+                user.setDate(rs.getDate("date"));
+                return user;
+            }
+        }
+        return null; // Aucun utilisateur trouvé
+    }
+
 }
