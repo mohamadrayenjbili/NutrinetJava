@@ -1,13 +1,16 @@
 package services.user;
 
 import models.User;
-import java.time.LocalDate;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class SignInService {
 
     private Connection getConnection() throws Exception {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/user", "root", "");
     }
 
     public User authenticate(String email, String password) throws Exception {
@@ -29,7 +32,6 @@ public class SignInService {
                 user.setAddress(rs.getString("address"));
                 user.setRole(rs.getString("role"));
                 user.setIsBanned(rs.getString("is_banned"));
-                Date sqlDate = rs.getDate("date");
                 return user;
             }
         }
