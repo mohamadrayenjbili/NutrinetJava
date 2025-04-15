@@ -1,13 +1,14 @@
-package Controllers;
+package src.main.java.controllers;
 
 import Models.Consultation;
-import Services.ConsultationService;
+
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.Node;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
+import src.main.java.services.ConsultationService;
 
 import java.net.URL;
 import java.sql.SQLException;

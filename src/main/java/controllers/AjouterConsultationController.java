@@ -1,11 +1,12 @@
-package Controllers;
+package src.main.java.controllers;
 
-import Services.ConsultationService;
+
 import Models.Consultation;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import src.main.java.services.ConsultationService;
 import utils.MaConnexion;
 
 import java.io.IOException;

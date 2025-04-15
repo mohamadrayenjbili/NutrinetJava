@@ -1,12 +1,13 @@
-package Controllers;
+package src.main.java.controllers;
 
 import Models.Consultation;
 import Models.Prescription;
-import Services.PrescriptionService;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import src.main.java.services.PrescriptionService;
 
 import java.sql.SQLException;
 import java.time.ZoneId;

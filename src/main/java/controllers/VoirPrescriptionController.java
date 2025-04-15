@@ -1,4 +1,4 @@
-package Controllers;
+package src.main.java.controllers;
 
 import Models.Prescription;
 import javafx.fxml.FXML;

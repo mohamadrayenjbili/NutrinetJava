@@ -1,4 +1,4 @@
-package Services;
+package src.main.java.services;
 
 import Models.Prescription;
 import java.sql.*;

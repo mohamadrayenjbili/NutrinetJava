@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #f4f6f9;" xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml" fx:controller="Controllers.AjouterConsultationController">
+            xmlns:fx="http://javafx.com/fxml" fx:controller="controllers.AjouterConsultationController">
     <children>
         <VBox layoutX="35.0" layoutY="35.0" prefHeight="630.0" prefWidth="530.0" spacing="20.0">
             <children>

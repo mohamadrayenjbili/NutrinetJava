@@ -1,4 +1,4 @@
-package Controllers;
+package src.main.java.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,8 +18,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import Models.Consultation;
 import Models.Prescription;
-import Services.ConsultationService;
-import Services.PrescriptionService;
+
+
+import src.main.java.services.ConsultationService;
+import src.main.java.services.PrescriptionService;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -221,6 +224,7 @@ public class DetailsConsultationController implements Initializable {
                 Parent root = loader.load();
 
                 UpdatePrescriptionController controller = loader.getController();
+
                 controller.initData(prescription, prescriptionService);
 
                 Scene scene = new Scene(root);
@@ -271,6 +275,8 @@ public class DetailsConsultationController implements Initializable {
             Parent root = loader.load();
 
             UpdateConsultationController controller = loader.getController();
+            controller.initData(consultation, consultationService);
+
             controller.initData(consultation, consultationService);
 
             Scene scene = new Scene(root);
@@ -337,13 +343,14 @@ public class DetailsConsultationController implements Initializable {
                 Parent root = loader.load();
 
                 // Ensuite seulement, récupérer le contrôleur
-                VoirPrescriptionController controller = loader.getController();
+                UpdateConsultationController controller = loader.getController();
+
                 if (controller == null) {
                     throw new IllegalStateException("Le contrôleur VoirPrescriptionController est null. Vérifie le fx:controller.");
                 }
 
                 // Initialiser les données
-                controller.initData(prescription);
+                controller.initData(consultation, consultationService);
 
                 // Afficher la fenêtre
                 Stage stage = new Stage();

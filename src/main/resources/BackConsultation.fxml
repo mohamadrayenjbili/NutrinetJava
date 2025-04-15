@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="Controllers.BackConsultationAjoutController"
+            fx:controller="controllers.BackConsultationAjoutController"
             prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #f4f6f9;">
 
     <children>

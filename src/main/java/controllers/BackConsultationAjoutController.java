@@ -18,8 +18,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import Models.Consultation;
 import Models.Prescription;
-import Services.ConsultationService;
-import Services.PrescriptionService;
+
+
+import src.main.java.services.ConsultationService;
+import src.main.java.services.PrescriptionService;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -197,7 +200,7 @@ public class BackConsultationAjoutController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPrescription.fxml"));
             Parent root = loader.load();
 
-            Controllers.AjouterPrescriptionController controller = loader.getController();
+            AjouterPrescriptionController controller = loader.getController();
             controller.initData(consultation, prescriptionService);
 
             Scene scene = new Scene(root);
@@ -220,7 +223,8 @@ public class BackConsultationAjoutController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdatePrescription.fxml"));
                 Parent root = loader.load();
 
-                Controllers.UpdatePrescriptionController controller = loader.getController();
+                UpdatePrescriptionController controller = loader.getController();
+
                 controller.initData(prescription, prescriptionService);
 
                 Scene scene = new Scene(root);
@@ -270,7 +274,9 @@ public class BackConsultationAjoutController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateConsultation.fxml"));
             Parent root = loader.load();
 
-            Controllers.UpdateConsultationController controller = loader.getController();
+            UpdateConsultationController controller = loader.getController();
+            controller.initData(consultation, consultationService);
+
             controller.initData(consultation, consultationService);
 
             Scene scene = new Scene(root);
@@ -337,13 +343,16 @@ public class BackConsultationAjoutController implements Initializable {
                 Parent root = loader.load();
 
                 // Ensuite seulement, récupérer le contrôleur
-                Controllers.VoirPrescriptionController controller = loader.getController();
+                UpdatePrescriptionController controller = loader.getController();
+
+
+
                 if (controller == null) {
                     throw new IllegalStateException("Le contrôleur VoirPrescriptionController est null. Vérifie le fx:controller.");
                 }
 
                 // Initialiser les données
-                controller.initData(prescription);
+                controller.initData(prescription, prescriptionService);
 
                 // Afficher la fenêtre
                 Stage stage = new Stage();
@@ -394,8 +403,6 @@ public class BackConsultationAjoutController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
 
     private void showInfoAlert(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
