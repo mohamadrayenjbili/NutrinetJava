@@ -81,24 +81,7 @@ public class WelcomeController {
             e.printStackTrace();
         }
     }
-    @FXML
-    private void goToProducts() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProduitFront.fxml"));
-            Parent root = loader.load();
 
-            // Get the current stage
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-
-            // Set the new scene
-            stage.setScene(new Scene(root));
-            stage.setTitle("Nos Produits");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-            // Vous pourriez ajouter une alerte pour informer l'utilisateur en cas d'erreur
-        }
-    }
 
 
 }
