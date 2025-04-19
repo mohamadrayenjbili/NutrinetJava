@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 public class SignInService {
 
     private Connection getConnection() throws Exception {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/user", "root", "");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
     }
 
     public User authenticate(String email, String password) throws Exception {

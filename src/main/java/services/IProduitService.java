@@ -18,3 +18,6 @@ public interface IProduitService {
 
     void closeConnection() throws SQLException;
 }
+
+
+

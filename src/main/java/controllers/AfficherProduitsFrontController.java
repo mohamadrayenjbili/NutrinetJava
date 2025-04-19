@@ -210,7 +210,7 @@ public class AfficherProduitsFrontController implements Initializable {
 
     private void openProductDetails(Produit produit) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/DetailProduit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailProduit.fxml"));
             Parent root = loader.load();
 
             DetailProduitController controller = loader.getController();
@@ -228,11 +228,16 @@ public class AfficherProduitsFrontController implements Initializable {
     @FXML
     private void voirPanier(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/views/Panier.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("Mon Panier");
+            // Charger la nouvelle vue
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
+            Parent root = loader.load();
+
+            // Récupérer la scène actuelle à partir du bouton cliqué
+            Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
+
+            // Remplacer la scène actuelle
             stage.setScene(new Scene(root));
-            stage.show();
+            stage.setTitle("Mon Panier");
         } catch (IOException e) {
             showAlert("Erreur", "Impossible d'ouvrir le panier", Alert.AlertType.ERROR);
         }

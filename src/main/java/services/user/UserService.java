@@ -4,11 +4,12 @@ import models.User;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class UserService {
 
     private Connection getConnection() throws Exception {
-        return DriverManager.getConnection("jdbc:mysql://localhost:3306/user", "root", "");
+        return DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
     }
 
     public void addUser(User user) throws Exception {
@@ -61,6 +62,21 @@ public User getUserById(int id) throws Exception {
             }
         }
         return null; // Aucun utilisateur trouvé
+    }
+
+
+    public boolean emailExists(String email) {
+        String query = "SELECT COUNT(*) FROM user WHERE email = ?";
+        try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }
