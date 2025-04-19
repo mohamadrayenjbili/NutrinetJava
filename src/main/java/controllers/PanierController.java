@@ -52,6 +52,9 @@ public class PanierController implements Initializable {
     @FXML
     private Button btnCommander;
 
+    @FXML
+    private Button btnRetour;
+
     private PanierService panierService;
     private CommandeService commandeService;
 
@@ -120,7 +123,7 @@ public class PanierController implements Initializable {
 
         try {
             // Ouvrir la fenêtre pour finaliser la commande
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/AjouterCommande.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCommande.fxml"));
             Parent root = loader.load();
 
             AjouterCommandeController controller = loader.getController();
@@ -143,5 +146,24 @@ public class PanierController implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    @FXML
+    private void retourProduits(ActionEvent event) {
+        try {
+            // Charger la vue des produits
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProduitFront.fxml"));
+            Parent root = loader.load();
+
+            // Récupérer la scène actuelle
+            Stage stage = (Stage) btnRetour.getScene().getWindow();
+
+            // Changer la scène
+            stage.setScene(new Scene(root));
+            stage.setTitle("Nos Produits");
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Vous pouvez ajouter ici une alerte pour l'utilisateur
+        }
     }
 }

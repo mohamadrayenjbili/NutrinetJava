@@ -12,11 +12,23 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.PanierController">
     <top>
-        <Label alignment="CENTER" prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #4CAF50;" text="Mon Panier" textFill="WHITE" BorderPane.alignment="CENTER">
-            <font>
-                <Font name="System Bold" size="24.0" />
-            </font>
-        </Label>
+        <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="800.0" style="-fx-background-color: #4CAF50;">
+            <children>
+                <Button fx:id="btnRetour" mnemonicParsing="false" onAction="#retourProduits" style="-fx-background-color: transparent; -fx-text-fill: white; -fx-border-color: white; -fx-border-radius: 5;" text="Retour">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <HBox.margin>
+                        <Insets left="10.0" />
+                    </HBox.margin>
+                </Button>
+                <Label alignment="CENTER" text="Mon Panier" textFill="WHITE" HBox.hgrow="ALWAYS">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
     </top>
     <center>
         <TableView fx:id="tablePanier" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
