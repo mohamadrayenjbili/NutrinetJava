@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Commentaire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/CommentaireService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/ICommentaireService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/ProgrammeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/ProgrammeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/MaConnexion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/MaConnexion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherProgrammeFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AfficherProgrammeFront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterProgramme.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterProgramme.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsProgramme.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsProgramme.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/details_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/details_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/style.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Seiffaress&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
+    &quot;accountId&quot;: &quot;21f38e0d-9eb4-4540-992f-be9be6ea3dfd&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2vjLVz5nxdYYWSmLB6pyrohDl06" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.PiJava [javafx:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Seiftt&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="PiJava [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="javafx:run" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="" />
+      <created>1744653565488</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1744653565488</updated>
+      <workItem from="1744653567001" duration="347000" />
+      <workItem from="1744654025583" duration="2207000" />
+      <workItem from="1744656294428" duration="2476000" />
+      <workItem from="1744659215422" duration="5616000" />
+      <workItem from="1744815871260" duration="3000" />
+      <workItem from="1744815889189" duration="7043000" />
+      <workItem from="1745234813505" duration="108000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
