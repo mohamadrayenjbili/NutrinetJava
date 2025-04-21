@@ -9,6 +9,7 @@ public class MaConnexion {
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
+
     private static MaConnexion instance;
     private Connection connection;
 
