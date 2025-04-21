@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.forum.AjouterMessageController"
+            prefHeight="400.0" prefWidth="600.0"
+            style="-fx-background-color: #f0f4f8; -fx-padding: 20px;">
+
+    <!-- Conteneur principal en VBox pour une organisation propre -->
+    <VBox alignment="CENTER" spacing="20.0" layoutX="20" layoutY="20">
+        <!-- Titre avec Emoji -->
+        <Label text="📝 Ajouter un message"
+               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333333;" />
+
+        <!-- Zone de texte pour le message avec Emoji -->
+        <Label text="💬 Message :"
+               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #555555;" />
+        <TextArea fx:id="taMessage"
+                  prefHeight="150.0"
+                  prefWidth="500.0"
+                  wrapText="true"
+                  style="-fx-font-size: 14px; -fx-border-color: #ccc; -fx-background-color: #ffffff; -fx-border-radius: 5px;" />
+
+        <!-- Label d'erreur avec Emoji -->
+        <Label fx:id="lblErreur"
+               textFill="red"
+               style="-fx-font-size: 12px;" />
+
+        <!-- Bouton pour soumettre avec Emoji -->
+        <Button fx:id="btnAjouter"
+                text="📤 Envoyer"
+                prefWidth="150.0"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-border-radius: 5px; -fx-padding: 10px;"
+                onAction="#handleAjouterMessage" />
+
+        <!-- Bouton retour -->
+        <Button text="⬅ Retour"
+                onAction="#handleRetour"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-border-radius: 5px; -fx-padding: 10px;"/>
+
+    </VBox>
+
+</AnchorPane>

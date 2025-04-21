@@ -2,24 +2,195 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.Insets?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.user.WelcomeController"
-            prefHeight="400.0" prefWidth="600.0">
+            prefHeight="600.0" prefWidth="800.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #f5f7fa, #e9f5e9);">
 
-    <VBox alignment="CENTER" spacing="20.0" layoutX="100" layoutY="100" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="80.0">
-        <Label fx:id="welcomeLabel" text="Welcome!" >
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Label>
+    <!-- Left sidebar for navigation -->
+    <VBox AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          style="-fx-background-color: #4CAF50; -fx-background-radius: 0 20 20 0;"
+          prefWidth="220">
 
-        <Button text="Go to User List" onAction="#goToUserList"/>
-        <Button text="Logout" onAction="#handleLogout" />
-        <Button text="View Profile" onAction="#goToProfile" />
+        <VBox alignment="CENTER" spacing="15" style="-fx-padding: 30 10;">
+            <ImageView fitWidth="100" fitHeight="100" preserveRatio="true">
+                <Image url="@/images/app_logo.png" />
+            </ImageView>
+            <Label text="MyApp" style="-fx-text-fill: white; -fx-font-weight: bold;">
+                <font>
+                    <Font name="System Bold" size="22.0" />
+                </font>
+            </Label>
+            <Separator prefWidth="180" style="-fx-background-color: rgba(255,255,255,0.3);" />
+        </VBox>
 
+        <VBox spacing="5" VBox.vgrow="ALWAYS" style="-fx-padding: 20 15;">
+            <Button text="didou" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;"
+                    onAction="#goToProducts">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="seif" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="marouki" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="malek" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="forum" onAction="#naviguateToForum"  maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="reclamatipon" onAction="#naviguateToReclamation"  maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+
+            <Button text="Profile" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToProfile"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Settings" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M19.14,12.94c0.04-0.3,0.06-0.61,0.06-0.94c0-0.32-0.02-0.64-0.07-0.94l2.03-1.58c0.18-0.14,0.23-0.41,0.12-0.61 l-1.92-3.32c-0.12-0.22-0.37-0.29-0.59-0.22l-2.39,0.96c-0.5-0.38-1.03-0.7-1.62-0.94L14.4,2.81c-0.04-0.24-0.24-0.41-0.48-0.41 h-3.84c-0.24,0-0.43,0.17-0.47,0.41L9.25,5.35C8.66,5.59,8.12,5.92,7.63,6.29L5.24,5.33c-0.22-0.08-0.47,0-0.59,0.22L2.74,8.87 C2.62,9.08,2.66,9.34,2.86,9.48l2.03,1.58C4.84,11.36,4.8,11.69,4.8,12s0.02,0.64,0.07,0.94l-2.03,1.58 c-0.18,0.14-0.23,0.41-0.12,0.61l1.92,3.32c0.12,0.22,0.37,0.29,0.59,0.22l2.39-0.96c0.5,0.38,1.03,0.7,1.62,0.94l0.36,2.54 c0.05,0.24,0.24,0.41,0.48,0.41h3.84c0.24,0,0.44-0.17,0.47-0.41l0.36-2.54c0.59-0.24,1.13-0.56,1.62-0.94l2.39,0.96 c0.22,0.08,0.47,0,0.59-0.22l1.92-3.32c0.12-0.22,0.07-0.47-0.12-0.61L19.14,12.94z M12,15.6c-1.98,0-3.6-1.62-3.6-3.6 s1.62-3.6,3.6-3.6s3.6,1.62,3.6,3.6S13.98,15.6,12,15.6z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+        </VBox>
+
+        <VBox alignment="BOTTOM_CENTER" spacing="10" style="-fx-padding: 20;">
+            <Button text="LOGOUT" maxWidth="Infinity" onAction="#handleLogout"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z';" />
+                </graphic>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+        </VBox>
     </VBox>
+
+    <!-- Main content area -->
+    <StackPane AnchorPane.leftAnchor="240" AnchorPane.rightAnchor="20"
+               AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+
+        <VBox alignment="TOP_CENTER" spacing="25">
+            <!-- Welcome section -->
+            <VBox alignment="CENTER" spacing="15">
+                <Label fx:id="welcomeLabel" text="Welcome Back, User!" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;">
+                    <font>
+                        <Font size="32.0" />
+                    </font>
+                </Label>
+                <Label text="It's great to see you again" style="-fx-text-fill: #666666; -fx-font-style: italic;">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <Separator prefWidth="300" style="-fx-background-color: #c8e6c9;" />
+            </VBox>
+
+            <!-- Quick actions -->
+            <VBox alignment="CENTER" spacing="15" style="-fx-padding: 15 0;">
+                <Label text="Quick Actions" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                </Label>
+
+                <HBox spacing="15" alignment="CENTER">
+                    <Button text="User Management"
+                            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 12 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Button>
+
+                    <Button text="View Reports"
+                            style="-fx-background-color: white; -fx-text-fill: #4CAF50; -fx-font-weight: bold; -fx-background-radius: 5; -fx-border-color: #4CAF50; -fx-border-radius: 5; -fx-padding: 12 20;">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Button>
+
+                    <Button text="System Settings"
+                            style="-fx-background-color: white; -fx-text-fill: #4CAF50; -fx-font-weight: bold; -fx-background-radius: 5; -fx-border-color: #4CAF50; -fx-border-radius: 5; -fx-padding: 12 20;">
+                        <font>
+                            <Font size="14.0" />
+                        </font>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <!-- Recent activity with ListView -->
+            <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);" VBox.vgrow="ALWAYS">
+                <Label text="Recent Activity" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+
+                <ListView fx:id="activityListView" VBox.vgrow="ALWAYS"
+                          style="-fx-background-color: transparent; -fx-border-color: transparent; -fx-padding: 10 0;">
+                    <!-- Will be populated from the controller -->
+                </ListView>
+            </VBox>
+        </VBox>
+    </StackPane>
 </AnchorPane>

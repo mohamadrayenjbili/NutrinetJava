@@ -2,29 +2,82 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.DropShadow?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.user.userlistcontroller"
-            prefHeight="500.0" prefWidth="700.0">
+            prefHeight="600.0" prefWidth="900.0"
+            style="-fx-background-color: linear-gradient(to bottom right, #f5f7fa, #e9f5e9);">
 
-    <children>
-        <VBox spacing="10.0" layoutX="20.0" layoutY="20.0" prefWidth="660" prefHeight="460">
-            <Label text="Users List" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
-
-            <!-- User ListView -->
-            <ListView fx:id="usersListView" prefHeight="350.0" VBox.vgrow="ALWAYS" />
-
-            <!-- Buttons section -->
-            <HBox spacing="10.0" alignment="CENTER_RIGHT">
-                <Button fx:id="deleteUserButton" text="Delete User" onAction="#handleDeleteUser"  prefWidth="100"
-                        style="-fx-background-color: #F44336; -fx-text-fill: white;" />
-                <Button fx:id="updateUserButton" text="Update User" onAction="#handleUpdateUser" prefWidth="100"
-                        style="-fx-background-color: #2196F3; -fx-text-fill: white;" />
-                <Button text="Add User" onAction="#navigateToAddUserForm" prefWidth="100"
-                        style="-fx-background-color: #4CAF50; -fx-text-fill: white;" />
-            </HBox>
+    <!-- Left Side Panel (Decorative) -->
+    <StackPane AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+               style="-fx-background-color: #4CAF50; -fx-background-radius: 0 20 20 0;"
+               prefWidth="250">
+        <VBox alignment="CENTER" spacing="20">
+            <ImageView fitWidth="120" fitHeight="120" preserveRatio="true">
+                <Image url="@/images/app_logo.png" />
+            </ImageView>
+            <Label text="User Management" style="-fx-text-fill: white; -fx-font-weight: bold;">
+                <font>
+                    <Font name="System Bold" size="22.0" />
+                </font>
+            </Label>
+            <Label text="View and manage all users" style="-fx-text-fill: white; -fx-font-style: italic;">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+            <Separator prefWidth="180" style="-fx-background-color: rgba(255,255,255,0.3);" />
         </VBox>
-    </children>
+    </StackPane>
+
+    <!-- Main Content Area -->
+    <VBox spacing="20" AnchorPane.leftAnchor="280" AnchorPane.rightAnchor="30"
+          AnchorPane.topAnchor="30" AnchorPane.bottomAnchor="30">
+        <Text text="Users List" style="-fx-fill: #2e7d32;">
+            <font>
+                <Font name="System Bold" size="28.0" />
+            </font>
+        </Text>
+
+        <Separator prefWidth="200" style="-fx-background-color: #c8e6c9;" />
+
+        <!-- User ListView (Styled) -->
+        <ListView fx:id="usersListView" VBox.vgrow="ALWAYS"
+                  style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #a5d6a7; -fx-border-width: 1; -fx-background-color: white;">
+            <!-- Custom cell factory can be set in the controller -->
+        </ListView>
+
+        <!-- Buttons Section -->
+        <HBox spacing="15" alignment="CENTER_RIGHT">
+            <Button fx:id="deleteUserButton" text="DELETE" onAction="#handleDeleteUser"
+                    style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+            <Button fx:id="updateUserButton" text="UPDATE" onAction="#handleUpdateUser"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+            <Button text="ADD USER" onAction="#navigateToAddUserForm"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+            <Button text="LOGOUT" fx:id="logout" onAction="#handleLogout"
+                    style="-fx-background-color: transparent; -fx-text-fill: #4CAF50; -fx-border-color: #4CAF50; -fx-border-radius: 5; -fx-border-width: 1; -fx-font-weight: bold; -fx-padding: 10 20;">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+        </HBox>
+    </VBox>
 </AnchorPane>

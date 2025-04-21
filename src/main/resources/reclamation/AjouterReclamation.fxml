@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.reclamation.AjouterReclamationController">
+    <padding>
+        <Insets top="25" right="30" bottom="25" left="30"/>
+    </padding>
+
+    <Label text="📣 Nouvelle Réclamation"
+           style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2A2A2A;"/>
+
+    <TextField fx:id="sujetField" promptText="✏️ Sujet de la réclamation" maxWidth="350"
+               style="-fx-font-size: 14px;"/>
+
+    <TextArea fx:id="messageArea" promptText="📝 Détaillez votre réclamation ici..." maxWidth="350"
+              prefRowCount="6" wrapText="true" style="-fx-font-size: 14px;"/>
+
+    <Button fx:id="attacherBtn" text="📎 Ajouter une image" maxWidth="200" onAction="#ajouterImage"
+            style="-fx-font-size: 14px; -fx-background-color: #3f9dff; -fx-text-fill: white;"/>
+
+    <Label fx:id="imageLabel" text="Aucune image sélectionnée" style="-fx-font-size: 14px;"/>
+
+    <Button fx:id="envoyerBtn" text="🚀 Envoyer" maxWidth="200"
+            style="-fx-font-size: 16px; -fx-background-color: #4CAF50; -fx-text-fill: white;"/>
+
+    <Button fx:id="retourBtn" text="⬅️ Retour" maxWidth="150"
+            style="-fx-font-size: 14px; -fx-background-color: #E0E0E0;"/>
+
+</VBox>

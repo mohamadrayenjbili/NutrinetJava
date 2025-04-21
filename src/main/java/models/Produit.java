@@ -23,6 +23,9 @@ public class Produit {
         this.stock = stock;
     }
 
+    public Produit(int i, String aucunProduit, int i1, String s, String s1, String s2, int i2) {
+    }
+
     // Getters et Setters
     public int getId() {
         return id;
