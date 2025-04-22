@@ -40,7 +40,21 @@ public class UserService {
         }
     }
 
-public User getUserById(int id) throws Exception {
+    public boolean emailExists(String email) {
+        String query = "SELECT COUNT(*) FROM user WHERE email = ?";
+        try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public User getUserById(int id) throws Exception {
         String query = "SELECT * FROM user WHERE id = ?";
         try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, id);
@@ -62,21 +76,6 @@ public User getUserById(int id) throws Exception {
             }
         }
         return null; // Aucun utilisateur trouvé
-    }
-
-
-    public boolean emailExists(String email) {
-        String query = "SELECT COUNT(*) FROM user WHERE email = ?";
-        try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
-            ps.setString(1, email);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 
 }

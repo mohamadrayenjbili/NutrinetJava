@@ -1,11 +1,8 @@
 package services.user;
 
 import models.User;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.sql.*;
 
 public class SignInService {
 
@@ -32,6 +29,7 @@ public class SignInService {
                 user.setAddress(rs.getString("address"));
                 user.setRole(rs.getString("role"));
                 user.setIsBanned(rs.getString("is_banned"));
+                Date sqlDate = rs.getDate("date");
                 return user;
             }
         }

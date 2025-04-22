@@ -14,6 +14,7 @@ import models.User;
 import services.user.SignInService;
 import utils.session;
 
+import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 
@@ -40,22 +41,30 @@ public class Sign_InController {
             User user = service.authenticate(email, password);
 
             if (user != null) {
-                // Save the session
-                utils.session.setCurrentUser(user);
+                session.setCurrentUser(user);
 
-                // Load and display users_list.fxml
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/welcome.fxml"));
-                javafx.scene.Parent root = loader.load();
-                javafx.stage.Stage stage = new javafx.stage.Stage();
-                stage.setTitle("User List");
-                stage.setScene(new javafx.scene.Scene(root));
+                String fxmlPath;
+                String title;
+
+                if (user.getRole().equalsIgnoreCase("admin")) {
+                    fxmlPath = "/user/users_list.fxml";
+                    title = "Admin Dashboard";
+                } else {
+                    fxmlPath = "/user/welcome.fxml";
+                    title = "Welcome";
+                }
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                Parent root = loader.load();
+                Stage stage = (Stage) emailField.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle(title);
                 stage.show();
 
-                // Close login window
-                emailField.getScene().getWindow().hide();
             } else {
                 showAlert(Alert.AlertType.ERROR, "Invalid email or password.");
             }
+
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Login failed due to a system error.");
@@ -86,4 +95,6 @@ public class Sign_InController {
             e.printStackTrace(); // You can log this or show an alert
         }
     }
+
+
 }

@@ -1,11 +1,6 @@
 package controllers.user;
 
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 import models.User;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -14,8 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
-
-import java.io.IOException;
+import javafx.scene.control.Label;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -34,18 +28,48 @@ public class sign_upController implements Initializable {
     @FXML private DatePicker datePicker;
     @FXML private ComboBox<String> roleComboBox;
 
+    @FXML private Label nomErrorLabel;
+    @FXML private Label prenomErrorLabel;
+    @FXML private Label emailErrorLabel;
+    @FXML private Label passwordErrorLabel;
+    @FXML private Label ageErrorLabel;
+    @FXML private Label phoneErrorLabel;
+    @FXML private Label addressErrorLabel;
+    @FXML private Label dateErrorLabel;
+    @FXML private Label roleErrorLabel;
+    @FXML private Label generalErrorLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         roleComboBox.setValue("client");
+        clearErrorLabels();
+
+        nomTextField.textProperty().addListener((observable, oldValue, newValue) -> nomErrorLabel.setText(""));
+        prenomTextField.textProperty().addListener((observable, oldValue, newValue) -> prenomErrorLabel.setText(""));
+        emailTextField.textProperty().addListener((observable, oldValue, newValue) -> emailErrorLabel.setText(""));
+        passwordField.textProperty().addListener((observable, oldValue, newValue) -> passwordErrorLabel.setText(""));
+        ageTextField.textProperty().addListener((observable, oldValue, newValue) -> ageErrorLabel.setText(""));
+        phoneTextField.textProperty().addListener((observable, oldValue, newValue) -> phoneErrorLabel.setText(""));
+        addressTextField.textProperty().addListener((observable, oldValue, newValue) -> addressErrorLabel.setText(""));
+        datePicker.valueProperty().addListener((observable, oldValue, newValue) -> dateErrorLabel.setText(""));
+        roleComboBox.valueProperty().addListener((observable, oldValue, newValue) -> roleErrorLabel.setText(""));
     }
 
-    private void showAlert(Alert.AlertType type, String message) {
-        Alert alert = new Alert(type);
-        alert.setContentText(message);
-        alert.show();
+    private void clearErrorLabels() {
+        nomErrorLabel.setText("");
+        prenomErrorLabel.setText("");
+        emailErrorLabel.setText("");
+        passwordErrorLabel.setText("");
+        ageErrorLabel.setText("");
+        phoneErrorLabel.setText("");
+        addressErrorLabel.setText("");
+        dateErrorLabel.setText("");
+        roleErrorLabel.setText("");
+        generalErrorLabel.setText("");
     }
 
-    private void clearFields() {
+    @FXML
+    void clearFields() {
         nomTextField.clear();
         prenomTextField.clear();
         emailTextField.clear();
@@ -55,91 +79,122 @@ public class sign_upController implements Initializable {
         addressTextField.clear();
         roleComboBox.setValue("client");
         datePicker.setValue(null);
+        clearErrorLabels();
+    }
+
+    private void showSuccessAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(message);
+        alert.show();
+    }
+
+    @FXML
+    void goToSignIn(ActionEvent event) {
+        // Implement navigation to sign-in screen
     }
 
     @FXML
     void adduser(ActionEvent event) {
-        try {
-            String nom = nomTextField.getText().trim();
-            String prenom = prenomTextField.getText().trim();
-            String email = emailTextField.getText().trim();
-            String password = passwordField.getText();
-            String ageText = ageTextField.getText().trim();
-            String phone = phoneTextField.getText().trim();
-            String address = addressTextField.getText().trim();
-            LocalDate selectedDate = datePicker.getValue();
-            String role = roleComboBox.getValue();
+        clearErrorLabels();
+        boolean hasErrors = false;
 
-            if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || password.isEmpty()
-                    || ageText.isEmpty() || phone.isEmpty() || address.isEmpty() || selectedDate == null || role == null) {
-                showAlert(Alert.AlertType.WARNING, "Veuillez remplir tous les champs.");
-                return;
-            }
+        String nom = nomTextField.getText().trim();
+        String prenom = prenomTextField.getText().trim();
+        String email = emailTextField.getText().trim();
+        String password = passwordField.getText();
+        String ageText = ageTextField.getText().trim();
+        String phone = phoneTextField.getText().trim();
+        String address = addressTextField.getText().trim();
+        LocalDate selectedDate = datePicker.getValue();
+        String role = roleComboBox.getValue();
 
-            if (!email.matches("^[\\w.-]+@[\\w.-]+\\.\\w{2,}$")) {
-                showAlert(Alert.AlertType.WARNING, "Adresse e-mail invalide.");
-                return;
-            }
+        UserService userService = new UserService();
 
-            if (password.length() < 6) {
-                showAlert(Alert.AlertType.WARNING, "Le mot de passe doit contenir au moins 6 caractères.");
-                return;
-            }
+        if (nom.isEmpty()) {
+            nomErrorLabel.setText("Le nom est obligatoire");
+            hasErrors = true;
+        }
 
-            int age;
+        if (prenom.isEmpty()) {
+            prenomErrorLabel.setText("Le prénom est obligatoire");
+            hasErrors = true;
+        }
+
+        if (email.isEmpty()) {
+            emailErrorLabel.setText("L'adresse e-mail est obligatoire");
+            hasErrors = true;
+        } else if (!email.matches("^[\\w.-]+@[\\w.-]+\\.\\w{2,}$")) {
+            emailErrorLabel.setText("Format d'adresse e-mail invalide");
+            hasErrors = true;
+        } else if (userService.emailExists(email)) {
+            emailErrorLabel.setText("Cet e-mail est déjà utilisé");
+            hasErrors = true;
+        }
+
+        if (password.isEmpty()) {
+            passwordErrorLabel.setText("Le mot de passe est obligatoire");
+            hasErrors = true;
+        } else if (password.length() < 6) {
+            passwordErrorLabel.setText("Le mot de passe doit contenir au moins 6 caractères");
+            hasErrors = true;
+        }
+
+        if (ageText.isEmpty()) {
+            ageErrorLabel.setText("L'âge est obligatoire");
+            hasErrors = true;
+        } else {
             try {
-                age = Integer.parseInt(ageText);
+                int age = Integer.parseInt(ageText);
                 if (age <= 0) {
-                    showAlert(Alert.AlertType.WARNING, "L'âge doit être un nombre positif.");
-                    return;
+                    ageErrorLabel.setText("L'âge doit être un nombre positif");
+                    hasErrors = true;
                 }
             } catch (NumberFormatException e) {
-                showAlert(Alert.AlertType.WARNING, "Veuillez entrer un âge valide.");
-                return;
+                ageErrorLabel.setText("Veuillez entrer un âge valide");
+                hasErrors = true;
             }
+        }
 
-            if (!phone.matches("\\d{8,15}")) {
-                showAlert(Alert.AlertType.WARNING, "Numéro de téléphone invalide (8 à 15 chiffres).");
-                return;
-            }
+        if (phone.isEmpty()) {
+            phoneErrorLabel.setText("Le numéro de téléphone est obligatoire");
+            hasErrors = true;
+        } else if (!phone.matches("\\d{8,15}")) {
+            phoneErrorLabel.setText("Numéro de téléphone invalide (8 à 15 chiffres)");
+            hasErrors = true;
+        }
 
+        if (address.isEmpty()) {
+            addressErrorLabel.setText("L'adresse est obligatoire");
+            hasErrors = true;
+        }
+
+        if (selectedDate == null) {
+            dateErrorLabel.setText("La date de naissance est obligatoire");
+            hasErrors = true;
+        }
+
+        if (role == null) {
+            roleErrorLabel.setText("Le rôle est obligatoire");
+            hasErrors = true;
+        }
+
+        if (hasErrors) {
+            return;
+        }
+
+        try {
+            int age = Integer.parseInt(ageText);
             Date sqlDate = Date.valueOf(selectedDate);
 
             User user = new User(0, nom, prenom, email, password, age, phone, address, role, "0", sqlDate);
-            UserService userService = new UserService();
             userService.addUser(user);
 
-            utils.session.setCurrentUser(user);
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/welcome.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Bienvenue");
-            stage.show();
+            showSuccessAlert("Utilisateur enregistré avec succès !");
+            clearFields();
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur : " + e.getMessage());
-        }
-    }
-
-    public void goToSignIn(ActionEvent actionEvent) {
-        try {
-            // Load the sign-up FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-            Parent root = loader.load();
-
-            // Get the current stage from the event
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-
-            // Set the new scene
-            stage.setScene(new Scene(root));
-            stage.setTitle("Sign In");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace(); // You can log this or show an alert
+            generalErrorLabel.setText("Erreur: " + e.getMessage());
         }
     }
 }
