@@ -14,6 +14,7 @@ public class Home extends Application {
         launch(args);
     }
 
+
     @Override
     public void start(Stage stage) {
         try {
