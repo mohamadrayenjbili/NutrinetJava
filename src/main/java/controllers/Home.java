@@ -23,11 +23,10 @@ public class Home extends Application {
         }
 
         try {
+
             // Charger le fichier FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-          //  FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/sign_up.fxml"));
 
-            AnchorPane root = loader.load();
 
             // Créer la scène et définir les paramètres
             Scene scene = new Scene(root);
