@@ -1,3 +1,4 @@
+/* --- Root et Titre (inchangé, très bien comme ça) --- */
 .root-pane {
     -fx-background-color: #fdfaf6;
     -fx-padding: 30;
@@ -11,6 +12,55 @@
     -fx-padding: 10 0 20 0;
 }
 
+/* --- Champs de recherche et ComboBox améliorés --- */
+.search-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #aaa;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.03), 3, 0.3, 0, 1);
+}
+
+.search-field:focused {
+    -fx-border-color: #123f5c;
+    -fx-effect: dropshadow(gaussian, rgba(18, 63, 92, 0.2), 5, 0.3, 0, 2);
+}
+
+/* ComboBox esthétique */
+.combo-box {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1.5;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #aaa;
+}
+
+.combo-box:focused {
+    -fx-border-color: #123f5c;
+    -fx-effect: dropshadow(gaussian, rgba(18, 63, 92, 0.2), 5, 0.3, 0, 2);
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/* Menu déroulant du ComboBox */
+.combo-box-popup .list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+}
+
+/* Champs texte, Combo et TextArea généraux (déjà très bien) */
 .text-field, .combo-box, .text-area {
     -fx-background-radius: 8;
     -fx-border-radius: 8;
@@ -24,10 +74,7 @@
     -fx-border-color: #999999;
 }
 
-.combo-box .arrow-button {
-    -fx-background-color: transparent;
-}
-
+/* --- Boutons --- */
 .btn-primary {
     -fx-background-color: #0a1f2c;
     -fx-text-fill: white;
@@ -55,6 +102,7 @@
     -fx-background-color: #c0c0c0;
 }
 
+/* --- Image Preview --- */
 .image-preview {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.3, 0, 5);
     -fx-border-radius: 8;
