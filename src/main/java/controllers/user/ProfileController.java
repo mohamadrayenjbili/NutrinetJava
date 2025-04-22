@@ -1,13 +1,17 @@
 package controllers.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import models.User;
 import utils.session;
+
+import java.io.IOException;
 
 public class ProfileController {
 
@@ -54,4 +58,28 @@ public class ProfileController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void navigatetoupdate(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/update_user.fxml"));
+            Parent updateRoot = loader.load();
+
+            // Pass the current user to the update controller
+            UpdateUserController updateController = loader.getController();
+
+            User currentUser = session.getCurrentUser(); // <- You must implement this logic
+            updateController.setUser(currentUser);
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(updateRoot));
+            stage.setTitle("Update Profile");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

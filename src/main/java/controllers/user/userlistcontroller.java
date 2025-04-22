@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -19,6 +20,8 @@ import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import models.User;
 import services.user.*;
+import utils.session;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -26,6 +29,7 @@ import java.util.ResourceBundle;
 
 public class userlistcontroller implements Initializable {
 
+    public Label users_list;
     @FXML
     private ListView<User> usersListView;
 
@@ -58,7 +62,6 @@ public class userlistcontroller implements Initializable {
         });
     }
 
-    // Create a header row above the ListView to show column names
     private void createColumnHeaders() {
         // Create header HBox
         HBox headerBox = new HBox();
@@ -91,6 +94,28 @@ public class userlistcontroller implements Initializable {
         // Add header to parent container (VBox that contains ListView)
         VBox parent = (VBox) usersListView.getParent();
         parent.getChildren().add(0, headerBox);
+    }
+
+    @FXML
+    private void handleLogout() {
+        // Clear the current session
+        session.clearSession();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage from any UI element
+            Stage stage = (Stage) usersListView.getScene().getWindow();
+
+            // Set the new scene (sign in) on the same stage
+            stage.setTitle("Sign In");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Custom ListCell that displays User data in columns
@@ -161,7 +186,6 @@ public class userlistcontroller implements Initializable {
         }
     }
 
-    // Method to handle delete user button click
     @FXML
     private void handleDeleteUser(ActionEvent event) {
         User selectedUser = usersListView.getSelectionModel().getSelectedItem();
@@ -170,7 +194,6 @@ public class userlistcontroller implements Initializable {
             return;
         }
 
-        // Confirm deletion
         Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
         confirmAlert.setTitle("Confirm Delete");
         confirmAlert.setHeaderText("Delete User");

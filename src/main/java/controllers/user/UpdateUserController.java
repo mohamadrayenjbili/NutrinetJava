@@ -1,5 +1,6 @@
 package controllers.user;
 
+import javafx.scene.Parent;
 import models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import services.user.updateservice;
 import javafx.scene.Node;
 import java.io.IOException;
+import java.util.Objects;
 
 public class UpdateUserController {
 
@@ -72,6 +74,26 @@ public class UpdateUserController {
         Alert alert = new Alert(type);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public void handleCancel(ActionEvent event) throws IOException {
+        // Get the current user from session
+        User currentUser = utils.session.getCurrentUser();
+
+        String fxmlPath;
+        if (currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            // If the user is admin, redirect to users_list
+            fxmlPath = "/user/users_list.fxml";
+        } else {
+            // Else redirect to profile
+            fxmlPath = "/user/profile.fxml";
+        }
+
+        // Load the correct scene
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(fxmlPath)));
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
 }

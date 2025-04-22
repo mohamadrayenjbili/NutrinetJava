@@ -79,6 +79,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
+               <Label fx:id="prenomErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Last Name -->
@@ -94,6 +95,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
+               <Label fx:id="nomErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Email -->
@@ -109,6 +111,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
+               <Label fx:id="emailErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Password -->
@@ -124,6 +127,7 @@
                      <Font size="12.0" />
                   </font>
                </PasswordField>
+               <Label fx:id="passwordErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Age -->
@@ -139,6 +143,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
+               <Label fx:id="ageErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Phone Number -->
@@ -154,6 +159,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
+               <Label fx:id="phoneErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Address -->
@@ -169,6 +175,7 @@
                      <Font size="12.0" />
                   </font>
                </TextField>
+               <Label fx:id="addressErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Role -->
@@ -188,6 +195,7 @@
                      </FXCollections>
                   </items>
                </ComboBox>
+               <Label fx:id="roleErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
 
             <!-- Date of Birth -->
@@ -199,11 +207,15 @@
                </Label>
                <DatePicker fx:id="datePicker" promptText="Select date" maxWidth="Infinity"
                            style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #a5d6a7; -fx-border-width: 1; -fx-padding: 4; -fx-background-color: white;" />
+               <Label fx:id="dateErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 11;" />
             </VBox>
          </GridPane>
 
+         <!-- General error message for form-wide errors -->
+         <Label fx:id="generalErrorLabel" style="-fx-text-fill: #d32f2f; -fx-font-size: 12; -fx-font-weight: bold;" />
+
          <HBox alignment="CENTER_RIGHT" spacing="15" style="-fx-padding: 15 0 0 0;">
-            <Button text="CANCEL"
+            <Button text="CANCEL" onAction="#clearFields"
                     style="-fx-background-color: transparent; -fx-text-fill: #4CAF50; -fx-border-color: #4CAF50; -fx-border-radius: 5; -fx-border-width: 1; -fx-font-weight: bold; -fx-padding: 10 20;">
                <font>
                   <Font size="13.0" />
