@@ -64,6 +64,21 @@
     -fx-cursor: hand;
 }
 
+
+.action-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.action-button:hover {
+    -fx-background-color: #2980b9;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0.3, 0, 1);
+}
+
 /* Bouton "Commencer le programme" */
 .start-button {
     -fx-background-color: #2ecc71;
@@ -157,3 +172,4 @@
     -fx-background-color: #1f6fa3;
     -fx-transform: scale(1.05);
 }
+

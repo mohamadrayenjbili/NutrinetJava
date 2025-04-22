@@ -8,18 +8,18 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Produit;
 import services.PanierService;
 import services.ProduitService;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -35,13 +35,11 @@ public class AfficherProduitsFrontController implements Initializable {
     @FXML
     private Button btnVoirPanier;
 
-    private ProduitService produitService;
-    private PanierService panierService;
+    private ProduitService produitService = new ProduitService();
+    private PanierService panierService = PanierService.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        produitService = new ProduitService();
-        panierService = PanierService.getInstance();
         chargerProduits();
     }
 
@@ -66,16 +64,33 @@ public class AfficherProduitsFrontController implements Initializable {
 
     private VBox createProduitCard(Produit produit) {
         VBox card = new VBox(10);
-        card.setStyle("-fx-background-color: white; -fx-background-radius: 10; -fx-border-radius: 10; " +
-                "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);");
-        card.setPrefWidth(220);
         card.setPadding(new Insets(15));
-        card.setMaxWidth(220);
+        card.setSpacing(10);
+        card.setPrefWidth(220);
+        card.setStyle("-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;");
+        card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1)));
 
-        // Configuration de l'image avec coins arrondis
-        ImageView imgProduit = createProductImageView(produit);
+        // Hover effect
+        card.setOnMouseEntered(e -> card.setEffect(new DropShadow(15, Color.rgb(0, 0, 0, 0.25))));
+        card.setOnMouseExited(e -> card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1))));
 
-        // Rectangle pour les coins arrondis
+        // Image
+        ImageView imgProduit = new ImageView();
+        try {
+            Image image = new Image("file:src/main/resources/images/" + produit.getImage());
+            imgProduit.setImage(image);
+        } catch (Exception e) {
+            Image defaultImage = new Image("file:src/main/resources/images/default-product.png");
+            imgProduit.setImage(defaultImage);
+            Tooltip.install(imgProduit, new Tooltip("Image non disponible"));
+        }
+
+        imgProduit.setFitHeight(130);
+        imgProduit.setFitWidth(190);
+        imgProduit.setPreserveRatio(false);
+        imgProduit.setSmooth(true);
+
+        // Clipping avec coins arrondis
         Rectangle clip = new Rectangle(190, 130);
         clip.setArcWidth(20);
         clip.setArcHeight(20);
@@ -94,118 +109,38 @@ public class AfficherProduitsFrontController implements Initializable {
         lblStock.setStyle("-fx-font-size: 12px; -fx-text-fill: #636e72;");
 
         // Configuration du spinner de quantité
-        Spinner<Integer> spinnerQuantite = createQuantitySpinner(produit);
+        Spinner<Integer> spinnerQuantite = new Spinner<>();
+        spinnerQuantite.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, produit.getStock(), 1));
+        spinnerQuantite.setPrefWidth(190);
+        spinnerQuantite.setStyle("-fx-font-size: 14px;");
 
         // Boutons d'action
         HBox buttonBox = new HBox(5);
-        Button btnAjouter = createAddToCartButton(produit, spinnerQuantite);
-        Button btnDetails = createDetailsButton(produit);
-        buttonBox.getChildren().addAll(btnAjouter, btnDetails);
-
-        card.getChildren().addAll(imgProduit, lblNom, lblPrix, lblStock, spinnerQuantite, buttonBox);
-        return card;
-    }
-
-    private ImageView createProductImageView(Produit produit) {
-        ImageView imgView = new ImageView();
-        imgView.setFitWidth(190);
-        imgView.setFitHeight(130);
-        imgView.setPreserveRatio(false);
-        imgView.setSmooth(true);
-
-        Image productImage = loadProductImage(produit.getImage());
-        if (productImage != null) {
-            imgView.setImage(productImage);
-        } else {
-            // Charger une image par défaut si l'image du produit n'est pas trouvée
-            try {
-                InputStream stream = getClass().getResourceAsStream("/images/default-product.png");
-                if (stream != null) {
-                    imgView.setImage(new Image(stream));
-                }
-            } catch (Exception e) {
-                System.err.println("Erreur chargement image par défaut");
-            }
-            Tooltip.install(imgView, new Tooltip("Image non disponible"));
-        }
-
-        return imgView;
-    }
-
-    private Spinner<Integer> createQuantitySpinner(Produit produit) {
-        Spinner<Integer> spinner = new Spinner<>();
-        spinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, produit.getStock(), 1));
-        spinner.setPrefWidth(190);
-        spinner.setStyle("-fx-font-size: 14px;");
-        return spinner;
-    }
-
-    private Button createAddToCartButton(Produit produit, Spinner<Integer> spinner) {
-        Button button = new Button("Ajouter");
-        button.setStyle("-fx-background-color: #00b894; -fx-text-fill: white; -fx-font-weight: bold; " +
+        Button btnAjouter = new Button("Ajouter");
+        btnAjouter.setStyle("-fx-background-color: #00b894; -fx-text-fill: white; -fx-font-weight: bold; " +
                 "-fx-background-radius: 5; -fx-padding: 5 10;");
-        button.setPrefWidth(90);
+        btnAjouter.setPrefWidth(90);
 
-        button.setOnAction(e -> {
-            int quantite = spinner.getValue();
+        btnAjouter.setOnAction(e -> {
+            int quantite = spinnerQuantite.getValue();
             if (quantite > 0 && quantite <= produit.getStock()) {
                 panierService.ajouterAuPanier(produit, quantite);
-                spinner.getValueFactory().setValue(1);
+                spinnerQuantite.getValueFactory().setValue(1);
                 showAlert("Succès", produit.getNomProduit() + " ajouté au panier", Alert.AlertType.INFORMATION);
             }
         });
 
-        return button;
-    }
-
-    private Button createDetailsButton(Produit produit) {
-        Button button = new Button("Détails");
-        button.setStyle("-fx-background-color: #0984e3; -fx-text-fill: white; -fx-font-weight: bold; " +
+        Button btnDetails = new Button("Détails");
+        btnDetails.setStyle("-fx-background-color: #0984e3; -fx-text-fill: white; -fx-font-weight: bold; " +
                 "-fx-background-radius: 5; -fx-padding: 5 10;");
-        button.setPrefWidth(90);
+        btnDetails.setPrefWidth(90);
 
-        button.setOnAction(e -> openProductDetails(produit));
-        return button;
-    }
+        btnDetails.setOnAction(e -> openProductDetails(produit));
 
-    private Image loadProductImage(String imagePath) {
-        if (imagePath == null || imagePath.isEmpty()) {
-            return getPlaceholderImage();
-        }
+        buttonBox.getChildren().addAll(btnAjouter, btnDetails);
+        card.getChildren().addAll(imgProduit, lblNom, lblPrix, lblStock, spinnerQuantite, buttonBox);
 
-        try {
-            // Pour les ressources internes
-            if (imagePath.startsWith("/")) {
-                InputStream stream = getClass().getResourceAsStream(imagePath);
-                if (stream != null) return new Image(stream);
-            }
-            // Pour les URLs web
-            else if (imagePath.startsWith("http")) {
-                return new Image(imagePath);
-            }
-            // Pour les fichiers locaux
-            else {
-                File file = new File(imagePath);
-                if (file.exists()) {
-                    String formattedPath = file.toURI().toString();
-                    return new Image(formattedPath);
-                }
-            }
-        } catch (Exception e) {
-            System.err.println("Erreur chargement image: " + e.getMessage());
-        }
-
-        return getPlaceholderImage();
-    }
-
-    private Image getPlaceholderImage() {
-        try {
-            InputStream stream = getClass().getResourceAsStream("/images/default-product.png");
-            if (stream != null) return new Image(stream);
-        } catch (Exception e) {
-            System.err.println("Erreur chargement image par défaut");
-        }
-        return null;
+        return card;
     }
 
     private void openProductDetails(Produit produit) {
@@ -216,10 +151,13 @@ public class AfficherProduitsFrontController implements Initializable {
             DetailProduitController controller = loader.getController();
             controller.setProduit(produit);
 
-            Stage stage = new Stage();
-            stage.setTitle("Détails: " + produit.getNomProduit());
+            // Récupérer la scène actuelle à partir d'un élément de l'interface
+            // (par exemple le FlowPane flowProduits ou le bouton de détails)
+            Stage stage = (Stage) flowProduits.getScene().getWindow();
+
+            // Remplacer la scène actuelle
             stage.setScene(new Scene(root));
-            stage.show();
+            stage.setTitle("Détails: " + produit.getNomProduit());
         } catch (IOException e) {
             showAlert("Erreur", "Impossible d'ouvrir les détails", Alert.AlertType.ERROR);
         }
@@ -228,14 +166,10 @@ public class AfficherProduitsFrontController implements Initializable {
     @FXML
     private void voirPanier(ActionEvent event) {
         try {
-            // Charger la nouvelle vue
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
             Parent root = loader.load();
 
-            // Récupérer la scène actuelle à partir du bouton cliqué
             Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
-
-            // Remplacer la scène actuelle
             stage.setScene(new Scene(root));
             stage.setTitle("Mon Panier");
         } catch (IOException e) {

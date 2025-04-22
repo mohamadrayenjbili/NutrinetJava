@@ -1,41 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DetailProduitController">
-    <children>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.DetailProduitController"
+      spacing="25" alignment="TOP_CENTER"
+      stylesheets="@details_style.css"
+      fx:id="rootPane"
+      styleClass="background">
 
-        <VBox spacing="10" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.bottomAnchor="10.0">
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40" />
+    </padding>
 
-            <!-- Liste des produits -->
-            <ListView fx:id="produitsList" prefHeight="300.0" prefWidth="980.0" />
+    <Label text="🛍️ Détails du Produit" styleClass="header"/>
 
-            <!-- Boutons d'actions -->
-            <HBox spacing="10">
-                <Button text="Modifier" onAction="#handleModify" />
-                <Button text="Retour" onAction="#handleReturn" />
-            </HBox>
+    <ImageView fx:id="imgProduit"
+               fitHeight="200" fitWidth="200"
+               styleClass="image-preview"/>
 
-            <!-- Détails du produit sélectionné -->
-            <HBox spacing="20" prefHeight="300.0">
-                <!-- Image du produit -->
-                <ImageView fx:id="imageView" fitHeight="250.0" fitWidth="250.0" preserveRatio="true" />
+    <GridPane hgap="15" vgap="12" styleClass="info-grid">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" />
+            <ColumnConstraints prefWidth="300" />
+        </columnConstraints>
 
-                <!-- Informations du produit -->
-                <VBox spacing="10" prefWidth="700.0"></VBox>
+        <Label text="🏷️ Nom :" styleClass="label-title" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <Label fx:id="lblNom" styleClass="label-value" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-            </HBox>
+        <Label text="💰 Prix :" styleClass="label-title" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <Label fx:id="lblPrix" styleClass="label-value" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
+        <Label text="📦 Catégorie :" styleClass="label-title" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <Label fx:id="lblCategorie" styleClass="label-value" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
+        <Label text="📊 Stock :" styleClass="label-title" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <Label fx:id="lblStock" styleClass="label-value" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-        </VBox>
-    </children>
-</AnchorPane>
+        <Label text="📝 Description :" styleClass="label-title" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextArea fx:id="lblDescription"
+                  wrapText="true" editable="false"
+                  prefRowCount="4" maxWidth="300"
+                  styleClass="description"
+                  GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+    </GridPane>
+
+    <!-- Boutons d'action -->
+    <!-- <HBox spacing="15" alignment="CENTER">
+         <Button text="Modifier" onAction="#handleModify" styleClass="action-button"/>
+         <Button text="Retour" onAction="#handleReturn" styleClass="action-button"/>
+     </HBox>-->
+ </VBox>
