@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.BackConsultationAjoutController"
+            prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #f4f6f9;">
+
+    <children>
+        <VBox layoutX="30.0" layoutY="30.0" spacing="20">
+
+            <!-- Titre -->
+            <Label text="Liste des Consultations"
+                   style="-fx-text-fill: #2c3e50; -fx-font-weight: bold; -fx-font-size: 24;">
+                <font>
+                    <Font size="24.0" />
+                </font>
+            </Label>
+
+            <!-- Bouton pour ajouter une consultation -->
+            <Button text="Ajouter Consultation"
+                    fx:id="cancelButton"
+                    style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10px; -fx-border-radius: 5px; -fx-margin-bottom: 20px;"
+                    onAction="#handleAddConsultation"/>
+
+
+            <!-- ListView stylisée -->
+            <ListView fx:id="consultationsListView"
+                      prefHeight="500.0"
+                      prefWidth="640.0"
+                      style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-background-radius: 10; -fx-padding: 0; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+
+                <!-- Définition du CellFactory pour les éléments de la ListView -->
+                <cellFactory>
+                    <fx:define>
+                        <StackPane fx:id="card" style="-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-radius: 10; -fx-padding: 20; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);">
+                            <!-- Conteneur principal avec un léger contour -->
+                            <Rectangle width="300" height="150" arcWidth="15" arcHeight="15" fill="white" stroke="#e0e0e0" strokeWidth="2"/>
+
+                            <!-- Informations sur la consultation -->
+                            <VBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
+                                <Label fx:id="lblNom" text="Nom de la consultation" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
+                                <Label fx:id="lblPrenom" text="Prénom de la consultation" style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
+                                <Label fx:id="lblDate" text="Date de la consultation" style="-fx-font-size: 14px; -fx-text-fill: #95a5a6;"/>
+                                <Label fx:id="lblObjectif" text="Objectif de la consultation" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
+                            </VBox>
+
+                            <!-- Ligne de séparation -->
+                            <Separator/>
+
+                            <!-- Boutons sous la carte -->
+                            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
+                                <Button text="Voir" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-border-radius: 5px;"/>
+                                <Button text="Modifier" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-border-radius: 5px;"/>
+                            </HBox>
+
+                        </StackPane>
+                    </fx:define>
+                </cellFactory>
+
+            </ListView>
+
+        </VBox>
+    </children>
+</AnchorPane>
