@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="first api (stripe) paiement">
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout de session de connexion avec user">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CodePromoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/CodePromo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/CodePromoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/ICodePromoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/CodePromo.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +24,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
         <option value="FxmlFile" />
       </list>
@@ -31,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="DidouFinale" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -181,7 +183,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745592098479</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="ajout de session de connexion avec user">
+      <option name="closed" value="true" />
+      <created>1745598846372</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1745598846372</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +212,7 @@
     <MESSAGE value="seif crud +metiers" />
     <MESSAGE value="first api (stripe)" />
     <MESSAGE value="first api (stripe) paiement" />
-    <option name="LAST_COMMIT_MESSAGE" value="first api (stripe) paiement" />
+    <MESSAGE value="ajout de session de connexion avec user" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout de session de connexion avec user" />
   </component>
 </project>
