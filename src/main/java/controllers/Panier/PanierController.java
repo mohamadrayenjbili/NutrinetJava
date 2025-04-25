@@ -1,6 +1,7 @@
 // 4. Contrôleur pour le panier
-package controllers;
+package controllers.Panier;
 
+import controllers.Commande.AjouterCommandeController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,18 +13,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import models.Commande;
 import models.LignePanier;
 import models.Panier;
-import models.Produit;
-import services.CommandeService;
+import services.Commande.CommandeService;
 import services.PanierService;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
-import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class PanierController implements Initializable {
@@ -123,7 +119,7 @@ public class PanierController implements Initializable {
 
         try {
             // Ouvrir la fenêtre pour finaliser la commande
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCommande.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Commande/AjouterCommande.fxml"));
             Parent root = loader.load();
 
             AjouterCommandeController controller = loader.getController();
@@ -152,7 +148,7 @@ public class PanierController implements Initializable {
     private void retourProduits(ActionEvent event) {
         try {
             // Charger la vue des produits
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherProduitFront.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
             Parent root = loader.load();
 
             // Récupérer la scène actuelle

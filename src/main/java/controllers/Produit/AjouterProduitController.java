@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Produit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,8 +10,8 @@ import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Produit;
-import services.IProduitService;
-import services.ProduitService;
+import services.Produit.IProduitService;
+import services.Produit.ProduitService;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -264,7 +264,7 @@ public class AjouterProduitController implements Initializable {
     @FXML
     private void handleVoirDetails(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailProduit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/DetailProduit.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) btnVoirDetails.getScene().getWindow();
             stage.setScene(new Scene(root));

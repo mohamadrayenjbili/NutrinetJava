@@ -8,77 +8,79 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.AjouterProduitController"
-            prefHeight="550" prefWidth="700">
+            fx:controller="controllers.Produit.AjouterProduitController"
+            prefHeight="550" prefWidth="700"
+            stylesheets="@/style.css"
+            styleClass="root-pane">
 
     <GridPane hgap="15" vgap="15" AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15"
               AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15">
 
         <Label text="Ajouter un nouveau produit" GridPane.columnIndex="0" GridPane.rowIndex="0"
-               GridPane.columnSpan="4" style="-fx-font-weight: bold; -fx-font-size: 18;">
-            <font>
-                <Font name="System Bold" size="18.0" />
-            </font>
-        </Label>
+               GridPane.columnSpan="4" styleClass="title"/>
 
         <!-- Colonne gauche -->
         <Label text="Nom du produit:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="tfNomProduit" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="200">
+        <TextField fx:id="tfNomProduit" GridPane.columnIndex="1" GridPane.rowIndex="1"
+                   prefWidth="200" styleClass="text-field">
             <tooltip>
                 <Tooltip text="3-50 caractères"/>
             </tooltip>
         </TextField>
-        <Label fx:id="lblNomError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Label fx:id="lblNomError" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
 
         <Label text="Prix (€):" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <TextField fx:id="tfPrix" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="200">
+        <TextField fx:id="tfPrix" GridPane.columnIndex="1" GridPane.rowIndex="3"
+                   prefWidth="200" styleClass="text-field">
             <tooltip>
                 <Tooltip text="Format: 19.99"/>
             </tooltip>
         </TextField>
-        <Label fx:id="lblPrixError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <Label fx:id="lblPrixError" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
 
         <Label text="Catégorie:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <ComboBox fx:id="cbCategorie" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="200"/>
-        <Label fx:id="lblCategorieError" style="-fx-text-fill: red;" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+        <ComboBox fx:id="cbCategorie" GridPane.columnIndex="1" GridPane.rowIndex="5"
+                  prefWidth="200" styleClass="combo-box"/>
+        <Label fx:id="lblCategorieError" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
 
         <!-- Colonne droite -->
         <Label text="Description:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
         <TextArea fx:id="taDescription" GridPane.columnIndex="3" GridPane.rowIndex="1"
-                  prefWidth="200" prefRowCount="3" wrapText="true">
+                  prefWidth="200" prefRowCount="3" wrapText="true" styleClass="text-area">
             <tooltip>
                 <Tooltip text="10-500 caractères"/>
             </tooltip>
         </TextArea>
-        <Label fx:id="lblDescError" style="-fx-text-fill: red;" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+        <Label fx:id="lblDescError" textFill="red" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
 
         <Label text="Stock:" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-        <TextField fx:id="tfStock" GridPane.columnIndex="3" GridPane.rowIndex="3" prefWidth="200">
+        <TextField fx:id="tfStock" GridPane.columnIndex="3" GridPane.rowIndex="3"
+                   prefWidth="200" styleClass="text-field">
             <tooltip>
                 <Tooltip text="Nombre entier ≥ 0"/>
             </tooltip>
         </TextField>
-        <Label fx:id="lblStockError" style="-fx-text-fill: red;" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+        <Label fx:id="lblStockError" textFill="red" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
 
         <Label text="Image:" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
         <HBox GridPane.columnIndex="3" GridPane.rowIndex="5" spacing="5">
-            <TextField fx:id="tfImagePath" editable="false" prefWidth="150"/>
-            <Button fx:id="btnChoisirImage" text="Parcourir..." onAction="#handleChoisirImage"/>
+            <TextField fx:id="tfImagePath" editable="false" prefWidth="150" styleClass="text-field"/>
+            <Button fx:id="btnChoisirImage" text="Parcourir..." onAction="#handleChoisirImage" styleClass="btn-secondary"/>
         </HBox>
 
         <!-- Aperçu image -->
         <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150"
-                   GridPane.columnIndex="3" GridPane.rowIndex="7"/>
+                   GridPane.columnIndex="3" GridPane.rowIndex="7" styleClass="image-preview"/>
 
         <!-- Boutons -->
         <HBox spacing="15" alignment="CENTER_RIGHT"
               GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="4">
             <Button fx:id="btnVoirDetails" text="Voir Détails" onAction="#handleVoirDetails"
-                    style="-fx-background-color: #9b59b6; -fx-text-fill: white;"/>
+                    styleClass="btn-secondary"/>
             <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler"
-                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
+                    styleClass="btn-secondary"/>
             <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter"
-                    style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
+                    styleClass="btn-primary"/>
         </HBox>
 
         <columnConstraints>

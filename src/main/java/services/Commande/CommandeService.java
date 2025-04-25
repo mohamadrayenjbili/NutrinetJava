@@ -1,5 +1,5 @@
 
-package services;
+package services.Commande;
 
 import models.Commande;
 import models.Produit;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class CommandeService implements ICommandeService{
+public class CommandeService implements ICommandeService {
     private static final String URL = "jdbc:mysql://localhost:3306/didou";
     private static final String USER = "root";
     private static final String PASSWORD = "";

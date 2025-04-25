@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Produit;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import models.Produit;
-import services.ProduitService;
+import services.Produit.ProduitService;
 
 public class ModifierProduitController implements Initializable {
 
@@ -226,7 +226,7 @@ public class ModifierProduitController implements Initializable {
     @FXML
     private void handleVoirDetails(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/DetailProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Produit/DetailProduit.fxml"));
             Stage stage = (Stage) btnVoirDetails.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Liste des Produits");

@@ -4,16 +4,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="seif crud +metiers" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="seif crud +metiers">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AjouterCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AjouterProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AjouterProduitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/DetailCommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ModifierCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/ModifierCommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ModifierProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/ModifierProduitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PanierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/CommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Commande/CommandeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/ICommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Commande/ICommandeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/IProduitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Produit/IProduitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/ProduitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Produit/ProduitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterCommande.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/AjouterCommande.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AjouterProduit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailCommande.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/DetailCommande.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierCommande.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/ModifierCommande.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/ModifierProduit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Panier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Panier/Panier.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -44,22 +73,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.PiJava [javafx:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Seiftt&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.PiJava [javafx:run].executor": "Run",
+    "Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "DidouFinale",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Panier" />
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Commande" />
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Produit" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="PiJava [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
