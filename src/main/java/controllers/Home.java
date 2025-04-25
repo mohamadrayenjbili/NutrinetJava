@@ -15,11 +15,12 @@ public class Home extends Application {
     }
 
 
+
     @Override
     public void start(Stage stage) {
         try {
             // Charge le formulaire de consultation
-            Parent root = FXMLLoader.load(getClass().getResource("/Produit/AjouterProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Produit/DetailProduit.fxml"));
 
             Scene scene = new Scene(root);
             stage.setTitle("Ajouter Consultation");

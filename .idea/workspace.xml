@@ -4,31 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="seif crud +metiers">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="modification structure">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AjouterCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AjouterProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AjouterProduitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/DetailCommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ModifierCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/ModifierCommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ModifierProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/ModifierProduitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/PanierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/CommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Commande/CommandeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/ICommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Commande/ICommandeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/IProduitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Produit/IProduitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/ProduitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Produit/ProduitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterCommande.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/AjouterCommande.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AjouterProduit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailCommande.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/DetailCommande.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierCommande.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/ModifierCommande.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/ModifierProduit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Panier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Panier/Panier.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745235278868</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modification structure">
+      <option name="closed" value="true" />
+      <created>1745576453070</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745576453070</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,6 +175,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="seif crud +metiers" />
-    <option name="LAST_COMMIT_MESSAGE" value="seif crud +metiers" />
+    <MESSAGE value="modification structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="modification structure" />
   </component>
 </project>
