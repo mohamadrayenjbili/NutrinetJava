@@ -10,6 +10,8 @@ public class Commande {
     private Date dateC;
     private String status;
     private String methodeDePaiement;
+    private String transactionId;
+
 
     // Constructeurs
     public Commande() {
@@ -80,6 +82,14 @@ public class Commande {
 
     public void setMethodeDePaiement(String methodeDePaiement) {
         this.methodeDePaiement = methodeDePaiement;
+    }
+
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
     }
 
     @Override

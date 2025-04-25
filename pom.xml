@@ -38,6 +38,19 @@
             <artifactId>pdfbox</artifactId>
             <version>2.0.27</version>
         </dependency>
+
+        <!-- Stripe SDK for Java -->
+        <dependency>
+            <groupId>com.stripe</groupId>
+            <artifactId>stripe-java</artifactId>
+            <version>22.16.0</version> <!-- Or the latest available version -->
+        </dependency>
+
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-web</artifactId>
+            <version>17</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -52,6 +65,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>
