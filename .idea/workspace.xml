@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="modification structure">
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/paiement/StripeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Commande.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Commande.java" afterDir="false" />
-    </list>
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="first api (stripe)" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -168,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745584222562</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="first api (stripe)">
+      <option name="closed" value="true" />
+      <created>1745590928305</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1745590928305</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,6 +189,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="seif crud +metiers" />
     <MESSAGE value="modification structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="modification structure" />
+    <MESSAGE value="first api (stripe)" />
+    <option name="LAST_COMMIT_MESSAGE" value="first api (stripe)" />
   </component>
 </project>
