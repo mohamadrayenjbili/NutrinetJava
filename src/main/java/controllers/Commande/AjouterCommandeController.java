@@ -109,6 +109,7 @@ public class AjouterCommandeController implements Initializable {
                 paymentStage.close();
                 traiterCommandeAvecPaiementReussi();
             }
+
         });
 
         root.getChildren().addAll(instructionLabel, testCardLabel, cardNumberField, expDateField, cvcField, payerButton);
