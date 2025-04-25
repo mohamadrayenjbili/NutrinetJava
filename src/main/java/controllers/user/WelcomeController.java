@@ -34,7 +34,6 @@ public class WelcomeController {
             stage.setScene(new Scene(root));
             stage.show();
 
-            // Optionally hide welcome window
             welcomeLabel.getScene().getWindow().hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,37 +42,25 @@ public class WelcomeController {
 
     @FXML
     private void handleLogout() {
-        // Clear the current session
         session.clearSession();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
             Parent root = loader.load();
-
-            // Get the current stage from any UI element
             Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-
-            // Set the new scene (sign in) on the same stage
             stage.setTitle("Sign In");
             stage.setScene(new Scene(root));
             stage.show();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void goToProfile() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/profile.fxml"));
             Parent root = loader.load();
-
-            // Get the current stage from any UI component on the page (e.g., a button or label)
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();  // replace 'someUIElement' with a real fx:id from your FXML
-
-            // Replace the scene with the profile scene
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Profile");
             stage.show();
@@ -82,6 +69,17 @@ public class WelcomeController {
         }
     }
 
-
-
+    @FXML
+    private void goToAfficherProduitFront() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Nos Produits");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
