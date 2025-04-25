@@ -16,8 +16,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Produit;
+import models.User;
 import services.PanierService;
 import services.Produit.ProduitService;
+import utils.session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -120,6 +122,21 @@ public class AfficherProduitsFrontController implements Initializable {
         btnAjouter.setPrefWidth(90);
 
         btnAjouter.setOnAction(e -> {
+            User currentUser = session.getCurrentUser();
+            if (currentUser == null) {
+                showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits au panier", Alert.AlertType.WARNING);
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = (Stage) btnAjouter.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Connexion");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                return;
+            }
+
             int quantite = spinnerQuantite.getValue();
             if (quantite > 0 && quantite <= produit.getStock()) {
                 panierService.ajouterAuPanier(produit, quantite);
@@ -149,11 +166,7 @@ public class AfficherProduitsFrontController implements Initializable {
             DetailProduitController controller = loader.getController();
             controller.setProduit(produit);
 
-            // Récupérer la scène actuelle à partir d'un élément de l'interface
-            // (par exemple le FlowPane flowProduits ou le bouton de détails)
             Stage stage = (Stage) flowProduits.getScene().getWindow();
-
-            // Remplacer la scène actuelle
             stage.setScene(new Scene(root));
             stage.setTitle("Détails: " + produit.getNomProduit());
         } catch (IOException e) {
@@ -163,6 +176,21 @@ public class AfficherProduitsFrontController implements Initializable {
 
     @FXML
     private void voirPanier(ActionEvent event) {
+        User currentUser = session.getCurrentUser();
+        if (currentUser == null) {
+            showAlert("Connexion requise", "Veuillez vous connecter pour accéder au panier", Alert.AlertType.WARNING);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Connexion");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier/Panier.fxml"));
             Parent root = loader.load();

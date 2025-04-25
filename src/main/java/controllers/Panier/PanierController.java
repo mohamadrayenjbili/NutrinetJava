@@ -1,4 +1,3 @@
-// 4. Contrôleur pour le panier
 package controllers.Panier;
 
 import controllers.Commande.AjouterCommandeController;
@@ -15,8 +14,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.LignePanier;
 import models.Panier;
+import models.User;
 import services.Commande.CommandeService;
 import services.PanierService;
+import utils.session;
 
 import java.io.IOException;
 import java.net.URL;
@@ -69,10 +70,10 @@ public class PanierController implements Initializable {
 
         // Ajouter une colonne pour le bouton supprimer
         TableColumn<LignePanier, Void> colAction = new TableColumn<>("Action");
-        colAction.setCellFactory(param -> new TableCell<>() {
+        colAction.setCellFactory(col -> new TableCell<>() {
             private final Button btnSupprimer = new Button("Supprimer");
-
             {
+                btnSupprimer.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
                 btnSupprimer.setOnAction(event -> {
                     LignePanier ligne = getTableView().getItems().get(getIndex());
                     panierService.supprimerDuPanier(ligne.getProduit().getId());
@@ -83,17 +84,11 @@ public class PanierController implements Initializable {
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty) {
-                    setGraphic(null);
-                } else {
-                    setGraphic(btnSupprimer);
-                }
+                setGraphic(empty ? null : btnSupprimer);
             }
         });
 
         tablePanier.getColumns().add(colAction);
-
-        // Mettre à jour l'affichage du panier
         mettreAJourTablePanier();
     }
 
@@ -112,8 +107,23 @@ public class PanierController implements Initializable {
 
     @FXML
     private void passerCommande(ActionEvent event) {
+        User currentUser = session.getCurrentUser();
+        if (currentUser == null) {
+            showAlert("Connexion requise", "Veuillez vous connecter pour passer une commande", Alert.AlertType.WARNING);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) btnCommander.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Connexion");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
         if (panierService.getPanier().getItems().isEmpty()) {
-            afficherMessage("Panier vide", "Votre panier est vide. Ajoutez des produits avant de commander.", Alert.AlertType.WARNING);
+            showAlert("Panier vide", "Votre panier est vide. Ajoutez des produits avant de commander.", Alert.AlertType.WARNING);
             return;
         }
 
@@ -132,11 +142,11 @@ public class PanierController implements Initializable {
 
         } catch (IOException e) {
             e.printStackTrace();
-            afficherMessage("Erreur", "Erreur lors de l'ouverture de la fenêtre de commande: " + e.getMessage(), Alert.AlertType.ERROR);
+            showAlert("Erreur", "Erreur lors de l'ouverture de la fenêtre de commande: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
-    private void afficherMessage(String titre, String message, Alert.AlertType type) {
+    private void showAlert(String titre, String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
         alert.setTitle(titre);
         alert.setHeaderText(null);
@@ -159,7 +169,7 @@ public class PanierController implements Initializable {
             stage.setTitle("Nos Produits");
         } catch (IOException e) {
             e.printStackTrace();
-            // Vous pouvez ajouter ici une alerte pour l'utilisateur
+            showAlert("Erreur", "Impossible de retourner à la liste des produits", Alert.AlertType.ERROR);
         }
     }
-}
+} 

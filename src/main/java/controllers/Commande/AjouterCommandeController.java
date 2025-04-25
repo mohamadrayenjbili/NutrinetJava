@@ -9,10 +9,12 @@ import models.Commande;
 import models.LignePanier;
 import models.Panier;
 import models.Produit;
+import models.User;
 import services.Commande.CommandeService;
 import services.PanierService;
 import services.Produit.ProduitService;
 import services.paiement.StripeService;
+import utils.session;
 
 import java.net.URL;
 import java.sql.Date;
@@ -24,11 +26,9 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import com.stripe.exception.StripeException;
-
-import javafx.scene.web.WebView;
-import javafx.scene.web.WebEngine;
-import netscape.javascript.JSObject;
-import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import java.io.IOException;
 
 public class AjouterCommandeController implements Initializable {
 
@@ -53,6 +53,14 @@ public class AjouterCommandeController implements Initializable {
 
         cbxPaiement.getItems().addAll("Carte bancaire", "Espèces à la livraison");
         cbxPaiement.getSelectionModel().selectFirst();
+
+        // Remplir les champs avec les informations de l'utilisateur connecté
+        User currentUser = session.getCurrentUser();
+        if (currentUser != null) {
+            txtNom.setText(currentUser.getName() + " " + currentUser.getPrename());
+            txtEmail.setText(currentUser.getEmail());
+            txtAdresse.setText(currentUser.getAddress());
+        }
     }
 
     public void setPanierService(PanierService panierService) {
@@ -62,6 +70,23 @@ public class AjouterCommandeController implements Initializable {
 
     @FXML
     private void confirmerCommande(ActionEvent event) {
+        User currentUser = session.getCurrentUser();
+        if (currentUser == null) {
+            afficherMessage("Connexion requise", "Veuillez vous connecter pour passer une commande", Alert.AlertType.WARNING);
+            try {
+                // Redirection vers la page de connexion
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) btnConfirmer.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Connexion");
+            } catch (IOException e) {
+                e.printStackTrace();
+                afficherMessage("Erreur", "Impossible d'accéder à la page de connexion", Alert.AlertType.ERROR);
+            }
+            return;
+        }
+
         if (!validerFormulaire()) {
             return;
         }
@@ -89,27 +114,30 @@ public class AjouterCommandeController implements Initializable {
         root.setPadding(new Insets(20));
 
         Label instructionLabel = new Label("Veuillez entrer vos informations de paiement:");
+        instructionLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
 
         TextField cardNumberField = new TextField();
         cardNumberField.setPromptText("Numéro de carte (4242 4242 4242 4242 pour test)");
+        cardNumberField.setStyle("-fx-font-size: 12px;");
 
         TextField expDateField = new TextField();
         expDateField.setPromptText("MM/AA (12/34 pour test)");
+        expDateField.setStyle("-fx-font-size: 12px;");
 
         TextField cvcField = new TextField();
         cvcField.setPromptText("CVC (123 pour test)");
+        cvcField.setStyle("-fx-font-size: 12px;");
 
         Label testCardLabel = new Label("Mode test activé - Utilisez les valeurs de test");
         testCardLabel.setStyle("-fx-text-fill: #2ecc71; -fx-font-style: italic;");
 
         Button payerButton = new Button("Payer");
-        payerButton.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white;");
+        payerButton.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;");
         payerButton.setOnAction(e -> {
             if (validerFormulairePaiement(cardNumberField.getText(), expDateField.getText(), cvcField.getText())) {
                 paymentStage.close();
                 traiterCommandeAvecPaiementReussi();
             }
-
         });
 
         root.getChildren().addAll(instructionLabel, testCardLabel, cardNumberField, expDateField, cvcField, payerButton);
@@ -145,7 +173,7 @@ public class AjouterCommandeController implements Initializable {
     private void traiterCommandeAvecPaiementReussi() {
         try {
             Commande commande = creerCommande();
-            commande.setStatus("Payée"); // Statut différent pour les commandes payées
+            commande.setStatus("Payée");
             commandeService.ajouterCommande(commande);
             ajouterProduitsACommande(commande);
             panierService.viderPanier();
@@ -165,6 +193,7 @@ public class AjouterCommandeController implements Initializable {
     private void traiterCommandeSansPaiementEnLigne() {
         try {
             Commande commande = creerCommande();
+            commande.setStatus("En attente de paiement");
             commandeService.ajouterCommande(commande);
             ajouterProduitsACommande(commande);
             panierService.viderPanier();
