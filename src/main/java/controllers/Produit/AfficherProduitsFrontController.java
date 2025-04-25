@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Produit;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,17 +11,15 @@ import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Produit;
 import services.PanierService;
-import services.ProduitService;
+import services.Produit.ProduitService;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -145,7 +143,7 @@ public class AfficherProduitsFrontController implements Initializable {
 
     private void openProductDetails(Produit produit) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailProduit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/DetailProduit.fxml"));
             Parent root = loader.load();
 
             DetailProduitController controller = loader.getController();
@@ -166,7 +164,7 @@ public class AfficherProduitsFrontController implements Initializable {
     @FXML
     private void voirPanier(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Panier/Panier.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) btnVoirPanier.getScene().getWindow();

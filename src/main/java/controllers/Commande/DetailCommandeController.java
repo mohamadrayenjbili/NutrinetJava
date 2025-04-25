@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Commande;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,8 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import models.Commande;
 import models.Produit;
-import services.CommandeService;
-import services.ICommandeService;
+import services.Commande.CommandeService;
+import services.Commande.ICommandeService;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -159,7 +159,7 @@ public class DetailCommandeController implements Initializable {
         }
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierCommande.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Commande/ModifierCommande.fxml"));
             Parent root = loader.load();
 
             ModifierCommandeController controller = loader.getController();
@@ -178,7 +178,7 @@ public class DetailCommandeController implements Initializable {
     @FXML
     private void handleReturn() {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/AjouterCommande.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/Commande/AjouterCommande.fxml"));
             commandesList.getScene().setRoot(pane);
         } catch (Exception e) {
             showAlert("Erreur", "Impossible de retourner: " + e.getMessage());

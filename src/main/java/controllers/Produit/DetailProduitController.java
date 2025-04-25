@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Produit;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

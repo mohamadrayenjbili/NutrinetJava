@@ -1,4 +1,4 @@
-package controllers;
+package controllers.Commande;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,8 +20,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import models.Commande;
 import models.Produit;
-import services.CommandeService;
-import services.ICommandeService;
+import services.Commande.CommandeService;
+import services.Commande.ICommandeService;
 
 public class ModifierCommandeController implements Initializable {
 
@@ -231,7 +231,7 @@ public class ModifierCommandeController implements Initializable {
     @FXML
     private void handleVoirDetails(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/DetailCommande.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Commande/DetailCommande.fxml"));
             Stage stage = (Stage) btnVoirDetails.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Liste des Commandes");

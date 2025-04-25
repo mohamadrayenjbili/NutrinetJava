@@ -1,5 +1,5 @@
 // 5. Contrôleur pour finaliser la commande (AjouterCommandeController)
-package controllers;
+package controllers.Commande;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,9 +10,9 @@ import models.Commande;
 import models.LignePanier;
 import models.Panier;
 import models.Produit;
-import services.CommandeService;
+import services.Commande.CommandeService;
 import services.PanierService;
-import services.ProduitService;
+import services.Produit.ProduitService;
 
 import java.net.URL;
 import java.sql.Date;
