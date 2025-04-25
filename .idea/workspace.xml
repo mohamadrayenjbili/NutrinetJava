@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="first api (stripe)" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="seif crud +metiers">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,12 +18,17 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -145,31 +152,7 @@
       <option name="project" value="LOCAL" />
       <updated>1745235278868</updated>
     </task>
-    <task id="LOCAL-00003" summary="modification structure">
-      <option name="closed" value="true" />
-      <created>1745576453070</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1745576453070</updated>
-    </task>
-    <task id="LOCAL-00004" summary="modification structure">
-      <option name="closed" value="true" />
-      <created>1745584222562</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1745584222562</updated>
-    </task>
-    <task id="LOCAL-00005" summary="first api (stripe)">
-      <option name="closed" value="true" />
-      <created>1745590928305</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1745590928305</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,8 +171,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="seif crud +metiers" />
-    <MESSAGE value="modification structure" />
-    <MESSAGE value="first api (stripe)" />
-    <option name="LAST_COMMIT_MESSAGE" value="first api (stripe)" />
+    <option name="LAST_COMMIT_MESSAGE" value="seif crud +metiers" />
   </component>
 </project>
