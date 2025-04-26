@@ -54,7 +54,6 @@ public class AjouterCommandeController implements Initializable {
         cbxPaiement.getItems().addAll("Carte bancaire", "Espèces à la livraison");
         cbxPaiement.getSelectionModel().selectFirst();
 
-        // Remplir les champs avec les informations de l'utilisateur connecté
         User currentUser = session.getCurrentUser();
         if (currentUser != null) {
             txtNom.setText(currentUser.getName() + " " + currentUser.getPrename());
@@ -74,7 +73,6 @@ public class AjouterCommandeController implements Initializable {
         if (currentUser == null) {
             afficherMessage("Connexion requise", "Veuillez vous connecter pour passer une commande", Alert.AlertType.WARNING);
             try {
-                // Redirection vers la page de connexion
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
                 Parent root = loader.load();
                 Stage stage = (Stage) btnConfirmer.getScene().getWindow();
@@ -118,21 +116,18 @@ public class AjouterCommandeController implements Initializable {
 
         TextField cardNumberField = new TextField();
         cardNumberField.setPromptText("Numéro de carte (4242 4242 4242 4242 pour test)");
-        cardNumberField.setStyle("-fx-font-size: 12px;");
 
         TextField expDateField = new TextField();
         expDateField.setPromptText("MM/AA (12/34 pour test)");
-        expDateField.setStyle("-fx-font-size: 12px;");
 
         TextField cvcField = new TextField();
         cvcField.setPromptText("CVC (123 pour test)");
-        cvcField.setStyle("-fx-font-size: 12px;");
 
         Label testCardLabel = new Label("Mode test activé - Utilisez les valeurs de test");
         testCardLabel.setStyle("-fx-text-fill: #2ecc71; -fx-font-style: italic;");
 
         Button payerButton = new Button("Payer");
-        payerButton.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20;");
+        payerButton.setStyle("-fx-background-color: #2ecc71; -fx-text-fill: white;");
         payerButton.setOnAction(e -> {
             if (validerFormulairePaiement(cardNumberField.getText(), expDateField.getText(), cvcField.getText())) {
                 paymentStage.close();
@@ -151,19 +146,17 @@ public class AjouterCommandeController implements Initializable {
         StringBuilder erreurs = new StringBuilder();
 
         if (cardNumber == null || cardNumber.replaceAll("\\s+", "").length() != 16) {
-            erreurs.append("- Numéro de carte invalide (16 chiffres requis)\n");
+            erreurs.append("- Numéro de carte invalide\n");
         }
-
-        if (expDate == null || !expDate.matches("(0[1-9]|1[0-2])/[0-9]{2}")) {
-            erreurs.append("- Date d'expiration invalide (format MM/AA)\n");
+        if (expDate == null || !expDate.matches("(0[1-9]|1[0-2])/\\d{2}")) {
+            erreurs.append("- Date d'expiration invalide\n");
         }
-
         if (cvc == null || cvc.length() != 3) {
-            erreurs.append("- CVC invalide (3 chiffres requis)\n");
+            erreurs.append("- CVC invalide\n");
         }
 
         if (erreurs.length() > 0) {
-            afficherMessage("Erreur de paiement", "Veuillez corriger les erreurs suivantes:\n" + erreurs.toString(), Alert.AlertType.ERROR);
+            afficherMessage("Erreur de paiement", erreurs.toString(), Alert.AlertType.ERROR);
             return false;
         }
 
@@ -178,15 +171,11 @@ public class AjouterCommandeController implements Initializable {
             ajouterProduitsACommande(commande);
             panierService.viderPanier();
 
-            afficherMessage("Paiement réussi",
-                    "Votre paiement a été accepté et votre commande est confirmée!\n" +
-                            "Un email de confirmation vous a été envoyé.",
-                    Alert.AlertType.INFORMATION);
-
+            afficherMessage("Paiement réussi", "Votre commande a été confirmée.", Alert.AlertType.INFORMATION);
             fermerFenetre();
         } catch (SQLException e) {
             e.printStackTrace();
-            afficherMessage("Erreur", "Erreur lors de l'enregistrement de la commande: " + e.getMessage(), Alert.AlertType.ERROR);
+            afficherMessage("Erreur", "Erreur lors de l'enregistrement de la commande", Alert.AlertType.ERROR);
         }
     }
 
@@ -198,15 +187,11 @@ public class AjouterCommandeController implements Initializable {
             ajouterProduitsACommande(commande);
             panierService.viderPanier();
 
-            afficherMessage("Commande confirmée",
-                    "Votre commande a été enregistrée avec succès!\n" +
-                            "Vous paierez en espèces à la livraison.",
-                    Alert.AlertType.INFORMATION);
-
+            afficherMessage("Commande enregistrée", "Votre commande est confirmée.", Alert.AlertType.INFORMATION);
             fermerFenetre();
         } catch (SQLException e) {
             e.printStackTrace();
-            afficherMessage("Erreur", "Erreur lors de l'enregistrement de la commande: " + e.getMessage(), Alert.AlertType.ERROR);
+            afficherMessage("Erreur", "Erreur lors de l'enregistrement de la commande", Alert.AlertType.ERROR);
         }
     }
 
@@ -222,13 +207,20 @@ public class AjouterCommandeController implements Initializable {
 
     private void ajouterProduitsACommande(Commande commande) throws SQLException {
         Panier panier = panierService.getPanier();
+
         for (LignePanier ligne : panier.getItemsList()) {
             Produit produit = ligne.getProduit();
+
+            // Sécurité : revérifie le stock
+            if (produit.getStock() < ligne.getQuantite()) {
+                throw new SQLException("Stock insuffisant pour le produit: " + produit.getNomProduit());
+            }
 
             for (int i = 0; i < ligne.getQuantite(); i++) {
                 commandeService.ajouterProduitACommande(commande.getId(), produit.getId());
             }
 
+            // Mise à jour du stock en base
             produit.setStock(produit.getStock() - ligne.getQuantite());
             produitService.updateProduit(produit);
         }
@@ -238,21 +230,17 @@ public class AjouterCommandeController implements Initializable {
         StringBuilder erreurs = new StringBuilder();
 
         if (txtNom.getText().trim().isEmpty()) {
-            erreurs.append("- Le nom est obligatoire.\n");
+            erreurs.append("- Nom requis.\n");
         }
-
-        if (txtEmail.getText().trim().isEmpty()) {
-            erreurs.append("- L'email est obligatoire.\n");
-        } else if (!txtEmail.getText().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            erreurs.append("- Format d'email invalide.\n");
+        if (txtEmail.getText().trim().isEmpty() || !txtEmail.getText().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            erreurs.append("- Email invalide.\n");
         }
-
         if (txtAdresse.getText().trim().isEmpty()) {
-            erreurs.append("- L'adresse est obligatoire.\n");
+            erreurs.append("- Adresse requise.\n");
         }
 
         if (erreurs.length() > 0) {
-            afficherMessage("Erreur de validation", "Veuillez corriger les erreurs suivantes:\n" + erreurs.toString(), Alert.AlertType.ERROR);
+            afficherMessage("Erreur de validation", erreurs.toString(), Alert.AlertType.ERROR);
             return false;
         }
 

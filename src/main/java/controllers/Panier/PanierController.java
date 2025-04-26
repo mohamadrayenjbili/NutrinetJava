@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import models.LignePanier;
 import models.Panier;
@@ -60,21 +61,46 @@ public class PanierController implements Initializable {
         panierService = PanierService.getInstance();
         commandeService = new CommandeService();
 
-        // Initialiser les colonnes de la table
         colNom.setCellValueFactory(cellData -> new javafx.beans.property.SimpleStringProperty(
                 cellData.getValue().getProduit().getNomProduit()));
         colPrix.setCellValueFactory(cellData -> new javafx.beans.property.SimpleDoubleProperty(
                 cellData.getValue().getProduit().getPrix()).asObject());
-        colQuantite.setCellValueFactory(new PropertyValueFactory<>("quantite"));
-        colSousTotal.setCellValueFactory(new PropertyValueFactory<>("sousTotal"));
+        colQuantite.setCellValueFactory(cellData -> cellData.getValue().quantiteProperty().asObject());
+        colSousTotal.setCellValueFactory(cellData -> cellData.getValue().sousTotalProperty().asObject());
 
-        // Ajouter une colonne pour le bouton supprimer
+
+        // Colonne action (supprimer + ajouter/diminuer)
         TableColumn<LignePanier, Void> colAction = new TableColumn<>("Action");
         colAction.setCellFactory(col -> new TableCell<>() {
+            private final Button btnMoins = new Button("-");
+            private final Button btnPlus = new Button("+");
             private final Button btnSupprimer = new Button("Supprimer");
+            private final HBox hbox = new HBox(5, btnMoins, btnPlus, btnSupprimer);
+
             {
+                btnMoins.setStyle("-fx-background-color: #f1c40f; -fx-text-fill: white;");
+                btnPlus.setStyle("-fx-background-color: #27ae60; -fx-text-fill: white;");
                 btnSupprimer.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white;");
-                btnSupprimer.setOnAction(event -> {
+
+                btnMoins.setOnAction(e -> {
+                    LignePanier ligne = getTableView().getItems().get(getIndex());
+                    if (ligne.getQuantite() > 1) {
+                        panierService.modifierQuantite(ligne.getProduit().getId(), ligne.getQuantite() - 1);
+                        mettreAJourTablePanier();
+                    }
+                });
+
+                btnPlus.setOnAction(e -> {
+                    LignePanier ligne = getTableView().getItems().get(getIndex());
+                    if (ligne.getQuantite() < ligne.getProduit().getStock()) {
+                        panierService.modifierQuantite(ligne.getProduit().getId(), ligne.getQuantite() + 1);
+                        mettreAJourTablePanier();
+                    } else {
+                        showAlert("Stock insuffisant", "Quantité maximale atteinte", Alert.AlertType.WARNING);
+                    }
+                });
+
+                btnSupprimer.setOnAction(e -> {
                     LignePanier ligne = getTableView().getItems().get(getIndex());
                     panierService.supprimerDuPanier(ligne.getProduit().getId());
                     mettreAJourTablePanier();
@@ -84,7 +110,7 @@ public class PanierController implements Initializable {
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                setGraphic(empty ? null : btnSupprimer);
+                setGraphic(empty ? null : hbox);
             }
         });
 
@@ -128,7 +154,6 @@ public class PanierController implements Initializable {
         }
 
         try {
-            // Ouvrir la fenêtre pour finaliser la commande
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Commande/AjouterCommande.fxml"));
             Parent root = loader.load();
 
@@ -157,14 +182,9 @@ public class PanierController implements Initializable {
     @FXML
     private void retourProduits(ActionEvent event) {
         try {
-            // Charger la vue des produits
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
             Parent root = loader.load();
-
-            // Récupérer la scène actuelle
             Stage stage = (Stage) btnRetour.getScene().getWindow();
-
-            // Changer la scène
             stage.setScene(new Scene(root));
             stage.setTitle("Nos Produits");
         } catch (IOException e) {
@@ -172,4 +192,4 @@ public class PanierController implements Initializable {
             showAlert("Erreur", "Impossible de retourner à la liste des produits", Alert.AlertType.ERROR);
         }
     }
-} 
+}

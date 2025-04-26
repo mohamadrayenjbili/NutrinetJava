@@ -141,7 +141,7 @@ public class AfficherProduitsFrontController implements Initializable {
             if (quantite > 0 && quantite <= produit.getStock()) {
                 panierService.ajouterAuPanier(produit, quantite);
                 spinnerQuantite.getValueFactory().setValue(1);
-                showAlert("Succès", produit.getNomProduit() + " ajouté au panier", Alert.AlertType.INFORMATION);
+
             }
         });
 
@@ -210,4 +210,18 @@ public class AfficherProduitsFrontController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    @FXML
+    private void retourConnexion(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/welcome.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnVoirPanier.getScene().getWindow(); // ou btnBack si tu préfères
+            stage.setScene(new Scene(root));
+            stage.setTitle("Connexion");
+        } catch (IOException e) {
+            showAlert("Erreur", "Impossible de revenir à la page de connexion", Alert.AlertType.ERROR);
+        }
+    }
+
 }
