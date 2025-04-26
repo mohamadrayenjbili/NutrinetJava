@@ -10,9 +10,11 @@ import models.LignePanier;
 import models.Panier;
 import models.Produit;
 import models.User;
+import models.CodePromo;
 import services.Commande.CommandeService;
 import services.PanierService;
 import services.Produit.ProduitService;
+import services.CodePromoService;
 import services.paiement.StripeService;
 import utils.session;
 
@@ -39,17 +41,27 @@ public class AjouterCommandeController implements Initializable {
     @FXML private Label lblTotalCommande;
     @FXML private Button btnConfirmer;
     @FXML private Button btnAnnuler;
+    @FXML private TextField txtCodePromo;
+    @FXML private Button btnAppliquerCode;
+    @FXML private Label lblRemise;
+    @FXML private Label lblTotalApresRemise;
 
     private PanierService panierService;
     private CommandeService commandeService;
     private ProduitService produitService;
     private StripeService stripeService;
+    private CodePromoService codePromoService;
+
+    private double remise = 0.0;
+    private CodePromo codePromoApplique = null;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         commandeService = new CommandeService();
         produitService = new ProduitService();
         stripeService = new StripeService();
+        codePromoService = new CodePromoService();
+
 
         cbxPaiement.getItems().addAll("Carte bancaire", "Espèces à la livraison");
         cbxPaiement.getSelectionModel().selectFirst();
@@ -60,11 +72,60 @@ public class AjouterCommandeController implements Initializable {
             txtEmail.setText(currentUser.getEmail());
             txtAdresse.setText(currentUser.getAddress());
         }
+
+        lblRemise.setVisible(false);
+        lblTotalApresRemise.setVisible(false);
     }
 
     public void setPanierService(PanierService panierService) {
         this.panierService = panierService;
-        lblTotalCommande.setText(String.format("Total de la commande: %.2f €", panierService.getPanier().getTotal()));
+        double total = panierService.getPanier().getTotal();
+        lblTotalCommande.setText(String.format("Total de la commande: %.2f €", total));
+    }
+
+    @FXML
+    private void appliquerCodePromo(ActionEvent event) {
+        String code = txtCodePromo.getText().trim();
+        if (code.isEmpty()) {
+            afficherMessage("Information", "Veuillez entrer un code promo", Alert.AlertType.INFORMATION);
+            return;
+        }
+
+        try {
+            codePromoApplique = codePromoService.getCodePromoByCode(code);
+            if (codePromoApplique == null || !codePromoApplique.isActif()) {
+                afficherMessage("Code promo invalide", "Le code promo n'existe pas ou n'est plus actif", Alert.AlertType.WARNING);
+                reinitialiserRemise();
+                return;
+            }
+
+            double totalAvantRemise = panierService.getPanier().getTotal();
+            remise = totalAvantRemise * (codePromoApplique.getPourcentage() / 100);
+
+            lblRemise.setText(String.format("Remise: %.2f € (-%.0f%%)",
+                    remise, codePromoApplique.getPourcentage()));
+            lblRemise.setVisible(true);
+
+            lblTotalApresRemise.setText(String.format("Total après remise: %.2f €",
+                    (totalAvantRemise - remise)));
+            lblTotalApresRemise.setVisible(true);
+
+            afficherMessage("Code promo appliqué",
+                    String.format("Une remise de %.0f%% a été appliquée", codePromoApplique.getPourcentage()),
+                    Alert.AlertType.INFORMATION);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            afficherMessage("Erreur", "Erreur lors de la vérification du code promo", Alert.AlertType.ERROR);
+            reinitialiserRemise();
+        }
+    }
+
+    private void reinitialiserRemise() {
+        remise = 0.0;
+        codePromoApplique = null;
+        lblRemise.setVisible(false);
+        lblTotalApresRemise.setVisible(false);
     }
 
     @FXML
@@ -91,7 +152,7 @@ public class AjouterCommandeController implements Initializable {
 
         if ("Carte bancaire".equals(cbxPaiement.getValue())) {
             try {
-                double total = panierService.getPanier().getTotal();
+                double total = panierService.getPanier().getTotal() - remise;
                 String clientSecret = stripeService.createPaymentIntent(total, "EUR", "Paiement pour la commande");
                 afficherInterfacePaiement(clientSecret);
             } catch (StripeException e) {
@@ -202,6 +263,13 @@ public class AjouterCommandeController implements Initializable {
         commande.setAdress(txtAdresse.getText());
         commande.setDateC(Date.valueOf(LocalDate.now()));
         commande.setMethodeDePaiement(cbxPaiement.getValue());
+        commande.setTotalAvantRemise(panierService.getPanier().getTotal());
+
+        if (codePromoApplique != null) {
+            commande.setCodePromo(codePromoApplique.getCode());
+            commande.setRemise(remise);
+        }
+
         return commande;
     }
 
@@ -211,7 +279,6 @@ public class AjouterCommandeController implements Initializable {
         for (LignePanier ligne : panier.getItemsList()) {
             Produit produit = ligne.getProduit();
 
-            // Sécurité : revérifie le stock
             if (produit.getStock() < ligne.getQuantite()) {
                 throw new SQLException("Stock insuffisant pour le produit: " + produit.getNomProduit());
             }
@@ -220,7 +287,6 @@ public class AjouterCommandeController implements Initializable {
                 commandeService.ajouterProduitACommande(commande.getId(), produit.getId());
             }
 
-            // Mise à jour du stock en base
             produit.setStock(produit.getStock() - ligne.getQuantite());
             produitService.updateProduit(produit);
         }

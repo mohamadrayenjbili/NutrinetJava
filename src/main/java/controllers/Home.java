@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Home extends Application {
@@ -18,7 +17,7 @@ public class Home extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Commande/DetailCommande.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/User/sign_in.fxml"));
 
             Scene scene = new Scene(root);
             stage.setTitle("Ajouter Consultation");
