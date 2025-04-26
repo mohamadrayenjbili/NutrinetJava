@@ -323,9 +323,6 @@ public class ModifierCommandeController implements Initializable {
         if (txtAdresse.getText().isEmpty()) {
             showError(lblAdresseError, "L'adresse est requise");
             return false;
-        } else if (txtAdresse.getText().length() < 10) {
-            showError(lblAdresseError, "Minimum 10 caractères");
-            return false;
         }
         hideError(lblAdresseError);
         return true;

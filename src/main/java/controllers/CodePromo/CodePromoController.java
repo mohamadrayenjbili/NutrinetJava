@@ -1,4 +1,4 @@
-package controllers;
+package controllers.CodePromo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

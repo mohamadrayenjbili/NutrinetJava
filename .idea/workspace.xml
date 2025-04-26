@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du code promo">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Nutrinet.png" afterDir="false" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout logo/diminution du stock">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CodePromoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CodePromo/CodePromoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Commande/ModifierCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/ModifierCommandeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/LignePanier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/LignePanier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Panier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Panier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/PanierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PanierService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Panier/Panier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Panier/Panier.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CodePromo.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CodePromo.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +67,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "DidouFinale",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/jbili/Downloads/NutrinetJava-Front-Back/DidouJava/NutrinetJava/src/main/resources/images",
     "node.js.detected.package.eslint": "true",
@@ -208,7 +201,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745604311886</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="ajout logo/diminution du stock">
+      <option name="closed" value="true" />
+      <created>1745631478390</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1745631478390</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +232,7 @@
     <MESSAGE value="first api (stripe) paiement" />
     <MESSAGE value="ajout de session de connexion avec user" />
     <MESSAGE value="ajout du code promo" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout du code promo" />
+    <MESSAGE value="ajout logo/diminution du stock" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout logo/diminution du stock" />
   </component>
 </project>
