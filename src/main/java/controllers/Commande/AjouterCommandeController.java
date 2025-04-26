@@ -62,6 +62,7 @@ public class AjouterCommandeController implements Initializable {
         stripeService = new StripeService();
         codePromoService = new CodePromoService();
 
+
         cbxPaiement.getItems().addAll("Carte bancaire", "Espèces à la livraison");
         cbxPaiement.getSelectionModel().selectFirst();
 
