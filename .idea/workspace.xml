@@ -4,14 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout de session de connexion avec user">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CodePromoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/CodePromo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/CodePromoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/services/ICodePromoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/CodePromo.fxml" afterDir="false" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du code promo">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/images/Nutrinet.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Panier/PanierController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/LignePanier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/LignePanier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Panier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Panier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/PanierService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PanierService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Panier/Panier.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Panier/Panier.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +76,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "DidouFinale",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jbili/Downloads/NutrinetJava-Front-Back/DidouJava/NutrinetJava/src/main/resources/images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -80,6 +86,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Panier" />
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Commande" />
@@ -191,7 +200,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745598846372</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="ajout du code promo">
+      <option name="closed" value="true" />
+      <created>1745604311886</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1745604311886</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +230,7 @@
     <MESSAGE value="first api (stripe)" />
     <MESSAGE value="first api (stripe) paiement" />
     <MESSAGE value="ajout de session de connexion avec user" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout de session de connexion avec user" />
+    <MESSAGE value="ajout du code promo" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout du code promo" />
   </component>
 </project>
