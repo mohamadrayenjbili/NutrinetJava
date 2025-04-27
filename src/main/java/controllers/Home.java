@@ -17,7 +17,7 @@ public class Home extends Application {
     @Override
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Produit/ModifierProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/User/sign_in.fxml"));
 
             Scene scene = new Scene(root);
             stage.setTitle("Ajouter Consultation");

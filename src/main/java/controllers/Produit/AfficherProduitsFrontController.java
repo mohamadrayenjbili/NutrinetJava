@@ -112,9 +112,9 @@ public class AfficherProduitsFrontController implements Initializable {
         lblPrix.setStyle("-fx-font-size: 14px; -fx-text-fill: #e17055; -fx-font-weight: bold;");
 
         Label lblStock = new Label(produit.getStock() > 0 ? "En stock: " + produit.getStock() : "Hors stock");
-        lblStock.setStyle(produit.getStock() > 0 ? 
-            "-fx-font-size: 12px; -fx-text-fill: #636e72;" : 
-            "-fx-font-size: 12px; -fx-text-fill: #d63031; -fx-font-weight: bold;");
+        lblStock.setStyle(produit.getStock() > 0 ?
+                "-fx-font-size: 12px; -fx-text-fill: #636e72;" :
+                "-fx-font-size: 12px; -fx-text-fill: #d63031; -fx-font-weight: bold;");
 
         // Configuration du spinner de quantité
         Spinner<Integer> spinnerQuantite = new Spinner<>();

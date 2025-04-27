@@ -64,7 +64,7 @@ public class ModifierProduitController implements Initializable {
         chargerProduits();
         setupInputValidation();
 
-        // ✅ Ajouter le listener de sélection ici
+        // Ajouter le listener de sélection
         listViewProduits.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 selectionnerProduit(newSelection);
@@ -124,7 +124,7 @@ public class ModifierProduitController implements Initializable {
             validateStock();
         });
 
-        // Limite la description
+        // Limite la description (validation si elle est vide)
         txtDescription.textProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal.length() > 500) txtDescription.setText(oldVal);
             validateDescription();
@@ -195,7 +195,6 @@ public class ModifierProduitController implements Initializable {
         produitSelectionne.setStock(Integer.parseInt(txtStock.getText()));
 
         if (selectedImageFile != null) {
-            // Ici vous pourriez implémenter la logique pour sauvegarder la nouvelle image
             produitSelectionne.setImage(selectedImageFile.getName());
         }
     }
@@ -335,9 +334,6 @@ public class ModifierProduitController implements Initializable {
     private boolean validateDescription() {
         if (txtDescription.getText().isEmpty()) {
             showError(lblDescError, "Description requise");
-            return false;
-        } else if (txtDescription.getText().length() < 10) {
-            showError(lblDescError, "Minimum 10 caractères");
             return false;
         }
         hideError(lblDescError);
