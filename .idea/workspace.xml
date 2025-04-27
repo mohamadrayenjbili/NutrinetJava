@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/PerformanceChartController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/PerformanceChart.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/chart.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_04_2025_18_01__Changes_.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/services/QuotableService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherPerformanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherPerformanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/IPerformanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/IPerformanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/PerformanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PerformanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherPerformance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AfficherPerformance.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherObjectiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherObjectiveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AfficherObjective.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +22,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -82,7 +76,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -152,7 +146,7 @@
       <workItem from="1744815889189" duration="7043000" />
       <workItem from="1745234813505" duration="108000" />
       <workItem from="1745234963020" duration="323000" />
-      <workItem from="1745717815218" duration="5748000" />
+      <workItem from="1745717815218" duration="16329000" />
     </task>
     <task id="LOCAL-00001" summary="seif crud +metiers">
       <option name="closed" value="true" />
@@ -226,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745688676752</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="test">
+      <option name="closed" value="true" />
+      <created>1745759335314</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745759335314</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
