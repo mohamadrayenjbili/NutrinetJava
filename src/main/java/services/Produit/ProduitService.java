@@ -1,11 +1,16 @@
 package services.Produit;
 
-import models.Produit;
-import utils.MaConnexion;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Produit;
+import services.NotificationService;
+import utils.MaConnexion;
 
 public class ProduitService implements IProduitService {
 
@@ -117,10 +122,27 @@ public class ProduitService implements IProduitService {
             pstmt.setInt(6, produit.getStock());
             pstmt.setInt(7, produit.getId());
 
-            int affectedRows = pstmt.executeUpdate();
+            pstmt.executeUpdate();
 
-            if (affectedRows == 0) {
-                throw new SQLException("Échec de la mise à jour, produit non trouvé avec l'ID: " + produit.getId());
+            // Vérifier si le stock a été mis à jour et envoyer des notifications
+            if (produit.getStock() > 0) {
+                envoyerNotificationsStockDisponible(produit);
+            }
+        }
+    }
+
+    private void envoyerNotificationsStockDisponible(Produit produit) throws SQLException {
+        String query = "SELECT user_id FROM liste_souhaits WHERE produit_id = ?";
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, produit.getId());
+            try (ResultSet rs = pstmt.executeQuery()) {
+                NotificationService notificationService = new NotificationService();
+                while (rs.next()) {
+                    int userId = rs.getInt("user_id");
+                    String message = "Le produit " + produit.getNomProduit() + " est maintenant disponible en stock !";
+                    notificationService.creerNotification(userId, produit.getId(), message);
+                }
             }
         }
     }
