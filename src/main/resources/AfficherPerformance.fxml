@@ -51,6 +51,8 @@
 
         <!-- Boutons d'action en bas de la page -->
         <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button fx:id="btnGraphique" text="Voir Graphique" onAction="#handleVoirGraphique"
+                    style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
             <Button fx:id="btnRetour" text="Retour aux objectifs" onAction="#handleRetour"
                     style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
         </HBox>

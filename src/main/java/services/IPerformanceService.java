@@ -2,7 +2,9 @@ package services;
 
 import models.Performance;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 public interface IPerformanceService {
     // CREATE - Ajouter une performance
@@ -22,4 +24,7 @@ public interface IPerformanceService {
 
     // DELETE - Supprimer une performance
     void deletePerformance(int id) throws SQLException;
+
+    // Dans IPerformanceService.java
+    Map<LocalDate, Double> getPerformanceTrend(int objectiveId) throws SQLException;
 }

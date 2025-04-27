@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout logo/diminution du stock" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/PerformanceChartController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/PerformanceChart.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles/chart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_26_04_2025_18_01__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherPerformanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherPerformanceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/IPerformanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/IPerformanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/PerformanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/PerformanceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherPerformance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AfficherPerformance.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="DidouFinale" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,12 +48,12 @@
     &quot;assignee&quot;: &quot;Seiffaress&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mohamadrayenjbili/NutrinetJava.git",
-    "accountId": "f63ebe66-6730-46ca-b661-af322acf8129"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
+    &quot;accountId&quot;: &quot;f63ebe66-6730-46ca-b661-af322acf8129&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -54,24 +66,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.PiJava [javafx:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/jbili/Downloads/NutrinetJava-Front-Back/DidouJava/NutrinetJava/src/main/resources/images&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.PiJava [javafx:run].executor": "Run",
+    "Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "Maven.Unknown [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Baha__Metiers",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/jbili/Downloads/NutrinetJava-Front-Back/DidouJava/NutrinetJava/src/main/resources/images",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
@@ -117,8 +131,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
       </set>
     </attachedChunks>
   </component>
@@ -138,6 +152,7 @@
       <workItem from="1744815889189" duration="7043000" />
       <workItem from="1745234813505" duration="108000" />
       <workItem from="1745234963020" duration="323000" />
+      <workItem from="1745717815218" duration="5748000" />
     </task>
     <task id="LOCAL-00001" summary="seif crud +metiers">
       <option name="closed" value="true" />
@@ -203,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745631478390</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="test">
+      <option name="closed" value="true" />
+      <created>1745688676752</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1745688676752</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,6 +250,7 @@
     <MESSAGE value="ajout de session de connexion avec user" />
     <MESSAGE value="ajout du code promo" />
     <MESSAGE value="ajout logo/diminution du stock" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout logo/diminution du stock" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>

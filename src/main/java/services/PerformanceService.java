@@ -4,9 +4,12 @@ import models.Performance;
 import utils.MaConnexion;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class PerformanceService implements IPerformanceService {
 
@@ -144,5 +147,28 @@ public class PerformanceService implements IPerformanceService {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
         }
+    }
+
+    @Override
+    public Map<LocalDate, Double> getPerformanceTrend(int objectiveId) throws SQLException {
+        Map<LocalDate, Double> trend = new TreeMap<>();
+        String query = "SELECT DATE(date) as performance_date, AVG(value) as avg_value " +
+                "FROM performance WHERE objective_id = ? " +
+                "GROUP BY DATE(date) ORDER BY DATE(date)";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+
+            pstmt.setInt(1, objectiveId);
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                trend.put(
+                        rs.getDate("performance_date").toLocalDate(),
+                        rs.getDouble("avg_value")
+                );
+            }
+        }
+        return trend;
     }
 }
