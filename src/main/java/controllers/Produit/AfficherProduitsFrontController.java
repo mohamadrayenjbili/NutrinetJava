@@ -30,6 +30,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Produit;
 import models.User;
+import services.ListeSouhaitsService;
 import services.PanierService;
 import services.Produit.ProduitService;
 import utils.session;
@@ -134,6 +135,17 @@ public class AfficherProduitsFrontController implements Initializable {
         btnAjouter.setPrefWidth(90);
         btnAjouter.setDisable(produit.getStock() <= 0);
 
+        Button btnDetails = new Button("Détails");
+        btnDetails.setStyle("-fx-background-color: #0984e3; -fx-text-fill: white; -fx-font-weight: bold; " +
+                "-fx-background-radius: 5; -fx-padding: 5 10;");
+        btnDetails.setPrefWidth(90);
+
+        Button btnListeSouhaits = new Button("♥");
+        btnListeSouhaits.setStyle("-fx-background-color: #e84393; -fx-text-fill: white; -fx-font-weight: bold; " +
+                "-fx-background-radius: 5; -fx-padding: 5 10;");
+        btnListeSouhaits.setPrefWidth(40);
+        Tooltip.install(btnListeSouhaits, new Tooltip("Ajouter à la liste de souhaits"));
+
         btnAjouter.setOnAction(e -> {
             User currentUser = session.getCurrentUser();
             if (currentUser == null) {
@@ -157,14 +169,38 @@ public class AfficherProduitsFrontController implements Initializable {
             }
         });
 
-        Button btnDetails = new Button("Détails");
-        btnDetails.setStyle("-fx-background-color: #0984e3; -fx-text-fill: white; -fx-font-weight: bold; " +
-                "-fx-background-radius: 5; -fx-padding: 5 10;");
-        btnDetails.setPrefWidth(90);
-
         btnDetails.setOnAction(e -> openProductDetails(produit));
 
-        buttonBox.getChildren().addAll(btnAjouter, btnDetails);
+        btnListeSouhaits.setOnAction(e -> {
+            User currentUser = session.getCurrentUser();
+            if (currentUser == null) {
+                showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits à votre liste de souhaits", Alert.AlertType.WARNING);
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = (Stage) btnListeSouhaits.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Connexion");
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                return;
+            }
+
+            try {
+                ListeSouhaitsService listeSouhaitsService = new ListeSouhaitsService();
+                if (listeSouhaitsService.estDansListeSouhaits(currentUser.getId(), produit.getId())) {
+                    showAlert("Information", "Ce produit est déjà dans votre liste de souhaits", Alert.AlertType.INFORMATION);
+                } else {
+                    listeSouhaitsService.ajouterAListeSouhaits(currentUser.getId(), produit.getId());
+                    showAlert("Succès", "Produit ajouté à votre liste de souhaits", Alert.AlertType.INFORMATION);
+                }
+            } catch (SQLException ex) {
+                showAlert("Erreur", "Erreur lors de l'ajout à la liste de souhaits", Alert.AlertType.ERROR);
+            }
+        });
+
+        buttonBox.getChildren().addAll(btnAjouter, btnDetails, btnListeSouhaits);
         card.getChildren().addAll(imgProduit, lblNom, lblPrix, lblStock, spinnerQuantite, buttonBox);
 
         return card;
@@ -212,6 +248,34 @@ public class AfficherProduitsFrontController implements Initializable {
             stage.setTitle("Mon Panier");
         } catch (IOException e) {
             showAlert("Erreur", "Impossible d'ouvrir le panier", Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    private void voirListeSouhaits(ActionEvent event) {
+        User currentUser = session.getCurrentUser();
+        if (currentUser == null) {
+            showAlert("Connexion requise", "Veuillez vous connecter pour accéder à votre liste de souhaits", Alert.AlertType.WARNING);
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Connexion");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/ListeSouhaits.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ma Liste de Souhaits");
+        } catch (IOException e) {
+            showAlert("Erreur", "Impossible d'ouvrir la liste de souhaits", Alert.AlertType.ERROR);
         }
     }
 

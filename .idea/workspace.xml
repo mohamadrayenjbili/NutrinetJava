@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="fixer les erreurs d'aout du commande">
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="fixer detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Commande/AjouterCommandeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/Produit/ProduitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Produit/ProduitService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -216,7 +218,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745771155855</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="fixer detail">
+      <option name="closed" value="true" />
+      <created>1745774048691</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1745774048691</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +251,8 @@
     <MESSAGE value="ajout du code promo" />
     <MESSAGE value="ajout logo/diminution du stock" />
     <MESSAGE value="fixer les erreurs d'aout du commande" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixer les erreurs d'aout du commande" />
+    <MESSAGE value="fixer detail" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixer detail" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

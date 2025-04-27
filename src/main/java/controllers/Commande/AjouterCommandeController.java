@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,6 +33,7 @@ import models.Produit;
 import models.User;
 import services.CodePromoService;
 import services.Commande.CommandeService;
+import services.ListeSouhaitsService;
 import services.PanierService;
 import services.Produit.ProduitService;
 import services.paiement.StripeService;
@@ -280,12 +282,33 @@ public class AjouterCommandeController implements Initializable {
 
     private void ajouterProduitsACommande(Commande commande) throws SQLException {
         Panier panier = panierService.getPanier();
+        ListeSouhaitsService listeSouhaitsService = new ListeSouhaitsService();
+        User currentUser = session.getCurrentUser();
 
         for (LignePanier ligne : panier.getItemsList()) {
             Produit produit = ligne.getProduit();
 
             if (produit.getStock() < ligne.getQuantite()) {
-                throw new SQLException("Stock insuffisant pour le produit: " + produit.getNomProduit());
+                // Si le stock est insuffisant, proposer d'ajouter à la liste de souhaits
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Stock insuffisant");
+                alert.setHeaderText("Le produit " + produit.getNomProduit() + " n'est pas disponible en quantité suffisante.");
+                alert.setContentText("Voulez-vous l'ajouter à votre liste de souhaits ?");
+
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        try {
+                            if (currentUser != null) {
+                                listeSouhaitsService.ajouterAListeSouhaits(currentUser.getId(), produit.getId());
+                                showAlert("Succès", "Produit ajouté à votre liste de souhaits", Alert.AlertType.INFORMATION);
+                            }
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                            showAlert("Erreur", "Erreur lors de l'ajout à la liste de souhaits", Alert.AlertType.ERROR);
+                        }
+                    }
+                });
+                continue;
             }
 
             commandeService.ajouterProduitACommande(commande.getId(), produit.getId());
@@ -332,5 +355,13 @@ public class AjouterCommandeController implements Initializable {
     private void fermerFenetre() {
         Stage stage = (Stage) btnConfirmer.getScene().getWindow();
         stage.close();
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

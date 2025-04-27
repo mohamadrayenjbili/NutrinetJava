@@ -58,6 +58,17 @@
                                 <Insets right="20.0" />
                             </HBox.margin>
                         </Button>
+
+                        <!-- Bouton Liste de souhaits -->
+                        <Button fx:id="btnListeSouhaits" mnemonicParsing="false" onAction="#voirListeSouhaits"
+                                style="-fx-background-color: #e84393;" text="♥ Liste de souhaits" textFill="WHITE">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="20.0" />
+                            </HBox.margin>
+                        </Button>
                     </children>
                 </HBox>
 
