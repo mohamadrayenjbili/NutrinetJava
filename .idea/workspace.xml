@@ -6,16 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="fixer detail">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/ListeSouhaitsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/ListeSouhaitsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/ModifierProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/ModifierProduitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/sign_upController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/sign_upController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/Commande/CommandeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Commande/CommandeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/ListeSouhaitsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/ListeSouhaitsService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/services/Produit/ProduitService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Produit/ProduitService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/session.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/ModifierProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/ModifierProduit.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
