@@ -134,7 +134,7 @@ public class CommandeService implements ICommandeService {
     // Méthode pour ajouter un produit à une commande
     public void ajouterProduitACommande(int commandeId, int produitId) throws SQLException {
         String query = "INSERT INTO commande_boutique (commande_id, boutique_id, quantite) VALUES (?, ?, 1) " +
-                      "ON DUPLICATE KEY UPDATE quantite = quantite + 1";
+                "ON DUPLICATE KEY UPDATE quantite = quantite + 1";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {

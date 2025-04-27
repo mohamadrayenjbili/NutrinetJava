@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.Produit;
-import services.NotificationService;
+import services.ListeSouhaitsService;
 import utils.MaConnexion;
 
 public class ProduitService implements IProduitService {
@@ -108,6 +108,10 @@ public class ProduitService implements IProduitService {
 
     @Override
     public void updateProduit(Produit produit) throws SQLException {
+        // Récupérer l'ancien stock avant la mise à jour
+        Produit ancienProduit = getProduitById(produit.getId());
+        int ancienStock = ancienProduit.getStock();
+
         String query = "UPDATE boutique SET nom_produit = ?, prix = ?, description = ?, " +
                 "categorie = ?, image = ?, stock = ? WHERE id = ?";
 
@@ -124,25 +128,11 @@ public class ProduitService implements IProduitService {
 
             pstmt.executeUpdate();
 
-            // Vérifier si le stock a été mis à jour et envoyer des notifications
-            if (produit.getStock() > 0) {
-                envoyerNotificationsStockDisponible(produit);
-            }
-        }
-    }
-
-    private void envoyerNotificationsStockDisponible(Produit produit) throws SQLException {
-        String query = "SELECT user_id FROM liste_souhaits WHERE produit_id = ?";
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
-            pstmt.setInt(1, produit.getId());
-            try (ResultSet rs = pstmt.executeQuery()) {
-                NotificationService notificationService = new NotificationService();
-                while (rs.next()) {
-                    int userId = rs.getInt("user_id");
-                    String message = "Le produit " + produit.getNomProduit() + " est maintenant disponible en stock !";
-                    notificationService.creerNotification(userId, produit.getId(), message);
-                }
+            // Vérifier si le stock est passé de 0 à une valeur positive
+            if (ancienStock == 0 && produit.getStock() > 0) {
+                // Envoyer les notifications par email
+                ListeSouhaitsService listeSouhaitsService = new ListeSouhaitsService();
+                listeSouhaitsService.notifierClientsProduitEnStock(produit.getId());
             }
         }
     }
@@ -163,6 +153,7 @@ public class ProduitService implements IProduitService {
             }
         }
     }
+
     @Override
     public void closeConnection() throws SQLException {
         // Si MaConnexion gère un pool de connexions, cette méthode peut être vide
