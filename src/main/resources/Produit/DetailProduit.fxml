@@ -1,60 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.Produit.DetailProduitController"
-            prefWidth="800" prefHeight="600">
-    <children>
-        <!-- Titre de la page -->
-        <VBox spacing="15" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10" AnchorPane.rightAnchor="10">
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
+<VBox fx:id="rootPane" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Produit.DetailProduitController"
+      spacing="15" alignment="TOP_CENTER" prefWidth="800" prefHeight="600" style="-fx-background-color: #ffffff;">
 
-            <Label text="🛒 Liste des Produits"
-                   style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
 
-            <!-- ScrollPane pour afficher la liste des produits -->
-            <ScrollPane fitToWidth="true" prefHeight="500">
-                <content>
-                    <VBox fx:id="produitListContainer" spacing="20" padding="10">
-                        <!-- Exemple d'un produit affiché dans une carte -->
-                        <AnchorPane prefHeight="150.0" prefWidth="750.0" style="-fx-background-color: #f8f8f8; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #ddd;">
-                            <children>
-                                <HBox spacing="15" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.bottomAnchor="10.0">
-                                    <!-- Image du produit -->
-                                    <ImageView fx:id="produitImage" fitHeight="120.0" fitWidth="120.0" preserveRatio="true" style="-fx-background-radius: 5;"/>
+    <Label fx:id="lblNom" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+    <ImageView fx:id="imgProduit" fitWidth="250" fitHeight="250" preserveRatio="true"/>
 
-                                    <!-- Détails du produit -->
-                                    <VBox spacing="10" style="-fx-pref-width: 500px;">
-                                        <Label fx:id="produitNom" text="Nom du Produit"
-                                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #34495e;"/>
-                                        <Label fx:id="produitCategorie" text="Catégorie: Alimentaire"
-                                               style="-fx-text-fill: #7f8c8d;"/>
-                                        <Label fx:id="produitDescription" text="Description courte..."
-                                               style="-fx-text-fill: #2c3e50;"/>
-                                    </VBox>
+    <Label fx:id="lblPrix" style="-fx-font-size: 18px; -fx-text-fill: #2c3e50;"/>
+    <Label fx:id="lblCategorie" style="-fx-font-size: 16px; -fx-text-fill: #636e72;"/>
+    <Label fx:id="lblStock" style="-fx-font-size: 16px; -fx-text-fill: #636e72;"/>
 
-                                    <!-- Boutons pour l'action -->
-                                    <HBox spacing="10" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-                                        <Button text="Voir Détails" style="-fx-background-color: #3498db; -fx-text-fill: white;" />
-                                        <Button text="Modifier" style="-fx-background-color: #f39c12; -fx-text-fill: white;" />
-                                    </HBox>
-                                </HBox>
-                            </children>
-                        </AnchorPane>
-                    </VBox>
-                </content>
-            </ScrollPane>
-        </VBox>
-    </children>
-</AnchorPane>
+    <TextArea fx:id="lblDescription" editable="false" wrapText="true" prefHeight="150" prefWidth="500"
+              style="-fx-control-inner-background: #ecf0f1; -fx-font-size: 14px;"/>
+
+    <Button fx:id="btnRetour" onAction="#handleRetour" text="Retour"
+            style="-fx-background-color: #3498db; -fx-text-fill: white;" />
+
+</VBox>
