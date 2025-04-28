@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.user.ChangePassController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <VBox alignment="CENTER" spacing="20" prefWidth="400" prefHeight="200" layoutX="100" layoutY="100">
+        <TextField fx:id="emailField" promptText="Entrez votre email"
+                   style="-fx-padding: 10; -fx-font-size: 14;" />
+        <Button text="Envoyer Email de Réinitialisation"
+                onAction="#handleSendResetEmail"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;" />
+        <Button text="Retour au Profil"
+                onAction="#redirectToProfile"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;" />
+    </VBox>
+</AnchorPane>

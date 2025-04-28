@@ -161,6 +161,7 @@
                     </Button>
 
                     <Button text="Change Password"
+                            onAction="#navigateToChangePassword"
                             style="-fx-background-color: white; -fx-text-fill: #4CAF50; -fx-font-weight: bold; -fx-background-radius: 5; -fx-border-color: #4CAF50; -fx-border-radius: 5; -fx-padding: 10 20;">
                         <font>
                             <Font size="14.0" />

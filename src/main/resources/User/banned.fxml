@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.user.Banned"
+            style="-fx-background-color: white;"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox alignment="CENTER" spacing="20" AnchorPane.topAnchor="0"
+          AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0"
+          AnchorPane.rightAnchor="0">
+
+        <Label text="⛔ COMPTE BANNI" style="-fx-font-size: 24; -fx-text-fill: #f44336; -fx-font-weight: bold;"/>
+
+        <Label text="Votre compte a été suspendu par un administrateur."
+               style="-fx-font-size: 16; -fx-text-fill: #757575;"
+               wrapText="true" textAlignment="CENTER">
+            <VBox.margin>
+                <Insets left="20" right="20"/>
+            </VBox.margin>
+        </Label>
+
+        <Label text="Veuillez contacter l'administrateur pour plus d'informations."
+               style="-fx-font-size: 14; -fx-text-fill: #9e9e9e;"
+               wrapText="true" textAlignment="CENTER"/>
+
+        <Button fx:id="backButton" text="Retour à la connexion"
+                onAction="#handleBackToSignIn"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white;
+                       -fx-font-weight: bold; -fx-padding: 10 20;
+                       -fx-background-radius: 5;">
+            <VBox.margin>
+                <Insets top="20"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+</AnchorPane>
