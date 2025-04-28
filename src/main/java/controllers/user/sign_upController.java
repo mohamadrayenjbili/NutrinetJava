@@ -23,6 +23,10 @@ import java.time.LocalDate;
 import java.util.Map;
 import java.util.ResourceBundle;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+
 public class sign_upController implements Initializable {
 
     @FXML private TextField nomTextField;
@@ -50,6 +54,22 @@ public class sign_upController implements Initializable {
     @FXML private TextField captchaTextField;
 
     private String currentCaptchaId;
+
+    public class PasswordUtils {
+        public static String hashPassword(String password) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                byte[] hashBytes = md.digest(password.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for (byte b : hashBytes) {
+                    sb.append(String.format("%02x", b));
+                }
+                return sb.toString();
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException("Erreur lors du hachage du mot de passe", e);
+            }
+        }
+    }
 
     @FXML
     private void generateCaptcha() {
@@ -239,7 +259,8 @@ public class sign_upController implements Initializable {
             int age = Integer.parseInt(ageText);
             Date sqlDate = Date.valueOf(selectedDate);
 
-            User user = new User(0, nom, prenom, email, password, age, phone, address, role, "0", sqlDate);
+            String hashedPassword = PasswordUtils.hashPassword(password);
+            User user = new User(0, nom, prenom, email, hashedPassword, age, phone, address, role, "0", sqlDate);
             userService.addUser(user);
 
             showSuccessAlert("Utilisateur enregistré avec succès !");
