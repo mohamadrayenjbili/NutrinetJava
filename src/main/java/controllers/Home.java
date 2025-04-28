@@ -19,7 +19,7 @@ public class Home extends Application {
         try {
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("/user/sign_in.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/User/sign_in.fxml"));
 
 
             Scene scene = new Scene(root);
