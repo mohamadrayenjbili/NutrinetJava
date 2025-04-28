@@ -8,11 +8,11 @@
 
 <ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.Produit.DetailProduitController"
-            prefWidth="800" prefHeight="600"
+            prefWidth="1200" prefHeight="800"
             styleClass="main-scroll-pane">
 
     <content>
-        <VBox fx:id="rootPane" spacing="30" styleClass="root-container" minWidth="800" minHeight="600">
+        <VBox fx:id="rootPane" spacing="30" styleClass="root-container" minWidth="1200" minHeight="800">
             <padding>
                 <Insets top="30" right="40" bottom="40" left="40"/>
             </padding>
@@ -25,8 +25,8 @@
                         <Insets left="40"/>
                     </padding>
                     <HBox spacing="20" alignment="CENTER_LEFT">
-                        <Button fx:id="btnRetour" text="← Retour" styleClass="btn-retour"/>
-                        <Label text="🛍️ Détails du Produit" styleClass="main-header"/>
+                        <Button fx:id="btnRetour" text="← Retour" onAction="#navigateToProduits" styleClass="btn-retour"/>
+                        <Label text="🛍️Détails du Produit" styleClass="main-header"/>
                     </HBox>
                     <Label fx:id="lblNom" styleClass="produit-title"/>
                 </VBox>
@@ -64,8 +64,8 @@
 
                     <!-- Boutons d'action -->
                     <HBox styleClass="action-buttons" spacing="15">
-                        <Button fx:id="btnAjouterPanier" text="🛒 Ajouter au panier" styleClass="btn-ajouter-panier"/>
-                        <Button fx:id="btnAjouterSouhaits" text="❤️ Ajouter aux souhaits" styleClass="btn-ajouter-souhaits"/>
+                        <Button fx:id="btnAjouterPanier" text="🛒 Ajouter au panier" onAction="#handleAjouterPanier" styleClass="btn-ajouter-panier"/>
+                        <Button fx:id="btnAjouterSouhaits" text="❤️ Ajouter aux souhaits" onAction="#handleAjouterSouhaits" styleClass="btn-ajouter-souhaits"/>
                     </HBox>
                 </VBox>
 

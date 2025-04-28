@@ -47,6 +47,9 @@ public class AfficherProduitsFrontController implements Initializable {
     @FXML
     private Button btnVoirPanier;
 
+    @FXML
+    private Button btnListeSouhaits;
+
     private ProduitService produitService = new ProduitService();
     private PanierService panierService = PanierService.getInstance();
     private ObservableList<Produit> allProduits;
@@ -54,7 +57,14 @@ public class AfficherProduitsFrontController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // Charger le CSS
-        flowProduits.getStylesheets().add(getClass().getResource("/Produit/listdidou.css").toExternalForm());
+        String cssPath = getClass().getResource("/Produit/listdidou.css").toExternalForm();
+        flowProduits.getStylesheets().add(cssPath);
+        // Appliquer le CSS à la scène entière
+        flowProduits.sceneProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.getStylesheets().contains(cssPath)) {
+                newValue.getStylesheets().add(cssPath);
+            }
+        });
 
         try {
             List<Produit> produits = produitService.getAllProduits();
@@ -64,8 +74,9 @@ public class AfficherProduitsFrontController implements Initializable {
             Set<String> categories = produits.stream()
                     .map(Produit::getCategorie)
                     .collect(Collectors.toSet());
-            filterComboBox.setItems(FXCollections.observableArrayList(categories));
-            filterComboBox.getItems().add(0, "Toutes les catégories");
+            ObservableList<String> categoriesList = FXCollections.observableArrayList(categories);
+            categoriesList.add(0, "Toutes les catégories");
+            filterComboBox.setItems(categoriesList);
             filterComboBox.getSelectionModel().selectFirst();
 
             // Listener sur la barre de recherche
@@ -160,7 +171,7 @@ public class AfficherProduitsFrontController implements Initializable {
 
         // Actions des boutons
         btnAjouter.setOnAction(e -> handleAjouterPanier(produit, spinnerQuantite.getValue()));
-        btnDetails.setOnAction(e -> openProductDetails(produit));
+        btnDetails.setOnAction(e -> navigateToDetailProduit(produit));
         btnSouhaits.setOnAction(e -> handleAjouterSouhaits(produit));
 
         content.getChildren().addAll(titleLabel, priceLabel, categoryLabel, stockLabel, spinnerQuantite, buttonBox);
@@ -184,34 +195,23 @@ public class AfficherProduitsFrontController implements Initializable {
         User currentUser = session.getCurrentUser();
         if (currentUser == null) {
             showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits au panier", Alert.AlertType.WARNING);
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) flowProduits.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Connexion");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            navigateToLogin();
             return;
         }
 
-        panierService.ajouterAuPanier(produit, quantite);
+        try {
+            panierService.ajouterAuPanier(produit, quantite);
+            showAlert("Succès", "Produit ajouté au panier avec succès!", Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            showAlert("Erreur", "Erreur lors de l'ajout au panier: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
 
     private void handleAjouterSouhaits(Produit produit) {
         User currentUser = session.getCurrentUser();
         if (currentUser == null) {
             showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits à votre liste de souhaits", Alert.AlertType.WARNING);
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) flowProduits.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Connexion");
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+            navigateToLogin();
             return;
         }
 
@@ -224,11 +224,24 @@ public class AfficherProduitsFrontController implements Initializable {
                 showAlert("Succès", "Produit ajouté à votre liste de souhaits", Alert.AlertType.INFORMATION);
             }
         } catch (SQLException ex) {
-            showAlert("Erreur", "Erreur lors de l'ajout à la liste de souhaits", Alert.AlertType.ERROR);
+            showAlert("Erreur", "Erreur lors de l'ajout à la liste de souhaits: " + ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
-    private void openProductDetails(Produit produit) {
+    private void navigateToLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) flowProduits.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Connexion");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void navigateToDetailProduit(Produit produit) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/DetailProduit.fxml"));
             Parent root = loader.load();
@@ -240,24 +253,16 @@ public class AfficherProduitsFrontController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle("Détails: " + produit.getNomProduit());
         } catch (IOException e) {
-            showAlert("Erreur", "Impossible d'ouvrir les détails", Alert.AlertType.ERROR);
+            showAlert("Erreur", "Impossible d'ouvrir les détails: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
-    private void voirPanier(ActionEvent event) {
+    private void navigateToPanier(ActionEvent event) {
         User currentUser = session.getCurrentUser();
         if (currentUser == null) {
             showAlert("Connexion requise", "Veuillez vous connecter pour accéder au panier", Alert.AlertType.WARNING);
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Connexion");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            navigateToLogin();
             return;
         }
 
@@ -269,7 +274,28 @@ public class AfficherProduitsFrontController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle("Mon Panier");
         } catch (IOException e) {
-            showAlert("Erreur", "Impossible d'ouvrir le panier", Alert.AlertType.ERROR);
+            showAlert("Erreur", "Impossible d'ouvrir le panier: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    @FXML
+    private void navigateToListeSouhaits(ActionEvent event) {
+        User currentUser = session.getCurrentUser();
+        if (currentUser == null) {
+            showAlert("Connexion requise", "Veuillez vous connecter pour accéder à votre liste de souhaits", Alert.AlertType.WARNING);
+            navigateToLogin();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/ListeSouhaits.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) btnListeSouhaits.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ma Liste de Souhaits");
+        } catch (IOException e) {
+            showAlert("Erreur", "Impossible d'ouvrir la liste de souhaits: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 

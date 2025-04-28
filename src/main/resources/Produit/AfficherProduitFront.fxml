@@ -7,7 +7,8 @@
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllers.Produit.AfficherProduitsFrontController"
-      styleClass="root-container">
+      styleClass="root-container"
+      prefWidth="1200" prefHeight="800">
 
     <!-- En-tête avec fond gradient -->
     <StackPane styleClass="header-section">
@@ -19,22 +20,31 @@
 
     <!-- Barre de recherche et filtres -->
     <HBox styleClass="search-section" alignment="CENTER" spacing="15">
+        <padding>
+            <Insets top="15" right="20" bottom="15" left="20"/>
+        </padding>
         <HBox styleClass="search-box" HBox.hgrow="ALWAYS">
             <TextField fx:id="searchField" promptText="🔍 Rechercher un produit..."
                        styleClass="modern-search"/>
         </HBox>
         <ComboBox fx:id="filterComboBox" promptText="🔖 Filtrer par catégorie"
                   styleClass="modern-combo"/>
-        <Button fx:id="btnVoirPanier" text="🛒 Voir le panier" onAction="#voirPanier"
+        <Button fx:id="btnVoirPanier" text="🛒 Voir le panier" onAction="#navigateToPanier"
                 styleClass="btn-panier"/>
+        <Button fx:id="btnListeSouhaits" text="❤️ Liste de souhaits" onAction="#navigateToListeSouhaits"
+                styleClass="btn-souhaits"/>
     </HBox>
 
     <!-- Liste des produits -->
-    <AnchorPane>
+    <AnchorPane VBox.vgrow="ALWAYS">
         <ScrollPane fitToWidth="true" fitToHeight="true" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <FlowPane fx:id="flowProduits"
                       styleClass="produits-container"
-                      hgap="20" vgap="20"/>
+                      hgap="20" vgap="20">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20"/>
+                </padding>
+            </FlowPane>
         </ScrollPane>
     </AnchorPane>
 </VBox>

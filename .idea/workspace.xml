@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du mail">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styleDidou.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" afterDir="false" />
     </list>
@@ -240,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745789508741</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="ajout du mail">
+      <option name="closed" value="true" />
+      <created>1745862479052</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745862479052</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

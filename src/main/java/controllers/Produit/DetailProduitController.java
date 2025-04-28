@@ -61,11 +61,6 @@ public class DetailProduitController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // Charger le CSS
         rootPane.getStylesheets().add(getClass().getResource("/Produit/detaildidou.css").toExternalForm());
-
-        // Configurer les actions des boutons
-        btnRetour.setOnAction(e -> handleRetour());
-        btnAjouterPanier.setOnAction(e -> handleAjouterPanier());
-        btnAjouterSouhaits.setOnAction(e -> handleAjouterSouhaits());
     }
 
     public void setProduit(Produit produit) {
@@ -95,7 +90,7 @@ public class DetailProduitController implements Initializable {
     }
 
     @FXML
-    private void handleRetour() {
+    private void navigateToProduits() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
             Parent root = loader.load();
@@ -125,6 +120,7 @@ public class DetailProduitController implements Initializable {
             }
 
             panierService.ajouterAuPanier(produit, 1); // Ajouter une quantité de 1 par défaut
+            showAlert("Succès", "Produit ajouté au panier", javafx.scene.control.Alert.AlertType.INFORMATION);
         }
     }
 
