@@ -77,7 +77,7 @@
             </VBox>
 
             <HBox alignment="CENTER_RIGHT">
-                <Hyperlink text="Forgot password?" style="-fx-text-fill: #66bb6a; -fx-border-color: transparent;">
+                <Hyperlink text="Forgot password?" onAction="#goToForgotPassword" style="-fx-text-fill: #66bb6a; -fx-border-color: transparent;">
                     <font>
                         <Font size="12.0" />
                     </font>
@@ -89,6 +89,16 @@
                 <font>
                     <Font size="14.0" />
                 </font>
+            </Button>
+            <Button text="Sign in with Google"
+                    onAction="#handleGoogleSignIn"
+                    maxWidth="Infinity"
+                    style="-fx-background-color: #4285f4; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 12 15;">
+                <graphic>
+                    <ImageView fitHeight="20" fitWidth="20">
+                        <Image url="@/images/google_logo.png"/>
+                    </ImageView>
+                </graphic>
             </Button>
 
             <HBox alignment="CENTER" style="-fx-padding: 15 0 0 0;">

@@ -2,30 +2,27 @@ package controllers.user;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Priority;
+import javafx.scene.chart.PieChart;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import models.User;
-import services.user.*;
+import services.user.log_historyService;
+import services.user.userlist;
 import utils.session;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class userlistcontroller implements Initializable {
 
@@ -41,113 +38,309 @@ public class userlistcontroller implements Initializable {
 
     private userlist userService;
 
+    @FXML
+    private TextField searchField;
+    @FXML
+    private ComboBox<String> roleFilter;
+    @FXML
+    private Button banUserButton;
+
+    private ObservableList<User> allUsers;
+    private ObservableList<User> filteredUsers;
+
+    //stats________________________
+    @FXML
+    private PieChart userStatsChart;
+    @FXML
+    private Label totalUsersLabel;
+    @FXML
+    private Label bannedUsersLabel;
+    @FXML
+    private GridPane statsGrid;
+
+
+    //stats function_____________________________
+    private void updateStats() {
+        // Calculer les stats par rôle
+        Map<String, Long> roleStats = allUsers.stream()
+                .collect(Collectors.groupingBy(
+                        User::getRole,
+                        Collectors.counting()
+                ));
+
+        // Mettre à jour le graphique
+        userStatsChart.getData().clear();
+        roleStats.forEach((role, count) -> {
+            PieChart.Data slice = new PieChart.Data(role + " (" + count + ")", count);
+            userStatsChart.getData().add(slice);
+        });
+
+        int totalUsers = allUsers.size();
+        long bannedUsers = allUsers.stream()
+                .filter(u -> u.getIsBanned().equals("1"))
+                .count();
+
+        // Mettre à jour les labels
+        totalUsersLabel.setText(String.valueOf(totalUsers));
+        bannedUsersLabel.setText(String.valueOf(bannedUsers));
+    }
+
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userService = new userlist();
 
+        // Initialize filtered list
+        allUsers = FXCollections.observableArrayList();
+        filteredUsers = FXCollections.observableArrayList();
+
+        // Setup role filter
+        roleFilter.getItems().addAll("client", "admin", "doctor", "Tous");
+        roleFilter.setValue("Tous");
+
+        // Setup search listener
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterUsers();
+        });
+
+        // Setup role filter listener
+        roleFilter.valueProperty().addListener((observable, oldValue, newValue) -> {
+            filterUsers();
+        });
+
+        // Create column headers and attach to ListView
+        // We'll fix the createColumnHeaders method to work with ScrollPane
         createColumnHeaders();
-
         usersListView.setCellFactory(listView -> new UserListCell());
-
         loadUsers();
 
         deleteUserButton.setDisable(true);
         updateUserButton.setDisable(true);
+        banUserButton.setDisable(true);
 
         usersListView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            // Enable or disable buttons based on selection
             boolean hasSelection = (newSelection != null);
             deleteUserButton.setDisable(!hasSelection);
             updateUserButton.setDisable(!hasSelection);
+            banUserButton.setDisable(!hasSelection);
+
+            if (hasSelection) {
+                banUserButton.setText(newSelection.getIsBanned().equals("1") ? "UNBAN" : "BAN");
+                banUserButton.setStyle(newSelection.getIsBanned().equals("1") ?
+                        "-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;" :
+                        "-fx-background-color: #ff9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;");
+            }
         });
     }
 
+    //ban user------------------------------------------
+    @FXML
+    private void handleBanUser(ActionEvent event) {
+        User selectedUser = usersListView.getSelectionModel().getSelectedItem();
+        if (selectedUser == null) {
+            showAlert(Alert.AlertType.WARNING, "Veuillez sélectionner un utilisateur.");
+            return;
+        }
+
+        boolean currentlyBanned = selectedUser.getIsBanned().equals("1");
+        String newStatus = currentlyBanned ? "0" : "1";
+        String action = currentlyBanned ? "débannir" : "bannir";
+
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Confirmer " + action);
+        confirmAlert.setHeaderText("Voulez-vous " + action + " cet utilisateur ?");
+        confirmAlert.setContentText("Êtes-vous sûr de vouloir " + action + " " +
+                selectedUser.getName() + " " + selectedUser.getPrename() + " ?");
+
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                try {
+                    selectedUser.setIsBanned(newStatus);
+                    userService.updateUser(selectedUser);
+
+                    // Mettre à jour l'interface
+                    banUserButton.setText(newStatus.equals("1") ? "UNBAN" : "BAN");
+                    banUserButton.setStyle(newStatus.equals("1") ?
+                            "-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" :
+                            "-fx-background-color: #ff9800; -fx-text-fill: white; -fx-font-weight: bold;");
+
+                    // Recharger la liste
+                    loadUsers();
+
+                    showAlert(Alert.AlertType.INFORMATION,
+                            "L'utilisateur a été " + (currentlyBanned ? "débanni" : "banni") + " avec succès !");
+                } catch (Exception e) {
+                    showAlert(Alert.AlertType.ERROR,
+                            "Erreur lors du " + action + " de l'utilisateur : " + e.getMessage());
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+
     private void createColumnHeaders() {
-        // Create header HBox
-        HBox headerBox = new HBox();
-        headerBox.setStyle("-fx-padding: 5px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc; -fx-border-width: 0 0 1 0;");
+        try {
+            // Create header HBox
+            HBox headerBox = new HBox();
+            headerBox.setStyle("-fx-padding: 5px; -fx-background-color: #f0f0f0; -fx-border-color: #ccc; -fx-border-width: 0 0 1 0;");
 
-        // ID column - fixed width
-        Label idLabel = new Label("ID");
-        idLabel.setPrefWidth(50);
-        idLabel.setStyle("-fx-font-weight: bold;");
+            // ID column - fixed width
+            Label idLabel = new Label("ID");
+            idLabel.setPrefWidth(50);
+            idLabel.setStyle("-fx-font-weight: bold;");
 
-        // Name column
-        Label nameLabel = new Label("Name");
-        nameLabel.setPrefWidth(120);
-        nameLabel.setStyle("-fx-font-weight: bold;");
+            // Name column
+            Label nameLabel = new Label("Name");
+            nameLabel.setPrefWidth(120);
+            nameLabel.setStyle("-fx-font-weight: bold;");
 
-        // Email column
-        Label emailLabel = new Label("Email");
-        emailLabel.setMaxWidth(Double.MAX_VALUE);
-        emailLabel.setStyle("-fx-font-weight: bold;");
-        HBox.setHgrow(emailLabel, Priority.ALWAYS);
+            // Email column
+            Label emailLabel = new Label("Email");
+            emailLabel.setMaxWidth(Double.MAX_VALUE);
+            emailLabel.setStyle("-fx-font-weight: bold;");
+            HBox.setHgrow(emailLabel, Priority.ALWAYS);
 
-        // Role column - fixed width
-        Label roleLabel = new Label("Role");
-        roleLabel.setPrefWidth(100);
-        roleLabel.setStyle("-fx-font-weight: bold;");
+            // Role column - fixed width
+            Label roleLabel = new Label("Role");
+            roleLabel.setPrefWidth(100);
+            roleLabel.setStyle("-fx-font-weight: bold;");
 
-        // Add columns to header
-        headerBox.getChildren().addAll(idLabel, nameLabel, emailLabel, roleLabel);
+            // Status column
+            Label statusLabel = new Label("Status");
+            statusLabel.setPrefWidth(80);
+            statusLabel.setStyle("-fx-font-weight: bold;");
 
-        // Add header to parent container (VBox that contains ListView)
-        VBox parent = (VBox) usersListView.getParent();
-        parent.getChildren().add(0, headerBox);
+            // Add columns to header
+            headerBox.getChildren().addAll(idLabel, nameLabel, emailLabel, roleLabel, statusLabel);
+
+            // With ScrollPane, we need to find the correct parent
+            // We need to get the direct parent of the ListView which should be a VBox inside the ScrollPane's content
+            Parent listViewParent = usersListView.getParent();
+
+            // If we're using the newly structured FXML, we need to find the VBox that contains the ListView
+            if (listViewParent instanceof VBox) {
+                // We're directly inside a VBox, we can add at index 0
+                ((VBox) listViewParent).getChildren().add(0, headerBox);
+            } else {
+                // Create a new container for both header and ListView
+                VBox container = new VBox();
+
+                // Get current parent of ListView
+                Pane currentParent = (Pane) usersListView.getParent();
+
+                // Get the index of ListView in its parent
+                int index = currentParent.getChildren().indexOf(usersListView);
+
+                // Remove ListView from its current parent
+                currentParent.getChildren().remove(usersListView);
+
+                // Add header and ListView to container
+                container.getChildren().addAll(headerBox, usersListView);
+
+                // Add container back to parent at the same index
+                currentParent.getChildren().add(index, container);
+            }
+        } catch (Exception e) {
+            // Print detailed error for debugging
+            System.err.println("Error creating column headers: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleLogout() {
-        // Clear the current session
-        session.clearSession();
-
         try {
+            // Récupérer l'utilisateur avant de vider la session
+            User currentUser = session.getCurrentUser();
+
+            // Créer une instance de log_historyService
+            log_historyService logService = new log_historyService();
+
+            // Ajouter le log de déconnexion
+            if (currentUser != null) {
+                String details = "User " + currentUser.getName() + " " + currentUser.getPrename() + " logged out";
+                logService.addLog(currentUser.getEmail(), "Logout", details);
+            }
+
+            // Vider la session
+            session.clearSession();
+
+            // Redirection vers la page de connexion
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
             Parent root = loader.load();
 
-            // Get the current stage from any UI element
             Stage stage = (Stage) usersListView.getScene().getWindow();
-
-            // Set the new scene (sign in) on the same stage
             stage.setTitle("Sign In");
             stage.setScene(new Scene(root));
             stage.show();
 
         } catch (Exception e) {
+            showAlert(Alert.AlertType.ERROR, "Error during logout: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
+    private void filterUsers() {
+        filteredUsers.clear();
+        String searchText = searchField.getText().toLowerCase().trim();
+        String selectedRole = roleFilter.getValue();
+
+        for (User user : allUsers) {
+            boolean matchesSearch = searchText.isEmpty() ||
+                    user.getName().toLowerCase().contains(searchText) ||
+                    user.getPrename().toLowerCase().contains(searchText);
+
+            boolean matchesRole = selectedRole.equals("Tous") ||
+                    selectedRole.equalsIgnoreCase(user.getRole());
+
+            if (matchesSearch && matchesRole) {
+                filteredUsers.add(user);
+            }
+        }
+
+        usersListView.setItems(filteredUsers);
+    }
+
+    @FXML
+    private void resetFilters() {
+        searchField.clear();
+        roleFilter.setValue("Tous");
+        usersListView.setItems(allUsers);
+    }
+
+
     // Custom ListCell that displays User data in columns
-    private class UserListCell extends javafx.scene.control.ListCell<User> {
+    private class UserListCell extends ListCell<User> {
         private final HBox content;
         private final Label idLabel;
         private final Label nameLabel;
         private final Label emailLabel;
         private final Label roleLabel;
+        private final Label banStatusLabel;  // Nouveau label
 
         public UserListCell() {
             content = new HBox();
             content.setStyle("-fx-padding: 5px;");
 
-            // ID column - fixed width
             idLabel = new Label();
             idLabel.setPrefWidth(50);
 
-            // Name column
             nameLabel = new Label();
             nameLabel.setPrefWidth(120);
 
-            // Email column - variable width
             emailLabel = new Label();
-            emailLabel.setMaxWidth(Double.MAX_VALUE);
-            HBox.setHgrow(emailLabel, Priority.ALWAYS);
+            emailLabel.setPrefWidth(200);
 
-            // Role column - fixed width
             roleLabel = new Label();
             roleLabel.setPrefWidth(100);
 
-            content.getChildren().addAll(idLabel, nameLabel, emailLabel, roleLabel);
+            banStatusLabel = new Label();  // Nouveau label pour le statut
+            banStatusLabel.setPrefWidth(80);
+
+            content.getChildren().addAll(idLabel, nameLabel, emailLabel, roleLabel, banStatusLabel);
         }
 
         @Override
@@ -162,7 +355,13 @@ public class userlistcontroller implements Initializable {
                 emailLabel.setText(user.getEmail());
                 roleLabel.setText(user.getRole());
 
-                // Add alternating row colors for better readability
+                // Afficher le statut de bannissement
+                boolean isBanned = user.getIsBanned().equals("1");
+                banStatusLabel.setText(isBanned ? "BANNED" : "ACTIVE");
+                banStatusLabel.setStyle(isBanned ?
+                        "-fx-text-fill: #f44336; -fx-font-weight: bold;" :
+                        "-fx-text-fill: #4CAF50; -fx-font-weight: bold;");
+
                 if (getIndex() % 2 == 0) {
                     content.setStyle("-fx-padding: 5px; -fx-background-color: #f9f9f9;");
                 } else {
@@ -178,10 +377,12 @@ public class userlistcontroller implements Initializable {
     void loadUsers() {
         try {
             List<User> users = userService.getAllUsers();
-            ObservableList<User> usersList = FXCollections.observableArrayList(users);
-            usersListView.setItems(usersList);
+            allUsers.setAll(users);
+            filteredUsers.setAll(users);
+            usersListView.setItems(filteredUsers);
+            updateStats();
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error loading users: " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement des utilisateurs : " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -274,4 +475,35 @@ public class userlistcontroller implements Initializable {
         alert.setContentText(message);
         alert.show();
     }
+
+    @FXML
+    private void handleBack(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/dashboard.fxml"));
+            Scene dashboardScene = new Scene(loader.load());
+
+            Stage stage = (Stage) usersListView.getScene().getWindow();
+            stage.setScene(dashboardScene);
+            stage.show();
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Error returning to dashboard: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void navigateToLogHistory(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/log_history.fxml"));
+            Scene logHistoryScene = new Scene(loader.load());
+
+            Stage stage = (Stage) usersListView.getScene().getWindow();
+            stage.setScene(logHistoryScene);
+            stage.show();
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Error navigating to log history: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 }

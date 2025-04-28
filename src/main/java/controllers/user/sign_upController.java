@@ -1,20 +1,22 @@
 package controllers.user;
 
-import javafx.fxml.Initializable;
-import models.User;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+import models.User;
+import services.user.UserService;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
-import services.user.UserService;
 
 public class sign_upController implements Initializable {
 
@@ -90,7 +92,28 @@ public class sign_upController implements Initializable {
 
     @FXML
     void goToSignIn(ActionEvent event) {
-        // Implement navigation to sign-in screen
+        try {
+            // Charger le fichier FXML de l'écran de connexion
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/sign_in.fxml"));
+            Parent root = loader.load();
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Remplacer la scène par celle de l'écran de connexion
+            stage.setScene(new Scene(root));
+            stage.setTitle("Sign In");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de l'écran de connexion.");
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
