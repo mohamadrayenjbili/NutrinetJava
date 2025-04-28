@@ -41,23 +41,32 @@ public class QuotableService {
 
     public String getRandomQuote() {
         try {
-            URI uri = new URIBuilder(API_BASE_URL)
-                    .addParameter("tags", "success,goals,motivational")
-                    .addParameter("limit", "1")
-                    .build();
+            // First try to get a quote from the API
+            return fetchQuoteFromAPI();
+        } catch (Exception e) {
+            // If API fails, use a local French quote
+            return getRandomFrenchQuote();
+        }
+    }
 
-            SSLContext sslContext = new SSLContextBuilder()
-                    .loadTrustMaterial(null, (certificate, authType) -> true)
-                    .build();
+    private String fetchQuoteFromAPI() throws Exception {
+        URI uri = new URIBuilder(API_BASE_URL)
+                .addParameter("tags", "success,goals,motivational")
+                .addParameter("limit", "1")
+                .build();
 
-            SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(
-                    sslContext,
-                    NoopHostnameVerifier.INSTANCE
-            );
+        SSLContext sslContext = new SSLContextBuilder()
+                .loadTrustMaterial(null, (certificate, authType) -> true)
+                .build();
 
-            CloseableHttpClient httpClient = HttpClients.custom()
-                    .setSSLSocketFactory(socketFactory)
-                    .build();
+        SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(
+                sslContext,
+                NoopHostnameVerifier.INSTANCE
+        );
+
+        try (CloseableHttpClient httpClient = HttpClients.custom()
+                .setSSLSocketFactory(socketFactory)
+                .build()) {
 
             HttpGet request = new HttpGet(uri);
             HttpResponse response = httpClient.execute(request);
@@ -71,10 +80,7 @@ public class QuotableService {
                     return "\"" + quote.getContent() + "\" - " + quote.getAuthor();
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
         return getRandomFrenchQuote();
     }
 

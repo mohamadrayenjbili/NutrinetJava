@@ -60,9 +60,11 @@ public class AfficherObjectiveController implements Initializable {
     private void loadQuote() {
         new Thread(() -> {
             try {
-                String[] quoteParts = quotableService.getRandomQuote().split(" - ", 2);
+                String quote = quotableService.getRandomQuote();
+                String[] quoteParts = quote.split(" - ", 2);
+
                 javafx.application.Platform.runLater(() -> {
-                    quoteContent.setText("\"" + quoteParts[0] + "\"");
+                    quoteContent.setText("\"" + quoteParts[0].replace("\"", "") + "\"");
                     if (quoteParts.length > 1) {
                         quoteAuthor.setText(" - " + quoteParts[1]);
                     } else {
@@ -74,7 +76,6 @@ public class AfficherObjectiveController implements Initializable {
                     quoteContent.setText("\"La persévérance est la clé du succès.\"");
                     quoteAuthor.setText(" - Proverbe français");
                 });
-                e.printStackTrace();
             }
         }).start();
     }
