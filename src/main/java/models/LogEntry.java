@@ -3,6 +3,7 @@ package models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+
 public class LogEntry {
     private final StringProperty date;
     private final StringProperty user;
