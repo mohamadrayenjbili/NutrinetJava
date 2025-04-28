@@ -91,6 +91,18 @@ public class WelcomeController {
         }
     }
 
-
+    @FXML
+    private void goToAfficherProduitFront() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Nos Produits");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }
