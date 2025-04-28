@@ -1,7 +1,7 @@
 package services.user;
 
 import models.User;
-import java.time.LocalDate;
+
 import java.sql.*;
 
 public class SignInService {
@@ -9,6 +9,9 @@ public class SignInService {
     private Connection getConnection() throws Exception {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
     }
+
+    private final log_historyService logService = new log_historyService();
+
 
     public User authenticate(String email, String password) throws Exception {
         String query = "SELECT * FROM user WHERE email = ? AND password = ?";
@@ -30,6 +33,12 @@ public class SignInService {
                 user.setRole(rs.getString("role"));
                 user.setIsBanned(rs.getString("is_banned"));
                 Date sqlDate = rs.getDate("date");
+
+
+                // add the logentry history____
+                String details = "User " + user.getName() + " " + user.getPrename() + " logged in";
+                logService.addLog(user.getEmail(), "Login", details);
+
                 return user;
             }
         }

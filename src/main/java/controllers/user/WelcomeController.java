@@ -6,13 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import utils.session;
 import models.User;
+import services.user.log_historyService;
+import utils.session;
 
 public class WelcomeController {
 
     @FXML
     private Label welcomeLabel;
+    private final log_historyService logService = new log_historyService();
 
     @FXML
     public void initialize() {
@@ -20,6 +22,7 @@ public class WelcomeController {
         if (currentUser != null) {
             welcomeLabel.setText("Welcome, " + currentUser.getName() + "!");
         } else {
+            // Handle the case where there is no logged-in user
             welcomeLabel.setText("Welcome!");
         }
     }
@@ -34,6 +37,7 @@ public class WelcomeController {
             stage.setScene(new Scene(root));
             stage.show();
 
+            // Optionally hide welcome window
             welcomeLabel.getScene().getWindow().hide();
         } catch (Exception e) {
             e.printStackTrace();
@@ -42,25 +46,43 @@ public class WelcomeController {
 
     @FXML
     private void handleLogout() {
-        session.clearSession();
         try {
+            // Récupérer l'utilisateur avant de vider la session
+            User currentUser = session.getCurrentUser();
+
+            // Ajouter le log de déconnexion
+            if (currentUser != null) {
+                String details = "User " + currentUser.getName() + " " + currentUser.getPrename() + " logged out";
+                logService.addLog(currentUser.getEmail(), "Logout", details);
+            }
+
+            // Vider la session
+            session.clearSession();
+
+            // Redirection vers la page de connexion
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) welcomeLabel.getScene().getWindow();
             stage.setTitle("Sign In");
             stage.setScene(new Scene(root));
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void goToProfile() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/profile.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+
+            // Get the current stage from any UI component on the page (e.g., a button or label)
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();  // replace 'someUIElement' with a real fx:id from your FXML
+
+            // Replace the scene with the profile scene
             stage.setScene(new Scene(root));
             stage.setTitle("Profile");
             stage.show();
@@ -69,17 +91,6 @@ public class WelcomeController {
         }
     }
 
-    @FXML
-    private void goToAfficherProduitFront() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Nos Produits");
-            stage.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
+
 }

@@ -1,15 +1,18 @@
 package controllers.user;
 
-import javafx.scene.Parent;
-import models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
-import services.user.updateservice;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import models.User;
+import services.user.updateservice;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -46,24 +49,32 @@ public class UpdateUserController {
         try {
             updateservice.updateUser(userToUpdate);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/users_list.fxml"));
+            // Récupérer l'utilisateur connecté
+            User currentUser = utils.session.getCurrentUser();
 
-            // Créer la nouvelle scène
-            Scene scene = new Scene(loader.load());
+            // Déterminer la vue à charger
+            String fxmlPath = (currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole()))
+                    ? "/user/users_list.fxml"
+                    : "/user/profile.fxml";
 
-            // Charger le contrôleur et mettre à jour la liste des utilisateurs
-            controllers.user.userlistcontroller controller = loader.getController();
-            controller.loadUsers();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
 
-            // Récupérer la fenêtre actuelle et changer la scène
+            // Charger le contrôleur uniquement si l'utilisateur est admin
+            if (currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+                userlistcontroller controller = loader.getController();
+                controller.loadUsers();
+            }
+
+            // Changer la scène
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Users List");
+            stage.setScene(new Scene(root));
+            stage.setTitle(currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole()) ? "Users List" : "Profile");
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de la vue de la liste des utilisateurs : " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de la vue : " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Erreur lors de la mise à jour de l'utilisateur.");
