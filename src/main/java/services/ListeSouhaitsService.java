@@ -1,12 +1,16 @@
 package services;
 
-import models.ListeSouhaits;
-import models.Produit;
-import utils.MaConnexion;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import models.ListeSouhaits;
+import models.Produit;
+import models.User;
+import utils.MaConnexion;
 
 public class ListeSouhaitsService {
     private Connection getConnection() throws SQLException {
@@ -80,5 +84,58 @@ public class ListeSouhaitsService {
             }
         }
         return false;
+    }
+
+    public void notifierClientsProduitEnStock(int produitId) throws SQLException {
+        // Récupérer tous les utilisateurs qui ont ce produit dans leur liste de souhaits
+        String query = "SELECT u.* FROM user u " +
+                      "JOIN liste_souhaits ls ON u.id = ls.user_id " +
+                      "JOIN boutique p ON ls.produit_id = p.id " +
+                      "WHERE p.id = ? AND p.stock > 0";
+
+        try (Connection conn = getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setInt(1, produitId);
+            try (ResultSet rs = pstmt.executeQuery()) {
+                List<User> usersToNotify = new ArrayList<>();
+                while (rs.next()) {
+                    User user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setName(rs.getString("name"));
+                    user.setPrename(rs.getString("prename"));
+                    user.setEmail(rs.getString("email"));
+                    usersToNotify.add(user);
+                }
+
+                // Récupérer les informations du produit
+                String produitQuery = "SELECT * FROM boutique WHERE id = ?";
+                try (PreparedStatement produitStmt = conn.prepareStatement(produitQuery)) {
+                    produitStmt.setInt(1, produitId);
+                    try (ResultSet produitRs = produitStmt.executeQuery()) {
+                        if (produitRs.next()) {
+                            String nomProduit = produitRs.getString("nom_produit");
+                            double prix = produitRs.getDouble("prix");
+                            int stock = produitRs.getInt("stock");
+
+                            // Envoyer un email à chaque utilisateur
+                            EmailService emailService = new EmailService();
+                            for (User user : usersToNotify) {
+                                String subject = "Produit de nouveau en stock !";
+                                String message = "Cher " + user.getName() + " " + user.getPrename() + ",\n\n" +
+                                               "Nous sommes heureux de vous informer que le produit suivant est de nouveau en stock :\n\n" +
+                                               "Produit : " + nomProduit + "\n" +
+                                               "Prix : " + prix + "€\n" +
+                                               "Stock disponible : " + stock + "\n\n" +
+                                               "N'hésitez pas à visiter notre site pour passer commande !\n\n" +
+                                               "Cordialement,\n" +
+                                               "L'équipe Nutrinet";
+
+                                emailService.sendNotification(user.getEmail(), subject, message);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 } 

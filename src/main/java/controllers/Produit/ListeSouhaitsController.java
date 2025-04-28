@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -20,8 +21,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import models.ListeSouhaits;
+import models.Notification;
 import models.User;
 import services.ListeSouhaitsService;
+import services.NotificationService;
 import utils.session;
 
 public class ListeSouhaitsController implements Initializable {
@@ -54,15 +57,16 @@ public class ListeSouhaitsController implements Initializable {
         listeSouhaitsService = new ListeSouhaitsService();
         configurerTable();
         chargerListeSouhaits();
+        verifierNotifications();
     }
 
     private void configurerTable() {
-        colNom.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleStringProperty(cellData.getValue().getProduit().getNomProduit()));
-        colPrix.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getProduit().getPrix()).asObject());
-        colStock.setCellValueFactory(cellData -> 
-            new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getProduit().getStock()).asObject());
+        colNom.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleStringProperty(cellData.getValue().getProduit().getNomProduit()));
+        colPrix.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleDoubleProperty(cellData.getValue().getProduit().getPrix()).asObject());
+        colStock.setCellValueFactory(cellData ->
+                new javafx.beans.property.SimpleIntegerProperty(cellData.getValue().getProduit().getStock()).asObject());
         colDateAjout.setCellValueFactory(cellData -> {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
             return new javafx.beans.property.SimpleStringProperty(sdf.format(cellData.getValue().getDateAjout()));
@@ -105,10 +109,10 @@ public class ListeSouhaitsController implements Initializable {
 
     private void chargerListeSouhaits() {
         try {
-            User currentUser = session.getCurrentUser();
-            if (currentUser != null) {
+            User loggedUser = session.getCurrentUser();
+            if (loggedUser != null) {
                 tableListeSouhaits.getItems().clear();
-                tableListeSouhaits.getItems().addAll(listeSouhaitsService.getListeSouhaitsByUserId(currentUser.getId()));
+                tableListeSouhaits.getItems().addAll(listeSouhaitsService.getListeSouhaitsByUserId(loggedUser.getId()));
             }
         } catch (SQLException e) {
             showAlert("Erreur", "Erreur lors du chargement de la liste de souhaits: " + e.getMessage(), Alert.AlertType.ERROR);
@@ -117,9 +121,9 @@ public class ListeSouhaitsController implements Initializable {
 
     private void supprimerDeListeSouhaits(ListeSouhaits ls) {
         try {
-            User currentUser = session.getCurrentUser();
-            if (currentUser != null) {
-                listeSouhaitsService.supprimerDeListeSouhaits(currentUser.getId(), ls.getProduitId());
+            User loggedUser = session.getCurrentUser();
+            if (loggedUser != null) {
+                listeSouhaitsService.supprimerDeListeSouhaits(loggedUser.getId(), ls.getProduitId());
                 chargerListeSouhaits();
                 showAlert("Succès", "Produit supprimé de la liste de souhaits", Alert.AlertType.INFORMATION);
             }
@@ -153,4 +157,23 @@ public class ListeSouhaitsController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
-} 
+
+    private void verifierNotifications() {
+        try {
+            User loggedUser = session.getCurrentUser();
+            if (loggedUser != null) {
+                NotificationService notificationService = new NotificationService();
+                List<Notification> notifications = notificationService.getNotificationsByUserId(loggedUser.getId());
+
+                for (Notification notification : notifications) {
+                    if (!notification.isLu()) {
+                        showAlert("Notification", notification.getMessage(), Alert.AlertType.INFORMATION);
+                        notificationService.marquerCommeLu(notification.getId());
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            showAlert("Erreur", "Erreur lors de la vérification des notifications: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+}
