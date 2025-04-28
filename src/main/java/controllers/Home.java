@@ -18,7 +18,6 @@ public class Home extends Application {
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Produit/AjouterProduit.fxml"));
 
             Parent root = FXMLLoader.load(getClass().getResource("/user/sign_in.fxml"));
 
