@@ -8,14 +8,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import javafx.stage.Stage;
 import models.User;
+import services.CaptchaService;
 import services.user.UserService;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class sign_upController implements Initializable {
@@ -41,6 +46,22 @@ public class sign_upController implements Initializable {
     @FXML private Label roleErrorLabel;
     @FXML private Label generalErrorLabel;
 
+    @FXML private ImageView captchaImageView;
+    @FXML private TextField captchaTextField;
+
+    private String currentCaptchaId;
+
+    @FXML
+    private void generateCaptcha() {
+        Map<String, String> captchaData = CaptchaService.generateCaptcha();
+        currentCaptchaId = captchaData.get("captchaId");
+        String base64Image = captchaData.get("base64Image");
+
+        // Afficher l'image du captcha
+        Image captchaImage = new Image(base64Image);
+        captchaImageView.setImage(captchaImage);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         roleComboBox.setValue("client");
@@ -55,6 +76,8 @@ public class sign_upController implements Initializable {
         addressTextField.textProperty().addListener((observable, oldValue, newValue) -> addressErrorLabel.setText(""));
         datePicker.valueProperty().addListener((observable, oldValue, newValue) -> dateErrorLabel.setText(""));
         roleComboBox.valueProperty().addListener((observable, oldValue, newValue) -> roleErrorLabel.setText(""));
+
+        generateCaptcha();
     }
 
     private void clearErrorLabels() {
@@ -201,6 +224,13 @@ public class sign_upController implements Initializable {
             hasErrors = true;
         }
 
+        // Validation du captcha
+        String userCaptchaInput = captchaTextField.getText().trim();
+        if (currentCaptchaId == null || !CaptchaService.validateCaptcha(currentCaptchaId, userCaptchaInput)) {
+            generalErrorLabel.setText("Captcha invalide ou expiré");
+            hasErrors = true;
+        }
+
         if (hasErrors) {
             return;
         }
@@ -214,6 +244,7 @@ public class sign_upController implements Initializable {
 
             showSuccessAlert("Utilisateur enregistré avec succès !");
             clearFields();
+            generateCaptcha();
 
         } catch (Exception e) {
             e.printStackTrace();

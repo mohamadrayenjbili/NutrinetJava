@@ -23,7 +23,7 @@ public class Home extends Application {
 
 
             Scene scene = new Scene(root);
-            stage.setTitle("Ajouter Consultation");
+            stage.setTitle("welcome ");
 
             // 🔥 Ajout de l'icône
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Nutrinet.png")));

@@ -68,14 +68,22 @@ public class userlistcontroller implements Initializable {
                         Collectors.counting()
                 ));
 
-        // Mettre à jour le graphique
+        // Mettre à jour le graphique avec les pourcentages
         userStatsChart.getData().clear();
+        int totalUsers = allUsers.size();
         roleStats.forEach((role, count) -> {
-            PieChart.Data slice = new PieChart.Data(role + " (" + count + ")", count);
+            double percentage = (count * 100.0) / totalUsers;
+            PieChart.Data slice = new PieChart.Data(role + " (" + String.format("%.1f", percentage) + "%)", count);
             userStatsChart.getData().add(slice);
         });
 
-        int totalUsers = allUsers.size();
+        // Calculer l'âge moyen
+        double averageAge = allUsers.stream()
+                .mapToInt(User::getAge)
+                .average()
+                .orElse(0);
+
+        // Calculer le nombre d'utilisateurs bannis
         long bannedUsers = allUsers.stream()
                 .filter(u -> u.getIsBanned().equals("1"))
                 .count();
@@ -83,6 +91,10 @@ public class userlistcontroller implements Initializable {
         // Mettre à jour les labels
         totalUsersLabel.setText(String.valueOf(totalUsers));
         bannedUsersLabel.setText(String.valueOf(bannedUsers));
+
+        // Ajouter un label pour l'âge moyen
+        Label averageAgeLabel = new Label("Âge moyen : " + String.format("%.1f", averageAge));
+        statsGrid.add(averageAgeLabel, 0, 2); // Ajouter à la grille des stats
     }
 
 
