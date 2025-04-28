@@ -4,12 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du mail">
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="modification interfaceFront">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Commande/styledidouCommande.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Produit/styledidou.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/DetailProduitController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CodePromo/CodePromoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CodePromo/CodePromoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AjouterProduitController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AjouterProduitController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Commande/AjouterCommande.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Commande/AjouterCommande.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AjouterProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AjouterProduit.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +29,8 @@
       <list>
         <option value="Interface" />
         <option value="FxmlFile" />
-        <option value="CSS File" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -86,9 +91,9 @@
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Commande" />
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Panier" />
-      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Commande" />
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Produit" />
     </key>
   </component>
@@ -246,7 +251,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745862479052</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="modification interfaceFront">
+      <option name="closed" value="true" />
+      <created>1745864737994</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745864737994</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,7 +286,8 @@
     <MESSAGE value="fixer les erreurs d'aout du commande" />
     <MESSAGE value="fixer detail" />
     <MESSAGE value="ajout du mail" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout du mail" />
+    <MESSAGE value="modification interfaceFront" />
+    <option name="LAST_COMMIT_MESSAGE" value="modification interfaceFront" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

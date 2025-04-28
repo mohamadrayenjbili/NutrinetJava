@@ -2,12 +2,16 @@ package controllers.CodePromo;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import models.CodePromo;
 import services.CodePromoService;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -175,4 +179,17 @@ public class CodePromoController implements Initializable {
         Stage stage = (Stage) btnAjouter.getScene().getWindow();
         stage.close();
     }
+    @FXML
+    private void retourVersAjouterProduit(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AjouterProduit.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) txtCode.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Ajouter un Produit");
+        } catch (IOException e) {
+            lblMessage.setText("❌ Erreur lors du retour : " + e.getMessage());
+        }
+    }
+
 }

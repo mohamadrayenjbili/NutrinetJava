@@ -53,4 +53,18 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
+    public void handleAjouterProduit(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AjouterProduit.fxml"));
+            Scene ajouterProduitScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(ajouterProduitScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
