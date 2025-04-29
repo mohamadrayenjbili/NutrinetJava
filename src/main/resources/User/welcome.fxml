@@ -71,15 +71,26 @@
                 </font>
             </Button>
 
-            <Button text="skander" maxWidth="Infinity" alignment="BASELINE_LEFT"
-                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+            <Button text="Forum" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToForum"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
-                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M4 4h16v12H5.17L4 17.17V4z';" />
                 </graphic>
                 <font>
                     <Font size="14.0" />
                 </font>
             </Button>
+
+            <Button text="Reclamation" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToReclamation"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2zm1 13h-2v-2h2v2zm0-4h-2V7h2v4z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
 
 
             <Button text="Profile" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToProfile"

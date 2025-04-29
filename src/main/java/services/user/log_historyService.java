@@ -86,7 +86,7 @@ public class log_historyService {
     }
 
     public void addLog(String user, String action, String details) throws Exception {
-        String query = "INSERT INTO logentry (date, user, action, details) VALUES (NOW(), ?, ?, ?)";
+        String query = "INSERT INTO logentry (date_log, user, action, details) VALUES (NOW(), ?, ?, ?)";
 
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(query)) {
