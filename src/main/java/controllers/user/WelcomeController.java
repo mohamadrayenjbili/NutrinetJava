@@ -1,5 +1,6 @@
 package controllers.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -91,6 +92,34 @@ public class WelcomeController {
         }
     }
 
+    @FXML
+    public void naviguateToReclamation(javafx.event.ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamation/listReclamation.fxml"));
+            Parent root = loader.load();
 
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setTitle("Reclamation");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    @FXML
+    public void naviguateToForum(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/forum/listForum.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setTitle("Forum");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
