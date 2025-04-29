@@ -5,6 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="modification interface-back">
+
+
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du mail">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/TranslationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamationAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/reclamation/ReclamationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/reclamation/ReclamationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/user/log_historyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/user/log_historyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/Nutrinet.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" afterDir="false" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="modification interfaceFront">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Commande/styledidouCommande.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Produit/styledidou.css" afterDir="false" />
+ 
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -58,6 +81,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.PiJava [javafx:run].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/edelr/Desktop/Nutrinet2804/NutrinetJava&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Maven.PiJava [javafx:run].executor": "Run",
@@ -145,6 +184,8 @@
       <workItem from="1745234813505" duration="108000" />
       <workItem from="1745234963020" duration="323000" />
       <workItem from="1745840123197" duration="1441000" />
+      <workItem from="1745850042166" duration="5971000" />
+      <workItem from="1745870298665" duration="8785000" />
     </task>
     <task id="LOCAL-00001" summary="seif crud +metiers">
       <option name="closed" value="true" />
