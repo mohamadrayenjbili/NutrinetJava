@@ -1,87 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.layout.GridPane?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.Objective.ModifierPerformanceController"
-            prefHeight="500.0" prefWidth="600.0">
+            prefHeight="550.0" prefWidth="550.0"
+            stylesheets="@objective-style.css"
+            styleClass="root-pane">
 
-    <GridPane AnchorPane.bottomAnchor="10"
-              AnchorPane.leftAnchor="10"
-              AnchorPane.rightAnchor="10"
-              AnchorPane.topAnchor="10"
-              hgap="10" vgap="15">
+    <VBox alignment="TOP_CENTER" spacing="15" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+        <Label text="Modifier une performance" styleClass="title"/>
 
-        <!-- Titre et informations de l'objectif -->
-        <VBox spacing="5" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="2">
-            <Label fx:id="lblObjectiveName"
-                   style="-fx-font-weight: bold; -fx-font-size: 18px;"/>
-            <Label fx:id="lblObjectiveDetails"
-                   style="-fx-font-size: 14px;"/>
-            <Label text="Modifier une performance"
-                   style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
-            <padding>
-                <Insets bottom="10" />
-            </padding>
+        <VBox spacing="3">
+            <Label fx:id="lblObjectiveName" styleClass="subtitle"/>
+            <Label fx:id="lblObjectiveDetails" styleClass="subtitle-details"/>
         </VBox>
 
-        <!-- Nom de la métrique -->
-        <Label text="Nom de la métrique:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="tfMetricName" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <VBox spacing="10">
+            <TextField fx:id="tfMetricName" promptText="Nom de la métrique" styleClass="text-field" prefWidth="420"/>
+            <Label fx:id="metricErrorLabel" textFill="red" visible="false"/>
 
-        <!-- Valeur -->
-        <Label text="Valeur:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
-        <TextField fx:id="tfValue" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            <HBox spacing="10">
+                <TextField fx:id="tfValue" promptText="Valeur" styleClass="text-field" prefWidth="200"/>
+                <ComboBox fx:id="cbUnit" promptText="Unité" styleClass="combo-box" prefWidth="200"/>
+            </HBox>
+            <Label fx:id="valueErrorLabel" textFill="red" visible="false"/>
 
-        <!-- Unité -->
-        <Label text="Unité:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <ComboBox fx:id="cbUnit" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+            <VBox spacing="10">
+                <Label text="Date et heure" styleClass="section-label"/>
+                <HBox spacing="10">
+                    <VBox spacing="5">
+                        <Label text="Date:"/>
+                        <DatePicker fx:id="dpDate" styleClass="date-picker" prefWidth="200"/>
+                    </VBox>
+                    <VBox spacing="5">
+                        <Label text="Heure:"/>
+                        <HBox spacing="5" alignment="CENTER_LEFT">
+                            <ComboBox fx:id="cbHour" styleClass="combo-box" prefWidth="90"/>
+                            <Label text=":" alignment="CENTER"/>
+                            <ComboBox fx:id="cbMinute" styleClass="combo-box" prefWidth="90"/>
+                        </HBox>
+                    </VBox>
+                </HBox>
+            </VBox>
 
-        <!-- Date et heure -->
-        <Label text="Date:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
-        <DatePicker fx:id="dpDate" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+            <VBox spacing="5">
+                <Label text="Notes:"/>
+                <TextArea fx:id="taNotes" promptText="Notes additionnelles" styleClass="text-area" prefHeight="100" wrapText="true"/>
+            </VBox>
 
-        <Label text="Heure:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="5">
-            <ComboBox fx:id="cbHour" prefWidth="80"/>
-            <Label text=":" alignment="CENTER"/>
-            <ComboBox fx:id="cbMinute" prefWidth="80"/>
-        </HBox>
-
-        <!-- Notes -->
-        <Label text="Notes:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
-        <TextArea fx:id="taNotes" GridPane.columnIndex="1" GridPane.rowIndex="6" wrapText="true"/>
-
-        <!-- Boutons -->
-        <HBox GridPane.columnIndex="0" GridPane.rowIndex="7"
-              GridPane.columnSpan="2" spacing="10"
-              alignment="CENTER_RIGHT">
-            <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler"
-                    style="-fx-background-color: #e74c3c; -fx-text-fill: white;"/>
-            <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier"
-                    style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-        </HBox>
-
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="150"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="200"/>
-        </columnConstraints>
-
-        <rowConstraints>
-            <RowConstraints minHeight="60" prefHeight="70" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="80" prefHeight="100" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="50" vgrow="SOMETIMES"/>
-        </rowConstraints>
-    </GridPane>
-
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler" styleClass="btn-secondary"/>
+                <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier" styleClass="btn-modifier"/>
+            </HBox>
+        </VBox>
+    </VBox>
 </AnchorPane>
