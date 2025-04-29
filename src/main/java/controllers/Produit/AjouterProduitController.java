@@ -41,6 +41,8 @@ public class AjouterProduitController implements Initializable {
     @FXML private Label lblDescError;
     @FXML private Label lblStockError;
     @FXML private Label lblCategorieError;
+    @FXML private Button btnCodePromo;
+
 
     private IProduitService produitService;
     private String imagePath = "";
@@ -300,4 +302,18 @@ public class AjouterProduitController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    @FXML
+    private void handleCodePromo(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CodePromo.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnCodePromo.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Gérer les Codes Promo");
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d’ouvrir CodePromo.fxml : " + e.getMessage());
+        }
+    }
+
+
 }

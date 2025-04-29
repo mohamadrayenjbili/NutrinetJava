@@ -5,7 +5,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,7 +25,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Produit;
 import models.User;
@@ -41,172 +39,209 @@ public class AfficherProduitsFrontController implements Initializable {
     private FlowPane flowProduits;
 
     @FXML
+    private TextField searchField;
+
+    @FXML
+    private ComboBox<String> filterComboBox;
+
+    @FXML
     private Button btnVoirPanier;
+
+    @FXML
+    private Button btnListeSouhaits;
 
     private ProduitService produitService = new ProduitService();
     private PanierService panierService = PanierService.getInstance();
+    private ObservableList<Produit> allProduits;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        chargerProduits();
-    }
+        // Charger le CSS
+        String cssPath = getClass().getResource("/Produit/listdidou.css").toExternalForm();
+        flowProduits.getStylesheets().add(cssPath);
+        // Appliquer le CSS à la scène entière
+        flowProduits.sceneProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && !newValue.getStylesheets().contains(cssPath)) {
+                newValue.getStylesheets().add(cssPath);
+            }
+        });
 
-    private void chargerProduits() {
         try {
             List<Produit> produits = produitService.getAllProduits();
-            flowProduits.getChildren().clear();
-            flowProduits.setHgap(20);
-            flowProduits.setVgap(20);
-            flowProduits.setPadding(new Insets(15));
+            allProduits = FXCollections.observableArrayList(produits);
 
-            for (Produit produit : produits) {
-                VBox cardProduit = createProduitCard(produit);
-                flowProduits.getChildren().add(cardProduit);
-            }
+            // Remplir le ComboBox avec les catégories uniques
+            Set<String> categories = produits.stream()
+                    .map(Produit::getCategorie)
+                    .collect(Collectors.toSet());
+            ObservableList<String> categoriesList = FXCollections.observableArrayList(categories);
+            categoriesList.add(0, "Toutes les catégories");
+            filterComboBox.setItems(categoriesList);
+            filterComboBox.getSelectionModel().selectFirst();
+
+            // Listener sur la barre de recherche
+            searchField.textProperty().addListener((observable, oldValue, newValue) -> filterAndDisplayProduits());
+
+            // Listener sur le filtre (ComboBox)
+            filterComboBox.valueProperty().addListener((observable, oldValue, newValue) -> filterAndDisplayProduits());
+
+            // Affichage initial de la liste
+            filterAndDisplayProduits();
+
         } catch (SQLException e) {
             showAlert("Erreur", "Erreur lors du chargement des produits: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
-    private VBox createProduitCard(Produit produit) {
-        VBox card = new VBox(10);
-        card.setPadding(new Insets(15));
-        card.setSpacing(10);
-        card.setPrefWidth(220);
-        card.setStyle("-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;");
-        card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1)));
+    private void filterAndDisplayProduits() {
+        flowProduits.getChildren().clear();
 
-        // Hover effect
-        card.setOnMouseEntered(e -> card.setEffect(new DropShadow(15, Color.rgb(0, 0, 0, 0.25))));
-        card.setOnMouseExited(e -> card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1))));
+        String searchText = searchField.getText() != null ? searchField.getText().toLowerCase() : "";
+        String filterCategory = filterComboBox.getValue();
+        final String effectiveFilterCategory = (filterCategory == null || filterCategory.equals("Toutes les catégories")) ? "" : filterCategory;
+
+        List<Produit> filtered = allProduits.stream()
+                .filter(p -> p.getNomProduit().toLowerCase().contains(searchText))
+                .filter(p -> effectiveFilterCategory.isEmpty() || p.getCategorie().equalsIgnoreCase(effectiveFilterCategory))
+                .collect(Collectors.toList());
+
+        for (Produit p : filtered) {
+            VBox card = createProduitCard(p);
+            flowProduits.getChildren().add(card);
+        }
+    }
+
+    private VBox createProduitCard(Produit produit) {
+        VBox card = new VBox();
+        card.getStyleClass().add("produit-card");
 
         // Image
-        ImageView imgProduit = new ImageView();
+        ImageView imageView = new ImageView();
         try {
-            Image image = new Image("file:src/main/resources/images/" + produit.getImage());
-            imgProduit.setImage(image);
-        } catch (Exception e) {
-            Image defaultImage = new Image("file:src/main/resources/images/default-product.png");
-            imgProduit.setImage(defaultImage);
-            Tooltip.install(imgProduit, new Tooltip("Image non disponible"));
+            imageView.setImage(new Image("file:src/main/resources/images/" + produit.getImage()));
+        } catch (Exception ex) {
+            imageView.setImage(new Image("file:src/main/resources/images/default_produit.png"));
         }
+        imageView.setFitWidth(280);
+        imageView.setFitHeight(180);
+        imageView.setPreserveRatio(false);
+        imageView.getStyleClass().add("card-image");
 
-        imgProduit.setFitHeight(130);
-        imgProduit.setFitWidth(190);
-        imgProduit.setPreserveRatio(false);
-        imgProduit.setSmooth(true);
+        // Contenu
+        VBox content = new VBox(10);
+        content.getStyleClass().add("card-content");
 
-        // Clipping avec coins arrondis
-        Rectangle clip = new Rectangle(190, 130);
-        clip.setArcWidth(20);
-        clip.setArcHeight(20);
-        imgProduit.setClip(clip);
+        Label titleLabel = new Label(produit.getNomProduit());
+        titleLabel.getStyleClass().add("card-title");
 
-        // Informations du produit
-        Label lblNom = new Label(produit.getNomProduit());
-        lblNom.setStyle("-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2d3436;");
-        lblNom.setWrapText(true);
-        lblNom.setMaxWidth(190);
+        Label priceLabel = new Label(String.format("%.2f €", produit.getPrix()));
+        priceLabel.getStyleClass().add("card-price");
 
-        Label lblPrix = new Label(String.format("%.2f €", produit.getPrix()));
-        lblPrix.setStyle("-fx-font-size: 14px; -fx-text-fill: #e17055; -fx-font-weight: bold;");
+        Label categoryLabel = new Label("🏷 " + produit.getCategorie());
+        categoryLabel.getStyleClass().add("card-category");
 
-        Label lblStock = new Label(produit.getStock() > 0 ? "En stock: " + produit.getStock() : "Hors stock");
-        lblStock.setStyle(produit.getStock() > 0 ?
-                "-fx-font-size: 12px; -fx-text-fill: #636e72;" :
-                "-fx-font-size: 12px; -fx-text-fill: #d63031; -fx-font-weight: bold;");
+        Label stockLabel = new Label(produit.getStock() > 0 ? "📦 En stock: " + produit.getStock() : "❌ Hors stock");
+        stockLabel.getStyleClass().add(produit.getStock() > 0 ? "card-stock" : "card-stock-warning");
 
-        // Configuration du spinner de quantité
+        // Spinner de quantité
         Spinner<Integer> spinnerQuantite = new Spinner<>();
         if (produit.getStock() > 0) {
             spinnerQuantite.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, produit.getStock(), 1));
         } else {
             spinnerQuantite.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
         }
-        spinnerQuantite.setPrefWidth(190);
-        spinnerQuantite.setStyle("-fx-font-size: 14px;");
+        spinnerQuantite.getStyleClass().add("quantity-spinner");
         spinnerQuantite.setDisable(produit.getStock() <= 0);
 
         // Boutons d'action
-        HBox buttonBox = new HBox(5);
-        Button btnAjouter = new Button("Ajouter");
-        btnAjouter.setStyle("-fx-background-color: #00b894; -fx-text-fill: white; -fx-font-weight: bold; " +
-                "-fx-background-radius: 5; -fx-padding: 5 10;");
-        btnAjouter.setPrefWidth(90);
+        HBox buttonBox = new HBox(10);
+        buttonBox.getStyleClass().add("action-buttons");
+
+        Button btnAjouter = new Button("🛒 Ajouter");
+        btnAjouter.getStyleClass().add("btn-ajouter");
         btnAjouter.setDisable(produit.getStock() <= 0);
 
-        Button btnDetails = new Button("Détails");
-        btnDetails.setStyle("-fx-background-color: #0984e3; -fx-text-fill: white; -fx-font-weight: bold; " +
-                "-fx-background-radius: 5; -fx-padding: 5 10;");
-        btnDetails.setPrefWidth(90);
+        Button btnDetails = new Button("👁️ Détails");
+        btnDetails.getStyleClass().add("btn-details");
 
-        Button btnListeSouhaits = new Button("♥");
-        btnListeSouhaits.setStyle("-fx-background-color: #e84393; -fx-text-fill: white; -fx-font-weight: bold; " +
-                "-fx-background-radius: 5; -fx-padding: 5 10;");
-        btnListeSouhaits.setPrefWidth(40);
-        Tooltip.install(btnListeSouhaits, new Tooltip("Ajouter à la liste de souhaits"));
+        Button btnSouhaits = new Button("❤️ Souhaits");
+        btnSouhaits.getStyleClass().add("btn-souhaits");
 
-        btnAjouter.setOnAction(e -> {
-            User currentUser = session.getCurrentUser();
-            if (currentUser == null) {
-                showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits au panier", Alert.AlertType.WARNING);
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-                    Parent root = loader.load();
-                    Stage stage = (Stage) btnAjouter.getScene().getWindow();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Connexion");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                return;
-            }
+        buttonBox.getChildren().addAll(btnAjouter, btnDetails, btnSouhaits);
 
-            int quantite = spinnerQuantite.getValue();
-            if (quantite > 0 && quantite <= produit.getStock()) {
-                panierService.ajouterAuPanier(produit, quantite);
-                spinnerQuantite.getValueFactory().setValue(1);
-            }
+        // Actions des boutons
+        btnAjouter.setOnAction(e -> handleAjouterPanier(produit, spinnerQuantite.getValue()));
+        btnDetails.setOnAction(e -> navigateToDetailProduit(produit));
+        btnSouhaits.setOnAction(e -> handleAjouterSouhaits(produit));
+
+        content.getChildren().addAll(titleLabel, priceLabel, categoryLabel, stockLabel, spinnerQuantite, buttonBox);
+        card.getChildren().addAll(imageView, content);
+
+        // Animation au survol
+        card.setOnMouseEntered(e -> {
+            card.setEffect(new DropShadow(20, Color.rgb(0, 0, 0, 0.2)));
+            card.setTranslateY(-2);
         });
 
-        btnDetails.setOnAction(e -> openProductDetails(produit));
-
-        btnListeSouhaits.setOnAction(e -> {
-            User currentUser = session.getCurrentUser();
-            if (currentUser == null) {
-                showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits à votre liste de souhaits", Alert.AlertType.WARNING);
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-                    Parent root = loader.load();
-                    Stage stage = (Stage) btnListeSouhaits.getScene().getWindow();
-                    stage.setScene(new Scene(root));
-                    stage.setTitle("Connexion");
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                return;
-            }
-
-            try {
-                ListeSouhaitsService listeSouhaitsService = new ListeSouhaitsService();
-                if (listeSouhaitsService.estDansListeSouhaits(currentUser.getId(), produit.getId())) {
-                    showAlert("Information", "Ce produit est déjà dans votre liste de souhaits", Alert.AlertType.INFORMATION);
-                } else {
-                    listeSouhaitsService.ajouterAListeSouhaits(currentUser.getId(), produit.getId());
-                    showAlert("Succès", "Produit ajouté à votre liste de souhaits", Alert.AlertType.INFORMATION);
-                }
-            } catch (SQLException ex) {
-                showAlert("Erreur", "Erreur lors de l'ajout à la liste de souhaits", Alert.AlertType.ERROR);
-            }
+        card.setOnMouseExited(e -> {
+            card.setEffect(new DropShadow(10, Color.rgb(0, 0, 0, 0.1)));
+            card.setTranslateY(0);
         });
-
-        buttonBox.getChildren().addAll(btnAjouter, btnDetails, btnListeSouhaits);
-        card.getChildren().addAll(imgProduit, lblNom, lblPrix, lblStock, spinnerQuantite, buttonBox);
 
         return card;
     }
 
-    private void openProductDetails(Produit produit) {
+    private void handleAjouterPanier(Produit produit, int quantite) {
+        User currentUser = session.getCurrentUser();
+        if (currentUser == null) {
+            showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits au panier", Alert.AlertType.WARNING);
+            navigateToLogin();
+            return;
+        }
+
+        try {
+            panierService.ajouterAuPanier(produit, quantite);
+            showAlert("Succès", "Produit ajouté au panier avec succès!", Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            showAlert("Erreur", "Erreur lors de l'ajout au panier: " + e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void handleAjouterSouhaits(Produit produit) {
+        User currentUser = session.getCurrentUser();
+        if (currentUser == null) {
+            showAlert("Connexion requise", "Veuillez vous connecter pour ajouter des produits à votre liste de souhaits", Alert.AlertType.WARNING);
+            navigateToLogin();
+            return;
+        }
+
+        try {
+            ListeSouhaitsService listeSouhaitsService = new ListeSouhaitsService();
+            if (listeSouhaitsService.estDansListeSouhaits(currentUser.getId(), produit.getId())) {
+                showAlert("Information", "Ce produit est déjà dans votre liste de souhaits", Alert.AlertType.INFORMATION);
+            } else {
+                listeSouhaitsService.ajouterAListeSouhaits(currentUser.getId(), produit.getId());
+                showAlert("Succès", "Produit ajouté à votre liste de souhaits", Alert.AlertType.INFORMATION);
+            }
+        } catch (SQLException ex) {
+            showAlert("Erreur", "Erreur lors de l'ajout à la liste de souhaits: " + ex.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void navigateToLogin() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) flowProduits.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Connexion");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void navigateToDetailProduit(Produit produit) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/DetailProduit.fxml"));
             Parent root = loader.load();
@@ -218,24 +253,16 @@ public class AfficherProduitsFrontController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle("Détails: " + produit.getNomProduit());
         } catch (IOException e) {
-            showAlert("Erreur", "Impossible d'ouvrir les détails", Alert.AlertType.ERROR);
+            showAlert("Erreur", "Impossible d'ouvrir les détails: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
-    private void voirPanier(ActionEvent event) {
+    private void navigateToPanier(ActionEvent event) {
         User currentUser = session.getCurrentUser();
         if (currentUser == null) {
             showAlert("Connexion requise", "Veuillez vous connecter pour accéder au panier", Alert.AlertType.WARNING);
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Connexion");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            navigateToLogin();
             return;
         }
 
@@ -247,35 +274,28 @@ public class AfficherProduitsFrontController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle("Mon Panier");
         } catch (IOException e) {
-            showAlert("Erreur", "Impossible d'ouvrir le panier", Alert.AlertType.ERROR);
+            showAlert("Erreur", "Impossible d'ouvrir le panier: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
-    private void voirListeSouhaits(ActionEvent event) {
+    private void navigateToListeSouhaits(ActionEvent event) {
         User currentUser = session.getCurrentUser();
         if (currentUser == null) {
             showAlert("Connexion requise", "Veuillez vous connecter pour accéder à votre liste de souhaits", Alert.AlertType.WARNING);
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-                Parent root = loader.load();
-                Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle("Connexion");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            navigateToLogin();
             return;
         }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/ListeSouhaits.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) btnVoirPanier.getScene().getWindow();
+
+            Stage stage = (Stage) btnListeSouhaits.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Ma Liste de Souhaits");
         } catch (IOException e) {
-            showAlert("Erreur", "Impossible d'ouvrir la liste de souhaits", Alert.AlertType.ERROR);
+            showAlert("Erreur", "Impossible d'ouvrir la liste de souhaits: " + e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
@@ -286,18 +306,4 @@ public class AfficherProduitsFrontController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-    @FXML
-    private void retourConnexion(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/welcome.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) btnVoirPanier.getScene().getWindow(); // ou btnBack si tu préfères
-            stage.setScene(new Scene(root));
-            stage.setTitle("Connexion");
-        } catch (IOException e) {
-            showAlert("Erreur", "Impossible de revenir à la page de connexion", Alert.AlertType.ERROR);
-        }
-    }
-
 }
