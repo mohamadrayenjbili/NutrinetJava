@@ -1,0 +1,182 @@
+/* Styles globaux */
+.root-container {
+    -fx-background-color: #f8f9fa;
+}
+
+.main-scroll-pane {
+    -fx-background: #f8f9fa;
+    -fx-background-color: transparent;
+}
+
+.main-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* En-tête */
+.header-container {
+    -fx-min-height: 200;
+}
+
+.header-background {
+    -fx-fill: linear-gradient(to right, #2980b9, #3498db);
+    -fx-arc-height: 20;
+    -fx-arc-width: 20;
+}
+
+.main-header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.produit-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Cartes d'information */
+.info-card, .stats-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);
+}
+
+.section-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.info-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #7f8c8d;
+}
+
+.info-value {
+    -fx-text-fill: #2c3e50;
+}
+
+/* Zone de description */
+.description-area {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+    -fx-border-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+/* Image du produit */
+.produit-image {
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 3);
+}
+
+/* Statistiques */
+.stat-item {
+    -fx-alignment: center;
+    -fx-padding: 10;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+}
+
+.stat-icon {
+    -fx-font-size: 24px;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.stat-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+/* Bouton d'action principal */
+.action-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 12 24;
+    -fx-background-radius: 25;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+}
+
+.action-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+/* Bouton retour */
+.btn-retour {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);
+}
+
+.btn-retour:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 12, 0, 0, 2);
+}
+
+.btn-retour:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Prix et stock */
+.price-tag {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2ecc71;
+}
+
+.stock-info {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.stock-warning {
+    -fx-text-fill: #e74c3c;
+}
+
+/* Boutons d'action */
+.action-buttons {
+    -fx-spacing: 10;
+}
+
+.btn-ajouter-panier {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-ajouter-panier:hover {
+    -fx-background-color: #2980b9;
+}
+
+.btn-ajouter-souhaits {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-ajouter-souhaits:hover {
+    -fx-background-color: #c0392b;
+} 
