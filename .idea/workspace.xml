@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du mail">
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="correction des erreurs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +69,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "didou",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/jbili/Downloads/NutrinetJava-Front-Back/DidouJava/NutrinetJava/src/main/resources/images",
     "list.type.of.created.stylesheet": "CSS",
@@ -265,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745880855631</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="correction des erreurs">
+      <option name="closed" value="true" />
+      <created>1746030241702</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746030241702</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,7 +301,8 @@
     <MESSAGE value="modification interfaceFront" />
     <MESSAGE value="modification interface-back" />
     <MESSAGE value="ajout du mail" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout du mail" />
+    <MESSAGE value="correction des erreurs" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
