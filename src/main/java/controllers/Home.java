@@ -19,10 +19,13 @@ public class Home extends Application {
         try {
 
 
+
             Parent root = FXMLLoader.load(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
 
 
+
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/Programme/modern_list.css").toExternalForm());
             stage.setTitle("Ajouter Consultation");
 
             // 🔥 Ajout de l'icône

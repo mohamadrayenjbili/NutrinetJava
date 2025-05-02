@@ -122,4 +122,27 @@ public class WelcomeController {
                 }
 
             }
+
+    @FXML
+    private void openSeifProgram() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Programme/AfficherProgrammeFront.fxml"));
+            Parent root = loader.load();
+
+            // Récupérer la scène actuelle via welcomeLabel
+            Scene currentScene = welcomeLabel.getScene();
+
+            // Remplacer juste le contenu racine
+            currentScene.setRoot(root);
+
+            // Ajouter le CSS si besoin
+            String css = getClass().getResource("/Programme/modern_list.css").toExternalForm();
+            if (!currentScene.getStylesheets().contains(css)) {
+                currentScene.getStylesheets().add(css);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
         }

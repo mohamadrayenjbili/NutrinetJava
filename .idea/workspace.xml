@@ -5,11 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="correction des erreurs">
+
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du mail">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Commentaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Commentaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/images/dfa4cfc90a564eff9d07235ebac229fe.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/images/Nutrinet.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +65,9 @@
   }
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="Security Analysis" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -70,8 +88,9 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "didou",
+    "git-widget-placeholder": "seeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiffffffffffff",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/jbili/Downloads/NutrinetJava-Front-Back/DidouJava/NutrinetJava/src/main/resources/images",
+    "last_opened_file_path": "C:/Users/timos/Desktop/Backup/java/java/projetuser/NutrinetJava",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -127,8 +146,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -151,6 +170,7 @@
       <workItem from="1745840123197" duration="1441000" />
       <workItem from="1745850042166" duration="5971000" />
       <workItem from="1745870298665" duration="8785000" />
+      <workItem from="1746032191319" duration="2530000" />
     </task>
     <task id="LOCAL-00001" summary="seif crud +metiers">
       <option name="closed" value="true" />
@@ -290,7 +310,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="seif crud +metiers" />
     <MESSAGE value="first api (stripe)" />
     <MESSAGE value="first api (stripe) paiement" />
     <MESSAGE value="ajout de session de connexion avec user" />
@@ -303,6 +322,8 @@
     <MESSAGE value="ajout du mail" />
     <MESSAGE value="correction des erreurs" />
     <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
+    <MESSAGE value="seif crud +metiers" />
+    <option name="LAST_COMMIT_MESSAGE" value="seif crud +metiers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

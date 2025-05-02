@@ -214,13 +214,16 @@ public class AjouterProgramme {
 package controllers.Programme;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.scene.control.Alert.AlertType;
+import models.MailerSMTPService;
 import models.Programme;
-import services.ProgrammeService;
+import services.Programme.ProgrammeService;
 
 import java.io.File;
 import java.io.IOException;
@@ -279,6 +282,9 @@ public class AjouterProgramme {
     }
 
     @FXML
+    private AnchorPane mainPane; // C'est le conteneur principal (tu peux l'appeler comme tu veux)
+
+    @FXML
     private void handleAjouter() {
         resetErrorLabels();
         if (!validateFields()) return;
@@ -303,6 +309,17 @@ public class AjouterProgramme {
 
             if (programmeEnCours == null) {
                 programmeService.ajouterProgramme(programme);
+
+                // ✉️ ENVOI DE MAIL ICI
+                String sujet = "Nouveau programme ajouté";
+                String contenu = "Un programme a été ajouté avec les détails suivants :\n"
+                        + "Titre : " + programme.getTitre() + "\n"
+                        + "Auteur : " + programme.getAuteur() + "\n"
+                        + "Type : " + programme.getType() + "\n"
+                        + "Description : " + programme.getDescription();
+
+                MailerSMTPService.sendEmailSMTP(sujet, contenu);
+
                 showAlert(AlertType.INFORMATION, "Succès", "Programme ajouté avec succès !");
             } else {
                 programmeService.updateProgramme(programme);
@@ -310,6 +327,11 @@ public class AjouterProgramme {
             }
 
             clearForm();
+
+            // ➡️ Charger la vue AfficherProgramme.fxml dans mainPane
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Programme/AfficherProgramme.fxml"));
+            AnchorPane afficherProgrammePane = loader.load();
+            mainPane.getChildren().setAll(afficherProgrammePane);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -319,6 +341,7 @@ public class AjouterProgramme {
             showAlert(AlertType.ERROR, "Erreur", "Erreur lors de l'enregistrement : " + e.getMessage());
         }
     }
+
 
     private boolean validateFields() {
         boolean isValid = true;
