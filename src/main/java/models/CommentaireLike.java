@@ -5,6 +5,7 @@ public class CommentaireLike {
     private int commentaireId;
     private int userId;
 
+
     public CommentaireLike() {
     }
 
