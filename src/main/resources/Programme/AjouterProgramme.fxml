@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Programme.AjouterProgramme"
+            fx:id="mainPane"
+            prefHeight="700.0" prefWidth="550.0"
+            stylesheets="@style.css"
+            styleClass="root-pane">
+
+    <VBox alignment="TOP_CENTER" spacing="10" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+
+        <Label text="Ajouter un programme" styleClass="title"/>
+
+        <VBox spacing="5">
+            <HBox spacing="10">
+                <TextField fx:id="tfTitre" promptText="Titre" prefWidth="200" styleClass="text-field"/>
+                <TextField fx:id="tfAuteur" promptText="Auteur" prefWidth="200" styleClass="text-field"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label fx:id="titreErrorLabel" textFill="red" visible="false"/>
+                <Label fx:id="auteurErrorLabel" textFill="red" visible="false"/>
+            </HBox>
+        </VBox>
+
+        <TextField fx:id="tfVideoUrl" promptText="Vidéo (URL)" prefWidth="420" styleClass="text-field"/>
+
+        <VBox spacing="3">
+            <ComboBox fx:id="cbType" promptText="Type" prefWidth="420" styleClass="combo-box"/>
+            <Label fx:id="typeErrorLabel" textFill="red" visible="false"/>
+        </VBox>
+
+        <HBox spacing="10">
+            <TextField fx:id="tfImagePath" promptText="Image sélectionnée..." editable="false" prefWidth="320" styleClass="text-field"/>
+            <Button fx:id="btnChoisirImage" text="Parcourir..." onAction="#handleChoisirImage" styleClass="btn-secondary"/>
+        </HBox>
+
+        <VBox spacing="3">
+            <TextArea fx:id="taDescription" promptText="Description" prefWidth="420" prefHeight="100" wrapText="true" styleClass="text-area"/>
+            <Label fx:id="descriptionErrorLabel" textFill="red" visible="false"/>
+        </VBox>
+
+        <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150" styleClass="image-preview"/>
+
+        <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter" styleClass="btn-primary">
+            <VBox.margin>
+                <Insets top="-10"/>
+            </VBox.margin>
+        </Button>
+    </VBox>
+</AnchorPane>

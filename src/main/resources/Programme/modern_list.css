@@ -1,0 +1,138 @@
+/* Conteneur principal */
+.main-container {
+    -fx-background-color: linear-gradient(to bottom, #f8f9fa, #ffffff);
+}
+
+/* Section d'en-tête */
+.header-section {
+    -fx-background-color: linear-gradient(to right, #00897B, #4DB6AC);
+    -fx-padding: 40 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5);
+}
+
+.main-title {
+    -fx-font-size: 36px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.subtitle {
+    -fx-font-size: 18px;
+    -fx-text-fill: #ecf0f1;
+}
+
+/* Section recherche */
+.search-section {
+    -fx-padding: 30 40;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 5, 0, 0, 2);
+}
+
+.modern-search {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 2;
+    -fx-padding: 12 20;
+    -fx-font-size: 14px;
+}
+
+.modern-search:focused {
+    -fx-border-color: #3498db;
+    -fx-background-color: white;
+}
+
+.modern-combo {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 2;
+    -fx-padding: 10;
+    -fx-min-width: 200;
+}
+
+.modern-combo:focused {
+    -fx-border-color: #3498db;
+    -fx-background-color: white;
+}
+
+/* Zone de contenu */
+.content-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.content-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.programmes-container {
+    -fx-background-color: transparent;
+    -fx-padding: 30;
+}
+
+/* Style des cartes de programme */
+.programme-card {
+    -fx-background-color: white;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 10, 0, 0, 3);
+    -fx-padding: 0;
+    -fx-pref-width: 280;
+    -fx-cursor: hand;
+}
+
+.programme-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 20, 0, 0, 10);
+    -fx-translate-y: -2;
+}
+
+.card-image {
+    -fx-background-radius: 15 15 0 0;
+}
+
+.card-content {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.card-type {
+    -fx-font-size: 13px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.card-description {
+    -fx-font-size: 14px;
+    -fx-text-fill: #34495e;
+    -fx-wrap-text: true;
+}
+
+.btn-retour {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+    -fx-border-color: white;
+    -fx-border-radius: 20;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 1);
+}
+
+.btn-retour:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 12, 0, 0, 2);
+}
+
+.btn-retour:pressed {
+    -fx-background-color: rgba(255, 255, 255, 0.4);
+}

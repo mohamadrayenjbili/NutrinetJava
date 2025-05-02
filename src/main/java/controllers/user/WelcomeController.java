@@ -21,7 +21,7 @@ public class WelcomeController {
     public void initialize() {
         User currentUser = session.getCurrentUser();
         if (currentUser != null) {
-            welcomeLabel.setText("Welcome, " + currentUser.getName() + "!");
+            welcomeLabel.setText("Welcome, " + currentUser.getPrename() + "!");
         } else {
             // Handle the case where there is no logged-in user
             welcomeLabel.setText("Welcome!");

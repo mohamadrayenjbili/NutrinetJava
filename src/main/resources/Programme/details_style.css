@@ -1,0 +1,145 @@
+/* Arrière-plan général */
+.background {
+    -fx-background-color: linear-gradient(to bottom right, #f0f0f0, #ffffff);
+}
+
+/* En-tête principal */
+.header {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0.5, 0, 1);
+    -fx-padding: 0 0 20 0; /* Espace sous le titre */
+}
+
+/* Image + ombre portée */
+.image-preview {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 5);
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+/* Grille d'informations */
+.info-grid {
+    -fx-background-color: #ffffff;
+    -fx-padding: 20;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.3, 0, 2);
+}
+
+.label-title {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.label-value {
+    -fx-text-fill: #34495e;
+    -fx-font-size: 14px;
+}
+
+/* Zone de texte descriptive */
+.description {
+    -fx-control-inner-background: #ecf0f1;
+    -fx-background-insets: 0;
+    -fx-font-size: 13px;
+    -fx-padding: 8;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Liens dynamiques */
+.link-label:hover {
+    -fx-text-fill: #2980b9;
+    -fx-underline: true;
+    -fx-cursor: hand;
+}
+
+/* Bouton "Commencer le programme" */
+.start-button {
+    -fx-background-color: #2ecc71;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.1, 0, 2);
+    -fx-border-color: transparent;
+}
+
+.start-button:hover {
+    -fx-background-color: #27ae60;
+}
+
+.start-button:pressed {
+    -fx-background-color: #1e8449;
+}
+
+/* === Boutons pour les commentaires === */
+.btn-utile {
+    -fx-background-color: #dff0d8;
+    -fx-text-fill: #3c763d;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 5 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0.1, 0, 1);
+    -fx-border-color: transparent;
+}
+
+.btn-utile:hover {
+    -fx-background-color: #c8e5bc;
+}
+
+.btn-signaler {
+    -fx-background-color: #fcf8e3;
+    -fx-text-fill: #8a6d3b;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 5 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0.1, 0, 1);
+    -fx-border-color: transparent;
+}
+
+.btn-signaler:hover {
+    -fx-background-color: #fbe9b7;
+}
+
+.btn-supprimer {
+    -fx-background-color: #f2dede;
+    -fx-text-fill: #a94442;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5;
+    -fx-padding: 5 12;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 2, 0.1, 0, 1);
+    -fx-border-color: transparent;
+}
+
+.btn-supprimer:hover {
+    -fx-background-color: #e4b9b9;
+}
+
+/* === Bouton "Envoyer le commentaire" === */
+.submit-button {
+    -fx-background-color: #3498db; /* Bleu */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 20;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0.1, 0, 2);
+    -fx-border-color: transparent;
+}
+
+.submit-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.submit-button:pressed {
+    -fx-background-color: #1f6fa3;
+}
