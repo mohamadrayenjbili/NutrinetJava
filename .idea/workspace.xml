@@ -4,13 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="correction des erreurs">
+
     <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="ajout du mail">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Produit/AfficherProduitsFrontController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/AfficherProduitFront.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" afterDir="false" />
@@ -81,6 +87,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "didou",
     "git-widget-placeholder": "seeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiffffffffffff",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/timos/Desktop/Backup/java/java/projetuser/NutrinetJava",
@@ -277,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745880855631</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="correction des erreurs">
+      <option name="closed" value="true" />
+      <created>1746030241702</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1746030241702</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,6 +320,8 @@
     <MESSAGE value="modification interfaceFront" />
     <MESSAGE value="modification interface-back" />
     <MESSAGE value="ajout du mail" />
+    <MESSAGE value="correction des erreurs" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
     <MESSAGE value="seif crud +metiers" />
     <option name="LAST_COMMIT_MESSAGE" value="seif crud +metiers" />
   </component>

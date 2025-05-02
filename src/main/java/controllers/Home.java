@@ -19,7 +19,9 @@ public class Home extends Application {
         try {
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Programme/AfficherProgramme.fxml"));
+
+            Parent root = FXMLLoader.load(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
+
 
 
             Scene scene = new Scene(root);
