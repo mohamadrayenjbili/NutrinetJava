@@ -1,5 +1,6 @@
 package services.user;
 
+import controllers.user.sign_upController;
 import utils.MaConnexion;
 import utils.session;
 
@@ -45,4 +46,22 @@ public class Changepassservice {
         String email = session.getCurrentUser().getEmail();
         return email;
     }
+
+    public static boolean verifyPassword(int userId, String oldPassword) {
+        String hashedPassword = sign_upController.PasswordUtils.hashPassword(oldPassword);
+        String query = "SELECT password FROM user WHERE id = ?";
+        try (Connection conn = MaConnexion.getInstance().getConnection();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                String storedPassword = rs.getString("password");
+                return storedPassword.equals(hashedPassword);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

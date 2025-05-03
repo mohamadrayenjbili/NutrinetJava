@@ -29,7 +29,6 @@ public class UpdateUserController {
 
     public void setUser(User user) {
         this.userToUpdate = user;
-        // Pré-remplir les champs avec les données de l'utilisateur
         nomTextField.setText(user.getName());
         prenomTextField.setText(user.getPrename());
         ageTextField.setText(String.valueOf(user.getAge()));
@@ -39,7 +38,6 @@ public class UpdateUserController {
 
     @FXML
     private void handleUpdateUser(ActionEvent event) {
-        // Mettre à jour les valeurs
         userToUpdate.setName(nomTextField.getText());
         userToUpdate.setPrename(prenomTextField.getText());
         userToUpdate.setAge(Integer.parseInt(ageTextField.getText()));
@@ -49,35 +47,30 @@ public class UpdateUserController {
         try {
             updateservice.updateUser(userToUpdate);
 
-            // Récupérer l'utilisateur connecté
             User currentUser = utils.session.getCurrentUser();
-
-            // Déterminer la vue à charger
-            String fxmlPath = (currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole()))
+            String fxmlPath = (currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole()))
                     ? "/user/users_list.fxml"
                     : "/user/profile.fxml";
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent root = loader.load();
 
-            // Charger le contrôleur uniquement si l'utilisateur est admin
-            if (currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+            if (currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole())) {
                 userlistcontroller controller = loader.getController();
                 controller.loadUsers();
             }
 
-            // Changer la scène
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.setTitle(currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole()) ? "Users List" : "Profile");
+            stage.setTitle(currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole()) ? "Users List" : "Profile");
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de la vue : " + e.getMessage());
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur lors de la mise à jour de l'utilisateur.");
+            e.printStackTrace(); // Log l'exception complète
+            showAlert(Alert.AlertType.ERROR, "Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
         }
     }
 
@@ -92,7 +85,7 @@ public class UpdateUserController {
         User currentUser = utils.session.getCurrentUser();
 
         String fxmlPath;
-        if (currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+        if (currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole())) {
             // If the user is admin, redirect to users_list
             fxmlPath = "/user/users_list.fxml";
         } else {

@@ -25,6 +25,7 @@ public class Home extends Application {
 
 
             Scene scene = new Scene(root);
+            stage.setTitle("welcome ");
             scene.getStylesheets().add(getClass().getResource("/Programme/modern_list.css").toExternalForm());
             stage.setTitle("Ajouter Consultation");
 
