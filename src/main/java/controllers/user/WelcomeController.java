@@ -1,5 +1,6 @@
 package controllers.user;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -92,17 +93,57 @@ public class WelcomeController {
     }
 
     @FXML
-    private void goToAfficherProduitFront() {
+
+
+            private void goToAfficherProduitFront() {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
+                    Parent root = loader.load();
+                    Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.setTitle("Nos Produits");
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @FXML
+            public void naviguateToForum(ActionEvent actionEvent) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/forum/listForum.fxml"));
+                    Parent root = loader.load();
+
+                    Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+                    stage.setTitle("Forum");
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+    @FXML
+    private void openSeifProgram() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Programme/AfficherProgrammeFront.fxml"));
             Parent root = loader.load();
-            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Nos Produits");
-            stage.show();
+
+            // Récupérer la scène actuelle via welcomeLabel
+            Scene currentScene = welcomeLabel.getScene();
+
+            // Remplacer juste le contenu racine
+            currentScene.setRoot(root);
+
+            // Ajouter le CSS si besoin
+            String css = getClass().getResource("/Programme/modern_list.css").toExternalForm();
+            if (!currentScene.getStylesheets().contains(css)) {
+                currentScene.getStylesheets().add(css);
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
-}
+        }

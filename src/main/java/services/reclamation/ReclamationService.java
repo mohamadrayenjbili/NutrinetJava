@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import services.user.UserService;
 
 public class ReclamationService {
 
@@ -75,5 +76,72 @@ public class ReclamationService {
             e.printStackTrace();
         }
     }
+
+    public void repondre(int idReclamation, String reponse) {
+        String sql = "UPDATE reclamation SET reponse = ?, status = ? WHERE id = ?";
+
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setString(1, reponse);
+            pst.setString(2, "Traité"); // Par exemple, tu peux changer si besoin
+            pst.setInt(3, idReclamation);
+
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de l'envoi de la réponse : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    public List<Reclamation> getAllReclamations() {
+        List<Reclamation> list = new ArrayList<>();
+        String sql = "SELECT * FROM reclamation ORDER BY updated_at DESC";
+
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                int userId = rs.getInt("user_id");
+                User user = UserService.getUserById(userId); // Utilise ta méthode pour récupérer l'utilisateur
+
+                Reclamation r = new Reclamation(
+                        rs.getInt("id"),
+                        rs.getString("sujet"),
+                        rs.getString("message"),
+                        0, // Note (non utilisée ici)
+                        user,
+                        rs.getString("status"),
+                        rs.getTimestamp("updated_at").toLocalDateTime(),
+                        rs.getString("attachment_name"),
+                        rs.getString("reponse")
+                );
+                list.add(r);
+            }
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la récupération de toutes les réclamations : " + e.getMessage());
+            e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+
+    public void noterReclamation(int idReclamation, int note) {
+        String sql = "UPDATE reclamation SET note = ? WHERE id = ?";
+
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setInt(1, note);
+            pst.setInt(2, idReclamation);
+
+            pst.executeUpdate();
+        } catch (SQLException e) {
+            System.err.println("Erreur lors de la notation de la réclamation : " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+
+
 
 }

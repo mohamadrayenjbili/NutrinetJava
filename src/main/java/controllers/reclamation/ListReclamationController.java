@@ -3,8 +3,12 @@ package controllers.reclamation;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.stage.Stage;
 import models.Reclamation;
 import services.reclamation.ReclamationService;
 import utils.session;
@@ -59,22 +63,19 @@ public class ListReclamationController {
     }
 
     private void loadReclamations() {
-        // Charge les réclamations de l'utilisateur
         reclamations = service.getReclamationsByUser(session.getCurrentUser());
 
-        // Si aucune réclamation, afficher le message
         if (reclamations.isEmpty()) {
             aucuneLabel.setVisible(true);
-            pagination.setVisible(false); // Masquer la pagination si vide
+            pagination.setVisible(false);
         } else {
             aucuneLabel.setVisible(false);
-            pagination.setVisible(true); // Afficher la pagination
-            pagination.setPageCount((reclamations.size() / 2) + (reclamations.size() % 2 == 0 ? 0 : 1)); // 3 réclamations par page
+            pagination.setVisible(true);
+            pagination.setPageCount((reclamations.size() / 2) + (reclamations.size() % 2 == 0 ? 0 : 1));
         }
     }
 
     private VBox createPage(int pageIndex) {
-        // Chaque page affiche 5 réclamations max
         VBox pageBox = new VBox(10);
         int start = pageIndex * 2;
         int end = Math.min(start + 2, reclamations.size());
@@ -90,9 +91,8 @@ public class ListReclamationController {
 
     private VBox createReclamationBox(Reclamation r) {
         VBox box = new VBox(5);
-        box.setStyle("-fx-border-color: #cccccc; -fx-border-radius: 8px; -fx-padding: 10; -fx-background-color: #f5f5f5;-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0, 0, 2); -fx-background-radius: 8px;");
+        box.setStyle("-fx-border-color: #cccccc; -fx-border-radius: 8px; -fx-padding: 10; -fx-background-color: #f5f5f5; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0, 0, 2); -fx-background-radius: 8px;");
 
-        // Partie gauche : texte
         VBox leftContent = new VBox(6);
         Label sujet = new Label("📌 Sujet : " + r.getSujet());
         Label message = new Label("📝 Message : " + r.getMessage());
@@ -106,24 +106,27 @@ public class ListReclamationController {
         if (r.getReponse() != null && !r.getReponse().isEmpty()) {
             reponse = new Label("📬 Réponse : " + r.getReponse());
             reponse.setStyle("-fx-text-fill: green;");
+
+            // Afficher la note en étoiles seulement si une réponse existe
+            HBox ratingStars = createRatingStars(r);
+            leftContent.getChildren().add(ratingStars);
         } else {
             reponse = new Label("📬 Aucune réponse");
             reponse.setStyle("-fx-text-fill: #888888;");
         }
+
         reponse.setStyle("-fx-font-size: 13px;");
-
         leftContent.getChildren().addAll(sujet, message, status, reponse);
-        leftContent.setPrefWidth(500); // ou ajuste selon la taille souhaitée
+        leftContent.setPrefWidth(500);
 
-        // Partie droite : image + boutons
         VBox rightContent = new VBox(10);
         rightContent.setStyle("-fx-alignment: center;");
         rightContent.setPrefWidth(200);
 
         if (r.getAttachmentFile() != null && !r.getAttachmentFile().isEmpty()) {
             try {
-                javafx.scene.image.Image img = new javafx.scene.image.Image(getClass().getResourceAsStream("/" + r.getAttachmentFile()));
-                javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView(img);
+                Image img = new Image(getClass().getResourceAsStream("/" + r.getAttachmentFile()));
+                ImageView imageView = new ImageView(img);
                 imageView.setFitWidth(130);
                 imageView.setPreserveRatio(true);
                 imageView.setSmooth(true);
@@ -145,7 +148,6 @@ public class ListReclamationController {
 
         rightContent.getChildren().addAll(editButton, deleteButton);
 
-        // HBox global : gauche = texte, droite = image + boutons
         HBox mainContent = new HBox(20);
         mainContent.getChildren().addAll(leftContent, rightContent);
 
@@ -154,10 +156,78 @@ public class ListReclamationController {
     }
 
 
+    private HBox createRatingStars(Reclamation reclamation) {
+        HBox starBox = new HBox(5);
+        starBox.setStyle("-fx-alignment: center-left;");
+        int currentNote = reclamation.getNote(); // Note actuelle
+        Label[] stars = new Label[5];
+
+        for (int i = 0; i < 5; i++) {
+            Label star = new Label();
+            star.setStyle("-fx-font-size: 20px; -fx-cursor: hand;");
+            final int index = i;
+
+            if (i < currentNote) {
+                star.setText("★");
+                star.setStyle("-fx-font-size: 20px; -fx-text-fill: gold; -fx-cursor: hand;");
+            } else {
+                star.setText("☆");
+                star.setStyle("-fx-font-size: 20px; -fx-text-fill: grey; -fx-cursor: hand;");
+            }
+
+            // ➔ Hover pour montrer visuellement
+            star.setOnMouseEntered(event -> {
+                for (int j = 0; j < 5; j++) {
+                    if (j <= index) {
+                        stars[j].setText("★");
+                        stars[j].setStyle("-fx-font-size: 20px; -fx-text-fill: gold; -fx-cursor: hand;");
+                    } else {
+                        stars[j].setText("☆");
+                        stars[j].setStyle("-fx-font-size: 20px; -fx-text-fill: grey; -fx-cursor: hand;");
+                    }
+                }
+            });
+
+            // ➔ Quand la souris sort : afficher la vraie note actuelle
+            starBox.setOnMouseExited(event -> {
+                for (int j = 0; j < 5; j++) {
+                    if (j < reclamation.getNote()) {
+                        stars[j].setText("★");
+                        stars[j].setStyle("-fx-font-size: 20px; -fx-text-fill: gold; -fx-cursor: hand;");
+                    } else {
+                        stars[j].setText("☆");
+                        stars[j].setStyle("-fx-font-size: 20px; -fx-text-fill: grey; -fx-cursor: hand;");
+                    }
+                }
+            });
+
+            // ➔ Quand on clique sur une étoile, on fixe la note dans la BDD
+            star.setOnMouseClicked(event -> {
+                int newNote = index + 1; // Parce que index commence à 0
+                reclamation.setNote(newNote); // Mettre à jour l'objet Reclamation
+                service.noterReclamation(reclamation.getId(), newNote); // Sauvegarder en BDD
+
+                // Mettre à jour visuellement les étoiles
+                for (int j = 0; j < 5; j++) {
+                    if (j < newNote) {
+                        stars[j].setText("★");
+                        stars[j].setStyle("-fx-font-size: 20px; -fx-text-fill: gold; -fx-cursor: hand;");
+                    } else {
+                        stars[j].setText("☆");
+                        stars[j].setStyle("-fx-font-size: 20px; -fx-text-fill: grey; -fx-cursor: hand;");
+                    }
+                }
+            });
+
+            stars[i] = star;
+            starBox.getChildren().add(star);
+        }
+
+        return starBox;
+    }
 
 
     private void supprimerReclamation(Reclamation r) {
-        // Affichage d'une alerte de confirmation avant la suppression
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation de suppression");
         alert.setHeaderText("Êtes-vous sûr de vouloir supprimer cette réclamation ?");
@@ -168,16 +238,10 @@ public class ListReclamationController {
 
         alert.getButtonTypes().setAll(buttonTypeOui, buttonTypeNon);
 
-        // Attente de la réponse de l'utilisateur
         alert.showAndWait().ifPresent(response -> {
             if (response == buttonTypeOui) {
-                // Appeler le service pour supprimer la réclamation de la base de données
                 service.supprimer(r);
-
-                // Retirer la réclamation de la liste affichée
                 reclamations.remove(r);
-
-                // Recharger l'affichage pour refléter les changements
                 loadReclamations();
             }
         });
@@ -189,7 +253,7 @@ public class ListReclamationController {
             Parent root = loader.load();
 
             ModifierReclamationController controller = loader.getController();
-            controller.initData(r); // Envoie la réclamation à modifier
+            controller.initData(r);
 
             ajouterBtn.getScene().setRoot(root);
         } catch (IOException e) {
@@ -197,6 +261,14 @@ public class ListReclamationController {
         }
     }
 
-
-
+    @FXML
+    private void handleAdminButton() {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/reclamation/listReclamationAdmin.fxml"));
+            Stage stage = (Stage) reclamationsContainer.getScene().getWindow();
+            stage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

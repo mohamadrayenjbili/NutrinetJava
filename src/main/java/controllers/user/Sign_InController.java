@@ -129,7 +129,7 @@ public class Sign_InController {
                 String fxmlPath;
                 String title;
 
-                fxmlPath = "/user/welcome.fxml";
+                fxmlPath = "/User/welcome.fxml";
                 title = "Welcome";
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
