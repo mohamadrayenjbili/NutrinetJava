@@ -4,21 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminPerformanceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AdminPerformance.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Obj.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/objective-style.css" afterDir="false" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="Done Back Metiers et Api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherObjectiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AfficherObjectiveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AfficherObjective.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherPerformance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AfficherPerformance.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterObjective.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterPerformance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterPerformance.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ModifierObjective.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ModifierPerformance.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ModifierPerformance.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,7 +147,7 @@
       <workItem from="1745234963020" duration="323000" />
       <workItem from="1745717815218" duration="18487000" />
       <workItem from="1745867899930" duration="6476000" />
-      <workItem from="1745892534559" duration="5594000" />
+      <workItem from="1745892534559" duration="7037000" />
     </task>
     <task id="LOCAL-00001" summary="seif crud +metiers">
       <option name="closed" value="true" />
@@ -250,7 +237,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745778489110</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Done Quotable">
+      <option name="closed" value="true" />
+      <created>1745898996036</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1745898996036</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Done Back Metiers et Api">
+      <option name="closed" value="true" />
+      <created>1745899144258</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1745899144258</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,6 +279,7 @@
     <MESSAGE value="ajout logo/diminution du stock" />
     <MESSAGE value="test" />
     <MESSAGE value="Done Quotable" />
-    <option name="LAST_COMMIT_MESSAGE" value="Done Quotable" />
+    <MESSAGE value="Done Back Metiers et Api" />
+    <option name="LAST_COMMIT_MESSAGE" value="Done Back Metiers et Api" />
   </component>
 </project>
