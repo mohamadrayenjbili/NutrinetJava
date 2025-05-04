@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Programme.AfficherProgramme"
+            prefWidth="800" prefHeight="600"
+            style="-fx-background-color: #f5f7fa;">
+    <children>
+        <VBox spacing="20" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0"
+              AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
+
+            <!-- En-tête avec dégradé -->
+            <StackPane style="-fx-background-color: linear-gradient(to right, #2980b9, #3498db);
+                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);">
+                <padding>
+                    <Insets top="20" right="25" bottom="20" left="25" />
+                </padding>
+                <children>
+                    <HBox spacing="15" alignment="CENTER_LEFT">
+                        <children>
+                            <Label text="📋"
+                                   style="-fx-font-size: 28px; -fx-text-fill: #ecf0f1;"/>
+                            <Label text="Programmes"
+                                   style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #ecf0f1;"/>
+                            <Label text="Gestion des programmes de formation"
+                                   style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1; -fx-opacity: 0.9; -fx-padding: 0 0 0 20;"
+                                   HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnAjouterProgramme"
+                                    text="Nouveau programme"
+                                    onAction="#handleAjouterProgramme"
+                                    style="-fx-background-color: #2ecc71;
+                                           -fx-text-fill: white;
+                                           -fx-font-weight: bold;
+                                           -fx-background-radius: 30;
+                                           -fx-padding: 8 20 8 15;
+                                           -fx-cursor: hand;
+                                           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);">
+                                <graphic>
+                                    <Label text="+"
+                                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                                </graphic>
+                            </Button>
+                        </children>
+                    </HBox>
+                </children>
+            </StackPane>
+
+            <!-- Zone de contenu principal -->
+            <StackPane VBox.vgrow="ALWAYS" style="-fx-background-color: #f5f7fa;">
+                <padding>
+                    <Insets top="0" right="25" bottom="25" left="25" />
+                </padding>
+                <children>
+                    <ScrollPane fitToWidth="true"
+                                style="-fx-background-color: transparent;
+                                       -fx-background: transparent;
+                                       -fx-border-color: transparent;">
+                        <style>
+                            .scroll-pane > .viewport {
+                            -fx-background-color: transparent;
+                            }
+                            .scroll-pane .scroll-bar:vertical,
+                            .scroll-pane .scroll-bar:horizontal {
+                            -fx-background-color: transparent;
+                            }
+                            .scroll-pane .increment-button,
+                            .scroll-pane .decrement-button,
+                            .scroll-pane .corner {
+                            -fx-background-color: transparent;
+                            }
+                            .scroll-pane .thumb {
+                            -fx-background-color: #5dade2;
+                            -fx-background-radius: 10px;
+                            }
+                        </style>
+                        <content>
+                            <VBox fx:id="programmeListContainer" spacing="15">
+                                <!-- Exemple de carte de programme (sera générée dynamiquement dans le code) -->
+                                <HBox spacing="15"
+                                      style="-fx-background-color: white;
+                                             -fx-background-radius: 8;
+                                             -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 6, 0, 0, 2);
+                                             -fx-padding: 15;">
+                                    <VBox spacing="8" HBox.hgrow="ALWAYS">
+                                        <Label text="Titre du Programme"
+                                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                                        <Label text="Description du programme qui peut s'étendre sur plusieurs lignes. C'est une description détaillée du contenu du programme."
+                                               style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d; -fx-wrap-text: true;"/>
+                                        <HBox spacing="15">
+                                            <Label text="⏱️ 30 heures"
+                                                   style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-opacity: 0.8;"/>
+                                            <Label text="📅 Créé le 20/04/2025"
+                                                   style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-opacity: 0.8;"/>
+                                        </HBox>
+                                    </VBox>
+                                    <VBox spacing="10" alignment="CENTER">
+                                        <Button text="👁️"
+                                                style="-fx-background-color: #2980b9;
+                                                       -fx-text-fill: white;
+                                                       -fx-background-radius: 20;
+                                                       -fx-min-width: 36px;
+                                                       -fx-min-height: 36px;
+                                                       -fx-max-width: 36px;
+                                                       -fx-max-height: 36px;
+                                                       -fx-cursor: hand;"/>
+                                        <Button text="✏️"
+                                                style="-fx-background-color: #3498db;
+                                                       -fx-text-fill: white;
+                                                       -fx-background-radius: 20;
+                                                       -fx-min-width: 36px;
+                                                       -fx-min-height: 36px;
+                                                       -fx-max-width: 36px;
+                                                       -fx-max-height: 36px;
+                                                       -fx-cursor: hand;"/>
+                                        <Button text="🗑️"
+                                                style="-fx-background-color: #e74c3c;
+                                                       -fx-text-fill: white;
+                                                       -fx-background-radius: 20;
+                                                       -fx-min-width: 36px;
+                                                       -fx-min-height: 36px;
+                                                       -fx-max-width: 36px;
+                                                       -fx-max-height: 36px;
+                                                       -fx-cursor: hand;"/>
+                                    </VBox>
+                                </HBox>
+
+                                <!-- Cette carte d'exemple sera remplacée par les cartes générées dynamiquement via Java -->
+                            </VBox>
+                        </content>
+                    </ScrollPane>
+                </children>
+            </StackPane>
+        </VBox>
+    </children>
+</AnchorPane>

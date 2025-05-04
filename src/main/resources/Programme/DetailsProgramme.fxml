@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Programme.DetailsProgramme"
+            prefWidth="800" prefHeight="600"
+            styleClass="main-scroll-pane">
+
+    <content>
+        <VBox fx:id="rootPane" spacing="30" styleClass="root-container" minWidth="800" minHeight="600">
+            <padding>
+                <Insets top="30" right="40" bottom="40" left="40"/>
+            </padding>
+
+
+            <!-- En-tête avec image de fond -->
+            <StackPane styleClass="header-container">
+                <Rectangle styleClass="header-background" width="1200" height="200"/>
+                <VBox alignment="CENTER_LEFT" spacing="10">
+                    <padding>
+                        <Insets left="40"/>
+                    </padding>
+                    <HBox spacing="20" alignment="CENTER_LEFT">
+                        <Button fx:id="btnRetour" text="← Retour" styleClass="btn-retour"/>
+                        <Label text="📋 Détails du Programme" styleClass="main-header"/>
+                    </HBox>
+                    <Label fx:id="lblTitre" styleClass="programme-title"/>
+                </VBox>
+            </StackPane>
+
+
+            <!-- Contenu principal -->
+            <HBox spacing="40" alignment="CENTER_LEFT">
+                <!-- Colonne gauche -->
+                <VBox spacing="25" HBox.hgrow="ALWAYS" maxWidth="600">
+                    <!-- Informations principales -->
+                    <VBox styleClass="info-card" spacing="20">
+                        <Label text="Informations" styleClass="section-header"/>
+                        <GridPane hgap="20" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints minWidth="120"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="🎓 Type :" styleClass="info-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <Label fx:id="lblType" styleClass="info-value" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                            <Label text="👤 Auteur :" styleClass="info-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <Label fx:id="lblAuteur" styleClass="info-value" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                            <Label text="🎬 Vidéo :" styleClass="info-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <Hyperlink fx:id="lblVideoUrl" styleClass="video-link" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Description -->
+                    <VBox styleClass="info-card" spacing="20">
+                        <Label text="Description" styleClass="section-header"/>
+                        <TextArea fx:id="lblDescription" styleClass="description-area" wrapText="true" editable="false"/>
+                    </VBox>
+
+                    <!-- Bouton d'action -->
+                    <Button fx:id="btnCommencerProgramme" text="▶ Commencer le programme" styleClass="action-button"/>
+                </VBox>
+
+                <!-- Colonne droite -->
+                <VBox spacing="20" minWidth="300">
+                    <ImageView fx:id="imgProgramme" fitWidth="300" fitHeight="200" styleClass="programme-image"/>
+
+                    <!-- Statistiques -->
+                    <VBox styleClass="stats-card" spacing="15">
+                        <Label text="Statistiques" styleClass="section-header"/>
+                        <HBox spacing="20">
+                            <VBox styleClass="stat-item" HBox.hgrow="ALWAYS">
+                                <Label text="👥" styleClass="stat-icon"/>
+                                <Label text="Participants" styleClass="stat-label"/>
+                                <Label text="152" styleClass="stat-value"/>
+                            </VBox>
+                            <VBox styleClass="stat-item" HBox.hgrow="ALWAYS">
+                                <Label text="⭐" styleClass="stat-icon"/>
+                                <Label text="Note" styleClass="stat-label"/>
+                                <Label text="4.8/5" styleClass="stat-value"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </HBox>
+
+            <!-- Section commentaires -->
+            <VBox styleClass="comments-section" spacing="20">
+                <Label text="💬 Commentaires" styleClass="section-header"/>
+
+                <!-- Nouveau commentaire -->
+                <VBox styleClass="new-comment-card" spacing="15">
+                    <TextArea fx:id="txtCommentaire" promptText="Partagez votre avis..." styleClass="comment-input"/>
+                    <HBox alignment="CENTER_RIGHT" spacing="10">
+                        <Button text="🤖 Générer un commentaire" onAction="#onGenerateAIComment" styleClass="submit-button"/>
+                        <Button fx:id="btnEnvoyerCommentaire" text="Envoyer" styleClass="submit-button"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Liste des commentaires -->
+                <VBox fx:id="commentaireContainer" spacing="15"/>
+            </VBox>
+        </VBox>
+    </content>
+</ScrollPane>

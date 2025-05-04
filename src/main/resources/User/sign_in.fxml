@@ -75,6 +75,7 @@
                     </font>
                 </PasswordField>
             </VBox>
+            <Label fx:id="errorLabel" text="" style="-fx-text-fill: red; -fx-font-size: 12;" />
 
             <HBox alignment="CENTER_RIGHT">
                 <Hyperlink text="Forgot password?" onAction="#goToForgotPassword" style="-fx-text-fill: #66bb6a; -fx-border-color: transparent;">

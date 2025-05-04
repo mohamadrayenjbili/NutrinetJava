@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -26,6 +27,12 @@ public class Sign_InController {
     @FXML
     private PasswordField passwordField;
 
+    @FXML
+    private Label errorLabel;
+
+    private void showError(String message) {
+        errorLabel.setText(message);
+    }
 
     @FXML
     private void handleGoogleSignIn() {
@@ -98,7 +105,7 @@ public class Sign_InController {
         String password = passwordField.getText();
 
         if (email.isEmpty() || password.isEmpty()) {
-            showAlert(Alert.AlertType.ERROR, "Veuillez saisir l'email et le mot de passe.");
+            showError("Veuillez saisir l'email et le mot de passe.");
             return;
         }
 
@@ -109,7 +116,6 @@ public class Sign_InController {
             if (user != null) {
                 session.setCurrentUser(user);
 
-                // Vérifier si l'utilisateur est banni
                 if (user.getIsBanned() != null && user.getIsBanned().equals("1")) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/banned.fxml"));
                     Parent root = loader.load();

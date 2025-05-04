@@ -10,18 +10,18 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.user.WelcomeController"
             prefHeight="600.0" prefWidth="800.0"
-            style="-fx-background-color: linear-gradient(to bottom right, #f5f7fa, #e9f5e9);">
+            style="-fx-background-color: linear-gradient(to right, #00897B, #4DB6AC);">
 
     <!-- Left sidebar for navigation -->
     <VBox AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
-          style="-fx-background-color: #4CAF50; -fx-background-radius: 0 20 20 0;"
+          style="-fx-background-color: linear-gradient(to right, #00897B, #4DB6AC); -fx-background-radius: 0 20 20 0;"
           prefWidth="220">
 
         <VBox alignment="CENTER" spacing="15" style="-fx-padding: 30 10;">
             <ImageView fitWidth="100" fitHeight="100" preserveRatio="true">
                 <Image url="@/images/app_logo.png" />
             </ImageView>
-            <Label text="MyApp" style="-fx-text-fill: white; -fx-font-weight: bold;">
+            <Label text="Nutrinet" style="-fx-text-fill: white; -fx-font-weight: bold;">
                 <font>
                     <Font name="System Bold" size="22.0" />
                 </font>
@@ -41,7 +41,7 @@
                 </font>
             </Button>
 
-            <Button text="seif" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#openSeifProgram"
+            <Button text="Nos Programmes" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#openSeifProgram"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
                     <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
@@ -81,7 +81,7 @@
                 </font>
             </Button>
 
-            <Button text="Reclamation" maxWidth="Infinity" alignment="BASELINE_LEFT"
+            <Button text="Les Reclamations" maxWidth="Infinity" alignment="BASELINE_LEFT"
                     style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
                     <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2zm1 13h-2v-2h2v2zm0-4h-2V7h2v4z';" />
@@ -90,8 +90,6 @@
                     <Font size="14.0" />
                 </font>
             </Button>
-
-
 
             <Button text="Profile" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToProfile"
                     style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
@@ -134,7 +132,7 @@
         <VBox alignment="TOP_CENTER" spacing="25">
             <!-- Welcome section -->
             <VBox alignment="CENTER" spacing="15">
-                <Label fx:id="welcomeLabel" text="Welcome Back, User!" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;">
+                <Label fx:id="welcomeLabel" text="Welcome Back, User!" style="-fx-text-fill: white; -fx-font-weight: bold;">
                     <font>
                         <Font size="32.0" />
                     </font>
@@ -144,12 +142,12 @@
                         <Font size="16.0" />
                     </font>
                 </Label>
-                <Separator prefWidth="300" style="-fx-background-color: #c8e6c9;" />
+                <Separator prefWidth="300" style="-fx-background-color: #b2dfdb;" />
             </VBox>
 
             <!-- Quick actions -->
             <VBox alignment="CENTER" spacing="15" style="-fx-padding: 15 0;">
-                <Label text="Quick Actions" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;">
+                <Label text="Quick Actions" style="-fx-text-fill: white; -fx-font-weight: bold;">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -157,21 +155,21 @@
 
                 <HBox spacing="15" alignment="CENTER">
                     <Button text="User Management"
-                            style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 12 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);">
+                            style="-fx-background-color: linear-gradient(to right, #00897B, #4DB6AC); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 12 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);">
                         <font>
                             <Font size="14.0" />
                         </font>
                     </Button>
 
                     <Button text="View Reports"
-                            style="-fx-background-color: white; -fx-text-fill: #4CAF50; -fx-font-weight: bold; -fx-background-radius: 5; -fx-border-color: #4CAF50; -fx-border-radius: 5; -fx-padding: 12 20;">
+                            style="-fx-background-color: white; -fx-text-fill: #00897B; -fx-font-weight: bold; -fx-background-radius: 5; -fx-border-color: #00897B; -fx-border-radius: 5; -fx-padding: 12 20;">
                         <font>
                             <Font size="14.0" />
                         </font>
                     </Button>
 
                     <Button text="System Settings"
-                            style="-fx-background-color: white; -fx-text-fill: #4CAF50; -fx-font-weight: bold; -fx-background-radius: 5; -fx-border-color: #4CAF50; -fx-border-radius: 5; -fx-padding: 12 20;">
+                            style="-fx-background-color: white; -fx-text-fill: #00897B; -fx-font-weight: bold; -fx-background-radius: 5; -fx-border-color: #00897B; -fx-border-radius: 5; -fx-padding: 12 20;">
                         <font>
                             <Font size="14.0" />
                         </font>
@@ -181,7 +179,7 @@
 
             <!-- Recent activity with ListView -->
             <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 5);" VBox.vgrow="ALWAYS">
-                <Label text="Recent Activity" style="-fx-text-fill: #2e7d32; -fx-font-weight: bold;">
+                <Label text="Recent Activity" style="-fx-text-fill: #00897B; -fx-font-weight: bold;">
                     <font>
                         <Font size="16.0" />
                     </font>

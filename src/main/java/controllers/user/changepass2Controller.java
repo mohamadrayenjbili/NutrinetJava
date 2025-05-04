@@ -30,7 +30,6 @@ public class changepass2Controller {
 
     @FXML
     private void handleChangePassword() {
-        // Réinitialiser les messages d'erreur
         oldPasswordError.setText("");
         newPasswordError.setText("");
 
