@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
 
 
+
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
 
@@ -49,6 +50,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
+
     &quot;accountId&quot;: &quot;21f38e0d-9eb4-4540-992f-be9be6ea3dfd&quot;
   },
   &quot;recentNewPullRequestHead&quot;: {
@@ -77,6 +79,7 @@
   </component>
 
 
+
   }
 }</component>
   <component name="RecentsManager">
@@ -88,6 +91,9 @@
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Panier" />
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Produit" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="controllers.Objective" />
     </key>
   </component>
   <component name="RunManager">
@@ -125,6 +131,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
+
         <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
         <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
@@ -146,6 +153,7 @@
       <workItem from="1744815889189" duration="7043000" />
       <workItem from="1745234813505" duration="108000" />
       <workItem from="1745234963020" duration="323000" />
+
       <workItem from="1745840123197" duration="1441000" />
       <workItem from="1745850042166" duration="5971000" />
       <workItem from="1745870298665" duration="8785000" />
@@ -221,6 +229,7 @@
       <option name="project" value="LOCAL" />
       <updated>1745631478390</updated>
     </task>
+
     <task id="LOCAL-00009" summary="fixer les erreurs d'aout du commande">
       <option name="closed" value="true" />
       <created>1745771155855</created>
@@ -295,6 +304,7 @@
     <MESSAGE value="ajout de session de connexion avec user" />
     <MESSAGE value="ajout du code promo" />
     <MESSAGE value="ajout logo/diminution du stock" />
+
     <MESSAGE value="fixer les erreurs d'aout du commande" />
     <MESSAGE value="fixer detail" />
     <MESSAGE value="modification interfaceFront" />

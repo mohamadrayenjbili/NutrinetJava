@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<?import java.net.URL?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Objective.PerformanceChartController"
+      fx:id="chartContainer"
+      spacing="18"
+      prefHeight="680"
+      prefWidth="1000"
+      styleClass="chart-container">
+
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25" />
+    </padding>
+
+    <!-- En-tête avec titre -->
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label fx:id="chartTitle"
+               text="Analyse des Performances"
+               styleClass="chart-main-title"/>
+
+        <Pane HBox.hgrow="ALWAYS" />
+
+        <!-- Indicateur d'état peut être ajouté ici -->
+        <Region prefWidth="20" prefHeight="20" styleClass="status-indicator" visible="false" />
+    </HBox>
+
+    <!-- Graphique principal -->
+    <LineChart fx:id="lineChart"
+               legendSide="BOTTOM"
+               animated="true"
+               createSymbols="true"
+               VBox.vgrow="ALWAYS"
+               styleClass="performance-chart">
+        <xAxis>
+            <NumberAxis fx:id="xAxis"
+                        side="BOTTOM"
+                        label="Période"
+                        tickLabelRotation="30"
+                        autoRanging="true" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis fx:id="yAxis"
+                        side="LEFT"
+                        label="Valeur"
+                        autoRanging="true" />
+        </yAxis>
+        <effect>
+            <DropShadow color="#00000022" radius="10" spread="0.05" />
+        </effect>
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+        </padding>
+    </LineChart>
+
+    <!-- Conteneur pour les informations d'écart -->
+    <HBox fx:id="infoContainer"
+          spacing="15"
+          alignment="CENTER_RIGHT">
+        <!-- Les informations d'écart seront ajoutées dynamiquement ici -->
+    </HBox>
+
+    <!-- Barre d'actions -->
+    <HBox spacing="15" alignment="CENTER_RIGHT">
+        <padding>
+            <Insets top="8" />
+        </padding>
+
+        <Button text="Exporter en PNG"
+                styleClass="action-button, export-button"
+                onAction="#handleExportPNG">
+            <graphic>
+                <Region styleClass="export-icon" minWidth="18" minHeight="18" />
+            </graphic>
+            <padding>
+                <Insets top="8" right="16" bottom="8" left="16" />
+            </padding>
+        </Button>
+
+        <Button text="Fermer"
+                styleClass="action-button, close-button"
+                onAction="#handleClose">
+            <graphic>
+                <Region styleClass="close-icon" minWidth="18" minHeight="18" />
+            </graphic>
+            <padding>
+                <Insets top="8" right="16" bottom="8" left="16" />
+            </padding>
+        </Button>
+    </HBox>
+
+    <!-- Stylesheets -->
+    <stylesheets>
+        <URL value="@styles/chart.css"/>
+    </stylesheets>
+</VBox>

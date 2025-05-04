@@ -17,27 +17,21 @@ import javafx.stage.Stage;
 import models.Objective;
 import services.IObjectiveService;
 import services.ObjectiveService;
-import services.QuotableService;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class AfficherObjectiveController implements Initializable {
+public class AdminObjectiveController implements Initializable {
     @FXML private ListView<Objective> listObjectives;
     @FXML private TextField tfRecherche;
     @FXML private Button btnRecherche;
     @FXML private Button btnAjouter;
     @FXML private Button btnActualiser;
     @FXML private Button btnRetour;
-    @FXML private Button btnRefreshQuote;
-    @FXML private TextFlow quoteTextFlow;
-    @FXML private Text quoteContent;
-    @FXML private Text quoteAuthor;
 
     private IObjectiveService objectiveService = new ObjectiveService();
-    private QuotableService quotableService = new QuotableService();
     private ObservableList<Objective> objectivesList;
     private FilteredList<Objective> filteredList;
 
@@ -46,38 +40,6 @@ public class AfficherObjectiveController implements Initializable {
         listObjectives.setCellFactory(param -> new ObjectiveListCell());
         chargerObjectives();
         setupSearch();
-        setupQuote();
-    }
-
-    private void setupQuote() {
-        quoteTextFlow.setLineSpacing(5);
-        quoteTextFlow.setTextAlignment(javafx.scene.text.TextAlignment.CENTER);
-        quoteContent.setFont(Font.font("Arial", FontPosture.ITALIC, 14));
-        quoteAuthor.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        loadQuote();
-    }
-
-    private void loadQuote() {
-        new Thread(() -> {
-            try {
-                String quote = quotableService.getRandomQuote();
-                String[] quoteParts = quote.split(" - ", 2);
-
-                javafx.application.Platform.runLater(() -> {
-                    quoteContent.setText("\"" + quoteParts[0].replace("\"", "") + "\"");
-                    if (quoteParts.length > 1) {
-                        quoteAuthor.setText(" - " + quoteParts[1]);
-                    } else {
-                        quoteAuthor.setText("");
-                    }
-                });
-            } catch (Exception e) {
-                javafx.application.Platform.runLater(() -> {
-                    quoteContent.setText("\"La persévérance est la clé du succès.\"");
-                    quoteAuthor.setText(" - Proverbe français");
-                });
-            }
-        }).start();
     }
 
     private void setupSearch() {
@@ -99,13 +61,6 @@ public class AfficherObjectiveController implements Initializable {
         } catch (SQLException e) {
             showAlert("Erreur", "Erreur lors du chargement: " + e.getMessage());
         }
-    }
-
-    @FXML
-    private void handleRefreshQuote(ActionEvent event) {
-        quoteContent.setText("Chargement...");
-        quoteAuthor.setText("");
-        loadQuote();
     }
 
     @FXML
@@ -178,12 +133,12 @@ public class AfficherObjectiveController implements Initializable {
 
     private void handleViewPerformances(Objective objective) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherPerformance.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminPerformance.fxml"));
             Parent root = loader.load();
-            AfficherPerformanceController controller = loader.getController();
+            AdminPerformanceController controller = loader.getController();
             controller.initData(objective);
             Stage stage = new Stage();
-            stage.setTitle("Performances pour " + objective.getName());
+            stage.setTitle("Administration des performances pour " + objective.getName());
             stage.setScene(new Scene(root));
             stage.setResizable(true);
             stage.show();
@@ -251,8 +206,5 @@ public class AfficherObjectiveController implements Initializable {
                 setGraphic(vbox);
             }
         }
-    }
-
-    public static class AdminObjectiveController {
     }
 }

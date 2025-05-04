@@ -28,7 +28,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class AfficherPerformanceController implements Initializable {
+public class AdminPerformanceController implements Initializable {
 
     @FXML
     private Label lblObjectiveName;
@@ -46,8 +46,6 @@ public class AfficherPerformanceController implements Initializable {
     private Button btnActualiser;
     @FXML
     private Button btnRetour;
-    @FXML
-    private Button btnGraphique;
 
     private IPerformanceService performanceService;
     private ObservableList<Performance> performancesList;
@@ -67,8 +65,6 @@ public class AfficherPerformanceController implements Initializable {
         setupSearch();
     }
 
-
-
     private void updateObjectiveInfo() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         lblObjectiveName.setText(currentObjective.getName());
@@ -76,7 +72,7 @@ public class AfficherPerformanceController implements Initializable {
                 currentObjective.getTargetValue(),
                 currentObjective.getUnit(),
                 currentObjective.getStartDate().format(formatter),
-                currentObjective.getEndDate().format(formatter)))   ;
+                currentObjective.getEndDate().format(formatter)));
     }
 
     private void chargerPerformances() {
@@ -124,34 +120,14 @@ public class AfficherPerformanceController implements Initializable {
     }
 
     @FXML
-    private void handleVoirGraphique(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PerformanceChart.fxml"));
-            Parent root = loader.load();
-
-            PerformanceChartController controller = loader.getController();
-            controller.initData(currentObjective);
-
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Graphique des Performances");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d'ouvrir le graphique");
-        }
-    }
-
-    @FXML
     private void handleRetour(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherObjective.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminObjective.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Gestion des Objectifs");
+            stage.setTitle("Administration des Objectifs");
             stage.show();
 
             ((Stage) btnRetour.getScene().getWindow()).close();
@@ -167,9 +143,6 @@ public class AfficherPerformanceController implements Initializable {
 
             if (fxmlFile.equals("/AjouterPerformance.fxml")) {
                 AjouterPerformanceController controller = loader.getController();
-                controller.initData(currentObjective);
-            } else if (fxmlFile.equals("/PerformanceChart.fxml")) {
-                PerformanceChartController controller = loader.getController();
                 controller.initData(currentObjective);
             }
 
