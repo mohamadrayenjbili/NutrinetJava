@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
 
+
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
 
@@ -62,9 +63,6 @@
   }
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="Security Analysis" />
-  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 3
@@ -77,6 +75,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
 
   }
 }</component>
@@ -126,8 +125,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -150,6 +149,7 @@
       <workItem from="1745840123197" duration="1441000" />
       <workItem from="1745850042166" duration="5971000" />
       <workItem from="1745870298665" duration="8785000" />
+
       <workItem from="1746032191319" duration="2530000" />
       <workItem from="1746035251135" duration="1157000" />
       <workItem from="1746036644141" duration="1794000" />
@@ -289,6 +289,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <MESSAGE value="seif crud +metiers" />
     <MESSAGE value="first api (stripe)" />
     <MESSAGE value="first api (stripe) paiement" />
     <MESSAGE value="ajout de session de connexion avec user" />
@@ -298,8 +299,8 @@
     <MESSAGE value="fixer detail" />
     <MESSAGE value="modification interfaceFront" />
     <MESSAGE value="modification interface-back" />
-    <MESSAGE value="ajout du mail" />
     <MESSAGE value="correction des erreurs" />
+
     <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
     <MESSAGE value="seif crud +metiers" />
     <MESSAGE value="integration seif" />
