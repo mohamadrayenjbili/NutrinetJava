@@ -41,7 +41,7 @@
                 </font>
             </Button>
 
-            <Button text="seif" maxWidth="Infinity" alignment="BASELINE_LEFT"
+            <Button text="seif" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#openSeifProgram"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
                     <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
