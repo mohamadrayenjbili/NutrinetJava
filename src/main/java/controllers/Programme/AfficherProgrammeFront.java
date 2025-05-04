@@ -41,6 +41,8 @@ public class AfficherProgrammeFront implements Initializable {
 
     @FXML
     private TextField searchField; // Barre de recherche
+    @FXML
+    private Button btnRetour1;
 
     @FXML
     private ComboBox<String> filterComboBox; // Filtre par type
@@ -77,6 +79,30 @@ public class AfficherProgrammeFront implements Initializable {
         } catch (SQLException e) {
             System.err.println("Erreur lors du chargement des programmes : " + e.getMessage());
         }
+
+// Gestion du bouton retour
+        btnRetour1.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/welcome.fxml"));
+                Parent root = loader.load();
+
+                // Récupérer la scène actuelle
+                Scene currentScene = btnRetour1.getScene();
+
+                // Remplacer seulement le contenu (pas la scène entière)
+                currentScene.setRoot(root);
+
+                // Ajouter ton CSS si besoin
+                /*String css = getClass().getResource("/user/welcome.css").toExternalForm();
+                if (!currentScene.getStylesheets().contains(css)) {
+                    currentScene.getStylesheets().add(css);
+                } */
+
+            } catch (IOException e) {
+                System.err.println("Erreur lors du retour à la page de bienvenue : " + e.getMessage());
+                e.printStackTrace();
+            }
+        });
 
     }
     private void filterAndDisplayProgrammes() {

@@ -116,10 +116,21 @@ public class DetailsProgramme implements Initializable {
                 String titreProgramme = programme.getTitre();
                 String utilisateurNom = session.getCurrentUser() != null ? session.getCurrentUser().getName() : "Utilisateur inconnu";
 
-                String message = utilisateurNom + " a commencé le programme : " + titreProgramme;
-
                 // Envoyer le SMS via Twilio
-                TwilioSMSService.sendSMS("+21656330320", message);
+                //TwilioSMSService.sendSMS("+21656330320", utilisateurNom + " a commencé le programme : " + titreProgramme);
+
+                // Ouvrir la vidéo YouTube dans le navigateur
+                String videoUrl = programme.getVideoUrl();
+                if (videoUrl != null && !videoUrl.isEmpty()) {
+                    try {
+                        java.awt.Desktop.getDesktop().browse(java.net.URI.create(videoUrl));
+                        System.out.println("La vidéo du programme " + titreProgramme + " est lancée !");
+                    } catch (java.io.IOException e) {
+                        System.out.println("Erreur lors de l'ouverture de la vidéo : " + e.getMessage());
+                    }
+                } else {
+                    System.out.println("Aucune URL de vidéo associée au programme.");
+                }
 
                 System.out.println("Le programme " + titreProgramme + " est lancé !");
             } else {
@@ -236,7 +247,7 @@ public class DetailsProgramme implements Initializable {
         HBox headerBox = new HBox(10);
         headerBox.setAlignment(Pos.CENTER_LEFT);
 
-        Label nom = new Label("Utilisateur : " + session.getCurrentUser().getName());
+        Label nom = new Label(session.getCurrentUser().getPrename() +" "+ session.getCurrentUser().getName());
         nom.getStyleClass().add("comment-author");
 
         if (c.getParentId() != null) {

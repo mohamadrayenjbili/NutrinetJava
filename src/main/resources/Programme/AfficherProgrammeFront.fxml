@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.shape.Rectangle?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Programme.AfficherProgrammeFront"
+      styleClass="main-container">
+
+
+    <!-- En-tête avec fond gradient -->
+    <StackPane styleClass="header-section">
+        <VBox spacing="30" alignment="CENTER">
+            <HBox spacing="20" alignment="CENTER_LEFT">
+                <Button fx:id="btnRetour1" text="← Retour" styleClass="btn-retour"/>
+            </HBox>
+            <Label text="🌿 Découvrez nos Programmes Santé" styleClass="main-title"/>
+            <Label text="Des programmes personnalisés pour votre bien-être" styleClass="subtitle"/>
+        </VBox>
+    </StackPane>
+
+    <!-- Barre de recherche et filtres -->
+    <HBox styleClass="search-section" alignment="CENTER" spacing="15">
+        <HBox styleClass="search-box" HBox.hgrow="ALWAYS">
+            <TextField fx:id="searchField" promptText="🔍 Rechercher un programme..."
+                       styleClass="modern-search"/>
+        </HBox>
+        <ComboBox fx:id="filterComboBox" promptText="🔖 Filtrer par type"
+                  styleClass="modern-combo"/>
+    </HBox>
+
+    <!-- Liste des programmes -->
+    <AnchorPane>
+        <ScrollPane fitToWidth="true" fitToHeight="true" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <FlowPane fx:id="programmeListContainer"
+                      styleClass="programmes-container"
+                      hgap="20" vgap="20"/>
+        </ScrollPane>
+    </AnchorPane>
+</VBox>

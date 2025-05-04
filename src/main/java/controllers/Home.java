@@ -20,6 +20,7 @@ public class Home extends Application {
 
 
 
+
             Parent root = FXMLLoader.load(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
 
 
@@ -30,7 +31,7 @@ public class Home extends Application {
             stage.setTitle("Ajouter Consultation");
 
             // 🔥 Ajout de l'icône
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Nutrinet.png")));
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/app_logo.png")));
 
             stage.setScene(scene);
             stage.show();

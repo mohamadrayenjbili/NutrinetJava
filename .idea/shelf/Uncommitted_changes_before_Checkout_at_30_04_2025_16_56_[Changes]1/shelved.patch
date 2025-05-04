@@ -1,0 +1,562 @@
+Index: src/main/java/services/ICommentaireService.java
+===================================================================
+diff --git a/src/main/java/services/ICommentaireService.java b/src/main/java/services/ICommentaireService.java
+deleted file mode 100644
+--- a/src/main/java/services/ICommentaireService.java	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
++++ /dev/null	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
+@@ -1,12 +0,0 @@
+-package services;
+-
+-import models.Commentaire;
+-import java.util.List;
+-
+-public interface ICommentaireService {
+-    void ajouterCommentaire(Commentaire commentaire);
+-    void supprimerCommentaire(int id);
+-    void modifierCommentaire(Commentaire commentaire);
+-    Commentaire getCommentaireById(int id);
+-    List<Commentaire> getCommentairesByProgramme(int programmeId);
+-}
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14__Changes_.xml	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
++++ /dev/null	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
+@@ -1,7 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]" date="1745313484372" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 22/04/2025 10:14 [Changes]" />
+-  <binary>
+-    <option name="BEFORE_PATH" value="src/main/java/controllers/AjouterCommandeController" />
+-  </binary>
+-</changelist>
+\ No newline at end of file
+Index: src/main/java/services/CommentaireService.java
+===================================================================
+diff --git a/src/main/java/services/CommentaireService.java b/src/main/java/services/CommentaireService.java
+deleted file mode 100644
+--- a/src/main/java/services/CommentaireService.java	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
++++ /dev/null	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
+@@ -1,105 +0,0 @@
+-package services;
+-
+-import models.Commentaire;
+-import utils.MaConnexion;
+-
+-import java.sql.*;
+-import java.util.ArrayList;
+-import java.util.List;
+-
+-public class CommentaireService implements ICommentaireService {
+-
+-    private Connection connection;
+-
+-    public CommentaireService() {
+-        try {
+-            connection = MaConnexion.getInstance().getConnection();
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-        }
+-    }
+-
+-    @Override
+-    public void ajouterCommentaire(Commentaire commentaire) {
+-        String sql = "INSERT INTO commentaire (programme_id, auteur_id, parent_id, contenu, created_at) VALUES (?, ?, ?, ?, ?)";
+-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+-            stmt.setInt(1, commentaire.getProgrammeId());
+-            stmt.setInt(2, commentaire.getAuteurId());
+-            if (commentaire.getParentId() != null) {
+-                stmt.setInt(3, commentaire.getParentId());
+-            } else {
+-                stmt.setNull(3, Types.INTEGER);
+-            }
+-            stmt.setString(4, commentaire.getContenu());
+-            stmt.setTimestamp(5, Timestamp.valueOf(commentaire.getCreatedAt()));
+-            stmt.executeUpdate();
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-        }
+-    }
+-
+-    @Override
+-    public void supprimerCommentaire(int id) {
+-        String sql = "DELETE FROM commentaire WHERE id = ?";
+-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+-            stmt.setInt(1, id);
+-            stmt.executeUpdate();
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-        }
+-    }
+-
+-    @Override
+-    public void modifierCommentaire(Commentaire commentaire) {
+-        String sql = "UPDATE commentaire SET contenu = ? WHERE id = ?";
+-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+-            stmt.setString(1, commentaire.getContenu());
+-            stmt.setInt(2, commentaire.getId());
+-            stmt.executeUpdate();
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-        }
+-    }
+-
+-    @Override
+-    public Commentaire getCommentaireById(int id) {
+-        String sql = "SELECT * FROM commentaire WHERE id = ?";
+-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+-            stmt.setInt(1, id);
+-            ResultSet rs = stmt.executeQuery();
+-            if (rs.next()) {
+-                return mapResultSetToCommentaire(rs);
+-            }
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-        }
+-        return null;
+-    }
+-
+-    @Override
+-    public List<Commentaire> getCommentairesByProgramme(int programmeId) {
+-        List<Commentaire> commentaires = new ArrayList<>();
+-        String sql = "SELECT * FROM commentaire WHERE programme_id = ? ORDER BY created_at ASC";
+-        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+-            stmt.setInt(1, programmeId);
+-            ResultSet rs = stmt.executeQuery();
+-            while (rs.next()) {
+-                commentaires.add(mapResultSetToCommentaire(rs));
+-            }
+-        } catch (SQLException e) {
+-            e.printStackTrace();
+-        }
+-        return commentaires;
+-    }
+-
+-    private Commentaire mapResultSetToCommentaire(ResultSet rs) throws SQLException {
+-        return new Commentaire(
+-                rs.getInt("id"),
+-                rs.getInt("programme_id"),
+-                rs.getInt("auteur_id"),
+-                rs.getObject("parent_id") != null ? rs.getInt("parent_id") : null,
+-                rs.getString("contenu"),
+-                rs.getTimestamp("created_at").toLocalDateTime()
+-        );
+-    }
+-}
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
++++ /dev/null	(revision 7b099f987a86e308a03310a633b77749ba43dde2)
+@@ -1,407 +0,0 @@
+-Index: src/main/java/controllers/SupprimerProduitController.java
+-===================================================================
+-diff --git a/src/main/java/controllers/SupprimerProduitController.java b/src/main/java/controllers/SupprimerProduitController.java
+-deleted file mode 100644
+---- a/src/main/java/controllers/SupprimerProduitController.java	(revision 0515de79340528a85825afa6cec68cd60ded3c85)
+-+++ /dev/null	(revision 0515de79340528a85825afa6cec68cd60ded3c85)
+-@@ -1,145 +0,0 @@
+--////package controllers;
+--//
+--//import java.net.URL;
+--//import java.sql.SQLException;
+--//import java.util.List;
+--//import java.util.ResourceBundle;
+--//import javafx.collections.FXCollections;
+--//import javafx.collections.ObservableList;
+--//import javafx.event.ActionEvent;
+--//import javafx.fxml.FXML;
+--//import javafx.fxml.Initializable;
+--//import javafx.scene.control.Alert;
+--//import javafx.scene.control.Alert.AlertType;
+--//import javafx.scene.control.Button;
+--//import javafx.scene.control.TableColumn;
+--//import javafx.scene.control.TableView;
+--//import javafx.scene.control.cell.PropertyValueFactory;
+--//import javafx.scene.text.Font;
+--//import models.Produit;
+--//import services.ProduitService;
+--//
+--//public class SupprimerProduitController implements Initializable {
+--//
+--//    @FXML
+--//    private TableView<Produit> tableViewProduits;
+--//
+--//    @FXML
+--//    private TableColumn<Produit, Integer> colId;
+--//
+--//    @FXML
+--//    private TableColumn<Produit, String> colNom;
+--//
+--//    @FXML
+--//    private TableColumn<Produit, Double> colPrix;
+--//
+--//    @FXML
+--//    private TableColumn<Produit, String> colDescription;
+--//
+--//    @FXML
+--//    private TableColumn<Produit, String> colCategorie;
+--//
+--//    @FXML
+--//    private TableColumn<Produit, Integer> colStock;
+--//
+--//    @FXML
+--//    private Button btnSupprimer;
+--//
+--//    private ProduitService produitService;
+--//    private ObservableList<Produit> produitsList;
+--//
+--//    @Override
+--//    public void initialize(URL url, ResourceBundle rb) {
+--//        produitService = new ProduitService();
+--//        produitsList = FXCollections.observableArrayList();
+--//
+--//        // Configuration des colonnes
+--//        colId.setCellValueFactory(new PropertyValueFactory<>("id"));
+--//        colNom.setCellValueFactory(new PropertyValueFactory<>("nomProduit"));
+--//        colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+--//        colDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+--//        colCategorie.setCellValueFactory(new PropertyValueFactory<>("categorie"));
+--//        colStock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+--//
+--//        // Configuration du style du bouton
+--//        btnSupprimer.setStyle("-fx-background-color: #5bc0de; -fx-text-fill: white;");
+--//        btnSupprimer.setFont(Font.font("System Bold", 14));
+--//
+--//        // Chargement des données
+--//        chargerProduits();
+--//
+--//        // Désactiver le bouton supprimer si aucun produit n'est sélectionné
+--//        btnSupprimer.setDisable(true);
+--//
+--//        // Activer le bouton supprimer quand un produit est sélectionné
+--//        tableViewProduits.getSelectionModel().selectedItemProperty().addListener(
+--//                (observable, oldValue, newValue) -> btnSupprimer.setDisable(newValue == null));
+--//    }
+--//
+--//    @FXML
+--//    private void handleSupprimer(ActionEvent event) {
+--//        Produit produitSelectionne = tableViewProduits.getSelectionModel().getSelectedItem();
+--//
+--//        if (produitSelectionne != null) {
+--//            try {
+--//                // Afficher une confirmation
+--//                Alert confirmation = new Alert(AlertType.CONFIRMATION);
+--//                confirmation.setTitle("Confirmation de suppression");
+--//                confirmation.setHeaderText("Suppression du produit");
+--//                confirmation.setContentText("Êtes-vous sûr de vouloir supprimer le produit : "
+--//                        + produitSelectionne.getNomProduit() + " ?");
+--//
+--//                confirmation.showAndWait().ifPresent(response -> {
+--//                    if (response == javafx.scene.control.ButtonType.OK) {
+--//                        try {
+--//                            // Supprimer le produit
+--//                            produitService.deleteProduit(produitSelectionne.getId());
+--//
+--//                            // Actualiser la liste
+--//                            chargerProduits();
+--//
+--//                            // Afficher un message de succès
+--//                            afficherAlerte(AlertType.INFORMATION, "Succès",
+--//                                    "Produit supprimé avec succès !");
+--//                        } catch (SQLException e) {
+--//                            afficherAlerte(AlertType.ERROR, "Erreur",
+--//                                    "Erreur lors de la suppression : " + e.getMessage());
+--//                        }
+--//                    }
+--//                });
+--//
+--//            } catch (Exception e) {
+--//                afficherAlerte(AlertType.ERROR, "Erreur",
+--//                        "Une erreur est survenue : " + e.getMessage());
+--//            }
+--//        } else {
+--//            afficherAlerte(AlertType.WARNING, "Attention",
+--//                    "Veuillez sélectionner un produit à supprimer.");
+--//        }
+--//    }
+--//
+--//    @FXML
+--//    private void handleRefresh(ActionEvent event) {
+--//        chargerProduits();
+--//    }
+--//
+--//    private void chargerProduits() {
+--//        try {
+--//            List<Produit> produits = produitService.getAllProduits();
+--//            produitsList.clear();
+--//            produitsList.addAll(produits);
+--//            tableViewProduits.setItems(produitsList);
+--//        } catch (SQLException e) {
+--//            afficherAlerte(AlertType.ERROR, "Erreur",
+--//                    "Erreur lors du chargement des produits : " + e.getMessage());
+--//        }
+--//    }
+--//
+--//    private void afficherAlerte(AlertType type, String titre, String message) {
+--//        Alert alert = new Alert(type);
+--//        alert.setTitle(titre);
+--//        alert.setHeaderText(null);
+--//        alert.setContentText(message);
+--//        alert.showAndWait();
+--//    }
+--//}
+-\ No newline at end of file
+-Index: src/main/java/controllers/AjouterCommandeController.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/controllers/AjouterCommandeController.java b/src/main/java/controllers/AjouterCommandeController.java
+-new file mode 100644
+---- /dev/null	(date 1745313182079)
+-+++ b/src/main/java/controllers/AjouterCommandeController.java	(date 1745313182079)
+-@@ -0,0 +1,154 @@
+-+// 5. Contrôleur pour finaliser la commande (AjouterCommandeController)
+-+package controllers;
+-+
+-+import javafx.event.ActionEvent;
+-+import javafx.fxml.FXML;
+-+import javafx.fxml.Initializable;
+-+import javafx.scene.control.*;
+-+import javafx.stage.Stage;
+-+import models.Commande;
+-+import models.LignePanier;
+-+import models.Panier;
+-+import models.Produit;
+-+import services.CommandeService;
+-+import services.PanierService;
+-+import services.ProduitService;
+-+
+-+import java.net.URL;
+-+import java.sql.Date;
+-+import java.sql.SQLException;
+-+import java.time.LocalDate;
+-+import java.util.ResourceBundle;
+-+
+-+public class AjouterCommandeController implements Initializable {
+-+
+-+    @FXML
+-+    private TextField txtNom;
+-+
+-+    @FXML
+-+    private TextField txtEmail;
+-+
+-+    @FXML
+-+    private TextField txtAdresse;
+-+
+-+    @FXML
+-+    private ComboBox<String> cbxPaiement;
+-+
+-+    @FXML
+-+    private Label lblTotalCommande;
+-+
+-+    @FXML
+-+    private Button btnConfirmer;
+-+
+-+    @FXML
+-+    private Button btnAnnuler;
+-+
+-+    private PanierService panierService;
+-+    private CommandeService commandeService;
+-+    private ProduitService produitService;
+-+
+-+    @Override
+-+    public void initialize(URL url, ResourceBundle rb) {
+-+        commandeService = new CommandeService();
+-+        produitService = new ProduitService();
+-+
+-+        // Initialiser la combobox des méthodes de paiement
+-+        cbxPaiement.getItems().addAll("Carte bancaire", "PayPal", "Espèces à la livraison");
+-+        cbxPaiement.getSelectionModel().selectFirst();
+-+    }
+-+
+-+    public void setPanierService(PanierService panierService) {
+-+        this.panierService = panierService;
+-+        // Afficher le total de la commande
+-+        lblTotalCommande.setText(String.format("Total de la commande: %.2f €", panierService.getPanier().getTotal()));
+-+    }
+-+
+-+    @FXML
+-+    private void confirmerCommande(ActionEvent event) {
+-+        if (!validerFormulaire()) {
+-+            return;
+-+        }
+-+
+-+        try {
+-+            // Créer la commande
+-+            Commande commande = new Commande();
+-+            commande.setNomC(txtNom.getText());
+-+            commande.setMail(txtEmail.getText());
+-+            commande.setAdress(txtAdresse.getText());
+-+            commande.setDateC(Date.valueOf(LocalDate.now()));
+-+            commande.setStatus("En attente");
+-+            commande.setMethodeDePaiement(cbxPaiement.getValue());
+-+
+-+            // Enregistrer la commande dans la base de données
+-+            commandeService.ajouterCommande(commande);
+-+
+-+            // Ajouter les produits à la commande
+-+            Panier panier = panierService.getPanier();
+-+            for (LignePanier ligne : panier.getItemsList()) {
+-+                Produit produit = ligne.getProduit();
+-+
+-+                // Ajouter le produit à la commande dans la table de liaison
+-+                for (int i = 0; i < ligne.getQuantite(); i++) {
+-+                    commandeService.ajouterProduitACommande(commande.getId(), produit.getId());
+-+                }
+-+
+-+                // Mettre à jour le stock du produit
+-+                produit.setStock(produit.getStock() - ligne.getQuantite());
+-+                produitService.updateProduit(produit);
+-+            }
+-+
+-+            // Vider le panier
+-+            panierService.viderPanier();
+-+
+-+            // Afficher message de confirmation
+-+            afficherMessage("Commande confirmée", "Votre commande a été enregistrée avec succès!", Alert.AlertType.INFORMATION);
+-+
+-+            // Fermer la fenêtre
+-+            Stage stage = (Stage) btnConfirmer.getScene().getWindow();
+-+            stage.close();
+-+
+-+        } catch (SQLException e) {
+-+            e.printStackTrace();
+-+            afficherMessage("Erreur", "Erreur lors de l'enregistrement de la commande: " + e.getMessage(), Alert.AlertType.ERROR);
+-+        }
+-+    }
+-+
+-+    @FXML
+-+    private void annulerCommande(ActionEvent event) {
+-+        Stage stage = (Stage) btnAnnuler.getScene().getWindow();
+-+        stage.close();
+-+    }
+-+
+-+    private boolean validerFormulaire() {
+-+        StringBuilder erreurs = new StringBuilder();
+-+
+-+        if (txtNom.getText().trim().isEmpty()) {
+-+            erreurs.append("- Le nom est obligatoire.\n");
+-+        }
+-+
+-+        if (txtEmail.getText().trim().isEmpty()) {
+-+            erreurs.append("- L'email est obligatoire.\n");
+-+        } else if (!txtEmail.getText().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+-+            erreurs.append("- Format d'email invalide.\n");
+-+        }
+-+
+-+        if (txtAdresse.getText().trim().isEmpty()) {
+-+            erreurs.append("- L'adresse est obligatoire.\n");
+-+        }
+-+
+-+        if (erreurs.length() > 0) {
+-+            afficherMessage("Erreur de validation", "Veuillez corriger les erreurs suivantes:\n" + erreurs.toString(), Alert.AlertType.ERROR);
+-+            return false;
+-+        }
+-+
+-+        return true;
+-+    }
+-+
+-+    private void afficherMessage(String titre, String message, Alert.AlertType type) {
+-+        Alert alert = new Alert(type);
+-+        alert.setTitle(titre);
+-+        alert.setHeaderText(null);
+-+        alert.setContentText(message);
+-+        alert.showAndWait();
+-+    }
+-+}
+-\ No newline at end of file
+-Index: src/main/resources/AfficherProgrammeFront.fxml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.Insets?>\r\n<?import javafx.scene.control.ComboBox?>\r\n<?import javafx.scene.control.Label?>\r\n<?import javafx.scene.control.ScrollPane?>\r\n<?import javafx.scene.control.TextField?>\r\n<?import javafx.scene.layout.AnchorPane?>\r\n<?import javafx.scene.layout.FlowPane?>\r\n<?import javafx.scene.layout.HBox?>\r\n<?import javafx.scene.layout.VBox?>\r\n\r\n<AnchorPane xmlns=\"http://javafx.com/javafx\"\r\n            xmlns:fx=\"http://javafx.com/fxml\"\r\n            fx:controller=\"controllers.Programme.AfficherProgrammeFront\"\r\n            prefWidth=\"800\" prefHeight=\"600\">\r\n    <children>\r\n        <VBox spacing=\"15\" AnchorPane.topAnchor=\"10\" AnchorPane.leftAnchor=\"10\" AnchorPane.rightAnchor=\"10\">\r\n            <padding>\r\n                <Insets top=\"10\" right=\"10\" bottom=\"10\" left=\"10\" />\r\n            </padding>\r\n            <children>\r\n                <!-- Titre principal -->\r\n                <Label text=\"\uD83C\uDF3F Nos Programmes Santé\"\r\n                       style=\"-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;\" />\r\n\r\n                <!-- Barre de recherche et filtre -->\r\n                <HBox spacing=\"12\">\r\n                    <TextField fx:id=\"searchField\" promptText=\"\uD83D\uDD0D Rechercher un programme...\"\r\n                               styleClass=\"search-field\" HBox.hgrow=\"ALWAYS\"/>\r\n                    <ComboBox fx:id=\"filterComboBox\" promptText=\"\uD83E\uDDE9 Filtrer par type...\"\r\n                              styleClass=\"search-field combo-box\" prefWidth=\"220\"/>\r\n                </HBox>\r\n\r\n                <!-- Liste des programmes -->\r\n                <ScrollPane fitToWidth=\"true\" prefHeight=\"550\">\r\n                    <content>\r\n                        <FlowPane fx:id=\"programmeListContainer\"\r\n                                  hgap=\"20\" vgap=\"20\"\r\n                                  prefWrapLength=\"800\"\r\n                                  style=\"-fx-background-color: transparent;\">\r\n                            <padding>\r\n                                <Insets top=\"10\" right=\"10\" bottom=\"10\" left=\"10\"/>\r\n                            </padding>\r\n                        </FlowPane>\r\n                    </content>\r\n                </ScrollPane>\r\n            </children>\r\n        </VBox>\r\n    </children>\r\n</AnchorPane>\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/resources/AfficherProgrammeFront.fxml b/src/main/resources/AfficherProgrammeFront.fxml
+---- a/src/main/resources/AfficherProgrammeFront.fxml	(revision 0515de79340528a85825afa6cec68cd60ded3c85)
+-+++ b/src/main/resources/AfficherProgrammeFront.fxml	(date 1745312474754)
+-@@ -48,4 +48,4 @@
+-             </children>
+-         </VBox>
+-     </children>
+--</AnchorPane>
+-+</AnchorPane>
+-\ No newline at end of file
+-Index: src/main/java/controllers/Programme/AjouterProgramme.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>/*\r\npackage controllers.Programme;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.image.Image;\r\nimport javafx.stage.FileChooser;\r\nimport javafx.scene.control.Alert.AlertType;\r\nimport models.Programme;\r\nimport services.ProgrammeService;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.nio.file.Files;\r\nimport java.util.UUID;\r\n\r\npublic class AjouterProgramme {\r\n\r\n    @FXML private TextField tfTitre;\r\n    @FXML private TextField tfAuteur;\r\n    @FXML private TextField tfVideoUrl;\r\n    @FXML private ComboBox<String> cbType;\r\n    @FXML private TextField tfImagePath;\r\n    @FXML private Button btnChoisirImage;\r\n    @FXML private TextArea taDescription;\r\n    @FXML private ImageView imagePreview;\r\n    @FXML private Button btnAjouter;\r\n\r\n    private ProgrammeService programmeService = new ProgrammeService();\r\n    private Programme programmeEnCours = null;\r\n\r\n    private File selectedFile;\r\n    private String imageName = \"\";\r\n\r\n    @FXML\r\n    private void initialize() {\r\n        cbType.getItems().addAll(\"Régime\", \"Cohérence cardiaque\", \"Arrêt du tabac\",\"Santé Mentale\");\r\n    }\r\n\r\n    @FXML\r\n    private void handleChoisirImage() {\r\n        FileChooser fileChooser = new FileChooser();\r\n        fileChooser.setTitle(\"Choisir une image\");\r\n        fileChooser.getExtensionFilters().addAll(\r\n                new FileChooser.ExtensionFilter(\"Images\", \"*.png\", \"*.jpg\", \"*.jpeg\", \"*.gif\")\r\n        );\r\n\r\n        selectedFile = fileChooser.showOpenDialog(btnChoisirImage.getScene().getWindow());\r\n\r\n        if (selectedFile != null) {\r\n            imageName = UUID.randomUUID().toString().replaceAll(\"-\", \"\") + getFileExtension(selectedFile.getName());\r\n            tfImagePath.setText(selectedFile.getAbsolutePath());\r\n\r\n            Image image = new Image(selectedFile.toURI().toString());\r\n            imagePreview.setImage(image);\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    private void handleAjouter() {\r\n        if (!validateFields()) return;\r\n\r\n        Programme programme = (programmeEnCours == null) ? new Programme() : programmeEnCours;\r\n        programme.setTitre(tfTitre.getText());\r\n        programme.setAuteur(tfAuteur.getText());\r\n        programme.setType(cbType.getValue());\r\n        programme.setVideoUrl(tfVideoUrl.getText());\r\n        programme.setDescription(taDescription.getText());\r\n\r\n        try {\r\n            if (selectedFile != null) {\r\n                File destDir = new File(getProjectResourceImagePath());\r\n                if (!destDir.exists()) destDir.mkdirs();\r\n\r\n                File destFile = new File(destDir, imageName);\r\n                Files.copy(selectedFile.toPath(), destFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);\r\n\r\n                programme.setImage(imageName);\r\n            }\r\n\r\n            if (programmeEnCours == null) {\r\n                programmeService.ajouterProgramme(programme);\r\n                showAlert(AlertType.INFORMATION, \"Succès\", \"Programme ajouté avec succès !\");\r\n            } else {\r\n                programmeService.updateProgramme(programme);\r\n                showAlert(AlertType.INFORMATION, \"Succès\", \"Programme mis à jour avec succès !\");\r\n            }\r\n\r\n            clearForm();\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n            showAlert(AlertType.ERROR, \"Erreur\", \"Erreur lors de la copie de l'image : \" + e.getMessage());\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n            showAlert(AlertType.ERROR, \"Erreur\", \"Erreur lors de l'enregistrement : \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    private boolean validateFields() {\r\n        StringBuilder errors = new StringBuilder();\r\n\r\n        if (tfTitre.getText().isEmpty()) errors.append(\"- Le titre est requis.\\n\");\r\n        if (tfAuteur.getText().isEmpty()) errors.append(\"- L'auteur est requis.\\n\");\r\n        if (cbType.getValue() == null) errors.append(\"- Le type est requis.\\n\");\r\n        if (taDescription.getText().isEmpty()) errors.append(\"- La description est requise.\\n\");\r\n\r\n        if (errors.length() > 0) {\r\n            showAlert(AlertType.ERROR, \"Erreur de validation\", errors.toString());\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    private String getFileExtension(String fileName) {\r\n        int index = fileName.lastIndexOf('.');\r\n        return (index > 0) ? fileName.substring(index) : \".png\";\r\n    }\r\n\r\n    private String getProjectResourceImagePath() {\r\n        return System.getProperty(\"user.dir\") + \"/src/main/resources/images\";\r\n    }\r\n\r\n    private void showAlert(AlertType type, String title, String message) {\r\n        Alert alert = new Alert(type);\r\n        alert.setTitle(title);\r\n        alert.setHeaderText(null);\r\n        alert.setContentText(message);\r\n        alert.showAndWait();\r\n    }\r\n\r\n    private void clearForm() {\r\n        tfTitre.clear();\r\n        tfAuteur.clear();\r\n        tfVideoUrl.clear();\r\n        cbType.setValue(null);\r\n        tfImagePath.clear();\r\n        taDescription.clear();\r\n        imagePreview.setImage(null);\r\n        selectedFile = null;\r\n        imageName = \"\";\r\n        programmeEnCours = null;\r\n    }\r\n\r\n    public void setProgrammeToEdit(Programme programme) {\r\n        if (programme != null) {\r\n            this.programmeEnCours = programme;\r\n\r\n            tfTitre.setText(programme.getTitre());\r\n            tfAuteur.setText(programme.getAuteur());\r\n            tfVideoUrl.setText(programme.getVideoUrl());\r\n            cbType.setValue(programme.getType());\r\n            tfImagePath.setText(programme.getImage());\r\n            taDescription.setText(programme.getDescription());\r\n\r\n            // Charger l'image existante si elle est là\r\n            File imageFile = new File(getProjectResourceImagePath() + \"/\" + programme.getImage());\r\n            if (imageFile.exists()) {\r\n                imagePreview.setImage(new Image(imageFile.toURI().toString()));\r\n            }\r\n        }\r\n    }\r\n}\r\n\r\n\r\n\r\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n\r\n<?import javafx.geometry.Insets?>\r\n<?import javafx.scene.control.*?>\r\n<?import javafx.scene.image.ImageView?>\r\n<?import javafx.scene.layout.*?>\r\n<?import javafx.scene.text.Font?>\r\n\r\n<AnchorPane xmlns=\"http://javafx.com/javafx\"\r\n            xmlns:fx=\"http://javafx.com/fxml\"\r\n            fx:controller=\"controllers.Programme.AjouterProgramme\"\r\n            prefHeight=\"700.0\" prefWidth=\"550.0\"\r\n            stylesheets=\"@style.css\"\r\n            styleClass=\"root-pane\">\r\n\r\n    <VBox alignment=\"TOP_CENTER\" spacing=\"15\" AnchorPane.topAnchor=\"20\" AnchorPane.leftAnchor=\"20\" AnchorPane.rightAnchor=\"20\">\r\n        <Label text=\"Ajouter un programme\" styleClass=\"title\"/>\r\n\r\n        <HBox spacing=\"10\">\r\n            <TextField fx:id=\"tfTitre\" promptText=\"Titre\" prefWidth=\"200\" styleClass=\"text-field\"/>\r\n            <TextField fx:id=\"tfAuteur\" promptText=\"Auteur\" prefWidth=\"200\" styleClass=\"text-field\"/>\r\n        </HBox>\r\n\r\n        <TextField fx:id=\"tfVideoUrl\" promptText=\"Vidéo (URL)\" prefWidth=\"420\" styleClass=\"text-field\"/>\r\n\r\n        <ComboBox fx:id=\"cbType\" promptText=\"Type\" prefWidth=\"420\" styleClass=\"combo-box\"/>\r\n\r\n        <HBox spacing=\"10\">\r\n            <TextField fx:id=\"tfImagePath\" promptText=\"Image sélectionnée...\" editable=\"false\" prefWidth=\"320\" styleClass=\"text-field\"/>\r\n            <Button fx:id=\"btnChoisirImage\" text=\"Parcourir...\" onAction=\"#handleChoisirImage\" styleClass=\"btn-secondary\"/>\r\n        </HBox>\r\n\r\n        <TextArea fx:id=\"taDescription\" promptText=\"Description\" prefWidth=\"420\" prefHeight=\"100\" wrapText=\"true\" styleClass=\"text-area\"/>\r\n\r\n        <ImageView fx:id=\"imagePreview\" fitWidth=\"150\" fitHeight=\"150\" styleClass=\"image-preview\"/>\r\n\r\n        <Button fx:id=\"btnAjouter\" text=\"Ajouter\" onAction=\"#handleAjouter\" styleClass=\"btn-primary\"/>\r\n    </VBox>\r\n</AnchorPane>\r\n\r\n\r\n\r\n\r\n\r\n */\r\n\r\npackage controllers.Programme;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.image.Image;\r\nimport javafx.stage.FileChooser;\r\nimport javafx.scene.control.Alert.AlertType;\r\nimport models.Programme;\r\nimport services.ProgrammeService;\r\n\r\nimport java.io.File;\r\nimport java.io.IOException;\r\nimport java.nio.file.Files;\r\nimport java.util.UUID;\r\n\r\npublic class AjouterProgramme {\r\n\r\n    @FXML private TextField tfTitre;\r\n    @FXML private TextField tfAuteur;\r\n    @FXML private TextField tfVideoUrl;\r\n    @FXML private ComboBox<String> cbType;\r\n    @FXML private TextField tfImagePath;\r\n    @FXML private Button btnChoisirImage;\r\n    @FXML private TextArea taDescription;\r\n    @FXML private ImageView imagePreview;\r\n    @FXML private Button btnAjouter;\r\n\r\n    // Labels d'erreur\r\n    @FXML private Label titreErrorLabel;\r\n    @FXML private Label auteurErrorLabel;\r\n    @FXML private Label typeErrorLabel;\r\n    @FXML private Label descriptionErrorLabel;\r\n\r\n    private ProgrammeService programmeService = new ProgrammeService();\r\n    private Programme programmeEnCours = null;\r\n\r\n    private File selectedFile;\r\n    private String imageName = \"\";\r\n\r\n    @FXML\r\n    private void initialize() {\r\n        cbType.getItems().addAll(\"Régime\", \"Cohérence cardiaque\", \"Arrêt du tabac\", \"Santé Mentale\");\r\n\r\n        // Masquer les erreurs au démarrage\r\n        resetErrorLabels();\r\n    }\r\n\r\n    @FXML\r\n    private void handleChoisirImage() {\r\n        FileChooser fileChooser = new FileChooser();\r\n        fileChooser.setTitle(\"Choisir une image\");\r\n        fileChooser.getExtensionFilters().addAll(\r\n                new FileChooser.ExtensionFilter(\"Images\", \"*.png\", \"*.jpg\", \"*.jpeg\", \"*.gif\")\r\n        );\r\n\r\n        selectedFile = fileChooser.showOpenDialog(btnChoisirImage.getScene().getWindow());\r\n\r\n        if (selectedFile != null) {\r\n            imageName = UUID.randomUUID().toString().replaceAll(\"-\", \"\") + getFileExtension(selectedFile.getName());\r\n            tfImagePath.setText(selectedFile.getAbsolutePath());\r\n\r\n            Image image = new Image(selectedFile.toURI().toString());\r\n            imagePreview.setImage(image);\r\n        }\r\n    }\r\n\r\n    @FXML\r\n    private void handleAjouter() {\r\n        resetErrorLabels();\r\n        if (!validateFields()) return;\r\n\r\n        Programme programme = (programmeEnCours == null) ? new Programme() : programmeEnCours;\r\n        programme.setTitre(tfTitre.getText());\r\n        programme.setAuteur(tfAuteur.getText());\r\n        programme.setType(cbType.getValue());\r\n        programme.setVideoUrl(tfVideoUrl.getText());\r\n        programme.setDescription(taDescription.getText());\r\n\r\n        try {\r\n            if (selectedFile != null) {\r\n                File destDir = new File(getProjectResourceImagePath());\r\n                if (!destDir.exists()) destDir.mkdirs();\r\n\r\n                File destFile = new File(destDir, imageName);\r\n                Files.copy(selectedFile.toPath(), destFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);\r\n\r\n                programme.setImage(imageName);\r\n            }\r\n\r\n            if (programmeEnCours == null) {\r\n                programmeService.ajouterProgramme(programme);\r\n                showAlert(AlertType.INFORMATION, \"Succès\", \"Programme ajouté avec succès !\");\r\n            } else {\r\n                programmeService.updateProgramme(programme);\r\n                showAlert(AlertType.INFORMATION, \"Succès\", \"Programme mis à jour avec succès !\");\r\n            }\r\n\r\n            clearForm();\r\n\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n            showAlert(AlertType.ERROR, \"Erreur\", \"Erreur lors de la copie de l'image : \" + e.getMessage());\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n            showAlert(AlertType.ERROR, \"Erreur\", \"Erreur lors de l'enregistrement : \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    private boolean validateFields() {\r\n        boolean isValid = true;\r\n\r\n        if (tfTitre.getText().trim().isEmpty()) {\r\n            titreErrorLabel.setText(\"Le titre est requis.\");\r\n            titreErrorLabel.setVisible(true);\r\n            isValid = false;\r\n        }\r\n\r\n        if (tfAuteur.getText().trim().isEmpty()) {\r\n            auteurErrorLabel.setText(\"L'auteur est requis.\");\r\n            auteurErrorLabel.setVisible(true);\r\n            isValid = false;\r\n        }\r\n\r\n        if (cbType.getValue() == null) {\r\n            typeErrorLabel.setText(\"Le type est requis.\");\r\n            typeErrorLabel.setVisible(true);\r\n            isValid = false;\r\n        }\r\n\r\n        if (taDescription.getText().trim().isEmpty()) {\r\n            descriptionErrorLabel.setText(\"La description est requise.\");\r\n            descriptionErrorLabel.setVisible(true);\r\n            isValid = false;\r\n        }\r\n\r\n        return isValid;\r\n    }\r\n\r\n    private void resetErrorLabels() {\r\n        titreErrorLabel.setVisible(false);\r\n        auteurErrorLabel.setVisible(false);\r\n        typeErrorLabel.setVisible(false);\r\n        descriptionErrorLabel.setVisible(false);\r\n    }\r\n\r\n    private String getFileExtension(String fileName) {\r\n        int index = fileName.lastIndexOf('.');\r\n        return (index > 0) ? fileName.substring(index) : \".png\";\r\n    }\r\n\r\n    private String getProjectResourceImagePath() {\r\n        return System.getProperty(\"user.dir\") + \"/src/main/resources/images\";\r\n    }\r\n\r\n    private void showAlert(AlertType type, String title, String message) {\r\n        Alert alert = new Alert(type);\r\n        alert.setTitle(title);\r\n        alert.setHeaderText(null);\r\n        alert.setContentText(message);\r\n        alert.showAndWait();\r\n    }\r\n\r\n    private void clearForm() {\r\n        tfTitre.clear();\r\n        tfAuteur.clear();\r\n        tfVideoUrl.clear();\r\n        cbType.setValue(null);\r\n        tfImagePath.clear();\r\n        taDescription.clear();\r\n        imagePreview.setImage(null);\r\n        selectedFile = null;\r\n        imageName = \"\";\r\n        programmeEnCours = null;\r\n        resetErrorLabels();\r\n    }\r\n\r\n    public void setProgrammeToEdit(Programme programme) {\r\n        if (programme != null) {\r\n            this.programmeEnCours = programme;\r\n\r\n            tfTitre.setText(programme.getTitre());\r\n            tfAuteur.setText(programme.getAuteur());\r\n            tfVideoUrl.setText(programme.getVideoUrl());\r\n            cbType.setValue(programme.getType());\r\n            tfImagePath.setText(programme.getImage());\r\n            taDescription.setText(programme.getDescription());\r\n\r\n            File imageFile = new File(getProjectResourceImagePath() + \"/\" + programme.getImage());\r\n            if (imageFile.exists()) {\r\n                imagePreview.setImage(new Image(imageFile.toURI().toString()));\r\n            }\r\n        }\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/controllers/Programme/AjouterProgramme.java b/src/main/java/controllers/Programme/AjouterProgramme.java
+---- a/src/main/java/controllers/Programme/AjouterProgramme.java	(revision 0515de79340528a85825afa6cec68cd60ded3c85)
+-+++ b/src/main/java/controllers/Programme/AjouterProgramme.java	(date 1745311880677)
+-@@ -405,4 +405,4 @@
+-             }
+-         }
+-     }
+--}
+-+}
+-\ No newline at end of file
+-Index: src/main/java/controllers/Programme/AfficherProgrammeFront.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package controllers.Programme;\r\nimport javafx.animation.FadeTransition;\r\nimport javafx.util.Duration;\r\n\r\nimport javafx.collections.FXCollections;\r\nimport javafx.collections.ObservableList;\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.fxml.Initializable;\r\nimport javafx.geometry.Insets;\r\nimport javafx.scene.Parent;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.control.ComboBox;\r\nimport javafx.scene.control.Label;\r\nimport javafx.scene.control.TextField;\r\nimport javafx.scene.effect.DropShadow;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.input.MouseEvent;\r\nimport javafx.scene.layout.FlowPane;\r\nimport javafx.scene.layout.VBox;\r\nimport javafx.scene.paint.Color;\r\nimport javafx.scene.shape.Rectangle;\r\nimport javafx.stage.Stage;\r\nimport models.Programme;\r\nimport services.ProgrammeService;\r\n\r\nimport java.io.IOException;\r\nimport java.net.URL;\r\nimport java.sql.SQLException;\r\nimport java.util.List;\r\nimport java.util.ResourceBundle;\r\nimport java.util.Set;\r\nimport java.util.stream.Collectors;\r\n\r\npublic class AfficherProgrammeFront implements Initializable {\r\n\r\n    @FXML\r\n    private FlowPane programmeListContainer;\r\n\r\n    @FXML\r\n    private TextField searchField; // Barre de recherche\r\n\r\n    @FXML\r\n    private ComboBox<String> filterComboBox; // Filtre par type\r\n\r\n    private ProgrammeService programmeService = new ProgrammeService();\r\n    private ObservableList<Programme> allProgrammes; // liste complète\r\n\r\n    @Override\r\n    public void initialize(URL url, ResourceBundle rb) {\r\n        try {\r\n            List<Programme> programmes = programmeService.getAllProgrammes();\r\n            allProgrammes = FXCollections.observableArrayList(programmes);\r\n\r\n            // Remplir le ComboBox avec les types de programmes uniques\r\n            Set<String> types = programmes.stream()\r\n                    .map(Programme::getType)\r\n                    .collect(Collectors.toSet());\r\n            filterComboBox.setItems(FXCollections.observableArrayList(types));\r\n            filterComboBox.getItems().add(0, \"Tous\"); // Option pour afficher tous\r\n            filterComboBox.getSelectionModel().selectFirst();\r\n\r\n            // Listener sur la barre de recherche\r\n            searchField.textProperty().addListener((observable, oldValue, newValue) -> filterAndDisplayProgrammes());\r\n\r\n            // Listener sur le filtre (ComboBox)\r\n            filterComboBox.valueProperty().addListener((observable, oldValue, newValue) -> filterAndDisplayProgrammes());\r\n\r\n            // Affichage initial de la liste\r\n            filterAndDisplayProgrammes();\r\n\r\n        } catch (SQLException e) {\r\n            System.err.println(\"Erreur lors du chargement des programmes : \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    private void filterAndDisplayProgrammes() {\r\n        // Vider le conteneur avant de réafficher\r\n        programmeListContainer.getChildren().clear();\r\n\r\n        String searchText = (searchField.getText() != null) ? searchField.getText().toLowerCase() : \"\";\r\n        String filterType = filterComboBox.getValue();\r\n        if (filterType == null || filterType.equals(\"Tous\")) {\r\n            filterType = \"\";\r\n        }\r\n        // Création d'une variable finale pour l'utiliser dans la lambda\r\n        final String effectiveFilterType = filterType;\r\n\r\n        // Filtrer la liste en fonction du texte de recherche et du type sélectionné\r\n        List<Programme> filtered = allProgrammes.stream()\r\n                .filter(p -> p.getTitre().toLowerCase().contains(searchText))\r\n                .filter(p -> effectiveFilterType.isEmpty() || p.getType().equalsIgnoreCase(effectiveFilterType))\r\n                .collect(Collectors.toList());\r\n\r\n        for (Programme p : filtered) {\r\n            // Création d'une variable finale pour utilisation dans la lambda\r\n            final Programme programmeCard = p;\r\n\r\n            VBox card = new VBox(10);\r\n            card.setPadding(new Insets(15));\r\n            card.setSpacing(10);\r\n            card.setPrefWidth(250); // Adapté pour 3 cartes par ligne dans une largeur de 800px\r\n            card.setStyle(\"-fx-background-color: #ffffff; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;\");\r\n            card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1)));\r\n\r\n            // Effet hover\r\n            card.setOnMouseEntered(e -> card.setEffect(new DropShadow(15, Color.rgb(0, 0, 0, 0.25))));\r\n            card.setOnMouseExited(e -> card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1))));\r\n\r\n            // Utilisation de la variable finale dans la lambda pour l'événement clic\r\n            card.setOnMouseClicked((MouseEvent e) -> openDetails(programmeCard));\r\n\r\n            // Gestion de l'image\r\n            Image image;\r\n            try {\r\n                image = new Image(\"file:src/main/resources/images/\" + programmeCard.getImage());\r\n            } catch (Exception ex) {\r\n                image = new Image(\"file:src/main/resources/images/default_program.png\");\r\n            }\r\n\r\n            ImageView imageView = new ImageView(image);\r\n            imageView.setFitHeight(160);\r\n            imageView.setFitWidth(220);\r\n            imageView.setPreserveRatio(false);\r\n            imageView.setSmooth(true);\r\n\r\n            // Clipping pour obtenir des coins arrondis\r\n            Rectangle clip = new Rectangle(220, 160);\r\n            clip.setArcWidth(20);\r\n            clip.setArcHeight(20);\r\n            imageView.setClip(clip);\r\n\r\n            // Titre\r\n            Label titleLabel = new Label(programmeCard.getTitre());\r\n            titleLabel.setStyle(\"-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d3436;\");\r\n\r\n            // Description\r\n            Label descriptionLabel = new Label(programmeCard.getDescription());\r\n            descriptionLabel.setWrapText(true);\r\n            descriptionLabel.setStyle(\"-fx-font-size: 14px; -fx-text-fill: #636e72;\");\r\n\r\n            card.getChildren().addAll(imageView, titleLabel, descriptionLabel);\r\n            programmeListContainer.getChildren().add(card);\r\n            FadeTransition fade = new FadeTransition(Duration.millis(300), card);\r\n            fade.setFromValue(0);\r\n            fade.setToValue(1);\r\n            fade.play();\r\n        }\r\n    }\r\n\r\n    private void openDetails(Programme p) {\r\n        try {\r\n            FXMLLoader loader = new FXMLLoader(getClass().getResource(\"/DetailsProgramme.fxml\"));\r\n            Parent root = loader.load();\r\n\r\n            DetailsProgramme controller = loader.getController();\r\n            controller.setProgrammeDetails(p);\r\n\r\n            Stage stage = new Stage();\r\n            stage.setTitle(\"Détails du Programme\");\r\n            stage.setScene(new Scene(root));\r\n            stage.show();\r\n\r\n        } catch (IOException e) {\r\n            System.err.println(\"Erreur lors de l'ouverture des détails : \" + e.getMessage());\r\n        }\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/controllers/Programme/AfficherProgrammeFront.java b/src/main/java/controllers/Programme/AfficherProgrammeFront.java
+---- a/src/main/java/controllers/Programme/AfficherProgrammeFront.java	(revision 0515de79340528a85825afa6cec68cd60ded3c85)
+-+++ b/src/main/java/controllers/Programme/AfficherProgrammeFront.java	(date 1745311832058)
+-@@ -166,4 +166,4 @@
+-             System.err.println("Erreur lors de l'ouverture des détails : " + e.getMessage());
+-         }
+-     }
+--}
+-+}
+-\ No newline at end of file
+-Index: src/main/java/controllers/Home.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package controllers;\r\n\r\n\r\n\r\nimport javafx.application.Application;\r\nimport javafx.fxml.FXMLLoader;\r\nimport javafx.scene.Scene;\r\nimport javafx.scene.layout.AnchorPane;\r\nimport javafx.stage.Stage;\r\nimport services.ObjectiveService;\r\npublic class Home extends Application {\r\n\r\n    @Override\r\n    public void start(Stage primaryStage) {\r\n        boolean isConnected = ObjectiveService.isConnectionSuccessful();\r\n\r\n        if (isConnected) {\r\n            // Proceed with the rest of the logic or show a success message\r\n            System.out.println(\"Database connection is successful.\");\r\n        } else {\r\n            // Handle the error or show a failure message\r\n            System.err.println(\"Failed to connect to the database.\");\r\n        }\r\n\r\n        try {\r\n\r\n\r\n            // Créer la scène et définir les paramètres\r\n            Scene scene = new Scene(root);\r\n            primaryStage.setTitle(\"Liste des objectifs\");\r\n            primaryStage.setScene(scene);\r\n            primaryStage.show();\r\n\r\n        } catch (Exception e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        launch(args);\r\n    }\r\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/controllers/Home.java b/src/main/java/controllers/Home.java
+---- a/src/main/java/controllers/Home.java	(revision 0515de79340528a85825afa6cec68cd60ded3c85)
+-+++ b/src/main/java/controllers/Home.java	(date 1745312990344)
+-@@ -23,7 +23,9 @@
+-         }
+- 
+-         try {
+--
+-+            // Charger le fichier FXML
+-+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
+-+            AnchorPane root = loader.load();
+- 
+-             // Créer la scène et définir les paramètres
+-             Scene scene = new Scene(root);
+-Index: src/main/java/controllers/Programme/DetailsProgramme.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package controllers.Programme;\r\n\r\nimport javafx.fxml.FXML;\r\nimport javafx.fxml.Initializable;\r\nimport javafx.geometry.Pos;\r\nimport javafx.scene.control.*;\r\nimport javafx.scene.image.Image;\r\nimport javafx.scene.image.ImageView;\r\nimport javafx.scene.layout.HBox;\r\nimport javafx.scene.layout.VBox;\r\nimport models.Commentaire;\r\nimport models.Programme;\r\nimport services.CommentaireService;\r\n\r\nimport java.net.URL;\r\nimport java.time.LocalDateTime;\r\nimport java.util.List;\r\nimport java.util.ResourceBundle;\r\n\r\npublic class DetailsProgramme implements Initializable {\r\n\r\n    @FXML\r\n    private VBox rootPane;\r\n\r\n    @FXML\r\n    private Label lblTitre, lblType, lblAuteur, lblVideoUrl;\r\n\r\n    @FXML\r\n    private TextArea lblDescription;\r\n\r\n    @FXML\r\n    private ImageView imgProgramme;\r\n\r\n    @FXML\r\n    private TextArea txtCommentaire;\r\n\r\n    @FXML\r\n    private Button btnEnvoyerCommentaire;\r\n\r\n    @FXML\r\n    private Button btnCommencerProgramme; // Le nouveau bouton \"Commencer le programme\"\r\n\r\n    @FXML\r\n    private VBox commentaireContainer;\r\n\r\n    private Programme programme;\r\n\r\n    private final CommentaireService commentaireService = new CommentaireService();\r\n\r\n    @Override\r\n    public void initialize(URL url, ResourceBundle rb) {\r\n        // On ajoute la feuille de style\r\n        rootPane.getStylesheets().add(getClass().getResource(\"/details_style.css\").toExternalForm());\r\n\r\n        // Action sur le bouton \"Envoyer le commentaire\"\r\n        btnEnvoyerCommentaire.setOnAction(event -> {\r\n            String contenu = txtCommentaire.getText().trim();\r\n            if (!contenu.isEmpty() && programme != null) {\r\n                Commentaire commentaire = new Commentaire();\r\n                commentaire.setProgrammeId(programme.getId());\r\n                commentaire.setAuteurId(1); // Remplacer par l’ID de l’utilisateur connecté\r\n                commentaire.setContenu(contenu);\r\n                commentaire.setCreatedAt(LocalDateTime.now());\r\n\r\n                commentaireService.ajouterCommentaire(commentaire);\r\n                afficherCommentaire(commentaire);\r\n\r\n                txtCommentaire.clear();\r\n            }\r\n        });\r\n\r\n        // Action sur le bouton \"Commencer le programme\"\r\n        btnCommencerProgramme.setOnAction(event -> {\r\n            // Ici, vous pouvez définir l’action qui lance le programme.\r\n            // Par exemple, ouvrir un lecteur vidéo avec l’URL, naviguer vers un autre écran, etc.\r\n            System.out.println(\"Le programme \" + (programme != null ? programme.getTitre() : \"\") + \" est lancé !\");\r\n            // TODO: Implémentez la logique pour démarrer ou lancer le programme\r\n        });\r\n    }\r\n\r\n    public void setProgrammeDetails(Programme p) {\r\n        this.programme = p;\r\n\r\n        lblTitre.setText(p.getTitre());\r\n        lblType.setText(p.getType());\r\n        lblAuteur.setText(p.getAuteur());\r\n        lblDescription.setText(p.getDescription());\r\n        lblVideoUrl.setText(p.getVideoUrl());\r\n\r\n        if (p.getImage() != null && !p.getImage().isEmpty()) {\r\n            // Vous pouvez adapter le chemin vers l'image selon votre organisation de projet\r\n            Image image = new Image(\"file:src/main/resources/images/\" + p.getImage());\r\n            imgProgramme.setImage(image);\r\n        }\r\n\r\n        // Afficher les commentaires du programme\r\n        commentaireContainer.getChildren().clear();\r\n        List<Commentaire> commentaires = commentaireService.getCommentairesByProgramme(p.getId());\r\n        for (Commentaire commentaire : commentaires) {\r\n            afficherCommentaire(commentaire);\r\n        }\r\n    }\r\n\r\n    private void afficherCommentaire(Commentaire c) {\r\n        HBox hbox = new HBox(10);\r\n        hbox.setStyle(\"-fx-background-color: #f0f0f0; -fx-padding: 10; -fx-background-radius: 10;\");\r\n        hbox.setAlignment(Pos.TOP_LEFT);\r\n\r\n        ImageView imageView = new ImageView(new Image(\"file:src/main/resources/images/default-user.png\"));\r\n        imageView.setFitWidth(40);\r\n        imageView.setFitHeight(40);\r\n        imageView.setPreserveRatio(true);\r\n\r\n        VBox vbox = new VBox(5);\r\n        vbox.setMaxWidth(400); // Limite la largeur du contenu\r\n        vbox.setStyle(\"-fx-padding: 5;\");\r\n\r\n        Label nom = new Label(\"Utilisateur #\" + c.getAuteurId());\r\n        nom.setStyle(\"-fx-font-weight: bold;\");\r\n\r\n        Label date = new Label(\"Publié le \" + c.getCreatedAt().toLocalDate().toString());\r\n        date.setStyle(\"-fx-font-size: 10; -fx-text-fill: gray;\");\r\n\r\n        Label contenu = new Label(c.getContenu());\r\n        contenu.setWrapText(true);\r\n        contenu.setStyle(\"-fx-font-size: 13;\");\r\n\r\n        HBox boutons = new HBox(10);\r\n        Button btnUtile = new Button(\"Utile\");\r\n        btnUtile.getStyleClass().add(\"btn-utile\");\r\n\r\n        Button btnSignaler = new Button(\"Signaler\");\r\n        btnSignaler.getStyleClass().add(\"btn-signaler\");\r\n\r\n        Button btnSupprimer = new Button(\"Supprimer\");\r\n        btnSupprimer.getStyleClass().add(\"btn-supprimer\");\r\n\r\n        // Suppression du commentaire au clic sur \"Supprimer\"\r\n        btnSupprimer.setOnAction(e -> {\r\n            commentaireService.supprimerCommentaire(c.getId());\r\n            commentaireContainer.getChildren().remove(hbox);\r\n        });\r\n\r\n        boutons.getChildren().addAll(btnUtile, btnSignaler, btnSupprimer);\r\n        vbox.getChildren().addAll(nom, date, contenu, boutons);\r\n        hbox.getChildren().addAll(imageView, vbox);\r\n\r\n        commentaireContainer.getChildren().add(hbox);\r\n    }\r\n}\r\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/src/main/java/controllers/Programme/DetailsProgramme.java b/src/main/java/controllers/Programme/DetailsProgramme.java
+---- a/src/main/java/controllers/Programme/DetailsProgramme.java	(revision 0515de79340528a85825afa6cec68cd60ded3c85)
+-+++ b/src/main/java/controllers/Programme/DetailsProgramme.java	(date 1745312188663)
+-@@ -147,4 +147,4 @@
+- 
+-         commentaireContainer.getChildren().add(hbox);
+-     }
+--}
+-+}
+-\ No newline at end of file
