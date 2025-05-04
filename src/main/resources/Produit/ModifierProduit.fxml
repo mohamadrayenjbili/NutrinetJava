@@ -11,7 +11,7 @@
             fx:controller="controllers.Produit.ModifierProduitController"
             prefHeight="700" prefWidth="900">
 
-    <VBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+    <VBox AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
         <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #f8f9fa;">
             <Label text="Gestion des Produits" style="-fx-font-weight: bold;" textAlignment="CENTER">
                 <font>

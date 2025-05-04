@@ -1,105 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.Produit.AjouterProduitController"
-            prefHeight="550" prefWidth="700"
-            stylesheets="@/style.css"
+            prefHeight="700.0" prefWidth="550.0"
+            stylesheets="@styledidou.css"
             styleClass="root-pane">
 
-    <GridPane hgap="15" vgap="15" AnchorPane.topAnchor="15" AnchorPane.leftAnchor="15"
-              AnchorPane.rightAnchor="15" AnchorPane.bottomAnchor="15">
+    <VBox alignment="TOP_CENTER" spacing="10" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
 
-        <Label text="Ajouter un nouveau produit" GridPane.columnIndex="0" GridPane.rowIndex="0"
-               GridPane.columnSpan="4" styleClass="title"/>
+        <Label text="Ajouter un produit" styleClass="title"/>
 
-        <!-- Colonne gauche -->
-        <Label text="Nom du produit:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
-        <TextField fx:id="tfNomProduit" GridPane.columnIndex="1" GridPane.rowIndex="1"
-                   prefWidth="200" styleClass="text-field">
-            <tooltip>
-                <Tooltip text="3-50 caractères"/>
-            </tooltip>
-        </TextField>
-        <Label fx:id="lblNomError" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <VBox spacing="5">
+            <HBox spacing="10">
+                <TextField fx:id="tfNomProduit" promptText="Nom du produit" prefWidth="200" styleClass="text-field"/>
+                <TextField fx:id="tfPrix" promptText="Prix (€)" prefWidth="200" styleClass="text-field"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label fx:id="lblNomError" textFill="red" visible="false"/>
+                <Label fx:id="lblPrixError" textFill="red" visible="false"/>
+            </HBox>
+        </VBox>
 
-        <Label text="Prix (€):" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
-        <TextField fx:id="tfPrix" GridPane.columnIndex="1" GridPane.rowIndex="3"
-                   prefWidth="200" styleClass="text-field">
-            <tooltip>
-                <Tooltip text="Format: 19.99"/>
-            </tooltip>
-        </TextField>
-        <Label fx:id="lblPrixError" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <VBox spacing="5">
+            <HBox spacing="10">
+                <ComboBox fx:id="cbCategorie" promptText="Catégorie" prefWidth="200" styleClass="combo-box"/>
+                <TextField fx:id="tfStock" promptText="Stock" prefWidth="200" styleClass="text-field"/>
+            </HBox>
+            <HBox spacing="10">
+                <Label fx:id="lblCategorieError" textFill="red" visible="false"/>
+                <Label fx:id="lblStockError" textFill="red" visible="false"/>
+            </HBox>
+        </VBox>
 
-        <Label text="Catégorie:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
-        <ComboBox fx:id="cbCategorie" GridPane.columnIndex="1" GridPane.rowIndex="5"
-                  prefWidth="200" styleClass="combo-box"/>
-        <Label fx:id="lblCategorieError" textFill="red" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+        <VBox spacing="3">
+            <TextArea fx:id="taDescription" promptText="Description" prefWidth="420" prefHeight="100" wrapText="true" styleClass="text-area"/>
+            <Label fx:id="lblDescError" textFill="red" visible="false"/>
+        </VBox>
 
-        <!-- Colonne droite -->
-        <Label text="Description:" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
-        <TextArea fx:id="taDescription" GridPane.columnIndex="3" GridPane.rowIndex="1"
-                  prefWidth="200" prefRowCount="3" wrapText="true" styleClass="text-area">
-            <tooltip>
-                <Tooltip text="10-500 caractères"/>
-            </tooltip>
-        </TextArea>
-        <Label fx:id="lblDescError" textFill="red" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-
-        <Label text="Stock:" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
-        <TextField fx:id="tfStock" GridPane.columnIndex="3" GridPane.rowIndex="3"
-                   prefWidth="200" styleClass="text-field">
-            <tooltip>
-                <Tooltip text="Nombre entier ≥ 0"/>
-            </tooltip>
-        </TextField>
-        <Label fx:id="lblStockError" textFill="red" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
-
-        <Label text="Image:" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
-        <HBox GridPane.columnIndex="3" GridPane.rowIndex="5" spacing="5">
-            <TextField fx:id="tfImagePath" editable="false" prefWidth="150" styleClass="text-field"/>
+        <HBox spacing="10">
+            <TextField fx:id="tfImagePath" promptText="Image sélectionnée..." editable="false" prefWidth="320" styleClass="text-field"/>
             <Button fx:id="btnChoisirImage" text="Parcourir..." onAction="#handleChoisirImage" styleClass="btn-secondary"/>
         </HBox>
 
-        <!-- Aperçu image -->
-        <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150"
-                   GridPane.columnIndex="3" GridPane.rowIndex="7" styleClass="image-preview"/>
+        <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150" styleClass="image-preview"/>
 
-        <!-- Boutons -->
-        <HBox spacing="15" alignment="CENTER_RIGHT"
-              GridPane.columnIndex="0" GridPane.rowIndex="8" GridPane.columnSpan="4">
-            <Button fx:id="btnVoirDetails" text="Voir Détails" onAction="#handleVoirDetails"
-                    styleClass="btn-secondary"/>
-            <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler"
-                    styleClass="btn-secondary"/>
-            <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter"
-                    styleClass="btn-primary"/>
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler" styleClass="btn-secondary"/>
+            <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter" styleClass="btn-primary"/>
+            <Button fx:id="btnCodePromo" text="Ajouter un code promo" onAction="#handleCodePromo" styleClass="btn-secondary"/>
+
         </HBox>
-
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="100"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="200"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="100"/>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="100" prefWidth="200"/>
-        </columnConstraints>
-
-        <rowConstraints>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="20" prefHeight="20" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="20" prefHeight="20" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="30" prefHeight="40" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="20" prefHeight="20" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="100" prefHeight="150" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="50" prefHeight="60" vgrow="SOMETIMES"/>
-        </rowConstraints>
-    </GridPane>
+    </VBox>
 </AnchorPane>

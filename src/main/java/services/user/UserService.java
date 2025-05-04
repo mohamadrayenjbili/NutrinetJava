@@ -1,6 +1,7 @@
 package services.user;
 
 import models.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,7 +9,7 @@ import java.sql.ResultSet;
 
 public class UserService {
 
-    private Connection getConnection() throws Exception {
+    private static Connection getConnection() throws Exception {
         return DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
     }
 
@@ -54,7 +55,7 @@ public class UserService {
         return false;
     }
 
-    public User getUserById(int id) throws Exception {
+    public static User getUserById(int id) throws Exception {
         String query = "SELECT * FROM user WHERE id = ?";
         try (Connection con = getConnection(); PreparedStatement ps = con.prepareStatement(query)) {
             ps.setInt(1, id);
@@ -77,5 +78,7 @@ public class UserService {
         }
         return null; // Aucun utilisateur trouvé
     }
+
+
 
 }

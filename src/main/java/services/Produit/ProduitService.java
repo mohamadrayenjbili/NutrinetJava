@@ -1,11 +1,16 @@
 package services.Produit;
 
-import models.Produit;
-import utils.MaConnexion;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import models.Produit;
+import services.ListeSouhaitsService;
+import utils.MaConnexion;
 
 public class ProduitService implements IProduitService {
 
@@ -103,6 +108,10 @@ public class ProduitService implements IProduitService {
 
     @Override
     public void updateProduit(Produit produit) throws SQLException {
+        // Récupérer l'ancien stock avant la mise à jour
+        Produit ancienProduit = getProduitById(produit.getId());
+        int ancienStock = ancienProduit.getStock();
+
         String query = "UPDATE boutique SET nom_produit = ?, prix = ?, description = ?, " +
                 "categorie = ?, image = ?, stock = ? WHERE id = ?";
 
@@ -117,10 +126,13 @@ public class ProduitService implements IProduitService {
             pstmt.setInt(6, produit.getStock());
             pstmt.setInt(7, produit.getId());
 
-            int affectedRows = pstmt.executeUpdate();
+            pstmt.executeUpdate();
 
-            if (affectedRows == 0) {
-                throw new SQLException("Échec de la mise à jour, produit non trouvé avec l'ID: " + produit.getId());
+            // Vérifier si le stock est passé de 0 à une valeur positive
+            if (ancienStock == 0 && produit.getStock() > 0) {
+                // Envoyer les notifications par email
+                ListeSouhaitsService listeSouhaitsService = new ListeSouhaitsService();
+                listeSouhaitsService.notifierClientsProduitEnStock(produit.getId());
             }
         }
     }
@@ -141,6 +153,7 @@ public class ProduitService implements IProduitService {
             }
         }
     }
+
     @Override
     public void closeConnection() throws SQLException {
         // Si MaConnexion gère un pool de connexions, cette méthode peut être vide

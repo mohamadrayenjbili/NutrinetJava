@@ -1,5 +1,6 @@
 package controllers.Programme;
 import javafx.animation.FadeTransition;
+import javafx.scene.control.Button;
 import javafx.util.Duration;
 
 import javafx.collections.FXCollections;
@@ -23,7 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import models.Programme;
-import services.ProgrammeService;
+import services.Programme.ProgrammeService;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,6 +41,8 @@ public class AfficherProgrammeFront implements Initializable {
 
     @FXML
     private TextField searchField; // Barre de recherche
+    @FXML
+    private Button btnRetour1;
 
     @FXML
     private ComboBox<String> filterComboBox; // Filtre par type
@@ -47,8 +50,11 @@ public class AfficherProgrammeFront implements Initializable {
     private ProgrammeService programmeService = new ProgrammeService();
     private ObservableList<Programme> allProgrammes; // liste complète
 
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        programmeListContainer.getStylesheets().add(getClass().getResource("/Programme/modern_list.css").toExternalForm());
         try {
             List<Programme> programmes = programmeService.getAllProgrammes();
             allProgrammes = FXCollections.observableArrayList(programmes);
@@ -73,97 +79,114 @@ public class AfficherProgrammeFront implements Initializable {
         } catch (SQLException e) {
             System.err.println("Erreur lors du chargement des programmes : " + e.getMessage());
         }
-    }
 
+// Gestion du bouton retour
+        btnRetour1.setOnAction(event -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/welcome.fxml"));
+                Parent root = loader.load();
+
+                // Récupérer la scène actuelle
+                Scene currentScene = btnRetour1.getScene();
+
+                // Remplacer seulement le contenu (pas la scène entière)
+                currentScene.setRoot(root);
+
+                // Ajouter ton CSS si besoin
+                /*String css = getClass().getResource("/user/welcome.css").toExternalForm();
+                if (!currentScene.getStylesheets().contains(css)) {
+                    currentScene.getStylesheets().add(css);
+                } */
+
+            } catch (IOException e) {
+                System.err.println("Erreur lors du retour à la page de bienvenue : " + e.getMessage());
+                e.printStackTrace();
+            }
+        });
+
+    }
     private void filterAndDisplayProgrammes() {
-        // Vider le conteneur avant de réafficher
         programmeListContainer.getChildren().clear();
 
-        String searchText = (searchField.getText() != null) ? searchField.getText().toLowerCase() : "";
+        String searchText = searchField.getText() != null ? searchField.getText().toLowerCase() : "";
         String filterType = filterComboBox.getValue();
-        if (filterType == null || filterType.equals("Tous")) {
-            filterType = "";
-        }
-        // Création d'une variable finale pour l'utiliser dans la lambda
-        final String effectiveFilterType = filterType;
+        final String effectiveFilterType = (filterType == null || filterType.equals("Tous")) ? "" : filterType;
 
-        // Filtrer la liste en fonction du texte de recherche et du type sélectionné
         List<Programme> filtered = allProgrammes.stream()
                 .filter(p -> p.getTitre().toLowerCase().contains(searchText))
                 .filter(p -> effectiveFilterType.isEmpty() || p.getType().equalsIgnoreCase(effectiveFilterType))
                 .collect(Collectors.toList());
 
         for (Programme p : filtered) {
-            // Création d'une variable finale pour utilisation dans la lambda
-            final Programme programmeCard = p;
+            VBox card = new VBox();
+            card.getStyleClass().add("programme-card");
 
-            VBox card = new VBox(10);
-            card.setPadding(new Insets(15));
-            card.setSpacing(10);
-            card.setPrefWidth(250); // Adapté pour 3 cartes par ligne dans une largeur de 800px
-            card.setStyle("-fx-background-color: #ffffff; -fx-background-radius: 15; -fx-border-radius: 15; -fx-cursor: hand;");
-            card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1)));
-
-            // Effet hover
-            card.setOnMouseEntered(e -> card.setEffect(new DropShadow(15, Color.rgb(0, 0, 0, 0.25))));
-            card.setOnMouseExited(e -> card.setEffect(new DropShadow(5, Color.rgb(0, 0, 0, 0.1))));
-
-            // Utilisation de la variable finale dans la lambda pour l'événement clic
-            card.setOnMouseClicked((MouseEvent e) -> openDetails(programmeCard));
-
-            // Gestion de l'image
-            Image image;
+            // Image
+            ImageView imageView = new ImageView();
             try {
-                image = new Image("file:src/main/resources/images/" + programmeCard.getImage());
+                imageView.setImage(new Image("file:src/main/resources/images/" + p.getImage()));
             } catch (Exception ex) {
-                image = new Image("file:src/main/resources/images/default_program.png");
+                imageView.setImage(new Image("file:src/main/resources/images/default_program.png"));
             }
-
-            ImageView imageView = new ImageView(image);
-            imageView.setFitHeight(160);
-            imageView.setFitWidth(220);
+            imageView.setFitWidth(280);
+            imageView.setFitHeight(180);
             imageView.setPreserveRatio(false);
-            imageView.setSmooth(true);
+            imageView.getStyleClass().add("card-image");
 
-            // Clipping pour obtenir des coins arrondis
-            Rectangle clip = new Rectangle(220, 160);
-            clip.setArcWidth(20);
-            clip.setArcHeight(20);
-            imageView.setClip(clip);
+            // Contenu
+            VBox content = new VBox(10);
+            content.getStyleClass().add("card-content");
 
-            // Titre
-            Label titleLabel = new Label(programmeCard.getTitre());
-            titleLabel.setStyle("-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2d3436;");
+            Label titleLabel = new Label(p.getTitre());
+            titleLabel.getStyleClass().add("card-title");
 
-            // Description
-            Label descriptionLabel = new Label(programmeCard.getDescription());
-            descriptionLabel.setWrapText(true);
-            descriptionLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #636e72;");
+            Label typeLabel = new Label("🏷 " + p.getType());
+            typeLabel.getStyleClass().add("card-type");
 
-            card.getChildren().addAll(imageView, titleLabel, descriptionLabel);
-            programmeListContainer.getChildren().add(card);
+            Label descLabel = new Label(p.getDescription());
+            descLabel.getStyleClass().add("card-description");
+            descLabel.setWrapText(true);
+            descLabel.setMaxHeight(60);
+
+            content.getChildren().addAll(titleLabel, typeLabel, descLabel);
+            card.getChildren().addAll(imageView, content);
+
+            // Animation et interaction
+            card.setOnMouseClicked(e -> openDetails(p));
+
             FadeTransition fade = new FadeTransition(Duration.millis(300), card);
             fade.setFromValue(0);
             fade.setToValue(1);
             fade.play();
+
+            programmeListContainer.getChildren().add(card);
         }
     }
 
+
     private void openDetails(Programme p) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsProgramme.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Programme/DetailsProgramme.fxml"));
             Parent root = loader.load();
 
             DetailsProgramme controller = loader.getController();
             controller.setProgrammeDetails(p);
 
-            Stage stage = new Stage();
-            stage.setTitle("Détails du Programme");
-            stage.setScene(new Scene(root));
-            stage.show();
+            // Utiliser programmeListContainer pour récupérer le Stage actuel
+            Stage currentStage = (Stage) programmeListContainer.getScene().getWindow();
+
+
+
+            // Changer seulement la scène du Stage existant
+            currentStage.setScene(new Scene(root));
+            currentStage.setTitle("Détails du Programme");
+            currentStage.setFullScreen(true);
+            currentStage.setFullScreenExitHint("");
+            currentStage.show();
 
         } catch (IOException e) {
             System.err.println("Erreur lors de l'ouverture des détails : " + e.getMessage());
         }
     }
+
 }

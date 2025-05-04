@@ -1,0 +1,263 @@
+/* Styles globaux */
+.root-container {
+    -fx-background-color: #f8f9fa;
+    -fx-font-family: "Segoe UI", Arial, sans-serif;
+}
+
+.main-scroll-pane {
+    -fx-background: #f8f9fa;
+    -fx-background-color: transparent;
+}
+
+.main-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* En-tête */
+.header-section {
+    -fx-background-color: linear-gradient(to right, #4a90e2, #67b26f);
+    -fx-padding: 40px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
+}
+
+.main-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+.subtitle {
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+/* Section recherche */
+.search-section {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-padding: 15;
+    -fx-spacing: 15;
+}
+
+/* Nouveau style pour le conteneur StackPane */
+.search-stack-container {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 25;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 25;
+    -fx-border-width: 1;
+    -fx-pref-width: 800px;
+}
+
+/* Style de l'icône de recherche */
+.search-icon {
+    -fx-font-size: 16px;
+    -fx-text-fill: #6c757d;
+}
+
+.modern-search {
+    -fx-background-color: transparent;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #6c757d;
+    -fx-padding: 8 15 8 40; /* Augmentation du padding gauche pour l'icône */
+    -fx-pref-height: 35px;
+    -fx-border-radius: 25;
+}
+
+.modern-search:focused {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent; /* Enlever la bordure de focus */
+}
+
+/* Quand le TextField est en focus, styliser le conteneur */
+.search-stack-container:focused-within {
+    -fx-border-color: #4a90e2;
+    -fx-border-width: 1.5;
+}
+
+.modern-combo {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 25;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 25;
+    -fx-border-width: 1;
+    -fx-font-size: 14px;
+    -fx-padding: 8 15;
+    -fx-pref-height: 35px;
+    -fx-min-width: 200px;
+}
+
+.modern-combo:focused {
+    -fx-border-color: #4a90e2;
+}
+
+.modern-combo .arrow-button {
+    -fx-background-color: transparent;
+}
+
+.modern-combo .arrow {
+    -fx-background-color: #4a90e2;
+}
+
+/* Boutons d'en-tête */
+.btn-panier, .btn-souhaits {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 20;
+    -fx-background-radius: 25;
+    -fx-cursor: hand;
+    -fx-pref-height: 35px;
+    -fx-min-width: 150px;
+}
+
+.btn-panier:hover, .btn-souhaits:hover {
+    -fx-background-color: #357abd;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
+}
+
+/* Zone de contenu */
+.content-scroll {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+.content-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.produits-container {
+    -fx-background-color: transparent;
+    -fx-padding: 30;
+    -fx-hgap: 30;
+    -fx-vgap: 30;
+    -fx-alignment: center;
+}
+
+/* Style des cartes de produit */
+.produit-card {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-min-width: 320;
+    -fx-max-width: 320;
+    -fx-min-height: 320;
+    -fx-max-height: 320;
+    -fx-cursor: hand;
+}
+
+.image-container {
+    -fx-background-color: white;
+    -fx-min-width: 320;
+    -fx-max-width: 320;
+    -fx-min-height: 320;
+    -fx-max-height: 320;
+}
+
+.produit-image {
+    -fx-background-color: white;
+}
+
+/* Overlay au survol */
+.overlay-content {
+    -fx-background-color: rgba(0, 0, 0, 0.7);
+    -fx-padding: 20;
+    -fx-alignment: center;
+    -fx-min-width: 320;
+    -fx-max-width: 320;
+    -fx-min-height: 320;
+    -fx-max-height: 320;
+    -fx-spacing: 15;
+    -fx-opacity: 0;
+    -fx-transition: all 0.3s ease-in-out;
+}
+
+.produit-card:hover .overlay-content {
+    -fx-opacity: 1;
+}
+
+.overlay-prix {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Boutons de l'overlay */
+.overlay-btn-ajouter {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-radius: 50%;
+    -fx-min-width: 50;
+    -fx-min-height: 50;
+    -fx-max-width: 50;
+    -fx-max-height: 50;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+}
+
+.overlay-btn-ajouter:hover {
+    -fx-background-color: #357abd;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.3), 10, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+.overlay-btn-souhaiter, .overlay-btn-details {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-background-radius: 50%;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-max-width: 40;
+    -fx-max-height: 40;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+    -fx-transition: all 0.2s ease-in-out;
+}
+
+.overlay-btn-souhaiter:hover {
+    -fx-background-color: #ff4757;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.3), 10, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-text-fill: white;
+}
+
+.overlay-btn-details:hover {
+    -fx-background-color: #70a1ff;
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.3), 10, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+    -fx-text-fill: white;
+}
+
+/* ScrollPane customization */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-unit-increment: 20;
+    -fx-block-increment: 100;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .thumb,
+.scroll-bar:horizontal .thumb {
+    -fx-background-color: #3498db;
+    -fx-background-radius: 5px;
+}
+
+.scroll-bar:vertical .thumb:hover,
+.scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #2980b9;
+}

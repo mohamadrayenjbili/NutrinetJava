@@ -1,12 +1,16 @@
-
 package services.Commande;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import models.Commande;
 import models.Produit;
-
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class CommandeService implements ICommandeService {
@@ -129,7 +133,8 @@ public class CommandeService implements ICommandeService {
 
     // Méthode pour ajouter un produit à une commande
     public void ajouterProduitACommande(int commandeId, int produitId) throws SQLException {
-        String query = "INSERT INTO commande_boutique (commande_id, boutique_id) VALUES (?, ?)";
+        String query = "INSERT INTO commande_boutique (commande_id, boutique_id, quantite) VALUES (?, ?, 1) " +
+                "ON DUPLICATE KEY UPDATE quantite = quantite + 1";
 
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {

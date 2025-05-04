@@ -2,8 +2,8 @@ package utils;
 
 import models.User;
 
-public class session {
-    private static User currentUser;
+public class    session {
+    private static User currentUser = null;
 
     public static void setCurrentUser(User user) {
         currentUser = user;
@@ -17,4 +17,7 @@ public class session {
         currentUser = null;
     }
 
+    public static boolean isLoggedIn() {
+        return currentUser != null;
+    }
 }

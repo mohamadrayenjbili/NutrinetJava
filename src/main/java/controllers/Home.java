@@ -18,13 +18,20 @@ public class Home extends Application {
     public void start(Stage stage) {
         try {
 
-            Parent root = FXMLLoader.load(getClass().getResource("/AfficherObjective.fxml"));
+
+
+
+            Parent root = FXMLLoader.load(getClass().getResource("/Produit/AfficherProduitFront.fxml"));
+
+
 
             Scene scene = new Scene(root);
+            stage.setTitle("welcome ");
+            scene.getStylesheets().add(getClass().getResource("/Programme/modern_list.css").toExternalForm());
             stage.setTitle("Ajouter Consultation");
 
             // 🔥 Ajout de l'icône
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/Nutrinet.png")));
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/app_logo.png")));
 
             stage.setScene(scene);
             stage.show();

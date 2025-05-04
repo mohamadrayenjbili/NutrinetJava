@@ -1,20 +1,31 @@
 package controllers.user;
 
-import javafx.fxml.Initializable;
-import models.User;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
+import javafx.stage.Stage;
+import models.User;
+import services.CaptchaService;
+import services.user.UserService;
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.ResourceBundle;
-import services.user.UserService;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class sign_upController implements Initializable {
 
@@ -39,6 +50,38 @@ public class sign_upController implements Initializable {
     @FXML private Label roleErrorLabel;
     @FXML private Label generalErrorLabel;
 
+    @FXML private ImageView captchaImageView;
+    @FXML private TextField captchaTextField;
+
+    private String currentCaptchaId;
+
+    public class PasswordUtils {
+        public static String hashPassword(String password) {
+            try {
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                byte[] hashBytes = md.digest(password.getBytes());
+                StringBuilder sb = new StringBuilder();
+                for (byte b : hashBytes) {
+                    sb.append(String.format("%02x", b));
+                }
+                return sb.toString();
+            } catch (NoSuchAlgorithmException e) {
+                throw new RuntimeException("Erreur lors du hachage du mot de passe", e);
+            }
+        }
+    }
+
+    @FXML
+    private void generateCaptcha() {
+        Map<String, String> captchaData = CaptchaService.generateCaptcha();
+        currentCaptchaId = captchaData.get("captchaId");
+        String base64Image = captchaData.get("base64Image");
+
+        // Afficher l'image du captcha
+        Image captchaImage = new Image(base64Image);
+        captchaImageView.setImage(captchaImage);
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         roleComboBox.setValue("client");
@@ -53,6 +96,8 @@ public class sign_upController implements Initializable {
         addressTextField.textProperty().addListener((observable, oldValue, newValue) -> addressErrorLabel.setText(""));
         datePicker.valueProperty().addListener((observable, oldValue, newValue) -> dateErrorLabel.setText(""));
         roleComboBox.valueProperty().addListener((observable, oldValue, newValue) -> roleErrorLabel.setText(""));
+
+        generateCaptcha();
     }
 
     private void clearErrorLabels() {
@@ -90,7 +135,28 @@ public class sign_upController implements Initializable {
 
     @FXML
     void goToSignIn(ActionEvent event) {
-        // Implement navigation to sign-in screen
+        try {
+            // Charger le fichier FXML de l'écran de connexion
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/sign_in.fxml"));
+            Parent root = loader.load();
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Remplacer la scène par celle de l'écran de connexion
+            stage.setScene(new Scene(root));
+            stage.setTitle("Sign In");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de l'écran de connexion.");
+        }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
@@ -178,6 +244,13 @@ public class sign_upController implements Initializable {
             hasErrors = true;
         }
 
+        // Validation du captcha
+        String userCaptchaInput = captchaTextField.getText().trim();
+        if (currentCaptchaId == null || !CaptchaService.validateCaptcha(currentCaptchaId, userCaptchaInput)) {
+            generalErrorLabel.setText("Captcha invalide ou expiré");
+            hasErrors = true;
+        }
+
         if (hasErrors) {
             return;
         }
@@ -186,11 +259,13 @@ public class sign_upController implements Initializable {
             int age = Integer.parseInt(ageText);
             Date sqlDate = Date.valueOf(selectedDate);
 
-            User user = new User(0, nom, prenom, email, password, age, phone, address, role, "0", sqlDate);
+            String hashedPassword = PasswordUtils.hashPassword(password);
+            User user = new User(0, nom, prenom, email, hashedPassword, age, phone, address, role, "0", sqlDate);
             userService.addUser(user);
 
             showSuccessAlert("Utilisateur enregistré avec succès !");
             clearFields();
+            generateCaptcha();
 
         } catch (Exception e) {
             e.printStackTrace();
