@@ -38,7 +38,36 @@ public class ChangePassController {
         // Générer le lien de réinitialisation
         String resetLink = "http://127.0.0.1:8000/user/update-password/" + userId;
         String subject = "Réinitialisation de votre mot de passe";
-        String body = "Bonjour,\n\nCliquez sur le lien suivant pour réinitialiser votre mot de passe :\n" + resetLink + "\n\nCordialement,\nL'équipe MyApp";
+        String body = "<html>" +
+                "<head>" +
+                "<style>" +
+                "body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }" +
+                ".container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; background-color: #f9f9f9; }" +
+                ".header { text-align: center; padding: 10px 0; }" +
+                ".header h1 { color: #4CAF50; }" +
+                ".content { margin-top: 20px; }" +
+                ".content p { margin: 10px 0; }" +
+                ".footer { margin-top: 20px; text-align: center; font-size: 12px; color: #777; }" +
+                "a { color: #4CAF50; text-decoration: none; }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<div class='container'>" +
+                "<div class='header'>" +
+                "<h1>Réinitialisation de votre mot de passe</h1>" +
+                "</div>" +
+                "<div class='content'>" +
+                "<p>Bonjour,</p>" +
+                "<p>Cliquez sur le lien ci-dessous pour réinitialiser votre mot de passe :</p>" +
+                "<p><a href='" + resetLink + "'>Réinitialiser mon mot de passe</a></p>" +
+                "<p>Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet email.</p>" +
+                "</div>" +
+                "<div class='footer'>" +
+                "<p>&copy; 2025 Nutrinet. Tous droits réservés.</p>" +
+                "</div>" +
+                "</div>" +
+                "</body>" +
+                "</html>";
 
         // Envoyer l'email
         boolean emailSent = EmailService.sendEmail(email, subject, body);

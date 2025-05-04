@@ -3,17 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="controllers.Produit.AfficherProduitsFrontController"
       styleClass="root-container"
-      prefWidth="1200" prefHeight="800">
+      prefWidth="1200" prefHeight="800"
+      stylesheets="@../styles/produits.css">
 
     <!-- En-tête avec fond gradient -->
     <StackPane styleClass="header-section">
         <VBox spacing="30" alignment="CENTER">
-            <Label text="🛍️ Découvrez nos Produits" styleClass="main-title"/>
+            <Label text="🛍 Découvrez nos Produits" styleClass="main-title"/>
             <Label text="Des produits de qualité pour votre bien-être" styleClass="subtitle"/>
         </VBox>
     </StackPane>
@@ -23,15 +26,27 @@
         <padding>
             <Insets top="15" right="20" bottom="15" left="20"/>
         </padding>
-        <HBox styleClass="search-box" HBox.hgrow="ALWAYS">
-            <TextField fx:id="searchField" promptText="🔍 Rechercher un produit..."
+
+        <!-- StackPane pour contenir la barre de recherche et l'icône -->
+        <StackPane styleClass="search-stack-container" HBox.hgrow="ALWAYS">
+            <!-- TextField pour la recherche -->
+            <TextField fx:id="searchField" promptText="Rechercher un produit..."
                        styleClass="modern-search"/>
-        </HBox>
+
+            <!-- Icône de recherche à gauche -->
+            <HBox alignment="CENTER_LEFT" pickOnBounds="false">
+                <padding>
+                    <Insets left="15"/>
+                </padding>
+                <Label text="🔍" styleClass="search-icon"/>
+            </HBox>
+        </StackPane>
+
         <ComboBox fx:id="filterComboBox" promptText="🔖 Filtrer par catégorie"
                   styleClass="modern-combo"/>
         <Button fx:id="btnVoirPanier" text="🛒 Voir le panier" onAction="#navigateToPanier"
                 styleClass="btn-panier"/>
-        <Button fx:id="btnListeSouhaits" text="❤️ Liste de souhaits" onAction="#navigateToListeSouhaits"
+        <Button fx:id="btnListeSouhaits" text="❤ Liste de souhaits" onAction="#navigateToListeSouhaits"
                 styleClass="btn-souhaits"/>
     </HBox>
 

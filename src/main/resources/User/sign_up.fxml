@@ -221,6 +221,22 @@
                   <Font size="13.0" />
                </font>
             </Button>
+
+            <VBox spacing="5" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="5">
+               <Label text="Captcha" style="-fx-text-fill: #1b5e20; -fx-font-weight: bold;">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </Label>
+               <ImageView fx:id="captchaImageView" fitWidth="200" fitHeight="80" />
+               <TextField fx:id="captchaTextField" promptText="Enter the captcha"
+                          style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #a5d6a7; -fx-border-width: 1; -fx-padding: 8 12; -fx-background-color: white;">
+                  <font>
+                     <Font size="12.0" />
+                  </font>
+               </TextField>
+            </VBox>
+
             <Button text="CREATE ACCOUNT" onAction="#adduser"
                     style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);">
                <font>

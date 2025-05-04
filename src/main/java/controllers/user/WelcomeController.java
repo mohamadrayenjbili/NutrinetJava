@@ -94,6 +94,7 @@ public class WelcomeController {
 
     @FXML
 
+
             private void goToAfficherProduitFront() {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AfficherProduitFront.fxml"));

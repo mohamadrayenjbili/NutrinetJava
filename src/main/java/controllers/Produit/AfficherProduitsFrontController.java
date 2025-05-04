@@ -14,17 +14,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.effect.DropShadow;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import models.Produit;
 import models.User;
@@ -59,10 +61,20 @@ public class AfficherProduitsFrontController implements Initializable {
         // Charger le CSS
         String cssPath = getClass().getResource("/Produit/listdidou.css").toExternalForm();
         flowProduits.getStylesheets().add(cssPath);
+        
+        // Ajouter le CSS de FontAwesome
+        String fontAwesomePath = getClass().getResource("/styles/fontawesome.css").toExternalForm();
+        flowProduits.getStylesheets().add(fontAwesomePath);
+        
         // Appliquer le CSS à la scène entière
         flowProduits.sceneProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null && !newValue.getStylesheets().contains(cssPath)) {
-                newValue.getStylesheets().add(cssPath);
+            if (newValue != null) {
+                if (!newValue.getStylesheets().contains(cssPath)) {
+                    newValue.getStylesheets().add(cssPath);
+                }
+                if (!newValue.getStylesheets().contains(fontAwesomePath)) {
+                    newValue.getStylesheets().add(fontAwesomePath);
+                }
             }
         });
 
@@ -112,8 +124,14 @@ public class AfficherProduitsFrontController implements Initializable {
     }
 
     private VBox createProduitCard(Produit produit) {
-        VBox card = new VBox();
+        // Container principal
+        StackPane card = new StackPane();
         card.getStyleClass().add("produit-card");
+
+        // Image container
+        VBox imageContainer = new VBox();
+        imageContainer.getStyleClass().add("image-container");
+        imageContainer.setAlignment(javafx.geometry.Pos.CENTER);
 
         // Image
         ImageView imageView = new ImageView();
@@ -122,73 +140,65 @@ public class AfficherProduitsFrontController implements Initializable {
         } catch (Exception ex) {
             imageView.setImage(new Image("file:src/main/resources/images/default_produit.png"));
         }
-        imageView.setFitWidth(280);
-        imageView.setFitHeight(180);
+        imageView.setFitWidth(300);
+        imageView.setFitHeight(300);
         imageView.setPreserveRatio(false);
-        imageView.getStyleClass().add("card-image");
+        imageView.getStyleClass().add("produit-image");
 
-        // Contenu
-        VBox content = new VBox(10);
-        content.getStyleClass().add("card-content");
+        imageContainer.getChildren().add(imageView);
 
-        Label titleLabel = new Label(produit.getNomProduit());
-        titleLabel.getStyleClass().add("card-title");
+        // Overlay container pour les boutons (initialement invisible)
+        VBox overlayContent = new VBox(10);
+        overlayContent.getStyleClass().add("overlay-content");
+        overlayContent.setAlignment(javafx.geometry.Pos.CENTER);
+        overlayContent.setVisible(false);
 
+        // Prix
         Label priceLabel = new Label(String.format("%.2f €", produit.getPrix()));
-        priceLabel.getStyleClass().add("card-price");
+        priceLabel.getStyleClass().add("overlay-prix");
 
-        Label categoryLabel = new Label("🏷 " + produit.getCategorie());
-        categoryLabel.getStyleClass().add("card-category");
+        // Boutons
+        VBox buttonBox = new VBox(8);
+        buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
+        buttonBox.setSpacing(10);
 
-        Label stockLabel = new Label(produit.getStock() > 0 ? "📦 En stock: " + produit.getStock() : "❌ Hors stock");
-        stockLabel.getStyleClass().add(produit.getStock() > 0 ? "card-stock" : "card-stock-warning");
-
-        // Spinner de quantité
-        Spinner<Integer> spinnerQuantite = new Spinner<>();
-        if (produit.getStock() > 0) {
-            spinnerQuantite.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, produit.getStock(), 1));
-        } else {
-            spinnerQuantite.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 0, 0));
-        }
-        spinnerQuantite.getStyleClass().add("quantity-spinner");
-        spinnerQuantite.setDisable(produit.getStock() <= 0);
-
-        // Boutons d'action
-        HBox buttonBox = new HBox(10);
-        buttonBox.getStyleClass().add("action-buttons");
-
-        Button btnAjouter = new Button("🛒 Ajouter");
-        btnAjouter.getStyleClass().add("btn-ajouter");
+        // Bouton Ajouter
+        Button btnAjouter = new Button("🛒");
+        btnAjouter.getStyleClass().add("overlay-btn-ajouter");
         btnAjouter.setDisable(produit.getStock() <= 0);
 
-        Button btnDetails = new Button("👁️ Détails");
-        btnDetails.getStyleClass().add("btn-details");
+        // Boutons secondaires
+        HBox buttonsContainer = new HBox(10);
+        buttonsContainer.setAlignment(javafx.geometry.Pos.CENTER);
 
-        Button btnSouhaits = new Button("❤️ Souhaits");
-        btnSouhaits.getStyleClass().add("btn-souhaits");
+        Button btnSouhaiter = new Button("♥");
+        btnSouhaiter.getStyleClass().add("overlay-btn-souhaiter");
 
-        buttonBox.getChildren().addAll(btnAjouter, btnDetails, btnSouhaits);
+        Button btnDetails = new Button("👁");
+        btnDetails.getStyleClass().add("overlay-btn-details");
 
-        // Actions des boutons
-        btnAjouter.setOnAction(e -> handleAjouterPanier(produit, spinnerQuantite.getValue()));
-        btnDetails.setOnAction(e -> navigateToDetailProduit(produit));
-        btnSouhaits.setOnAction(e -> handleAjouterSouhaits(produit));
+        buttonsContainer.getChildren().addAll(btnSouhaiter, btnDetails);
+        buttonBox.getChildren().addAll(btnAjouter, buttonsContainer);
+        overlayContent.getChildren().addAll(priceLabel, buttonBox);
 
-        content.getChildren().addAll(titleLabel, priceLabel, categoryLabel, stockLabel, spinnerQuantite, buttonBox);
-        card.getChildren().addAll(imageView, content);
+        // Ajouter les conteneurs au StackPane
+        card.getChildren().addAll(imageContainer, overlayContent);
 
-        // Animation au survol
+        // Événements de survol
         card.setOnMouseEntered(e -> {
-            card.setEffect(new DropShadow(20, Color.rgb(0, 0, 0, 0.2)));
-            card.setTranslateY(-2);
+            overlayContent.setVisible(true);
         });
 
         card.setOnMouseExited(e -> {
-            card.setEffect(new DropShadow(10, Color.rgb(0, 0, 0, 0.1)));
-            card.setTranslateY(0);
+            overlayContent.setVisible(false);
         });
 
-        return card;
+        // Actions des boutons
+        btnAjouter.setOnAction(e -> handleAjouterPanier(produit, 1));
+        btnSouhaiter.setOnAction(e -> handleAjouterSouhaits(produit));
+        btnDetails.setOnAction(e -> navigateToDetailProduit(produit));
+
+        return new VBox(card);
     }
 
     private void handleAjouterPanier(Produit produit, int quantite) {
