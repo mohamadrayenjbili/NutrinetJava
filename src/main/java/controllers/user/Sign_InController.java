@@ -65,7 +65,6 @@ public class Sign_InController {
                 return;
             }
 
-            // Rediriger en fonction du rôle
             String fxmlPath;
             String title;
 
