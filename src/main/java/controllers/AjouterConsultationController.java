@@ -215,9 +215,9 @@ public class AjouterConsultationController {
     }
 
     @FXML
-    private void goToDetailsConsultation(ActionEvent event) {
+    private void goToDetailsClient(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("DetailsConsultation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("DetailsClient.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

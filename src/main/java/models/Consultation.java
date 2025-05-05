@@ -2,7 +2,7 @@ package models;
 
 
 
-import java.time.LocalDate;
+import java.time.DateTimeException;
 import java.time.LocalDateTime;
 
 public class Consultation {
@@ -12,7 +12,7 @@ public class Consultation {
     private int tel;
     private String mail;
     private String type;
-    private LocalDateTime date;
+    private  LocalDateTime date;
     private String note;
     private Integer userId;
     private String status;
@@ -92,7 +92,6 @@ public class Consultation {
     public void setDate(LocalDateTime date) {
         this.date = date;
     }
-
     public String getNote() {
         return note;
     }

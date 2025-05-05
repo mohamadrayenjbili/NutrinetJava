@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list>
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
@@ -26,6 +27,7 @@
         <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
+
         <option value="CSS File" />
       </list>
     </option>
@@ -38,6 +40,7 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+
   <component name="GitHubPullRequestSearchHistory">
     <option name="lastFilter">
       <map>
@@ -79,6 +82,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
@@ -133,6 +137,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744653565488</updated>
+
     </task>
     <option name="localTasksCounter" value="16" />
     <servers />
@@ -152,6 +157,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+
     <MESSAGE value="correction des erreurs" />
     <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
   </component>
