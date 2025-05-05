@@ -21,7 +21,7 @@ public class Home extends Application {
 
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("/Produit/AjouterProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/produit/ModifierPRoduit.fxml"));
 
 
 

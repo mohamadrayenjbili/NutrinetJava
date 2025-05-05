@@ -225,7 +225,7 @@ public class ModifierProduitController implements Initializable {
     @FXML
     private void handleVoirDetails(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Produit/DetailProduit.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/Produit/AjouterProduit.fxml"));
             Stage stage = (Stage) btnVoirDetails.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Liste des Produits");

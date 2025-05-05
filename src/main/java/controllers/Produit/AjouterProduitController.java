@@ -54,6 +54,8 @@ public class AjouterProduitController implements Initializable {
     @FXML private Label lblStockError;
     @FXML private Label lblCategorieError;
     @FXML private Button btnCodePromo;
+    @FXML private Button btnModifierProduit;
+
     @FXML private VBox sidebar;
     @FXML private Button toggleSidebarBtn;
     @FXML private VBox mainContent;
@@ -420,6 +422,20 @@ public class AjouterProduitController implements Initializable {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void handleModifierProduit(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/ModifierProduit.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnModifierProduit.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Modification Des Produits");
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d'ouvrir Produit/ModifierProduit.fxml : " + e.getMessage());
         }
     }
 

@@ -180,9 +180,12 @@
         <ImageView fx:id="imagePreview" fitWidth="150" fitHeight="150" styleClass="image-preview"/>
 
         <HBox spacing="10" alignment="CENTER">
-            <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler" styleClass="btn-secondary"/>
             <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter" styleClass="btn-primary"/>
             <Button fx:id="btnCodePromo" text="Ajouter un code promo" onAction="#handleCodePromo" styleClass="btn-secondary"/>
+            <Button fx:id="btnModifierProduit" text="Modifier les Produits" onAction="#handleModifierProduit" styleClass="btn-secondary"/>
+            <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler" styleClass="btn-secondary"/>
+
+
         </HBox>
     </VBox>
 </AnchorPane>
