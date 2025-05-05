@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-
-
+    <list>
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
@@ -41,34 +38,39 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Seiffaress&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
-
-    &quot;accountId&quot;: &quot;21f38e0d-9eb4-4540-992f-be9be6ea3dfd&quot;
-  },
-  &quot;recentNewPullRequestHead&quot;: {
-    &quot;server&quot;: {
-      &quot;useHttp&quot;: false,
-      &quot;host&quot;: &quot;github.com&quot;,
-      &quot;port&quot;: null,
-      &quot;suffix&quot;: null
-    },
-    &quot;owner&quot;: &quot;mohamadrayenjbili&quot;,
-    &quot;repository&quot;: &quot;NutrinetJava&quot;
-  }
-}</component>
+  <component name="GitHubPullRequestSearchHistory">
+    <option name="lastFilter">
+      <map>
+        <entry key="state" value="OPEN" />
+        <entry key="assignee" value="Seiffaress" />
+      </map>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <map>
+        <entry key="url" value="https://github.com/mohamadrayenjbili/NutrinetJava.git" />
+        <entry key="accountId" value="21f38e0d-9eb4-4540-992f-be9be6ea3dfd" />
+      </map>
+    </option>
+    <option name="recentNewPullRequestHead">
+      <map>
+        <entry key="server">
+          <map>
+            <entry key="useHttp" value="false" />
+            <entry key="host" value="github.com" />
+          </map>
+        </entry>
+        <entry key="owner" value="mohamadrayenjbili" />
+        <entry key="repository" value="NutrinetJava" />
+      </map>
+    </option>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
-}</component>
+  <component name="ProjectColorInfo">
+    <option name="customColor" value="" />
+    <option name="associatedIndex" value="3" />
+  </component>
   <component name="ProjectId" id="2vjLVz5nxdYYWSmLB6pyrohDl06" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -77,11 +79,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
-
-
-  }
-}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
@@ -112,14 +109,6 @@
                 <option value="javafx:run" />
               </list>
             </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
-            </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$" />
           </MavenRunnerParameters>
@@ -131,7 +120,6 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-
         <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
         <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
@@ -145,140 +133,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744653565488</updated>
-      <workItem from="1744653567001" duration="347000" />
-      <workItem from="1744654025583" duration="2207000" />
-      <workItem from="1744656294428" duration="2476000" />
-      <workItem from="1744659215422" duration="5616000" />
-      <workItem from="1744815871260" duration="3000" />
-      <workItem from="1744815889189" duration="7043000" />
-      <workItem from="1745234813505" duration="108000" />
-      <workItem from="1745234963020" duration="323000" />
-
-      <workItem from="1745840123197" duration="1441000" />
-      <workItem from="1745850042166" duration="5971000" />
-      <workItem from="1745870298665" duration="8785000" />
-
-      <workItem from="1746032191319" duration="2530000" />
-      <workItem from="1746035251135" duration="1157000" />
-      <workItem from="1746036644141" duration="1794000" />
-      <workItem from="1746040573212" duration="6713000" />
-      <workItem from="1746152900476" duration="1291000" />
-      <workItem from="1746179569410" duration="20000" />
-    </task>
-    <task id="LOCAL-00001" summary="seif crud +metiers">
-      <option name="closed" value="true" />
-      <created>1745235102821</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1745235102821</updated>
-    </task>
-    <task id="LOCAL-00002" summary="seif crud +metiers">
-      <option name="closed" value="true" />
-      <created>1745235278868</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1745235278868</updated>
-    </task>
-    <task id="LOCAL-00003" summary="first api (stripe)">
-      <option name="closed" value="true" />
-      <created>1745591891743</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1745591891743</updated>
-    </task>
-    <task id="LOCAL-00004" summary="first api (stripe)">
-      <option name="closed" value="true" />
-      <created>1745592070476</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1745592070476</updated>
-    </task>
-    <task id="LOCAL-00005" summary="first api (stripe) paiement">
-      <option name="closed" value="true" />
-      <created>1745592098479</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1745592098479</updated>
-    </task>
-    <task id="LOCAL-00006" summary="ajout de session de connexion avec user">
-      <option name="closed" value="true" />
-      <created>1745598846372</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1745598846372</updated>
-    </task>
-    <task id="LOCAL-00007" summary="ajout du code promo">
-      <option name="closed" value="true" />
-      <created>1745604311886</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1745604311886</updated>
-    </task>
-    <task id="LOCAL-00008" summary="ajout logo/diminution du stock">
-      <option name="closed" value="true" />
-      <created>1745631478390</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1745631478390</updated>
-    </task>
-
-    <task id="LOCAL-00009" summary="fixer les erreurs d'aout du commande">
-      <option name="closed" value="true" />
-      <created>1745771155855</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1745771155855</updated>
-    </task>
-    <task id="LOCAL-00010" summary="fixer detail">
-      <option name="closed" value="true" />
-      <created>1745774048691</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1745774048691</updated>
-    </task>
-    <task id="LOCAL-00011" summary="ajout du mail">
-      <option name="closed" value="true" />
-      <created>1745789508740</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1745789508741</updated>
-    </task>
-    <task id="LOCAL-00012" summary="ajout du mail">
-      <option name="closed" value="true" />
-      <created>1745862479052</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1745862479052</updated>
-    </task>
-    <task id="LOCAL-00013" summary="modification interfaceFront">
-      <option name="closed" value="true" />
-      <created>1745864737994</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1745864737994</updated>
-    </task>
-    <task id="LOCAL-00014" summary="modification interface-back">
-      <option name="closed" value="true" />
-      <created>1745880855631</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1745880855631</updated>
-    </task>
-
     </task>
     <option name="localTasksCounter" value="16" />
     <servers />
@@ -298,23 +152,8 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="seif crud +metiers" />
-    <MESSAGE value="first api (stripe)" />
-    <MESSAGE value="first api (stripe) paiement" />
-    <MESSAGE value="ajout de session de connexion avec user" />
-    <MESSAGE value="ajout du code promo" />
-    <MESSAGE value="ajout logo/diminution du stock" />
-
-    <MESSAGE value="fixer les erreurs d'aout du commande" />
-    <MESSAGE value="fixer detail" />
-    <MESSAGE value="modification interfaceFront" />
-    <MESSAGE value="modification interface-back" />
     <MESSAGE value="correction des erreurs" />
-
     <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
-    <MESSAGE value="seif crud +metiers" />
-    <MESSAGE value="integration seif" />
-    <option name="LAST_COMMIT_MESSAGE" value="integration seif" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
