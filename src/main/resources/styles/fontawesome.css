@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('../fonts/fontawesome-webfont.ttf');
+}
+
+.fas {
+    -fx-font-family: 'FontAwesome';
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+}
+
+.icon-cart {
+    -fx-font-size: 24px;
+}
+
+.icon-heart {
+    -fx-text-fill: white;
+}
+
+.icon-eye {
+    -fx-text-fill: white;
+}
+
+/* Animation des icônes au survol */
+.overlay-btn-souhaiter:hover .icon-heart {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-text-fill: #ff4757;
+}
+
+.overlay-btn-details:hover .icon-eye {
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+}
+
+.overlay-btn-ajouter:hover .icon-cart {
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
