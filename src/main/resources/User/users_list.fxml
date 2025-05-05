@@ -7,6 +7,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
 
+<?import javafx.scene.chart.PieChart?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.user.userlistcontroller"
@@ -46,6 +47,50 @@
 
         <Separator prefWidth="200" style="-fx-background-color: #c8e6c9;" />
 
+        <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 2);">
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-background-radius: 25; -fx-padding: 5 15;">
+                <ImageView fitWidth="20" fitHeight="20">
+                    <Image url="@/images/search.png"/>
+                </ImageView>
+                <TextField fx:id="searchField" promptText="Rechercher par nom..." prefWidth="300"
+                           style="-fx-background-color: transparent; -fx-font-size: 14;">
+                    <HBox.margin>
+                        <Insets left="10"/>
+                    </HBox.margin>
+                </TextField>
+            </HBox>
+
+            <ComboBox fx:id="roleFilter" promptText="Filtrer par rôle" prefWidth="200"
+                      style="-fx-background-color: #f8f9fa; -fx-background-radius: 25; -fx-font-size: 14; -fx-padding: 5;">
+            </ComboBox>
+
+            <Button text="Réinitialiser" onAction="#resetFilters"
+                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-background-radius: 25; -fx-font-size: 14; -fx-padding: 8 20;">
+                <graphic>
+                    <ImageView fitWidth="16" fitHeight="16">
+                        <Image url="@/images/reset.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <!-- _________________________stats________________________ -->
+        <HBox spacing="20" style="-fx-padding: 10;">
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;">
+                <Label text="Statistiques des utilisateurs" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                <PieChart fx:id="userStatsChart" prefHeight="200" prefWidth="300"/>
+            </VBox>
+            <VBox spacing="10" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10;">
+                <Label text="Résumé" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+                <GridPane fx:id="statsGrid" vgap="5" hgap="10">
+                    <Label text="Total utilisateurs:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label fx:id="totalUsersLabel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Utilisateurs bannis:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                    <Label fx:id="bannedUsersLabel" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                </GridPane>
+            </VBox>
+        </HBox>
+
         <!-- User ListView (Styled) -->
         <ListView fx:id="usersListView" VBox.vgrow="ALWAYS"
                   style="-fx-background-radius: 5; -fx-border-radius: 5; -fx-border-color: #a5d6a7; -fx-border-width: 1; -fx-background-color: white;">
@@ -54,6 +99,12 @@
 
         <!-- Buttons Section -->
         <HBox spacing="15" alignment="CENTER_RIGHT">
+            <Button fx:id="banUserButton" text="BAN" onAction="#handleBanUser"
+                    style="-fx-background-color: #ff9800; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
             <Button fx:id="deleteUserButton" text="DELETE" onAction="#handleDeleteUser"
                     style="-fx-background-color: #f44336; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;">
                 <font>
@@ -66,8 +117,20 @@
                     <Font size="13.0" />
                 </font>
             </Button>
+            <Button text="LOG HISTORY" onAction="#navigateToLogHistory"
+                    style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
             <Button text="ADD USER" onAction="#navigateToAddUserForm"
                     style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 1);">
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+            <Button text="BACK" onAction="#handleBack"
+                    style="-fx-background-color: #666666; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;">
                 <font>
                     <Font size="13.0" />
                 </font>

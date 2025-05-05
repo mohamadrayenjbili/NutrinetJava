@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.CodePromo.CodePromoController"
+            prefWidth="600" prefHeight="450">
+
+    <VBox spacing="10" alignment="TOP_LEFT" AnchorPane.topAnchor="10" AnchorPane.leftAnchor="10"
+          AnchorPane.rightAnchor="10" AnchorPane.bottomAnchor="10">
+        <children>
+            <Label text="Créer / Modifier / Supprimer un Code Promo" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <Label text="Code Promo:" />
+            <TextField fx:id="txtCode" promptText="EX: SPRING2025" />
+
+            <Label text="Pourcentage de remise:" />
+            <TextField fx:id="txtPourcentage" promptText="Ex: 20" />
+
+            <CheckBox fx:id="chkActif" text="Actif" />
+
+            <HBox spacing="10">
+                <children>
+                    <Button fx:id="btnAjouter" text="Ajouter" onAction="#ajouterCodePromo" />
+                    <Button fx:id="btnModifier" text="Modifier" onAction="#modifierCodePromo" />
+                    <Button fx:id="btnSupprimer" text="Supprimer" onAction="#supprimerCodePromo" />
+                    <Button fx:id="btnAfficherTous" text="Afficher Tous" onAction="#afficherTousLesCodePromo" />
+                </children>
+            </HBox>
+
+            <TableView fx:id="tblCodePromo" prefHeight="200" prefWidth="580">
+                <columns>
+                    <TableColumn fx:id="colCode" text="Code Promo" />
+                    <TableColumn fx:id="colPourcentage" text="Pourcentage" />
+                    <TableColumn fx:id="colActif" text="Actif" />
+                </columns>
+            </TableView>
+
+            <Label fx:id="lblMessage" style="-fx-text-fill: green;" wrapText="true" />
+
+            <!-- 🔙 Bouton retour -->
+            <HBox alignment="CENTER_RIGHT">
+                <Button text="Retour" onAction="#retourVersAjouterProduit" />
+            </HBox>
+
+        </children>
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+    </VBox>
+</AnchorPane>

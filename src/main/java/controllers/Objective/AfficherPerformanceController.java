@@ -20,7 +20,6 @@ import models.Objective;
 import models.Performance;
 import services.IPerformanceService;
 import services.PerformanceService;
-import controllers.Objective.AfficherObjectiveController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -33,27 +32,22 @@ public class AfficherPerformanceController implements Initializable {
 
     @FXML
     private Label lblObjectiveName;
-
     @FXML
     private Label lblObjectiveDetails;
-
     @FXML
     private ListView<Performance> listPerformances;
-
     @FXML
     private TextField tfRecherche;
-
     @FXML
     private Button btnRecherche;
-
     @FXML
     private Button btnAjouter;
-
     @FXML
     private Button btnActualiser;
-
     @FXML
     private Button btnRetour;
+    @FXML
+    private Button btnGraphique;
 
     private IPerformanceService performanceService;
     private ObservableList<Performance> performancesList;
@@ -63,60 +57,26 @@ public class AfficherPerformanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         performanceService = new PerformanceService();
-
-        // Configuration de la ListView avec une cellule personnalisée
         listPerformances.setCellFactory(param -> new PerformanceListCell());
     }
 
     public void initData(Objective objective) {
         this.currentObjective = objective;
-
-        // Afficher les informations de l'objectif
-        lblObjectiveName.setText(objective.getName());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        lblObjectiveDetails.setText(String.format("Valeur cible: %.2f %s | Du %s au %s",
-                objective.getTargetValue(),
-                objective.getUnit(),
-                objective.getStartDate().format(formatter),
-                objective.getEndDate().format(formatter)));
-
-        // Charger les performances pour cet objectif
+        updateObjectiveInfo();
         chargerPerformances();
-
-        // Configurer la recherche
         setupSearch();
     }
 
-    private void setupSearch() {
-        // Initialiser la liste filtrée
-        filteredList = new FilteredList<>(performancesList, p -> true);
 
-        // Mettre à jour la ListView avec la liste filtrée
-        listPerformances.setItems(filteredList);
 
-        // Ajouter un listener pour filtrer automatiquement quand le texte de recherche change
-        tfRecherche.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredList.setPredicate(performance -> {
-                // Si le champ de recherche est vide, afficher toutes les performances
-                if (newValue == null || newValue.isEmpty()) {
-                    return true;
-                }
-
-                String lowerCaseFilter = newValue.toLowerCase();
-
-                // Rechercher par nom de métrique
-                if (performance.getMetricName().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-
-                // Rechercher par notes
-                if (performance.getNotes() != null && performance.getNotes().toLowerCase().contains(lowerCaseFilter)) {
-                    return true;
-                }
-
-                return false;
-            });
-        });
+    private void updateObjectiveInfo() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        lblObjectiveName.setText(currentObjective.getName());
+        lblObjectiveDetails.setText(String.format("Valeur cible: %.2f %s | Du %s au %s",
+                currentObjective.getTargetValue(),
+                currentObjective.getUnit(),
+                currentObjective.getStartDate().format(formatter),
+                currentObjective.getEndDate().format(formatter)))   ;
     }
 
     private void chargerPerformances() {
@@ -125,9 +85,25 @@ public class AfficherPerformanceController implements Initializable {
             performancesList = FXCollections.observableArrayList(performances);
             listPerformances.setItems(performancesList);
         } catch (SQLException e) {
-            e.printStackTrace();
             showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors du chargement des performances : " + e.getMessage());
         }
+    }
+
+    private void setupSearch() {
+        filteredList = new FilteredList<>(performancesList, p -> true);
+        listPerformances.setItems(filteredList);
+
+        tfRecherche.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredList.setPredicate(performance -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+
+                String lowerCaseFilter = newValue.toLowerCase();
+                return performance.getMetricName().toLowerCase().contains(lowerCaseFilter) ||
+                        (performance.getNotes() != null && performance.getNotes().toLowerCase().contains(lowerCaseFilter));
+            });
+        });
     }
 
     @FXML
@@ -138,26 +114,7 @@ public class AfficherPerformanceController implements Initializable {
 
     @FXML
     private void handleAjouter(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPerformance.fxml"));
-            Parent root = loader.load();
-
-            AjouterPerformanceController controller = loader.getController();
-            controller.initData(currentObjective);
-
-            Stage stage = new Stage();
-            stage.setTitle("Ajouter une performance");
-            stage.setScene(new Scene(root));
-            stage.setResizable(false);
-
-            stage.showAndWait();
-
-            // Rafraîchir la liste après ajout
-            chargerPerformances();
-        } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ouverture de la fenêtre d'ajout : " + e.getMessage());
-        }
+        openPerformanceWindow("/AjouterPerformance.fxml", "Ajouter une performance");
     }
 
     @FXML
@@ -167,23 +124,63 @@ public class AfficherPerformanceController implements Initializable {
     }
 
     @FXML
+    private void handleVoirGraphique(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PerformanceChart.fxml"));
+            Parent root = loader.load();
+
+            PerformanceChartController controller = loader.getController();
+            controller.initData(currentObjective);
+
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Graphique des Performances");
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d'ouvrir le graphique");
+        }
+    }
+
+    @FXML
     private void handleRetour(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherObjective.fxml"));
             Parent root = loader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Gestion des Objectifs");
             stage.setScene(new Scene(root));
-            stage.setResizable(true);
-
+            stage.setTitle("Gestion des Objectifs");
             stage.show();
 
-            // Fermer la fenêtre actuelle
             ((Stage) btnRetour.getScene().getWindow()).close();
         } catch (IOException e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors du retour aux objectifs : " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors du retour aux objectifs");
+        }
+    }
+
+    private void openPerformanceWindow(String fxmlFile, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+            Parent root = loader.load();
+
+            if (fxmlFile.equals("/AjouterPerformance.fxml")) {
+                AjouterPerformanceController controller = loader.getController();
+                controller.initData(currentObjective);
+            } else if (fxmlFile.equals("/PerformanceChart.fxml")) {
+                PerformanceChartController controller = loader.getController();
+                controller.initData(currentObjective);
+            }
+
+            Stage stage = new Stage();
+            stage.setTitle(title);
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+
+            chargerPerformances();
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ouverture de la fenêtre");
         }
     }
 
@@ -195,7 +192,6 @@ public class AfficherPerformanceController implements Initializable {
         alert.showAndWait();
     }
 
-    // Classe interne pour la cellule personnalisée de la ListView des performances
     private class PerformanceListCell extends ListCell<Performance> {
         private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 
@@ -207,23 +203,19 @@ public class AfficherPerformanceController implements Initializable {
                 setText(null);
                 setGraphic(null);
             } else {
-                // Création d'un conteneur pour les informations de la performance
                 VBox vbox = new VBox(5);
 
-                // Métrique et valeur
                 Label lblMetric = new Label(String.format("%s: %.2f %s",
                         performance.getMetricName(),
                         performance.getValue(),
                         performance.getUnit()));
                 lblMetric.setStyle("-fx-font-weight: bold; -fx-font-size: 14px;");
 
-                // Date et notes
                 Label lblDetails = new Label(String.format("Le %s | %s",
                         performance.getDate().format(formatter),
                         performance.getNotes() != null ? performance.getNotes() : ""));
                 lblDetails.setStyle("-fx-font-size: 12px;");
 
-                // Boutons d'action
                 Button btnModifier = new Button("Modifier");
                 btnModifier.setStyle("-fx-background-color: #f39c12; -fx-text-fill: white;");
                 btnModifier.setOnAction(e -> handleModifier(performance));
@@ -235,19 +227,15 @@ public class AfficherPerformanceController implements Initializable {
                 HBox buttons = new HBox(10, btnModifier, btnSupprimer);
                 buttons.setAlignment(Pos.CENTER_RIGHT);
 
-                // Espaceur
                 Region spacer = new Region();
                 HBox.setHgrow(spacer, Priority.ALWAYS);
 
-                // ID
                 Label lblId = new Label("ID: " + performance.getId());
                 lblId.setStyle("-fx-font-size: 12px; -fx-text-fill: #7f8c8d;");
 
-                // Conteneur horizontal pour ID et boutons
                 HBox bottomBox = new HBox(lblId, spacer, buttons);
                 bottomBox.setAlignment(Pos.CENTER_LEFT);
 
-                // Ajouter tous les éléments au conteneur vertical
                 vbox.getChildren().addAll(lblMetric, lblDetails, bottomBox);
                 vbox.setStyle("-fx-padding: 5; -fx-border-color: #ecf0f1; -fx-border-width: 0 0 1 0;");
 
@@ -266,15 +254,11 @@ public class AfficherPerformanceController implements Initializable {
                 Stage stage = new Stage();
                 stage.setTitle("Modifier une performance");
                 stage.setScene(new Scene(root));
-                stage.setResizable(false);
-
                 stage.showAndWait();
 
-                // Rafraîchir la liste après modification
                 chargerPerformances();
             } catch (IOException e) {
-                e.printStackTrace();
-                showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ouverture de la fenêtre de modification : " + e.getMessage());
+                showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de l'ouverture de la fenêtre de modification");
             }
         }
 
@@ -284,13 +268,12 @@ public class AfficherPerformanceController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Êtes-vous sûr de vouloir supprimer cette performance ?");
 
-            if (alert.showAndWait().get() == ButtonType.OK) {
+            if (alert.showAndWait().orElse(ButtonType.CANCEL) == ButtonType.OK) {
                 try {
                     performanceService.deletePerformance(performance.getId());
                     chargerPerformances();
                 } catch (SQLException e) {
-                    e.printStackTrace();
-                    showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de la suppression : " + e.getMessage());
+                    showAlert(Alert.AlertType.ERROR, "Erreur", "Erreur lors de la suppression");
                 }
             }
         }

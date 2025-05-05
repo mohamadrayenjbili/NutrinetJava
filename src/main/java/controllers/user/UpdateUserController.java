@@ -1,15 +1,18 @@
 package controllers.user;
 
-import javafx.scene.Parent;
-import models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
-import services.user.updateservice;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import models.User;
+import services.user.updateservice;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -26,7 +29,6 @@ public class UpdateUserController {
 
     public void setUser(User user) {
         this.userToUpdate = user;
-        // Pré-remplir les champs avec les données de l'utilisateur
         nomTextField.setText(user.getName());
         prenomTextField.setText(user.getPrename());
         ageTextField.setText(String.valueOf(user.getAge()));
@@ -36,7 +38,6 @@ public class UpdateUserController {
 
     @FXML
     private void handleUpdateUser(ActionEvent event) {
-        // Mettre à jour les valeurs
         userToUpdate.setName(nomTextField.getText());
         userToUpdate.setPrename(prenomTextField.getText());
         userToUpdate.setAge(Integer.parseInt(ageTextField.getText()));
@@ -46,27 +47,30 @@ public class UpdateUserController {
         try {
             updateservice.updateUser(userToUpdate);
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/users_list.fxml"));
+            User currentUser = utils.session.getCurrentUser();
+            String fxmlPath = (currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole()))
+                    ? "/user/users_list.fxml"
+                    : "/user/profile.fxml";
 
-            // Créer la nouvelle scène
-            Scene scene = new Scene(loader.load());
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
 
-            // Charger le contrôleur et mettre à jour la liste des utilisateurs
-            controllers.user.userlistcontroller controller = loader.getController();
-            controller.loadUsers();
+            if (currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole())) {
+                userlistcontroller controller = loader.getController();
+                controller.loadUsers();
+            }
 
-            // Récupérer la fenêtre actuelle et changer la scène
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle("Users List");
+            stage.setScene(new Scene(root));
+            stage.setTitle(currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole()) ? "Users List" : "Profile");
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de la vue de la liste des utilisateurs : " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de la vue : " + e.getMessage());
         } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(Alert.AlertType.ERROR, "Erreur lors de la mise à jour de l'utilisateur.");
+            e.printStackTrace(); // Log l'exception complète
+            showAlert(Alert.AlertType.ERROR, "Erreur lors de la mise à jour de l'utilisateur : " + e.getMessage());
         }
     }
 
@@ -81,7 +85,7 @@ public class UpdateUserController {
         User currentUser = utils.session.getCurrentUser();
 
         String fxmlPath;
-        if (currentUser != null && "ADMIN".equalsIgnoreCase(currentUser.getRole())) {
+        if (currentUser != null && "admin".equalsIgnoreCase(currentUser.getRole())) {
             // If the user is admin, redirect to users_list
             fxmlPath = "/user/users_list.fxml";
         } else {

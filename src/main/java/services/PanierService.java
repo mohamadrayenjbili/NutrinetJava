@@ -2,8 +2,11 @@
 package services;
 
 import javafx.scene.control.Alert;
+import models.LignePanier;
 import models.Panier;
 import models.Produit;
+
+
 
 public class PanierService {
     // Instance unique pour le modèle Singleton
@@ -33,10 +36,11 @@ public class PanierService {
     public void ajouterAuPanier(Produit produit, int quantite) {
         if (produit.getStock() >= quantite) {
             panier.ajouterProduit(produit, quantite);
-            afficherMessage("Produit ajouté", "Le produit a été ajouté au panier avec succès.", Alert.AlertType.INFORMATION);
+            afficherMessage("Produit ajouté", Alert.AlertType.INFORMATION);
         } else {
-            afficherMessage("Stock insuffisant", "Il n'y a pas assez de stock disponible pour ce produit.", Alert.AlertType.WARNING);
+            afficherMessage("Stock insuffisant", Alert.AlertType.WARNING);
         }
+
     }
 
     // Supprimer un produit du panier
@@ -46,8 +50,13 @@ public class PanierService {
 
     // Modifier la quantité d'un produit
     public void modifierQuantite(int produitId, int nouvelleQuantite) {
-        panier.modifierQuantite(produitId, nouvelleQuantite);
+        LignePanier ligne = panier.getItems().get(produitId);
+        if (ligne != null) {
+            ligne.setQuantite(nouvelleQuantite);
+        }
     }
+
+
 
     // Vider le panier
     public void viderPanier() {
@@ -55,16 +64,18 @@ public class PanierService {
     }
 
     // Afficher un message
-    private void afficherMessage(String titre, String message, Alert.AlertType type) {
+    private void afficherMessage(String message, Alert.AlertType type) {
         Alert alert = new Alert(type);
-        alert.setTitle(titre);
+        alert.setTitle(null);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
 
+
     // Réinitialiser l'instance (utile pour les tests)
     public static void resetInstance() {
         instance = null;
     }
+
 }

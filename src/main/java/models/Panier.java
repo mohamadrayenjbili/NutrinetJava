@@ -81,8 +81,11 @@ public class Panier implements Serializable {
     }
 
     public double getTotal() {
-        return total;
+        return items.values().stream()
+                .mapToDouble(LignePanier::getSousTotal)
+                .sum();
     }
+
 
     public int getNombreArticles() {
         int count = 0;
@@ -91,4 +94,7 @@ public class Panier implements Serializable {
         }
         return count;
     }
+
+
+
 }

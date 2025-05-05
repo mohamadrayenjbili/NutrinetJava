@@ -1,0 +1,129 @@
+/* Styles généraux */
+.main-container {
+    -fx-background-color: #f5f7fa;
+    -fx-spacing: 10;
+}
+
+/* En-tête avec fond gradient */
+.header-section {
+    -fx-background-color: linear-gradient(to right, #3498db, #2c3e50);
+    -fx-padding: 30 20 30 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.main-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #e6e6e6;
+}
+
+/* Section de recherche */
+.search-section {
+    -fx-padding: 15;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 1);
+}
+
+/* Barre de navigation verte */
+.green-navbar {
+    -fx-background-color: #27ae60;
+}
+
+.search-box {
+    -fx-background-radius: 5;
+}
+
+.modern-search {
+    -fx-background-color: #f0f2f5;
+    -fx-background-radius: 20;
+    -fx-padding: 8 15 8 15;
+    -fx-font-size: 14px;
+}
+
+.modern-button {
+    -fx-background-radius: 20;
+    -fx-padding: 8 15 8 15;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 1);
+}
+
+/* Boutons colorés */
+.search-button {
+    -fx-background-color: #e74c3c;
+}
+
+.add-button {
+    -fx-background-color: #f39c12;
+}
+
+.refresh-button {
+    -fx-background-color: #3498db;
+}
+
+.quote-button {
+    -fx-background-color: #9b59b6;
+}
+
+.back-button {
+    -fx-background-color: #95a5a6;
+}
+
+/* Citation */
+.quote-container {
+    -fx-padding: 15;
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.quote-text {
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial';
+    -fx-font-style: italic;
+}
+
+.quote-author {
+    -fx-font-size: 14px;
+    -fx-font-family: 'Arial';
+    -fx-font-weight: bold;
+}
+
+/* Liste des objectifs */
+.objectives-list {
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+    -fx-border-color: #e9ecef;
+    -fx-border-width: 1;
+    -fx-padding: 5;
+}
+
+.objectives-list .list-cell {
+    -fx-padding: 10;
+    -fx-background-radius: 3;
+}
+
+.objectives-list .list-cell:odd {
+    -fx-background-color: #f9f9f9;
+}
+
+.objectives-list .list-cell:selected {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+/* Pied de page */
+.footer-section {
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, -1);
+}

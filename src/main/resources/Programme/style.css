@@ -1,0 +1,110 @@
+/* --- Root et Titre (inchangé, très bien comme ça) --- */
+.root-pane {
+    -fx-background-color: #fdfaf6;
+    -fx-padding: 30;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2e2e2e;
+    -fx-padding: 10 0 20 0;
+}
+
+/* --- Champs de recherche et ComboBox améliorés --- */
+.search-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #aaa;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.03), 3, 0.3, 0, 1);
+}
+
+.search-field:focused {
+    -fx-border-color: #123f5c;
+    -fx-effect: dropshadow(gaussian, rgba(18, 63, 92, 0.2), 5, 0.3, 0, 2);
+}
+
+/* ComboBox esthétique */
+.combo-box {
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1.5;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #aaa;
+}
+
+.combo-box:focused {
+    -fx-border-color: #123f5c;
+    -fx-effect: dropshadow(gaussian, rgba(18, 63, 92, 0.2), 5, 0.3, 0, 2);
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+
+/* Menu déroulant du ComboBox */
+.combo-box-popup .list-view {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-background-radius: 8;
+    -fx-padding: 5;
+}
+
+/* Champs texte, Combo et TextArea généraux (déjà très bien) */
+.text-field, .combo-box, .text-area {
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+}
+
+.text-field:hover, .combo-box:hover, .text-area:hover {
+    -fx-border-color: #999999;
+}
+
+/* --- Boutons --- */
+.btn-primary {
+    -fx-background-color: #0a1f2c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 25;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 5, 0.3, 0, 3);
+}
+
+.btn-primary:hover {
+    -fx-background-color: #123f5c;
+}
+
+.btn-secondary {
+    -fx-background-color: #d9d9d9;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 6 12;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #c0c0c0;
+}
+
+/* --- Image Preview --- */
+.image-preview {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.3, 0, 5);
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}

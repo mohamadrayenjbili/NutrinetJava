@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
 public class Home extends Application {
@@ -14,15 +14,25 @@ public class Home extends Application {
         launch(args);
     }
 
-
     @Override
     public void start(Stage stage) {
         try {
-            // Charge le formulaire de consultation
-            Parent root = FXMLLoader.load(getClass().getResource("/user/sign_in.fxml"));
+
+
+
+
+            Parent root = FXMLLoader.load(getClass().getResource("/User/sign_in.fxml"));
+
+
 
             Scene scene = new Scene(root);
+            stage.setTitle("welcome ");
+            scene.getStylesheets().add(getClass().getResource("/Programme/modern_list.css").toExternalForm());
             stage.setTitle("Ajouter Consultation");
+
+            // 🔥 Ajout de l'icône
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/app_logo.png")));
+
             stage.setScene(scene);
             stage.show();
 

@@ -10,6 +10,10 @@ public class Commande {
     private Date dateC;
     private String status;
     private String methodeDePaiement;
+    private String transactionId;
+    private String codePromo;
+    private double remise;
+    private double totalAvantRemise;
 
     // Constructeurs
     public Commande() {
@@ -82,6 +86,42 @@ public class Commande {
         this.methodeDePaiement = methodeDePaiement;
     }
 
+    public String getTransactionId() {
+        return transactionId;
+    }
+
+    public void setTransactionId(String transactionId) {
+        this.transactionId = transactionId;
+    }
+
+    public String getCodePromo() {
+        return codePromo;
+    }
+
+    public void setCodePromo(String codePromo) {
+        this.codePromo = codePromo;
+    }
+
+    public double getRemise() {
+        return remise;
+    }
+
+    public void setRemise(double remise) {
+        this.remise = remise;
+    }
+
+    public double getTotalAvantRemise() {
+        return totalAvantRemise;
+    }
+
+    public void setTotalAvantRemise(double totalAvantRemise) {
+        this.totalAvantRemise = totalAvantRemise;
+    }
+
+    public double getTotalFinal() {
+        return totalAvantRemise - remise;
+    }
+
     @Override
     public String toString() {
         return "Commande{" +
@@ -90,6 +130,8 @@ public class Commande {
                 ", mail='" + mail + '\'' +
                 ", status='" + status + '\'' +
                 ", methodeDePaiement='" + methodeDePaiement + '\'' +
+                ", codePromo='" + codePromo + '\'' +
+                ", remise=" + remise +
                 '}';
     }
 }

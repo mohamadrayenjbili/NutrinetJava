@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.Rectangle?>
+
+<ScrollPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Produit.DetailProduitController"
+            prefWidth="1200" prefHeight="800"
+            styleClass="main-scroll-pane">
+
+    <content>
+        <VBox fx:id="rootPane" spacing="30" styleClass="root-container" minWidth="1200" minHeight="800">
+            <padding>
+                <Insets top="30" right="40" bottom="40" left="40"/>
+            </padding>
+
+            <!-- En-tête avec image de fond -->
+            <StackPane styleClass="header-container">
+                <Rectangle styleClass="header-background" width="1200" height="200"/>
+                <VBox alignment="CENTER_LEFT" spacing="10">
+                    <padding>
+                        <Insets left="40"/>
+                    </padding>
+                    <HBox spacing="20" alignment="CENTER_LEFT">
+                        <Button fx:id="btnRetour" text="← Retour" onAction="#navigateToProduits" styleClass="btn-retour"/>
+                        <Label text="🛍Détails du Produit" styleClass="main-header"/>
+                    </HBox>
+                    <Label fx:id="lblNom" styleClass="produit-title"/>
+                </VBox>
+            </StackPane>
+
+            <!-- Contenu principal -->
+            <HBox spacing="40" alignment="CENTER_LEFT">
+                <!-- Colonne gauche -->
+                <VBox spacing="25" HBox.hgrow="ALWAYS" maxWidth="600">
+                    <!-- Informations principales -->
+                    <VBox styleClass="info-card" spacing="20">
+                        <Label text="Informations" styleClass="section-header"/>
+                        <GridPane hgap="20" vgap="15">
+                            <columnConstraints>
+                                <ColumnConstraints minWidth="120"/>
+                                <ColumnConstraints hgrow="ALWAYS"/>
+                            </columnConstraints>
+
+                            <Label text="💰 Prix :" styleClass="info-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                            <Label fx:id="lblPrix" styleClass="price-tag" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                            <Label text="🏷 Catégorie :" styleClass="info-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                            <Label fx:id="lblCategorie" styleClass="info-value" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                            <Label text="📦 Stock :" styleClass="info-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                            <Label fx:id="lblStock" styleClass="stock-info" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        </GridPane>
+                    </VBox>
+
+                    <!-- Description -->
+                    <VBox styleClass="info-card" spacing="20">
+                        <Label text="Description" styleClass="section-header"/>
+                        <TextArea fx:id="lblDescription" styleClass="description-area" wrapText="true" editable="false"/>
+                    </VBox>
+
+                    <!-- Boutons d'action -->
+                    <HBox styleClass="action-buttons" spacing="15">
+                        <Button fx:id="btnAjouterPanier" text="🛒 Ajouter au panier" onAction="#handleAjouterPanier" styleClass="btn-ajouter-panier"/>
+                        <Button fx:id="btnAjouterSouhaits" text="❤ Ajouter aux souhaits" onAction="#handleAjouterSouhaits" styleClass="btn-ajouter-souhaits"/>
+                    </HBox>
+                </VBox>
+
+                <!-- Colonne droite -->
+                <VBox spacing="20" minWidth="300">
+                    <ImageView fx:id="imgProduit" fitWidth="300" fitHeight="300" styleClass="produit-image"/>
+
+                    <!-- Statistiques -->
+<!--                    <VBox styleClass="stats-card" spacing="15">-->
+<!--                        <Label text="Statistiques" styleClass="section-header"/>-->
+<!--                        <HBox spacing="20">-->
+<!--                            <VBox styleClass="stat-item" HBox.hgrow="ALWAYS">-->
+<!--                                <Label text="⭐" styleClass="stat-icon"/>-->
+<!--                                <Label text="Note" styleClass="stat-label"/>-->
+<!--                                <Label text="4.8/5" styleClass="stat-value"/>-->
+<!--                            </VBox>-->
+<!--                            <VBox styleClass="stat-item" HBox.hgrow="ALWAYS">-->
+<!--                                <Label text="👥" styleClass="stat-icon"/>-->
+<!--                                <Label text="Ventes" styleClass="stat-label"/>-->
+<!--                                <Label text="152" styleClass="stat-value"/>-->
+<!--                            </VBox>-->
+<!--                        </HBox>-->
+<!--                    </VBox>-->
+                </VBox>
+            </HBox>
+        </VBox>
+    </content>
+</ScrollPane>

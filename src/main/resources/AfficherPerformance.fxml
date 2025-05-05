@@ -1,58 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.Rectangle?>
+<VBox xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="controllers.Objective.AfficherPerformanceController"
+      styleClass="main-container"
+      stylesheets="@Obj.css">
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.Objective.AfficherPerformanceController"
-            prefHeight="500.0" prefWidth="800.0">
-
-    <VBox spacing="10" AnchorPane.bottomAnchor="10"
-          AnchorPane.leftAnchor="10"
-          AnchorPane.rightAnchor="10"
-          AnchorPane.topAnchor="10">
-
-        <!-- Titre et informations de l'objectif -->
-        <VBox spacing="5">
-            <Label fx:id="lblObjectiveName"
-                   style="-fx-font-weight: bold; -fx-font-size: 20px;"/>
-            <Label fx:id="lblObjectiveDetails"
-                   style="-fx-font-size: 14px;"/>
-
-            <HBox spacing="20" alignment="CENTER_LEFT">
-                <Label text="Performances"
-                       style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
-
-                <Button fx:id="btnActualiser" text="Actualiser" onAction="#handleActualiser"
-                        style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-
-                <Button fx:id="btnAjouter" text="Ajouter une performance" onAction="#handleAjouter"
-                        style="-fx-background-color: #2ecc71; -fx-text-fill: white;"/>
-
-                <padding>
-                    <Insets bottom="10" />
-                </padding>
-            </HBox>
+    <!-- En-tête avec fond gradient -->
+    <StackPane styleClass="header-section">
+        <VBox spacing="30" alignment="CENTER">
+            <Label text="📊 Gérez vos Performances" styleClass="main-title"/>
+            <Label text="Suivez et analysez votre progression" styleClass="subtitle"/>
         </VBox>
+    </StackPane>
 
-        <!-- Barre de recherche -->
-        <HBox spacing="10" alignment="CENTER_LEFT">
-            <Label text="Rechercher:" />
-            <TextField fx:id="tfRecherche" HBox.hgrow="ALWAYS" promptText="Rechercher par métrique..." />
-            <Button fx:id="btnRecherche" text="Rechercher" onAction="#handleRecherche"
-                    style="-fx-background-color: #3498db; -fx-text-fill: white;"/>
-        </HBox>
-
-        <!-- ListView pour les performances -->
-        <ListView fx:id="listPerformances" VBox.vgrow="ALWAYS" />
-
-        <!-- Boutons d'action en bas de la page -->
-        <HBox spacing="10" alignment="CENTER_RIGHT">
-            <Button fx:id="btnRetour" text="Retour aux objectifs" onAction="#handleRetour"
-                    style="-fx-background-color: #95a5a6; -fx-text-fill: white;"/>
-        </HBox>
+    <!-- Informations de l'objectif -->
+    <VBox spacing="5" styleClass="objective-info-section">
+        <Label fx:id="lblObjectiveName" styleClass="objective-title"/>
+        <Label fx:id="lblObjectiveDetails" styleClass="objective-details"/>
+        <padding>
+            <Insets top="10" right="15" bottom="10" left="15"/>
+        </padding>
     </VBox>
-</AnchorPane>
+
+    <!-- Barre de recherche et actions principales -->
+    <HBox styleClass="search-section, green-navbar" alignment="CENTER" spacing="15">
+        <HBox styleClass="search-box" HBox.hgrow="ALWAYS">
+            <TextField fx:id="tfRecherche" promptText="🔍 Rechercher par métrique..."
+                       styleClass="modern-search"/>
+        </HBox>
+        <Button fx:id="btnRecherche" text="Rechercher" onAction="#handleRecherche"
+                styleClass="modern-button, search-button"/>
+        <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter"
+                styleClass="modern-button, add-button"/>
+        <Button fx:id="btnActualiser" text="Actualiser" onAction="#handleActualiser"
+                styleClass="modern-button, refresh-button"/>
+    </HBox>
+
+    <!-- Liste des performances -->
+    <AnchorPane VBox.vgrow="ALWAYS">
+        <ScrollPane fitToWidth="true" fitToHeight="true" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <ListView fx:id="listPerformances" styleClass="objectives-list"/>
+        </ScrollPane>
+    </AnchorPane>
+
+    <!-- Boutons d'action en bas de la page -->
+    <HBox spacing="15" alignment="CENTER_RIGHT" styleClass="footer-section">
+        <Button fx:id="btnGraphique" text="Voir Graphique" onAction="#handleVoirGraphique"
+                styleClass="modern-button, graph-button"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white;"/>
+        <Button fx:id="btnRetour" text="Retour" onAction="#handleRetour"
+                styleClass="modern-button, back-button"/>
+        <padding>
+            <Insets top="10" right="15" bottom="10" left="15"/>
+        </padding>
+    </HBox>
+
+</VBox>

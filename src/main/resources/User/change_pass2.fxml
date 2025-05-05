@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.user.changepass2Controller"
+            prefHeight="400.0" prefWidth="600.0">
+    <VBox alignment="CENTER" spacing="20" prefWidth="400" prefHeight="300" layoutX="100" layoutY="50">
+        <PasswordField fx:id="oldPasswordField" promptText="Ancien mot de passe"
+                       style="-fx-padding: 10; -fx-font-size: 14;" />
+        <Label fx:id="oldPasswordError" textFill="red" />
+
+        <PasswordField fx:id="newPasswordField" promptText="Nouveau mot de passe"
+                       style="-fx-padding: 10; -fx-font-size: 14;" />
+        <Label fx:id="newPasswordError" textFill="red" />
+
+        <Button text="Changer le mot de passe"
+                onAction="#handleChangePassword"
+                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;" />
+
+        <Button text="Retour au profil"
+                onAction="#redirectToProfile2"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 20;" />
+    </VBox>
+</AnchorPane>

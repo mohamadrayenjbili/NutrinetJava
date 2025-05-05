@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controllers.Commande.AjouterCommandeController"
+            prefHeight="700.0" prefWidth="550.0"
+            stylesheets="@styledidouCommande.css"
+            styleClass="root-pane">
+
+    <VBox alignment="TOP_CENTER" spacing="10" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+
+        <!-- Title -->
+        <Label text="Finaliser votre commande" styleClass="title" />
+
+        <!-- Champs utilisateur -->
+        <VBox spacing="5">
+            <HBox spacing="10">
+                <TextField fx:id="txtNom" promptText="Nom complet" prefWidth="250" styleClass="text-field"/>
+                <TextField fx:id="txtEmail" promptText="Email" prefWidth="250" styleClass="text-field"/>
+            </HBox>
+            <HBox spacing="10">
+                <TextField fx:id="txtAdresse" promptText="Adresse de livraison" prefWidth="510" styleClass="text-field"/>
+            </HBox>
+            <HBox spacing="10">
+                <ComboBox fx:id="cbxPaiement" promptText="Méthode de paiement" prefWidth="250" styleClass="combo-box"/>
+            </HBox>
+        </VBox>
+
+        <!-- Code promo -->
+        <HBox spacing="10">
+            <TextField fx:id="txtCodePromo" promptText="Code promo (optionnel)" prefWidth="300" styleClass="text-field"/>
+            <Button fx:id="btnAppliquerCode" text="Appliquer" onAction="#appliquerCodePromo" styleClass="btn-secondary"/>
+        </HBox>
+
+        <Label fx:id="lblRemise" text="Remise: 0.00 €" visible="false" />
+        <Label fx:id="lblTotalApresRemise" text="Total après remise: 0.00 €" visible="false" />
+        <Label fx:id="lblTotalCommande" text="Total de la commande: 0.00 €" styleClass="title"/>
+
+        <!-- Boutons -->
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnAnnuler" text="Annuler" onAction="#annulerCommande" styleClass="btn-secondary"/>
+            <Button fx:id="btnConfirmer" text="Confirmer la commande" onAction="#confirmerCommande" styleClass="btn-primary"/>
+        </HBox>
+
+    </VBox>
+</AnchorPane>

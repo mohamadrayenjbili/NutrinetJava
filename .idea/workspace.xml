@@ -4,27 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CalendrierController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/SmsService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Calendrier.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/DetailsClient.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14__Changes_.xml" beforeDir="false" />
+
+    <list>
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AjouterConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AjouterConsultationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/BackConsultationAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/BackConsultationAjoutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Consultation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterConsultation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterConsultation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/users_list.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/users_list.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,33 +18,62 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="Interface" />
         <option value="FxmlFile" />
+        <option value="Class" />
+
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Seiffaress&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
-    &quot;accountId&quot;: &quot;c1dd4bb4-64fd-4712-a74c-4bed07876ae1&quot;
-  }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 3
-}</component>
+
+  <component name="GitHubPullRequestSearchHistory">
+    <option name="lastFilter">
+      <map>
+        <entry key="state" value="OPEN" />
+        <entry key="assignee" value="Seiffaress" />
+      </map>
+    </option>
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <map>
+        <entry key="url" value="https://github.com/mohamadrayenjbili/NutrinetJava.git" />
+        <entry key="accountId" value="21f38e0d-9eb4-4540-992f-be9be6ea3dfd" />
+      </map>
+    </option>
+    <option name="recentNewPullRequestHead">
+      <map>
+        <entry key="server">
+          <map>
+            <entry key="useHttp" value="false" />
+            <entry key="host" value="github.com" />
+          </map>
+        </entry>
+        <entry key="owner" value="mohamadrayenjbili" />
+        <entry key="repository" value="NutrinetJava" />
+      </map>
+    </option>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProjectColorInfo">
+    <option name="customColor" value="" />
+    <option name="associatedIndex" value="3" />
+  </component>
   <component name="ProjectId" id="2vjLVz5nxdYYWSmLB6pyrohDl06" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -67,27 +82,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.PiJava [javafx:run].executor": "Profiler#1",
-    "Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "MAlekAyadi",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/lenovo-pc/Desktop/NutrinetJava-DidouFinale/NutrinetJava-DidouFinale/NutrinetJava",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
+
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Commande" />
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Panier" />
+      <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\Produit" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="controllers.Objective" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="PiJava [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
@@ -103,14 +112,6 @@
               <list>
                 <option value="javafx:run" />
               </list>
-            </option>
-            <option name="multimoduleDir" />
-            <option name="pomFileName" />
-            <option name="profilesMap">
-              <map />
-            </option>
-            <option name="projectsCmdOptionValues">
-              <list />
             </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$" />
@@ -136,47 +137,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744653565488</updated>
-      <workItem from="1744653567001" duration="347000" />
-      <workItem from="1744654025583" duration="2207000" />
-      <workItem from="1744656294428" duration="2476000" />
-      <workItem from="1744659215422" duration="5616000" />
-      <workItem from="1744815871260" duration="3000" />
-      <workItem from="1744815889189" duration="7043000" />
-      <workItem from="1745234813505" duration="108000" />
-      <workItem from="1745234963020" duration="323000" />
-      <workItem from="1745842078225" duration="145000" />
-      <workItem from="1745842289036" duration="973000" />
-      <workItem from="1745843279543" duration="294000" />
-      <workItem from="1745843648468" duration="433000" />
-      <workItem from="1745844217775" duration="4167000" />
-      <workItem from="1745849438297" duration="28317000" />
-      <workItem from="1746468173561" duration="487000" />
+
     </task>
-    <task id="LOCAL-00001" summary="seif crud +metiers">
-      <option name="closed" value="true" />
-      <created>1745235102821</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1745235102821</updated>
-    </task>
-    <task id="LOCAL-00002" summary="seif crud +metiers">
-      <option name="closed" value="true" />
-      <created>1745235278868</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1745235278868</updated>
-    </task>
-    <task id="LOCAL-00003" summary="test">
-      <option name="closed" value="true" />
-      <created>1746468267097</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1746468267097</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -194,12 +157,18 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="seif crud +metiers" />
-    <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+
+    <MESSAGE value="correction des erreurs" />
+    <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
   </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.sql.SQLIntegrityConstraintViolationException" package="java.sql" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

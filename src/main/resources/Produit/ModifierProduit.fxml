@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.Produit.ModifierProduitController"
+            prefHeight="800.0" prefWidth="1280.0"
+            stylesheets="@ModifierDidou.css"
+            styleClass="root">
+
+    <!-- Contenu principal -->
+    <VBox spacing="20" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.bottomAnchor="20">
+        <Label text="Modifier un produit" styleClass="title"/>
+
+        <!-- Conteneur principal avec SplitPane -->
+        <SplitPane dividerPositions="0.3" VBox.vgrow="ALWAYS">
+            <!-- Panneau de gauche : Liste des produits -->
+            <VBox spacing="10">
+                <Label text="Liste des produits" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                <ListView fx:id="listViewProduits" VBox.vgrow="ALWAYS"/>
+            </VBox>
+
+            <!-- Panneau de droite : Formulaire -->
+            <ScrollPane fitToWidth="true">
+                <VBox spacing="20" styleClass="grid-pane">
+                    <!-- Informations du produit -->
+                    <GridPane hgap="15" vgap="15">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="80" prefWidth="100"/>
+                            <ColumnConstraints minWidth="150" prefWidth="250"/>
+                            <ColumnConstraints minWidth="150" prefWidth="200"/>
+                        </columnConstraints>
+
+                        <Label text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label fx:id="lblId" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+                        <Label text="Nom:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                        <TextField fx:id="txtNom" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label fx:id="lblNomError" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+
+                        <Label text="Prix:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                        <TextField fx:id="txtPrix" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label fx:id="lblPrixError" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+
+                        <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+                        <TextArea fx:id="txtDescription" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label fx:id="lblDescError" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+
+                        <Label text="Catégorie:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+                        <ComboBox fx:id="comboCategorie" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label fx:id="lblCategorieError" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+
+                        <Label text="Stock:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+                        <TextField fx:id="txtStock" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        <Label fx:id="lblStockError" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
+
+                        <Label text="Image:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+                        <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <TextField fx:id="txtImage" HBox.hgrow="ALWAYS"/>
+                            <Button fx:id="btnChoisirImage" text="Choisir" onAction="#handleChoisirImage"/>
+                        </HBox>
+                        <Label fx:id="lblImageError" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
+                    </GridPane>
+
+                    <!-- Aperçu de l'image -->
+                    <VBox alignment="CENTER" spacing="10">
+                        <Label text="Aperçu de l'image" style="-fx-font-weight: bold; -fx-font-size: 16px;"/>
+                        <ImageView fx:id="imagePreview" fitWidth="300" fitHeight="300" preserveRatio="true" styleClass="image-preview"/>
+                    </VBox>
+
+                    <!-- Boutons d'action -->
+                    <HBox spacing="15" alignment="CENTER">
+                        <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier"/>
+                        <Button fx:id="btnSupprimer" text="Supprimer" onAction="#handleSupprimer"/>
+                        <Button fx:id="btnAnnuler" text="Annuler" onAction="#handleAnnuler"/>
+                    </HBox>
+                </VBox>
+            </ScrollPane>
+        </SplitPane>
+    </VBox>
+</AnchorPane>
