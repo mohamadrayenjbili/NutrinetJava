@@ -153,6 +153,7 @@ public class AfficherProduitsFrontController implements Initializable {
         overlayContent.setAlignment(javafx.geometry.Pos.CENTER);
         overlayContent.setVisible(false);
 
+
         // Prix
         Label priceLabel = new Label(String.format("%.2f €", produit.getPrix()));
         priceLabel.getStyleClass().add("overlay-prix");
