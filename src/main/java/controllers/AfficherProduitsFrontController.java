@@ -29,6 +29,7 @@ import java.util.ResourceBundle;
 
 public class AfficherProduitsFrontController implements Initializable {
 
+
     @FXML
     private FlowPane flowProduits;
 
