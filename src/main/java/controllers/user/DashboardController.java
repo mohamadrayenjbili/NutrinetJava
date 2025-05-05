@@ -67,4 +67,18 @@ public class DashboardController {
         }
     }
 
+    public void handleBackConsultation(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BackConsultation.fxml"));
+            Scene ajouterProduitScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(ajouterProduitScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
