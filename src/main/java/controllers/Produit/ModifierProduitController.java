@@ -1,21 +1,26 @@
 package controllers.Produit;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -46,7 +51,6 @@ public class ModifierProduitController implements Initializable {
     @FXML private Button btnModifier;
     @FXML private Button btnAnnuler;
     @FXML private Button btnSupprimer;
-    @FXML private Button btnVoirDetails;
     @FXML private Button btnChoisirImage;
 
     private ProduitService produitService;
@@ -77,7 +81,6 @@ public class ModifierProduitController implements Initializable {
         btnModifier.setStyle("-fx-background-color: #5cb85c; -fx-text-fill: white; -fx-font-weight: bold;");
         btnAnnuler.setStyle("-fx-background-color: #f0ad4e; -fx-text-fill: white; -fx-font-weight: bold;");
         btnSupprimer.setStyle("-fx-background-color: #d9534f; -fx-text-fill: white; -fx-font-weight: bold;");
-        btnVoirDetails.setStyle("-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold;");
         btnChoisirImage.setStyle("-fx-background-color: #5bc0de; -fx-text-fill: white; -fx-font-weight: bold;");
 
         // Configuration de la ListView
@@ -222,17 +225,7 @@ public class ModifierProduitController implements Initializable {
         });
     }
 
-    @FXML
-    private void handleVoirDetails(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/Produit/AjouterProduit.fxml"));
-            Stage stage = (Stage) btnVoirDetails.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Liste des Produits");
-        } catch (IOException e) {
-            showAlert(AlertType.ERROR, "Erreur", e.getMessage());
-        }
-    }
+
 
     @FXML
     private void handleAnnuler(ActionEvent event) {
@@ -250,11 +243,19 @@ public class ModifierProduitController implements Initializable {
         txtImage.setText(produit.getImage());
         txtStock.setText(String.valueOf(produit.getStock()));
 
+        // Afficher le prix dans le label
+        lblPrixError.setText(String.format("%.2f €", produit.getPrix()));
+        lblPrixError.setStyle("-fx-text-fill: #3498db; -fx-font-weight: bold;");
+        lblPrixError.setVisible(true);
+
+        // Charger et afficher l'image
         if (produit.getImage() != null && !produit.getImage().isEmpty()) {
             try {
-                Image image = new Image("file:" + produit.getImage());
+                String imagePath = "file:src/main/resources/images/" + produit.getImage();
+                Image image = new Image(imagePath);
                 imagePreview.setImage(image);
             } catch (Exception e) {
+                System.err.println("Erreur de chargement de l'image: " + e.getMessage());
                 imagePreview.setImage(null);
             }
         } else {
