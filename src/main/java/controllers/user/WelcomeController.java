@@ -11,6 +11,8 @@ import models.User;
 import services.user.log_historyService;
 import utils.session;
 
+import java.io.IOException;
+
 public class WelcomeController {
 
     @FXML
@@ -143,6 +145,19 @@ public class WelcomeController {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void navigateToAfficherObjective(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminObjective.fxml"));
+            Scene afficherObjectiveScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(afficherObjectiveScene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -66,5 +66,16 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+    public void navigateToAfficherObjective(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherObjective.fxml"));
+            Scene afficherObjectiveScene = new Scene(loader.load());
 
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(afficherObjectiveScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

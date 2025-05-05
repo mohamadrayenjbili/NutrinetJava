@@ -128,7 +128,16 @@ public class AdminObjectiveController implements Initializable {
 
     @FXML
     private void handleRetour(ActionEvent event) {
-        ((Stage) btnRetour.getScene().getWindow()).close();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/welcome.fxml"));
+            Scene dashboardScene = new Scene(loader.load());
+
+            Stage stage = (Stage) btnRetour.getScene().getWindow();
+            stage.setScene(dashboardScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleViewPerformances(Objective objective) {
