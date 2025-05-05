@@ -36,6 +36,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -50,6 +51,9 @@ public class DetailsConsultationController implements Initializable {
 
     @FXML
     private Button btnAjouterConsultation;
+    @FXML
+    private Button btnCalendrier;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -155,10 +159,14 @@ public class DetailsConsultationController implements Initializable {
                         setGraphic(null);
                     } else {
                         nameLabel.setText(consultation.getNom() + " " + consultation.getPrenom());
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        String formattedDate = consultation.getDate().format(formatter);
+
                         String details = String.format("%s • %s • %s",
                                 consultation.getType(),
-                                consultation.getDate(),
+                                formattedDate,
                                 getStatusStyled(consultation.getStatus()));
+
 
                         String statusStyle = switch (consultation.getStatus().toLowerCase()) {
                             case "faite" -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
@@ -515,5 +523,20 @@ public class DetailsConsultationController implements Initializable {
             showErrorAlert("Erreur", "Échec de l'export PDF: " + e.getMessage());
         }
     }
+
+    @FXML
+    private void handleCalendrier() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/calendrier.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnCalendrier.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Mon Calendrier");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }

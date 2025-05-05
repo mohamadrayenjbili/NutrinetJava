@@ -181,5 +181,8 @@
                 </ListView>
             </VBox>
         </VBox>
+
+        <VBox fx:id="roleButtonsContainer" spacing="10" alignment="CENTER_LEFT" />
+
     </StackPane>
 </AnchorPane>

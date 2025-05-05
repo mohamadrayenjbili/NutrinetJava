@@ -2,6 +2,16 @@ package controllers;
 
 
 
+import brevo.ApiClient;
+import brevo.ApiException;
+import brevo.Configuration;
+import brevo.auth.ApiKeyAuth;
+import brevoApi.TransactionalEmailsApi;
+import brevoModel.CreateSmtpEmail;
+import brevoModel.SendSmtpEmail;
+import brevoModel.SendSmtpEmailSender;
+import brevoModel.SendSmtpEmailTo;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -20,17 +32,30 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import models.Consultation;
 import models.Prescription;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import services.ConsultationService;
 import services.PrescriptionService;
+import utils.SmsService;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+
+import javax.mail.*;
+import javax.mail.internet.*;
+
 
 public class BackConsultationAjoutController implements Initializable {
 
@@ -49,10 +74,15 @@ public class BackConsultationAjoutController implements Initializable {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
             this.consultationService = new ConsultationService(connection);
             this.prescriptionService = new PrescriptionService(connection);
+            SmsService.initialize();
+
             loadConsultations();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+
+
     }
 
     private void loadConsultations() {
@@ -74,7 +104,7 @@ public class BackConsultationAjoutController implements Initializable {
                 private final Button btnUpdatePrescription = new Button("Modifier Prescription");
                 private final Button btnDeletePrescription = new Button("Supprimer Prescription");
                 private final Button btnVoirPrescription = new Button("voir Prescription");
-
+                private final Button btnEnvoyerRappel = new Button("Envoyer Rappel");
                 private final Rectangle separator = new Rectangle(0, 1);
 
                 {
@@ -86,6 +116,7 @@ public class BackConsultationAjoutController implements Initializable {
 
                     btnModifier.setStyle("-fx-background-color: #a8d5ba; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 5 10 5 10;");
                     btnSupprimer.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 5 10 5 10;");
+                    btnEnvoyerRappel.setStyle("-fx-background-color: #2196F3; -fx-text-fill: white;");
                     btnAjouterPrescription.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 5 10 5 10;");
                     btnUpdatePrescription.setStyle("-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 5 10 5 10;");
                     btnDeletePrescription.setStyle("-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 5 10 5 10;");
@@ -137,6 +168,21 @@ public class BackConsultationAjoutController implements Initializable {
                         }
                     });
 
+                    btnEnvoyerRappel.setOnAction(event -> {
+                        Consultation consultation = getItem();
+                        if (consultation != null) {
+                            // Confirmation avant envoi
+                            Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+                            confirmation.setTitle("Confirmer l'envoi");
+                            confirmation.setHeaderText("Envoyer un rappel à " + consultation.getMail());
+                            confirmation.setContentText("Êtes-vous sûr de vouloir envoyer ce rappel ?");
+
+                            Optional<ButtonType> result = confirmation.showAndWait();
+                            if (result.isPresent() && result.get() == ButtonType.OK) {
+                                envoyerRappelSMS(consultation);
+                            }
+                        }
+                    });
 
                 }
 
@@ -147,10 +193,14 @@ public class BackConsultationAjoutController implements Initializable {
                         setGraphic(null);
                     } else {
                         nameLabel.setText(consultation.getNom() + " " + consultation.getPrenom());
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        String formattedDate = consultation.getDate().format(formatter);
+
                         String details = String.format("%s • %s • %s",
                                 consultation.getType(),
-                                consultation.getDate(),
+                                formattedDate,
                                 getStatusStyled(consultation.getStatus()));
+
 
                         String statusStyle = switch (consultation.getStatus().toLowerCase()) {
                             case "faite" -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
@@ -164,14 +214,17 @@ public class BackConsultationAjoutController implements Initializable {
 
                         // Check if prescription exists for this consultation
                         buttonContainer.getChildren().clear();
-                        buttonContainer.getChildren().addAll(btnModifier, btnSupprimer);
+                        buttonContainer.getChildren().addAll(btnModifier, btnSupprimer, btnEnvoyerRappel);
 
                         try {
                             Prescription prescription = prescriptionService.getPrescriptionByConsultationId(consultation.getId());
                             if (prescription == null) {
                                 buttonContainer.getChildren().add(btnAjouterPrescription);
                             } else {
-                                buttonContainer.getChildren().addAll(btnUpdatePrescription, btnDeletePrescription , btnVoirPrescription);
+                                Button btnExportPDF = new Button("Exporter PDF");
+                                btnExportPDF.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 4; -fx-padding: 5 10 5 10;");
+                                btnExportPDF.setOnAction(event -> exporterPrescriptionPDF(consultation));
+                                buttonContainer.getChildren().addAll(btnUpdatePrescription, btnDeletePrescription , btnExportPDF);
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();
@@ -223,7 +276,7 @@ public class BackConsultationAjoutController implements Initializable {
                 Parent root = loader.load();
 
                 UpdatePrescriptionController controller = loader.getController();
-               // controller.initData(prescription, prescriptionService);
+                controller.initData(prescription, prescriptionService);
 
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
@@ -345,7 +398,7 @@ public class BackConsultationAjoutController implements Initializable {
                 }*/
 
                 // Initialiser les données
-               // controller.initData(prescription);
+                // controller.initData(prescription);
 
                 // Afficher la fenêtre
                 Stage stage = new Stage();
@@ -414,4 +467,204 @@ public class BackConsultationAjoutController implements Initializable {
     public void setBtnAjouterConsultation(Button btnAjouterConsultation) {
         this.btnAjouterConsultation = btnAjouterConsultation;
     }
+
+
+
+
+
+    private void exporterPrescriptionPDF(Consultation consultation) {
+        try {
+            Prescription prescription = prescriptionService.getPrescriptionByConsultationId(consultation.getId());
+            if (prescription != null) {
+                PDDocument document = new PDDocument();
+                PDPage page = new PDPage();
+                document.addPage(page);
+
+                PDPageContentStream contentStream = new PDPageContentStream(document, page);
+
+                // Marges de départ
+                float marginX = 60;
+                float startY = 750;
+
+                // TITRE
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 20);
+                contentStream.newLineAtOffset(marginX, startY);
+                contentStream.showText("Prescription Médicale");
+                contentStream.endText();
+
+                // LIGNE DE SÉPARATION
+                contentStream.setLineWidth(1f);
+                contentStream.moveTo(marginX, startY - 10);
+                contentStream.lineTo(550, startY - 10);
+                contentStream.stroke();
+
+                // INFOS PATIENT
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                contentStream.newLineAtOffset(marginX, startY - 40);
+                contentStream.showText("Nom du patient : ");
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.showText(consultation.getNom() + " " + consultation.getPrenom());
+
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                contentStream.showText("Date de consultation : ");
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.showText(String.valueOf(consultation.getDate()));
+                contentStream.endText();
+
+                // OBJECTIF
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+                contentStream.newLineAtOffset(marginX, startY - 100);
+                contentStream.showText("Objectif du patient :");
+                contentStream.endText();
+
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.newLineAtOffset(marginX, startY - 120);
+                contentStream.showText(prescription.getObjectif());
+                contentStream.endText();
+
+                // PROGRAMME
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 14);
+                contentStream.newLineAtOffset(marginX, startY - 160);
+                contentStream.showText("Programme prescrit :");
+                contentStream.endText();
+
+                contentStream.beginText();
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.newLineAtOffset(marginX, startY - 180);
+                contentStream.showText(prescription.getProgramme());
+                contentStream.endText();
+
+                contentStream.close();
+
+                File pdfFile = File.createTempFile("prescription_", ".pdf");
+                document.save(pdfFile);
+                document.close();
+
+                if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(pdfFile);
+                } else {
+                    showInfoAlert("Export réussi", "PDF généré: " + pdfFile.getAbsolutePath());
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+            showErrorAlert("Erreur", "Échec de l'export PDF: " + e.getMessage());
+        }
+    }
+
+   /* private void envoyerRappelPatient(Consultation consultation) {
+        if (consultation.getMail() == null || consultation.getMail().isEmpty()) {
+            showErrorAlert("Erreur", "Aucune adresse email enregistrée pour ce patient.");
+            return;
+        }
+
+        final String smtpHost = "smtp.gmail.com";
+        final int smtpPort = 587;
+        final String username = "malek.ayedi@esprit.tn";
+        final String password = "mmzf vedq czpx sdlp";
+
+        Properties props = new Properties();
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.ssl.trust", "*"); // Solution radicale pour les problèmes SSL
+        props.put("mail.smtp.connectiontimeout", "5000"); // 5 secondes timeout
+        props.put("mail.smtp.timeout", "5000"); // 5 secondes timeout
+
+        // Activez le debug pour voir les erreurs détaillées
+        Session session = Session.getInstance(props, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        session.setDebug(true); // IMPORTANT pour le diagnostic
+
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(consultation.getMail()));
+            message.setSubject("Rappel de rendez-vous médical");
+
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy 'à' HH'h'mm", Locale.FRENCH);
+            String dateFormatee = consultation.getDate().format(formatter);
+
+            String texteEmail = String.format(
+                    "Bonjour %s %s,\n\nCeci est un rappel que vous avez un rendez-vous le :\n📅 %s\n\nCordialement,\nVotre Clinique Médicale",
+                    consultation.getPrenom(), consultation.getNom(), dateFormatee
+            );
+
+            message.setText(texteEmail);
+
+            new Thread(() -> {
+                try {
+                    Transport transport = session.getTransport("smtp");
+                    transport.connect(smtpHost, smtpPort, username, password); // Connexion explicite
+                    transport.sendMessage(message, message.getAllRecipients());
+                    transport.close();
+
+                    Platform.runLater(() ->
+                            showInfoAlert("Succès", "Rappel envoyé à:\n" + consultation.getMail()));
+                } catch (Exception e) {
+                    Platform.runLater(() ->
+                            showErrorAlert("Erreur SMTP", getErrorMessage(e)));
+                }
+            }).start();
+
+        } catch (Exception e) {
+            showErrorAlert("Erreur", getErrorMessage(e));
+        }
+    }
+
+    private String getErrorMessage(Exception e) {
+        if (e instanceof AuthenticationFailedException) {
+            return "Échec d'authentification:\nVérifiez email/mot de passe";
+        } else if (e instanceof MessagingException) {
+            return "Erreur SMTP:\n" + e.getMessage();
+        }
+        return "Erreur inattendue:\n" + e.getMessage();
+    }*/
+
+
+
+    // Méthode d'envoi de rappel
+    private void envoyerRappelSMS(Consultation consultation) {
+        // Formatter la date pour un affichage lisible
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy à HH:mm");
+        String dateFormatted = consultation.getDate().format(formatter);
+
+        // Demander confirmation avant d'envoyer le SMS
+        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmDialog.setTitle("Confirmation d'envoi de SMS");
+        confirmDialog.setHeaderText("Envoyer un rappel de consultation");
+        confirmDialog.setContentText("Voulez-vous envoyer un SMS de rappel à " +
+                consultation.getNom() + " " + consultation.getPrenom() +
+                " pour sa consultation du " + dateFormatted + " ?");
+
+        Optional<ButtonType> result = confirmDialog.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            try {
+                // Initialiser le service SMS si nécessaire
+                SmsService.initialize();
+
+                // Envoyer le SMS avec le numéro de téléphone de type int
+                SmsService.sendAppointmentReminder(
+                        consultation.getTel(),
+                        consultation.getPrenom() + " " + consultation.getNom(),
+                        dateFormatted,
+                        "Didou" // Remplacez par le nom du médecin ou récupérez-le depuis la consultation
+                );
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                showErrorAlert("Erreur d'envoi SMS", "Une erreur est survenue: " + e.getMessage());
+            }
+        }
+    }
+
 }

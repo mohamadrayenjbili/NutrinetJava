@@ -4,15 +4,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.session;
 import models.User;
+
+import java.io.IOException;
 
 public class WelcomeController {
 
     @FXML
     private Label welcomeLabel;
+    @FXML
+    private VBox roleButtonsContainer;
 
     @FXML
     public void initialize() {
@@ -21,6 +27,43 @@ public class WelcomeController {
             welcomeLabel.setText("Welcome, " + currentUser.getName() + "!");
         } else {
             welcomeLabel.setText("Welcome!");
+        }
+
+        if (currentUser != null) {
+            if (currentUser.getRole().equalsIgnoreCase("doctor")) {
+                Button doctorButton = new Button("Ma liste de consultation");
+                doctorButton.setOnAction(e -> {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsConsultation.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = (Stage) roleButtonsContainer.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.setTitle("Consultations du docteur");
+                        stage.show();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                roleButtonsContainer.getChildren().add(doctorButton);
+
+            } else if (currentUser.getRole().equalsIgnoreCase("client")) {
+                Button clientButton = new Button("Reserver une consultation");
+                clientButton.setOnAction(e -> {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterConsultation.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = (Stage) roleButtonsContainer.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.setTitle("Mes consultations");
+                        stage.show();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                roleButtonsContainer.getChildren().add(clientButton);
+            }
+
+
         }
     }
 

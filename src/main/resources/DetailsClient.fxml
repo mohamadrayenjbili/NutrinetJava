@@ -13,8 +13,9 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.TextField?>
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.DetailsConsultationController"
+            fx:controller="controllers.DetailsClientConsultation"
             prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #f4f6f9;">
 
     <children>
@@ -27,11 +28,13 @@
                     <Font size="24.0" />
                 </font>
             </Label>
+            <TextField fx:id="searchField" promptText="Rechercher par nom..." onKeyReleased="#rechercherConsultation"/>
 
             <!-- Bouton pour ajouter une consultation -->
-            <Button fx:id="btnCalendrier" text="Mon calendrier"
-                    onAction="#handleCalendrier"
+            <Button fx:id="btnAjouterConsultation" text="Ajouter une consultation"
+                    onAction="#handleAjouterConsultation"
                     style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" />
+
 
 
             <!-- ListView stylisée -->
@@ -54,18 +57,12 @@
                                 <Label fx:id="lblDate" text="Date de la consultation" style="-fx-font-size: 14px; -fx-text-fill: #95a5a6;"/>
                                 <Label fx:id="lblObjectif" text="Objectif de la consultation" style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d;"/>
                             </VBox>
-
+                            <Button text="Modifier" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-border-radius: 5px;"/>
                             <!-- Ligne de séparation -->
                             <Separator/>
 
                             <!-- Boutons sous la carte -->
-                            <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-padding: 10;">
-                                <Button text="Voir" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-border-radius: 5px;"/>
-                                <Button text="Modifier" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-border-radius: 5px;"/>
-                                <!-- Nouveau bouton Export PDF -->
-                                <Button text="Exporter PDF" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-border-radius: 5px;"/>
 
-                            </HBox>
 
                         </StackPane>
                     </fx:define>

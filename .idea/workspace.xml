@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="seif crud +metiers" />
+    <list default="true" id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CalendrierController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utils/SmsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Calendrier.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DetailsClient.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_22_04_2025_10_14__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AjouterConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AjouterConsultationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/BackConsultationAjoutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/BackConsultationAjoutController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Consultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Consultation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterConsultation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterConsultation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/users_list.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/users_list.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +36,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -29,7 +52,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
-    &quot;accountId&quot;: &quot;21f38e0d-9eb4-4540-992f-be9be6ea3dfd&quot;
+    &quot;accountId&quot;: &quot;c1dd4bb4-64fd-4712-a74c-4bed07876ae1&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -44,22 +67,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Maven.PiJava [javafx:run].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Seiftt&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.PiJava [javafx:run].executor": "Profiler#1",
+    "Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "MAlekAyadi",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/lenovo-pc/Desktop/NutrinetJava-DidouFinale/NutrinetJava-DidouFinale/NutrinetJava",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="PiJava [javafx:run]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
@@ -95,8 +123,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -116,6 +144,13 @@
       <workItem from="1744815889189" duration="7043000" />
       <workItem from="1745234813505" duration="108000" />
       <workItem from="1745234963020" duration="323000" />
+      <workItem from="1745842078225" duration="145000" />
+      <workItem from="1745842289036" duration="973000" />
+      <workItem from="1745843279543" duration="294000" />
+      <workItem from="1745843648468" duration="433000" />
+      <workItem from="1745844217775" duration="4167000" />
+      <workItem from="1745849438297" duration="28317000" />
+      <workItem from="1746468173561" duration="487000" />
     </task>
     <task id="LOCAL-00001" summary="seif crud +metiers">
       <option name="closed" value="true" />
@@ -133,7 +168,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745235278868</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="test">
+      <option name="closed" value="true" />
+      <created>1746468267097</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746468267097</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +195,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="seif crud +metiers" />
-    <option name="LAST_COMMIT_MESSAGE" value="seif crud +metiers" />
+    <MESSAGE value="test" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
