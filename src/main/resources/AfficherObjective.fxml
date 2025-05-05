@@ -10,7 +10,6 @@
             fx:controller="controllers.Objective.AfficherObjectiveController"
             prefHeight="500.0" prefWidth="800.0">
 
-
     <VBox spacing="10" AnchorPane.bottomAnchor="10"
           AnchorPane.leftAnchor="10"
           AnchorPane.rightAnchor="10"
