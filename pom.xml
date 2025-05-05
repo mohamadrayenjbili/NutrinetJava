@@ -53,10 +53,6 @@
             <version>2.0.27</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.calendarfx</groupId>
-            <artifactId>view</artifactId>
-            <version>11.8.3</version>
         <!-- Stripe SDK for Java -->
         <dependency>
             <groupId>com.stripe</groupId>
@@ -101,10 +97,6 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>com.brevo</groupId>
-            <artifactId>brevo</artifactId>
-            <version>1.0.0</version>
 
 
 
@@ -199,10 +191,13 @@
         <dependency>
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>
-            <version>9.2.3</version>
-        </dependency>
-
             <version>8.31.1</version>
+        </dependency>
+        <dependency>
+            <!--malek-->
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>9.2.3</version>
         </dependency>
 
         <dependency>
@@ -225,9 +220,16 @@
             <version>20230227</version>
         </dependency>
 
-
         <!-- garma_______________________ -->
 
+
+
+        <!-- Malek -->
+        <dependency>
+        <groupId>com.calendarfx</groupId>
+        <artifactId>view</artifactId>
+        <version>11.8.3</version>
+        </dependency>
 
 
 

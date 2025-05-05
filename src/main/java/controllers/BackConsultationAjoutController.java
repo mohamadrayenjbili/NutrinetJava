@@ -2,15 +2,6 @@ package controllers;
 
 
 
-import brevo.ApiClient;
-import brevo.ApiException;
-import brevo.Configuration;
-import brevo.auth.ApiKeyAuth;
-import brevoApi.TransactionalEmailsApi;
-import brevoModel.CreateSmtpEmail;
-import brevoModel.SendSmtpEmail;
-import brevoModel.SendSmtpEmailSender;
-import brevoModel.SendSmtpEmailTo;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
