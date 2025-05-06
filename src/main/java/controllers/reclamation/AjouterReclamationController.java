@@ -123,6 +123,7 @@ public class AjouterReclamationController {
         messageArea.clear();
         attachmentPath = null;
         imageLabel.setText("Aucune image sélectionnée");
+        retour();
     }
 
 
@@ -139,7 +140,7 @@ public class AjouterReclamationController {
 
     private void retour() {
         try {
-            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/user/welcome.fxml")); // ⚠️ change le chemin si besoin
+            javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource("/Reclamation/listReclamation.fxml")); // ⚠️ change le chemin si besoin
             javafx.scene.Parent root = loader.load();
             sujetField.getScene().setRoot(root);
         } catch (Exception ex) {

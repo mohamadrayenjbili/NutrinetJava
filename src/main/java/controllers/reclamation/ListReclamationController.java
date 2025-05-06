@@ -261,14 +261,4 @@ public class ListReclamationController {
         }
     }
 
-    @FXML
-    private void handleAdminButton() {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/reclamation/listReclamationAdmin.fxml"));
-            Stage stage = (Stage) reclamationsContainer.getScene().getWindow();
-            stage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 }
