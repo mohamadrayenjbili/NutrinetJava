@@ -111,14 +111,56 @@ public class ProgrammeService implements IProgrammeService {
 
     @Override
     public void deleteProgramme(int id) throws SQLException {
-        String query = "DELETE FROM programmes WHERE id = ?";
+        Connection conn = null;
+        try {
+            conn = getConnection();
+            conn.setAutoCommit(false); // Début de la transaction
 
-        try (Connection conn = getConnection();
-             PreparedStatement pstmt = conn.prepareStatement(query)) {
+            // 1. Supprimer d'abord les likes des commentaires
+            String deleteLikesQuery = "DELETE FROM commentaire_likes WHERE commentaire_id IN (SELECT id FROM commentaire WHERE programme_id = ?)";
+            try (PreparedStatement pstmtLikes = conn.prepareStatement(deleteLikesQuery)) {
+                pstmtLikes.setInt(1, id);
+                pstmtLikes.executeUpdate();
+            }
 
-            pstmt.setInt(1, id);
-            pstmt.executeUpdate();
+            // 2. Supprimer d'abord les réponses aux commentaires (où parent_id n'est pas null)
+            String deleteRepliesQuery = "DELETE FROM commentaire WHERE programme_id = ? AND parent_id IS NOT NULL";
+            try (PreparedStatement pstmtReplies = conn.prepareStatement(deleteRepliesQuery)) {
+                pstmtReplies.setInt(1, id);
+                pstmtReplies.executeUpdate();
+            }
+
+            // 3. Supprimer ensuite les commentaires parents
+            String deleteCommentsQuery = "DELETE FROM commentaire WHERE programme_id = ? AND parent_id IS NULL";
+            try (PreparedStatement pstmtComments = conn.prepareStatement(deleteCommentsQuery)) {
+                pstmtComments.setInt(1, id);
+                pstmtComments.executeUpdate();
+            }
+
+            // 4. Enfin, supprimer le programme
+            String deleteProgramQuery = "DELETE FROM programmes WHERE id = ?";
+            try (PreparedStatement pstmtProgram = conn.prepareStatement(deleteProgramQuery)) {
+                pstmtProgram.setInt(1, id);
+                pstmtProgram.executeUpdate();
+            }
+
+            conn.commit(); // Valider la transaction
+        } catch (SQLException e) {
+            if (conn != null) {
+                try {
+                    conn.rollback(); // Annuler la transaction en cas d'erreur
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+            throw e;
+        } finally {
+            if (conn != null) {
+                conn.setAutoCommit(true); // Rétablir l'auto-commit
+                conn.close();
+            }
         }
     }
+
 }
 

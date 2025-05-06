@@ -62,7 +62,7 @@
                 </font>
             </Button>
 
-            <Button text="seif" maxWidth="Infinity" alignment="BASELINE_LEFT"
+            <Button text="Les Programmes" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToProgrammeAdmin"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
                     <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5z';"/>

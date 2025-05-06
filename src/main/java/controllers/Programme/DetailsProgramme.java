@@ -247,7 +247,15 @@ public class DetailsProgramme implements Initializable {
         HBox headerBox = new HBox(10);
         headerBox.setAlignment(Pos.CENTER_LEFT);
 
-        Label nom = new Label(session.getCurrentUser().getPrename() +" "+ session.getCurrentUser().getName());
+        Label nom = new Label("Utilisateur inconnu"); // Valeur par défaut
+        try {
+            User auteur = services.user.UserService.getUserById(c.getAuteurId());
+            if (auteur != null) {
+                nom.setText(auteur.getPrename() + " " + auteur.getName());
+            }
+        } catch (Exception ex) {
+            System.err.println("Erreur lors de la récupération de l'auteur : " + ex.getMessage());
+        }
         nom.getStyleClass().add("comment-author");
 
         if (c.getParentId() != null) {

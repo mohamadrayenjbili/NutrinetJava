@@ -119,6 +119,21 @@ public class DashboardController {
         }
     }
 
+    public void naviguateToProgrammeAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Programme/AfficherProgramme.fxml"));
+            Scene usersListScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(usersListScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
           
 
 }

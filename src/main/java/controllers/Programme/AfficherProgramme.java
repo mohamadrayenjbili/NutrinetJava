@@ -189,4 +189,23 @@ public class AfficherProgramme implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleRetour() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/dashboard.fxml"));
+            Parent dashboardView = loader.load();
+            Stage stage = (Stage) programmeListContainer.getScene().getWindow();
+            Scene scene = new Scene(dashboardView);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Impossible de charger le dashboard : " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
 }

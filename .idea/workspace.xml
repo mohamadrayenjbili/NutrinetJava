@@ -4,23 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_13_53_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_13_53__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_14_56_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_14_56__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_15_24_[Changes]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_15_24__Changes_1.xml" beforeDir="false" />
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/reclamation/AjouterReclamationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/AjouterReclamationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationAdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/CommentaireService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/ICommentaireService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/IProgrammeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/Programme/ProgrammeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Programme/ProgrammeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/services/ProgrammeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherProgramme.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherProgrammeFront.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterProgramme.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterProgramme.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsProgramme.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/AfficherProgramme.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/AfficherProgramme.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamationAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamationAdmin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,22 +51,22 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "SkanderKaraa"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;SkanderKaraa&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/mohamadrayenjbili/NutrinetJava.git",
-    "accountId": "215a302c-992f-4481-bd99-19aef42d3273"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
+    &quot;accountId&quot;: &quot;215a302c-992f-4481-bd99-19aef42d3273&quot;
   }
-}]]></component>
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2vjLVz5nxdYYWSmLB6pyrohDl06" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -75,7 +78,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Maven.PiJava [javafx:run].executor": "Run",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "seeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiffffffffffff",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/edelr/Desktop/Java0605/NutrinetJava",
     "node.js.detected.package.eslint": "true",
