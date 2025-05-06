@@ -13,7 +13,7 @@
                style="-fx-font-size: 36px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
 
         <TextField fx:id="searchField"
-                   promptText="🔍 Rechercher par ID, nom ou prénom"
+                   promptText="🔍 Rechercher par nom ou prénom"
                    style="-fx-font-size: 14px; -fx-padding: 10; -fx-background-radius: 10px; -fx-border-color: #ccc; -fx-border-radius: 10px;"
                    maxWidth="400"/>
 

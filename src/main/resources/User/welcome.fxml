@@ -82,7 +82,7 @@
                 </font>
             </Button>
 
-            <Button text="Les Reclamations" maxWidth="Infinity" alignment="BASELINE_LEFT"
+            <Button text="Les Reclamations" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToReclamation"
                     style="-fx-background-color: transparent; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
                     <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M10 2a8 8 0 1 0 0 16A8 8 0 0 0 10 2zm1 13h-2v-2h2v2zm0-4h-2V7h2v4z';" />

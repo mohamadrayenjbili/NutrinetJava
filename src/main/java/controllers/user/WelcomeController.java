@@ -167,6 +167,8 @@ public class WelcomeController {
 
             }
 
+
+
     @FXML
     private void openSeifProgram() {
         try {
@@ -193,6 +195,22 @@ public class WelcomeController {
 
 
     @FXML
+    public void naviguateToReclamation(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamation/listReclamation.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setTitle("Reclamation");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+        
+
     public void navigateToAfficherObjective(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminObjective.fxml"));
@@ -207,17 +225,11 @@ public class WelcomeController {
         }
 
     }
-//    public void navigateToAfficherObjective(ActionEvent actionEvent) {
-//        try {
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminObjective.fxml"));
-//            Scene afficherObjectiveScene = new Scene(loader.load());
-//
-//            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-//            stage.setScene(afficherObjectiveScene);
-//           stage.show();
-//
-//  }
-//       }
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+  }
   
     @FXML
     private void goToMalek() {
@@ -260,3 +272,5 @@ public class WelcomeController {
         }
     }
     }
+
+  

@@ -47,9 +47,7 @@
                     text="⬅️ Retour"
                     style="-fx-background-color: #1e88e5; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 10 24 10 24; -fx-background-radius: 10px;" />
 
-            <Button text="Accéder à la Gestion Admin"
-                    onAction="#handleAdminButton"
-                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10px;" />
+
 
         </HBox>
 
