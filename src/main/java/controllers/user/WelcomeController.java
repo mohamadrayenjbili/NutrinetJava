@@ -190,6 +190,17 @@ public class WelcomeController {
         }
     }
 
+    public void navigateToAfficherObjective(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminObjective.fxml"));
+            Scene afficherObjectiveScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(afficherObjectiveScene);
+            stage.show();
+           }
+  }
+  
     @FXML
     private void goToMalek() {
         try {
@@ -229,4 +240,3 @@ public class WelcomeController {
         }
     }
 
-}
