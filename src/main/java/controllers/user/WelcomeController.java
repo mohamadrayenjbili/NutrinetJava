@@ -217,7 +217,9 @@ public class WelcomeController {
             Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(afficherObjectiveScene);
             stage.show();
-           }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
   }
   
     @FXML
