@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -48,12 +49,14 @@ public class DetailsConsultationController implements Initializable {
 
     private ConsultationService consultationService;
     private PrescriptionService prescriptionService;
-
+    @FXML
+    private TextField searchField;
     @FXML
     private Button btnAjouterConsultation;
     @FXML
     private Button btnCalendrier;
 
+    private ObservableList<Consultation> consultationsObservableList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -61,6 +64,7 @@ public class DetailsConsultationController implements Initializable {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
             this.consultationService = new ConsultationService(connection);
             this.prescriptionService = new PrescriptionService(connection);
+
             loadConsultations();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -524,6 +528,17 @@ public class DetailsConsultationController implements Initializable {
         }
     }
 
+    @FXML
+    private void rechercherConsultation() {
+        String searchText = searchField.getText().toLowerCase().trim();
+        if (searchText.isEmpty()) {
+            consultationsListView.setItems(consultationsObservableList);
+        } else {
+            ObservableList<Consultation> filteredList = consultationsObservableList.filtered(
+                    c -> c.getNom().toLowerCase().contains(searchText));
+            consultationsListView.setItems(filteredList);
+        }
+    }
     @FXML
     private void handleCalendrier() {
         try {

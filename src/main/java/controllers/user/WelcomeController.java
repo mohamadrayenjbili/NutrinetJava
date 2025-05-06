@@ -35,7 +35,7 @@ public class WelcomeController {
 
         if (currentUser != null) {
             if (currentUser.getRole().equalsIgnoreCase("doctor")) {
-                Button doctorButton = new Button("Ma liste de consultation");
+                Button doctorButton = new Button("");
                 doctorButton.setOnAction(e -> {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsConsultation.fxml"));
@@ -51,7 +51,7 @@ public class WelcomeController {
                 roleButtonsContainer.getChildren().add(doctorButton);
 
             } else if (currentUser.getRole().equalsIgnoreCase("client")) {
-                Button clientButton = new Button("Reserver une consultation");
+                Button clientButton = new Button("");
                 clientButton.setOnAction(e -> {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterConsultation.fxml"));
@@ -189,4 +189,44 @@ public class WelcomeController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void goToMalek() {
+        try {
+            User currentUser = session.getCurrentUser();
+            String role = currentUser.getRole().toLowerCase();
+
+            String fxmlPath;
+            String title;
+
+            switch (role) {
+                case "doctor":
+                    fxmlPath = "/DetailsConsultation.fxml";
+                    title = "Espace Docteur - Malek";
+                    break;
+                case "client":
+                    fxmlPath = "/DetailsClient.fxml";
+                    title = "Espace Client - Malek";
+                    break;
+                case "ADMIN":
+                    fxmlPath = "/BackConsultation.fxml";
+                    title = "Espace Admin - Malek";
+                    break;
+                default:
+                    System.out.println("Rôle non reconnu : " + role);
+                    return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle(title);
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+}

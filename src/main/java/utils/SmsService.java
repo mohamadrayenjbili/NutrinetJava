@@ -9,7 +9,7 @@ import javafx.scene.control.Alert;
 public class SmsService {
     // Remplacez par vos identifiants Twilio
     private static final String ACCOUNT_SID = "AC311eca359ee0cbfbf5cf0c53239a7145";
-    private static final String AUTH_TOKEN = "2fa57777c7f7bdd01e1b961b53f8bab0";
+    private static final String AUTH_TOKEN = "78cd72c213cccd78ed958603f446b5a1";
     private static final String TWILIO_PHONE = "+16204592879"; // Votre numéro Twilio vérifié
     private static boolean isInitialized = false;
 
