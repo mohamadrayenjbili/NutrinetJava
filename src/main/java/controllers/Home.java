@@ -21,7 +21,8 @@ public class Home extends Application {
 
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("/AdminObjective.fxml"));
+
+            Parent root = FXMLLoader.load(getClass().getResource("/User/sign_in.fxml"));
 
 
 

@@ -1,25 +1,37 @@
 package controllers.Produit;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.ResourceBundle;
+
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
-import models.Produit;
-import services.Produit.IProduitService;
-import services.Produit.ProduitService;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.util.ResourceBundle;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import javafx.util.Duration;
+import models.Produit;
+import models.User;
+import services.Produit.IProduitService;
+import services.Produit.ProduitService;
+import services.user.log_historyService;
+import utils.session;
 
 public class AjouterProduitController implements Initializable {
 
@@ -42,10 +54,17 @@ public class AjouterProduitController implements Initializable {
     @FXML private Label lblStockError;
     @FXML private Label lblCategorieError;
     @FXML private Button btnCodePromo;
+    @FXML private Button btnModifierProduit;
 
+    @FXML private VBox sidebar;
+    @FXML private Button toggleSidebarBtn;
+    @FXML private VBox mainContent;
 
     private IProduitService produitService;
     private String imagePath = "";
+    private final log_historyService logService = new log_historyService();
+    private boolean isSidebarVisible = true;
+    private TranslateTransition sidebarTransition;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,6 +72,25 @@ public class AjouterProduitController implements Initializable {
         cbCategorie.getItems().addAll("Whey", "Creatine", "Pré-workout", "Post-workout", "Vitamines");
         setupInputValidation();
         hideErrorLabels();
+        
+        // Ensure toggle button is on top
+        toggleSidebarBtn.toFront();
+        
+        // Initialize the sidebar transition
+        sidebarTransition = new TranslateTransition(Duration.millis(300), sidebar);
+        sidebarTransition.setFromX(0);
+        sidebarTransition.setToX(-220);
+        
+        // Add listener to update main content position
+        sidebarTransition.setOnFinished(event -> {
+            if (!isSidebarVisible) {
+                AnchorPane.setLeftAnchor(mainContent, 20.0);
+            } else {
+                AnchorPane.setLeftAnchor(mainContent, 240.0);
+            }
+            // Keep button on top after animation
+            toggleSidebarBtn.toFront();
+        });
     }
 
     private void setupInputValidation() {
@@ -311,9 +349,94 @@ public class AjouterProduitController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle("Gérer les Codes Promo");
         } catch (IOException e) {
-            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d’ouvrir CodePromo.fxml : " + e.getMessage());
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d'ouvrir CodePromo.fxml : " + e.getMessage());
         }
     }
 
+    @FXML
+    public void toggleSidebar() {
+        if (isSidebarVisible) {
+            // Hide sidebar
+            sidebarTransition.setFromX(0);
+            sidebarTransition.setToX(-220);
+            sidebarTransition.play();
+            isSidebarVisible = false;
+        } else {
+            // Show sidebar
+            sidebar.setTranslateX(-220); // Reset position before showing
+            sidebarTransition.setFromX(-220);
+            sidebarTransition.setToX(0);
+            sidebarTransition.play();
+            isSidebarVisible = true;
+        }
+        // Keep button on top after toggle
+        toggleSidebarBtn.toFront();
+    }
+
+    public void showUsersList(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/users_list.fxml"));
+            Scene usersListScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(usersListScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleAjouterProduit(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/AjouterProduit.fxml"));
+            Scene ajouterProduitScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(ajouterProduitScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleLogout(ActionEvent actionEvent) {
+        try {
+            // Récupérer l'utilisateur avant de vider la session
+            User currentUser = session.getCurrentUser();
+
+            // Ajouter le log de déconnexion
+            if (currentUser != null) {
+                String details = "User " + currentUser.getName() + " " + currentUser.getPrename() + " logged out";
+                logService.addLog(currentUser.getEmail(), "Logout", details);
+            }
+
+            // Vider la session
+            session.clearSession();
+
+            // Redirection vers la page de connexion
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/sign_in.fxml"));
+            Scene loginScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(loginScene);
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void handleModifierProduit(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/ModifierProduit.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnModifierProduit.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Modification Des Produits");
+        } catch (IOException e) {
+            showAlert(Alert.AlertType.ERROR, "Erreur", "Impossible d'ouvrir Produit/ModifierProduit.fxml : " + e.getMessage());
+        }
+    }
 
 }

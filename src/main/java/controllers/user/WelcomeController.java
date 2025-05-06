@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.User;
 import services.user.log_historyService;
@@ -17,6 +19,8 @@ public class WelcomeController {
 
     @FXML
     private Label welcomeLabel;
+    @FXML
+    private VBox roleButtonsContainer;
     private final log_historyService logService = new log_historyService();
 
     @FXML
@@ -27,6 +31,43 @@ public class WelcomeController {
         } else {
             // Handle the case where there is no logged-in user
             welcomeLabel.setText("Welcome!");
+        }
+
+        if (currentUser != null) {
+            if (currentUser.getRole().equalsIgnoreCase("doctor")) {
+                Button doctorButton = new Button("");
+                doctorButton.setOnAction(e -> {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsConsultation.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = (Stage) roleButtonsContainer.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.setTitle("Consultations du docteur");
+                        stage.show();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                roleButtonsContainer.getChildren().add(doctorButton);
+
+            } else if (currentUser.getRole().equalsIgnoreCase("client")) {
+                Button clientButton = new Button("");
+                clientButton.setOnAction(e -> {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterConsultation.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = (Stage) roleButtonsContainer.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.setTitle("Mes consultations");
+                        stage.show();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+                roleButtonsContainer.getChildren().add(clientButton);
+            }
+
+
         }
     }
 
@@ -157,8 +198,45 @@ public class WelcomeController {
             Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(afficherObjectiveScene);
             stage.show();
+           }
+  }
+  
+    @FXML
+    private void goToMalek() {
+        try {
+            User currentUser = session.getCurrentUser();
+            String role = currentUser.getRole().toLowerCase();
+
+            String fxmlPath;
+            String title;
+
+            switch (role) {
+                case "doctor":
+                    fxmlPath = "/DetailsConsultation.fxml";
+                    title = "Espace Docteur - Malek";
+                    break;
+                case "client":
+                    fxmlPath = "/DetailsClient.fxml";
+                    title = "Espace Client - Malek";
+                    break;
+                case "ADMIN":
+                    fxmlPath = "/BackConsultation.fxml";
+                    title = "Espace Admin - Malek";
+                    break;
+                default:
+                    System.out.println("Rôle non reconnu : " + role);
+                    return;
+            }
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle(title);
+            stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-        }
+

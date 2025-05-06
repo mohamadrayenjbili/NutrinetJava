@@ -112,7 +112,7 @@
 
                     <!-- Boutons -->
                     <HBox alignment="CENTER_RIGHT" spacing="15.0">
-                        <Button text="Voir Détails des Consultations" onAction="#goToDetailsConsultation"
+                        <Button text="Voir Détails des Consultations" onAction="#goToDetailsClient"
                                 prefHeight="40.0" prefWidth="200.0"
                                 style="-fx-background-color: #bdc3c7; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
                         <Button text="Ajouter" onAction="#ajouterConsultationAction"

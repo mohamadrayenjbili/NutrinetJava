@@ -66,16 +66,36 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
-    public void navigateToAfficherObjective(ActionEvent actionEvent) {
+    
+
+          
+  
+       public void navigateToAfficherObjective(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherObjective.fxml"));
-            Scene afficherObjectiveScene = new Scene(loader.load());
+            Scene ajouterProduitScene = new Scene(loader.load());
 
             Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(afficherObjectiveScene);
+            stage.setScene(ajouterProduitScene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+          
+          
+    public void handleBackConsultation(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/BackConsultation.fxml"));
+            Scene ajouterProduitScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(ajouterProduitScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+          
 }

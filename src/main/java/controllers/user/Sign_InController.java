@@ -65,7 +65,6 @@ public class Sign_InController {
                 return;
             }
 
-            // Rediriger en fonction du rôle
             String fxmlPath;
             String title;
 
@@ -129,8 +128,13 @@ public class Sign_InController {
                 String fxmlPath;
                 String title;
 
-                fxmlPath = "/User/welcome.fxml";
-                title = "Welcome";
+                if ("admin".equalsIgnoreCase(user.getRole())) {
+                    fxmlPath = "/user/dashboard.fxml";
+                    title = "Dashboard";
+                } else {
+                    fxmlPath = "/user/welcome.fxml";
+                    title = "Welcome";
+                }
 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
                 Parent root = loader.load();

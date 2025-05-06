@@ -61,11 +61,11 @@ public class AfficherProduitsFrontController implements Initializable {
         // Charger le CSS
         String cssPath = getClass().getResource("/Produit/listdidou.css").toExternalForm();
         flowProduits.getStylesheets().add(cssPath);
-        
+
         // Ajouter le CSS de FontAwesome
         String fontAwesomePath = getClass().getResource("/styles/fontawesome.css").toExternalForm();
         flowProduits.getStylesheets().add(fontAwesomePath);
-        
+
         // Appliquer le CSS à la scène entière
         flowProduits.sceneProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -152,6 +152,7 @@ public class AfficherProduitsFrontController implements Initializable {
         overlayContent.getStyleClass().add("overlay-content");
         overlayContent.setAlignment(javafx.geometry.Pos.CENTER);
         overlayContent.setVisible(false);
+
 
         // Prix
         Label priceLabel = new Label(String.format("%.2f €", produit.getPrix()));

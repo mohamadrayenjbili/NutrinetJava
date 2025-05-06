@@ -101,6 +101,7 @@ public class userlistcontroller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         userService = new userlist();
 
         // Initialize filtered list

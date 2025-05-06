@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -36,6 +37,7 @@ import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -47,9 +49,14 @@ public class DetailsConsultationController implements Initializable {
 
     private ConsultationService consultationService;
     private PrescriptionService prescriptionService;
-
+    @FXML
+    private TextField searchField;
     @FXML
     private Button btnAjouterConsultation;
+    @FXML
+    private Button btnCalendrier;
+
+    private ObservableList<Consultation> consultationsObservableList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -57,6 +64,7 @@ public class DetailsConsultationController implements Initializable {
             Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/didou", "root", "");
             this.consultationService = new ConsultationService(connection);
             this.prescriptionService = new PrescriptionService(connection);
+
             loadConsultations();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -155,10 +163,14 @@ public class DetailsConsultationController implements Initializable {
                         setGraphic(null);
                     } else {
                         nameLabel.setText(consultation.getNom() + " " + consultation.getPrenom());
+                        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        String formattedDate = consultation.getDate().format(formatter);
+
                         String details = String.format("%s • %s • %s",
                                 consultation.getType(),
-                                consultation.getDate(),
+                                formattedDate,
                                 getStatusStyled(consultation.getStatus()));
+
 
                         String statusStyle = switch (consultation.getStatus().toLowerCase()) {
                             case "faite" -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
@@ -515,5 +527,31 @@ public class DetailsConsultationController implements Initializable {
             showErrorAlert("Erreur", "Échec de l'export PDF: " + e.getMessage());
         }
     }
+
+    @FXML
+    private void rechercherConsultation() {
+        String searchText = searchField.getText().toLowerCase().trim();
+        if (searchText.isEmpty()) {
+            consultationsListView.setItems(consultationsObservableList);
+        } else {
+            ObservableList<Consultation> filteredList = consultationsObservableList.filtered(
+                    c -> c.getNom().toLowerCase().contains(searchText));
+            consultationsListView.setItems(filteredList);
+        }
+    }
+    @FXML
+    private void handleCalendrier() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/calendrier.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) btnCalendrier.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Mon Calendrier");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
