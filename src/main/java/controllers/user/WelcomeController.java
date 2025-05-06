@@ -190,16 +190,34 @@ public class WelcomeController {
         }
     }
 
+
+
+    @FXML
     public void navigateToAfficherObjective(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminObjective.fxml"));
-            Scene afficherObjectiveScene = new Scene(loader.load());
+            Parent root = loader.load();
 
-            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(afficherObjectiveScene);
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setTitle("Forum");
+            stage.setScene(new Scene(root));
             stage.show();
-           }
-  }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+//    public void navigateToAfficherObjective(ActionEvent actionEvent) {
+//        try {
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminObjective.fxml"));
+//            Scene afficherObjectiveScene = new Scene(loader.load());
+//
+//            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+//            stage.setScene(afficherObjectiveScene);
+//           stage.show();
+//
+//  }
+//       }
   
     @FXML
     private void goToMalek() {
@@ -237,6 +255,8 @@ public class WelcomeController {
 
         } catch (IOException e) {
             e.printStackTrace();
+
+
         }
     }
-
+    }
