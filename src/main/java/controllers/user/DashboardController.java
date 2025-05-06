@@ -1,7 +1,9 @@
 package controllers.user;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import models.User;
@@ -66,5 +68,21 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
+
+    public void naviguateToReclamationAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamation/listReclamationAdmin.fxml"));
+            Scene usersListScene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(usersListScene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

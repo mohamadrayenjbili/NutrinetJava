@@ -56,7 +56,7 @@ public class ListReclamationAdminController {
 
         retourBtn.setOnAction(e -> {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("/reclamation/listReclamation.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/user/dashboard.fxml"));
                 retourBtn.getScene().setRoot(root);
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -150,11 +150,10 @@ public class ListReclamationAdminController {
                 if (newValue == null || newValue.isEmpty()) return true;
 
                 String lower = newValue.toLowerCase();
-                String idString = String.valueOf(reclamation.getId());
                 String nom = reclamation.getUser().getName().toLowerCase();
                 String prenom = reclamation.getUser().getPrename().toLowerCase();
 
-                return idString.contains(lower) || nom.contains(lower) || prenom.contains(lower);
+                return nom.contains(lower) || prenom.contains(lower);
             });
         });
 

@@ -167,6 +167,8 @@ public class WelcomeController {
 
             }
 
+
+
     @FXML
     private void openSeifProgram() {
         try {
@@ -188,5 +190,21 @@ public class WelcomeController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    public void naviguateToReclamation(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reclamation/listReclamation.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) welcomeLabel.getScene().getWindow();
+            stage.setTitle("Reclamation");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
         }

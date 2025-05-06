@@ -4,14 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-
-    <list>
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_13_53_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_13_53__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_14_56_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_14_56__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_15_24_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_28_04_2025_15_24__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/reclamation/AjouterReclamationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/AjouterReclamationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationAdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationAdminController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/reclamation/ListReclamationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamationAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamationAdmin.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +36,6 @@
         <option value="Interface" />
         <option value="FxmlFile" />
         <option value="Class" />
-
         <option value="CSS File" />
       </list>
     </option>
@@ -40,40 +48,22 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-
-  <component name="GitHubPullRequestSearchHistory">
-    <option name="lastFilter">
-      <map>
-        <entry key="state" value="OPEN" />
-        <entry key="assignee" value="Seiffaress" />
-      </map>
-    </option>
-  </component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <map>
-        <entry key="url" value="https://github.com/mohamadrayenjbili/NutrinetJava.git" />
-        <entry key="accountId" value="21f38e0d-9eb4-4540-992f-be9be6ea3dfd" />
-      </map>
-    </option>
-    <option name="recentNewPullRequestHead">
-      <map>
-        <entry key="server">
-          <map>
-            <entry key="useHttp" value="false" />
-            <entry key="host" value="github.com" />
-          </map>
-        </entry>
-        <entry key="owner" value="mohamadrayenjbili" />
-        <entry key="repository" value="NutrinetJava" />
-      </map>
-    </option>
-  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "SkanderKaraa"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mohamadrayenjbili/NutrinetJava.git",
+    "accountId": "215a302c-992f-4481-bd99-19aef42d3273"
+  }
+}]]></component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
-  <component name="ProjectColorInfo">
-    <option name="customColor" value="" />
-    <option name="associatedIndex" value="3" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
   <component name="ProjectId" id="2vjLVz5nxdYYWSmLB6pyrohDl06" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -82,7 +72,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.PiJava [javafx:run].executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/edelr/Desktop/Java0605/NutrinetJava",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\jbili\Downloads\NutrinetJava-Front-Back\DidouJava\NutrinetJava\src\main\resources\images" />
@@ -113,6 +116,14 @@
                 <option value="javafx:run" />
               </list>
             </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
             <option name="resolveToWorkspace" value="false" />
             <option name="workingDirPath" value="$PROJECT_DIR$" />
           </MavenRunnerParameters>
@@ -132,12 +143,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="2528c9bf-2699-488a-864f-f2427632b16b" name="Changes" comment="" />
+      <changelist id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="" />
       <created>1744653565488</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1744653565488</updated>
-
+      <workItem from="1746488796935" duration="3214000" />
     </task>
     <option name="localTasksCounter" value="16" />
     <servers />
@@ -157,7 +168,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-
     <MESSAGE value="correction des erreurs" />
     <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
   </component>
