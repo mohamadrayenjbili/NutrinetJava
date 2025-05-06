@@ -19,8 +19,9 @@
               AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0">
 
             <!-- En-tête avec dégradé -->
-            <StackPane style="-fx-background-color: linear-gradient(to right, #2980b9, #3498db);
-                              -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);">
+            <!-- En-tête avec dégradé -->
+            <StackPane style="-fx-background-color: linear-gradient(to right, #388E3C, #4CAF50);
+                  -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 4);">
                 <padding>
                     <Insets top="20" right="25" bottom="20" left="25" />
                 </padding>
@@ -37,15 +38,32 @@
                             <Button fx:id="btnAjouterProgramme"
                                     text="Nouveau programme"
                                     onAction="#handleAjouterProgramme"
-                                    style="-fx-background-color: #2ecc71;
-                                           -fx-text-fill: white;
-                                           -fx-font-weight: bold;
-                                           -fx-background-radius: 30;
-                                           -fx-padding: 8 20 8 15;
-                                           -fx-cursor: hand;
-                                           -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);">
+                                    style="-fx-background-color: #388E3C;
+               -fx-text-fill: white;
+               -fx-font-weight: bold;
+               -fx-background-radius: 30;
+               -fx-padding: 8 20 8 15;
+               -fx-cursor: hand;
+               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);">
                                 <graphic>
                                     <Label text="+"
+                                           style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                                </graphic>
+                            </Button>
+                            <!-- Ajoutez ce bouton dans la HBox de l'en-tête, juste après le bouton "Nouveau programme" -->
+                            <Button fx:id="btnRetour"
+                                    text="Retour au Dashboard"
+                                    onAction="#handleRetour"
+                                    style="-fx-background-color: #34495e;
+               -fx-text-fill: white;
+               -fx-font-weight: bold;
+               -fx-background-radius: 30;
+               -fx-padding: 8 20 8 15;
+               -fx-cursor: hand;
+               -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 4, 0, 0, 2);
+               -fx-margin-left: 10;">
+                                <graphic>
+                                    <Label text="←"
                                            style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: white;"/>
                                 </graphic>
                             </Button>
@@ -96,14 +114,14 @@
                                         <Label text="Description du programme qui peut s'étendre sur plusieurs lignes. C'est une description détaillée du contenu du programme."
                                                style="-fx-font-size: 14px; -fx-text-fill: #7f8c8d; -fx-wrap-text: true;"/>
                                         <HBox spacing="15">
-                                            <Label text="⏱️ 30 heures"
+                                            <Label text="⏱ 30 heures"
                                                    style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-opacity: 0.8;"/>
-                                            <Label text="📅 Créé le 20/04/2025"
+                                            <Label text="📅  Créé le 20/04/2025"
                                                    style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d; -fx-opacity: 0.8;"/>
                                         </HBox>
                                     </VBox>
                                     <VBox spacing="10" alignment="CENTER">
-                                        <Button text="👁️"
+                                        <Button text="👁"
                                                 style="-fx-background-color: #2980b9;
                                                        -fx-text-fill: white;
                                                        -fx-background-radius: 20;
@@ -112,7 +130,7 @@
                                                        -fx-max-width: 36px;
                                                        -fx-max-height: 36px;
                                                        -fx-cursor: hand;"/>
-                                        <Button text="✏️"
+                                        <Button text="✏"
                                                 style="-fx-background-color: #3498db;
                                                        -fx-text-fill: white;
                                                        -fx-background-radius: 20;
@@ -121,7 +139,7 @@
                                                        -fx-max-width: 36px;
                                                        -fx-max-height: 36px;
                                                        -fx-cursor: hand;"/>
-                                        <Button text="🗑️"
+                                        <Button text="🗑"
                                                 style="-fx-background-color: #e74c3c;
                                                        -fx-text-fill: white;
                                                        -fx-background-radius: 20;
