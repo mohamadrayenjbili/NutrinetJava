@@ -188,13 +188,14 @@
             <version>20240303</version>
         </dependency>
 
-        <dependency>
-            <groupId>com.twilio.sdk</groupId>
-            <artifactId>twilio</artifactId>
-            <version>8.31.1</version>
-        </dependency>
-        <dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.twilio.sdk</groupId>-->
+<!--            <artifactId>twilio</artifactId>-->
+<!--            <version>8.31.1</version>-->
+<!--        </dependency>-->
+
             <!--malek-->
+        <dependency>
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>
             <version>9.2.3</version>

@@ -1,0 +1,123 @@
+/* detailsdoctorMalek.css : Style professionnel pour DetailsConsultation.fxml */
+
+.root, .anchor-pane {
+    -fx-background-color: linear-gradient(to bottom, #f4f6f9, #e8ecf2);
+}
+
+.label.title {
+    -fx-text-fill: #2c3e50;
+    -fx-font-weight: bold;
+    -fx-font-size: 32px;
+    -fx-effect: dropshadow(gaussian, rgba(44,62,80,0.15), 4, 0, 0, 2);
+    -fx-padding: 0 0 10 0;
+}
+
+.text-field {
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-border-color: #d1d8e0;
+    -fx-background-color: #fff;
+    -fx-padding: 12 15 12 15;
+    -fx-font-size: 15px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.05), 4, 0, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+.text-field:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(gaussian, rgba(52,152,219,0.2), 6, 0, 0, 0);
+}
+
+.button {
+    -fx-background-radius: 10px;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-padding: 12 25 12 25;
+    -fx-effect: dropshadow(gaussian, rgba(46,204,113,0.15), 4, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+    -fx-transition: all 0.3s ease;
+}
+
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(46,204,113,0.25), 6, 0, 0, 3);
+    -fx-scale-x: 1.02;
+    -fx-scale-y: 1.02;
+}
+
+.button#btnCalendrier {
+    -fx-background-color: linear-gradient(to right, #43cea2, #185a9d);
+    -fx-text-fill: white;
+}
+
+.button#btnCalendrier:hover {
+    -fx-background-color: linear-gradient(to right, #3db890, #154b82);
+}
+
+.list-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 12, 0, 0, 0);
+}
+
+.list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: rgba(52, 152, 219, 0.1);
+    -fx-cursor: hand;
+}
+
+.stack-pane.card {
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 10, 0, 0, 0);
+    -fx-transition: all 0.3s ease;
+}
+
+.stack-pane.card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 15, 0, 0, 0);
+    -fx-translate-y: -2;
+}
+
+.label.card-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-effect: dropshadow(gaussian, rgba(44,62,80,0.1), 2, 0, 0, 1);
+}
+
+.label.card-subtitle {
+    -fx-font-size: 16px;
+    -fx-text-fill: #7f8c8d;
+    -fx-padding: 2 0 2 0;
+}
+
+.label.card-date {
+    -fx-font-size: 14px;
+    -fx-text-fill: #95a5a6;
+    -fx-padding: 2 0 2 0;
+}
+
+.separator {
+    -fx-background-color: linear-gradient(to right, transparent, #e0e0e0, transparent);
+    -fx-padding: 10 0 10 0;
+}
+
+/* Animation pour les cartes */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.stack-pane.card {
+    -fx-animation: fadeIn 0.5s ease-in;
+} 

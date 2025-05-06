@@ -13,6 +13,7 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.TextField?>
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.BackConsultationAjoutController"
             prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #f4f6f9;">
@@ -27,6 +28,12 @@
                     <Font size="24.0" />
                 </font>
             </Label>
+
+
+
+
+
+
 
             <!-- Bouton pour ajouter une consultation -->
             <Button text="Ajouter Consultation"
