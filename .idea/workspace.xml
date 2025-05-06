@@ -4,26 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="test">
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="Correction des erreurs + amelioration interface">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgramme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/CommentaireService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/ICommentaireService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/IProgrammeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/Programme/ProgrammeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/Programme/ProgrammeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/ProgrammeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherProgramme.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AfficherProgrammeFront.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterProgramme.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterProgramme.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsProgramme.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/AfficherProgramme.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/AfficherProgramme.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/dashboard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,12 +40,22 @@
     &quot;assignee&quot;: &quot;SkanderKaraa&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/mohamadrayenjbili/NutrinetJava.git&quot;,
-    &quot;accountId&quot;: &quot;215a302c-992f-4481-bd99-19aef42d3273&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/mohamadrayenjbili/NutrinetJava.git",
+    "accountId": "21f38e0d-9eb4-4540-992f-be9be6ea3dfd"
+  },
+  "recentNewPullRequestHead": {
+    "server": {
+      "useHttp": false,
+      "host": "github.com",
+      "port": null,
+      "suffix": null
+    },
+    "owner": "mohamadrayenjbili",
+    "repository": "NutrinetJava"
   }
-}</component>
+}]]></component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -78,7 +71,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Maven.PiJava [javafx:run].executor": "Run",
-    "git-widget-placeholder": "seeeeeeeeeeeeeeeeiiiiiiiiiiiiiiiiiiffffffffffff",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "#65 on seeeeeeeeeeeeeeeeiiiiiiiiiiiiiiii…fffff",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/edelr/Desktop/Java0605/NutrinetJava",
     "node.js.detected.package.eslint": "true",
@@ -138,8 +132,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
-        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
       </set>
     </attachedChunks>
   </component>
@@ -152,8 +146,17 @@
       <option name="presentableId" value="Default" />
       <updated>1744653565488</updated>
       <workItem from="1746488796935" duration="3214000" />
+      <workItem from="1746499817704" duration="504000" />
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Correction des erreurs + amelioration interface">
+      <option name="closed" value="true" />
+      <created>1746499934689</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1746499934689</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,7 +175,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="correction des erreurs" />
-    <option name="LAST_COMMIT_MESSAGE" value="correction des erreurs" />
+    <MESSAGE value="Correction des erreurs + amelioration interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="Correction des erreurs + amelioration interface" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
