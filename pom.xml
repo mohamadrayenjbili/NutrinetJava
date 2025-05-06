@@ -96,6 +96,13 @@
             <version>1.6.2</version>
         </dependency>
 
+        <!-- Add JavaBeans Activation Framework -->
+        <dependency>
+            <groupId>javax.activation</groupId>
+            <artifactId>activation</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+
 
 
 
@@ -188,13 +195,13 @@
             <version>20240303</version>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.twilio.sdk</groupId>-->
-<!--            <artifactId>twilio</artifactId>-->
-<!--            <version>8.31.1</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.twilio.sdk</groupId>-->
+        <!--            <artifactId>twilio</artifactId>-->
+        <!--            <version>8.31.1</version>-->
+        <!--        </dependency>-->
 
-            <!--malek-->
+        <!--malek-->
         <dependency>
             <groupId>com.twilio.sdk</groupId>
             <artifactId>twilio</artifactId>
@@ -227,9 +234,9 @@
 
         <!-- Malek -->
         <dependency>
-        <groupId>com.calendarfx</groupId>
-        <artifactId>view</artifactId>
-        <version>11.8.3</version>
+            <groupId>com.calendarfx</groupId>
+            <artifactId>view</artifactId>
+            <version>11.8.3</version>
         </dependency>
 
 

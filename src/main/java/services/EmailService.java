@@ -1,49 +1,30 @@
 package services;
 
-import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import java.util.Properties;
 import models.User;
 import utils.session;
 
 public class EmailService {
-    private static final String EMAIL = "jbilimohamadrayen@gmail.com"; // Replace with your Gmail
-    private static final String PASSWORD = "dtibphtmvxpxkzcl"; // Replace with your app password
-
+    private static final String EMAIL = "jbilimohamadrayen@gmail.com";
+    private static final String PASSWORD = "dtibphtmvxpxkzcl";
+    
+    // Use alternative implementation to avoid class loading issues
     public void sendNotification(String toEmail, String subject, String message) {
         if (toEmail == null || toEmail.isEmpty()) {
             System.err.println("Error: Recipient email is null or empty");
             return;
         }
-
-        // Set up mail server properties
-        Properties props = new Properties();
-        props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
-
-        // Create a session with authentication
-        Session session = Session.getInstance(props, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(EMAIL, PASSWORD);
-            }
-        });
-
+        
         try {
-            // Create a new message
-            Message msg = new MimeMessage(session);
-            msg.setFrom(new InternetAddress(EMAIL));
-            msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
-            msg.setSubject(subject);
-            msg.setText(message);
-
-            // Send the message
-            Transport.send(msg);
-            System.out.println("Email sent successfully to " + toEmail);
-        } catch (MessagingException e) {
+            // Use the other service to send emails
+            utils.EmailService emailSender = new utils.EmailService();
+            boolean success = emailSender.sendEmail(toEmail, subject, message);
+            
+            if (success) {
+                System.out.println("Email sent successfully to " + toEmail);
+            } else {
+                System.err.println("Failed to send email to " + toEmail);
+            }
+        } catch (Exception e) {
             System.err.println("Error sending email: " + e.getMessage());
             e.printStackTrace();
         }
@@ -73,13 +54,15 @@ public class EmailService {
         }
 
         String subject = "Confirmation de votre commande";
-        String message = "Cher " + currentUser.getName() + " " + currentUser.getPrename() + ",\n\n" +
-                        "Nous vous confirmons la réception de votre commande.\n\n" +
-                        "Détails de la commande :\n" +
-                        orderDetails + "\n\n" +
-                        "Merci de votre confiance.\n" +
-                        "Cordialement,\n" +
-                        "L'équipe Nutrinet";
+        String message = "<html><body>" +
+                "<h2>Cher " + currentUser.getName() + " " + currentUser.getPrename() + ",</h2>" +
+                "<p>Nous vous confirmons la réception de votre commande.</p>" +
+                "<h3>Détails de la commande :</h3>" +
+                "<pre>" + orderDetails + "</pre>" +
+                "<p>Merci de votre confiance.</p>" +
+                "<p>Cordialement,<br>" +
+                "L'équipe Nutrinet</p>" +
+                "</body></html>";
 
         sendEmailToCurrentUser(subject, message);
     }
@@ -92,13 +75,15 @@ public class EmailService {
         }
 
         String subject = "Réinitialisation de votre mot de passe";
-        String message = "Cher " + currentUser.getName() + " " + currentUser.getPrename() + ",\n\n" +
-                        "Vous avez demandé la réinitialisation de votre mot de passe.\n" +
-                        "Cliquez sur le lien suivant pour réinitialiser votre mot de passe :\n" +
-                        resetLink + "\n\n" +
-                        "Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet email.\n\n" +
-                        "Cordialement,\n" +
-                        "L'équipe Nutrinet";
+        String message = "<html><body>" +
+                "<h2>Cher " + currentUser.getName() + " " + currentUser.getPrename() + ",</h2>" +
+                "<p>Vous avez demandé la réinitialisation de votre mot de passe.</p>" +
+                "<p>Cliquez sur le lien suivant pour réinitialiser votre mot de passe :</p>" +
+                "<p><a href='" + resetLink + "'>" + resetLink + "</a></p>" +
+                "<p>Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet email.</p>" +
+                "<p>Cordialement,<br>" +
+                "L'équipe Nutrinet</p>" +
+                "</body></html>";
 
         sendEmailToCurrentUser(subject, message);
     }

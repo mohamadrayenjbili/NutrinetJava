@@ -317,4 +317,18 @@ public class AfficherProduitsFrontController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    @FXML
+    private void retourAccueil(ActionEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/welcome.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) flowProduits.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Accueil");
+        } catch (IOException ex) {
+            showAlert("Erreur", "Erreur lors de la navigation vers l'accueil: " + ex.getMessage(), Alert.AlertType.ERROR);
+            ex.printStackTrace();
+        }
+    }
 }

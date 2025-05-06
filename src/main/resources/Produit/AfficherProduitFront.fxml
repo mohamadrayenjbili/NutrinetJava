@@ -19,10 +19,19 @@
             <Label text="🛍 Découvrez nos Produits" styleClass="main-title"/>
             <Label text="Des produits de qualité pour votre bien-être" styleClass="subtitle"/>
         </VBox>
+        <!-- Bouton de retour à gauche -->
+
     </StackPane>
 
     <!-- Barre de recherche et filtres -->
+
     <HBox styleClass="search-section" alignment="CENTER" spacing="15">
+        <Button fx:id="btnRetour" text="🏠 Accueil" onAction="#retourAccueil"
+                styleClass="btn-panier" prefWidth="150" prefHeight="40">
+            <padding>
+                <Insets top="10" right="20" bottom="10" left="20"/>
+            </padding>
+        </Button>
         <padding>
             <Insets top="15" right="20" bottom="15" left="20"/>
         </padding>
