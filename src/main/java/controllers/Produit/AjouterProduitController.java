@@ -190,7 +190,7 @@ public class AjouterProduitController implements Initializable {
     private String saveImageToResources() throws IOException {
         String extension = getFileExtension(selectedFile.getName());
         String uniqueName = java.util.UUID.randomUUID().toString().replaceAll("-", "") + "." + extension;
-        String destDirPath = System.getProperty("user.dir") + "/src/main/resources/images";
+        String destDirPath = "C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images";
 
         File destDir = new File(destDirPath);
         if (!destDir.exists()) destDir.mkdirs();

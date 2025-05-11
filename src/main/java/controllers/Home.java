@@ -22,7 +22,7 @@ public class Home extends Application {
 
 
 
-            Parent root = FXMLLoader.load(getClass().getResource("/User/dashboard.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/User/welcome.fxml"));
 
 
 
