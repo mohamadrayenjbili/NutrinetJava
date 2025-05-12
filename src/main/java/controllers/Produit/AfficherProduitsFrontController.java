@@ -140,6 +140,7 @@ public class AfficherProduitsFrontController implements Initializable {
         } catch (Exception ex) {
             imageView.setImage(new Image("file:C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images\\default_produit.png"));
         }
+
         imageView.setFitWidth(300);
         imageView.setFitHeight(300);
         imageView.setPreserveRatio(false);
