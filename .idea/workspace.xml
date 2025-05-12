@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.2">
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsClient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsClient.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/ProfileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +152,7 @@
       <updated>1744653565488</updated>
       <workItem from="1746488796935" duration="3214000" />
       <workItem from="1746499817704" duration="504000" />
-      <workItem from="1746977922808" duration="29149000" />
+      <workItem from="1746977922808" duration="29820000" />
     </task>
     <task id="LOCAL-00016" summary="Correction des erreurs + amelioration interface">
       <option name="closed" value="true" />
@@ -193,7 +194,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747084277380</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="amelioration affichage 2.2">
+      <option name="closed" value="true" />
+      <created>1747086551123</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747086551123</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -216,7 +225,8 @@
     <MESSAGE value="amelioration de l'affichage de l'application" />
     <MESSAGE value="amelioration affichage 2.0" />
     <MESSAGE value="amelioration affichage 2.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.1" />
+    <MESSAGE value="amelioration affichage 2.2" />
+    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

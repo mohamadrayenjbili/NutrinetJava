@@ -31,6 +31,7 @@ import javafx.stage.Stage;
 import models.Objective;
 import services.IObjectiveService;
 import services.ObjectiveService;
+import utils.WindowUtils;
 
 public class AdminObjectiveController implements Initializable {
     @FXML private ListView<Objective> listObjectives;
@@ -247,11 +248,8 @@ public class AdminObjectiveController implements Initializable {
     @FXML
     private void goToProfile(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/profile.fxml"));
-            Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            WindowUtils.changeScene(stage, "/user/profile.fxml", "Profile");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -260,11 +258,8 @@ public class AdminObjectiveController implements Initializable {
     @FXML
     private void handleLogout(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/sign_in.fxml"));
-            Scene scene = new Scene(loader.load());
             Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            WindowUtils.changeScene(stage, "/user/sign_in.fxml", "Sign In");
         } catch (IOException e) {
             e.printStackTrace();
         }

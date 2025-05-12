@@ -3,11 +3,9 @@ package controllers;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
+import utils.WindowUtils;
 
 public class Home extends Application {
 
@@ -18,20 +16,13 @@ public class Home extends Application {
     @Override
     public void start(Stage stage) {
         try {
-
-            Parent root = FXMLLoader.load(getClass().getResource("/user/sign_in.fxml"));
-
-            Scene scene = new Scene(root);
-            stage.setTitle("welcome ");
-            scene.getStylesheets().add(getClass().getResource("/Programme/modern_list.css").toExternalForm());
-            stage.setTitle("Acceuil");
-
-            // 🔥 Ajout de l'icône
+            // Charger la scène de connexion
+            WindowUtils.changeScene(stage, "/user/sign_in.fxml", "Accueil");
+            
+            // Ajouter l'icône
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/app_logo.png")));
-
-            stage.setScene(scene);
+            
             stage.show();
-
         } catch (IOException e) {
             System.out.println("Erreur de chargement FXML : " + e.getMessage());
         }

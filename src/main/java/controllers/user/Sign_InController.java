@@ -1,5 +1,7 @@
 package controllers.user;
 
+import java.io.IOException;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +17,8 @@ import javafx.stage.Stage;
 import models.User;
 import services.user.GoogleAuthService;
 import services.user.SignInService;
+import utils.WindowUtils;
 import utils.session;
-
-import java.io.IOException;
 
 public class Sign_InController {
 
@@ -86,12 +87,8 @@ public class Sign_InController {
     private void loadScene(String fxmlPath, String title) throws IOException {
         Platform.runLater(() -> {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-                Parent root = loader.load();
                 Stage stage = (Stage) emailField.getScene().getWindow();
-                stage.setScene(new Scene(root));
-                stage.setTitle(title);
-                stage.show();
+                WindowUtils.changeScene(stage, fxmlPath, title);
             } catch (IOException e) {
                 showAlert(Alert.AlertType.ERROR, "Erreur lors du chargement de la page : " + e.getMessage());
             }
