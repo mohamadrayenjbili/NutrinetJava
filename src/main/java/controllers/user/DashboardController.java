@@ -63,6 +63,8 @@ public class DashboardController {
 
             Stage stage = (Stage) ((javafx.scene.Node) actionEvent.getSource()).getScene().getWindow();
             stage.setScene(ajouterProduitScene);
+            stage.setTitle("ajouer produit");
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

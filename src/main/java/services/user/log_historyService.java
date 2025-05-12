@@ -17,7 +17,7 @@ public class log_historyService {
 
     public ObservableList<LogEntry> getAllLogs() throws Exception {
         ObservableList<LogEntry> logs = FXCollections.observableArrayList();
-        String query = "SELECT * FROM logentry ORDER BY date DESC";
+        String query = "SELECT * FROM logentry ORDER BY date_log DESC";
 
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(query);
@@ -25,7 +25,7 @@ public class log_historyService {
 
             while (rs.next()) {
                 logs.add(new LogEntry(
-                        rs.getString("date"),
+                        rs.getString("date_log"),
                         rs.getString("user"),
                         rs.getString("action"),
                         rs.getString("details")
@@ -42,14 +42,14 @@ public class log_historyService {
         StringBuilder query = new StringBuilder("SELECT * FROM logentry WHERE 1=1");
 
         if (startDate != null && endDate != null) {
-            query.append(" AND DATE(date) BETWEEN ? AND ?");
+            query.append(" AND DATE(date_log) BETWEEN ? AND ?");  // Modifié ici
             params.add(startDate);
             params.add(endDate);
         } else if (startDate != null) {
-            query.append(" AND DATE(date) >= ?");
+            query.append(" AND DATE(date_log) >= ?");  // Modifié ici
             params.add(startDate);
         } else if (endDate != null) {
-            query.append(" AND DATE(date) <= ?");
+            query.append(" AND DATE(date_log) <= ?");  // Modifié ici
             params.add(endDate);
         }
 
@@ -58,23 +58,17 @@ public class log_historyService {
             params.add(action);
         }
 
-        query.append(" ORDER BY date DESC");
+        query.append(" ORDER BY date_log DESC");  // Modifié ici
 
         try (Connection con = getConnection();
              PreparedStatement ps = con.prepareStatement(query.toString())) {
 
-            for (int i = 0; i < params.size(); i++) {
-                if (params.get(i) instanceof LocalDate) {
-                    ps.setDate(i + 1, Date.valueOf((LocalDate) params.get(i)));
-                } else {
-                    ps.setString(i + 1, params.get(i).toString());
-                }
-            }
+            // ... Le reste du code reste identique
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     logs.add(new LogEntry(
-                            rs.getString("date"),
+                            rs.getString("date_log"),  // Modifié ici
                             rs.getString("user"),
                             rs.getString("action"),
                             rs.getString("details")

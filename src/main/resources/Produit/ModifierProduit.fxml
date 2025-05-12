@@ -62,7 +62,7 @@
                         <Label text="Image:" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
                         <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="6">
                             <TextField fx:id="txtImage" HBox.hgrow="ALWAYS"/>
-                            <Button fx:id="btnChoisirImage" text="Choisir" onAction="#handleChoisirImage"/>
+                            <Button fx:id="btnChoisirImage" text="Choisir" onAction="#handleChoisirImage" prefWidth="100"/>
                         </HBox>
                         <Label fx:id="lblImageError" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
                     </GridPane>

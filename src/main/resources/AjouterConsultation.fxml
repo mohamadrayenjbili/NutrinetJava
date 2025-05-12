@@ -118,7 +118,7 @@
                         <Button text="Ajouter" onAction="#ajouterConsultationAction"
                                 prefHeight="40.0" prefWidth="150.0"
                                 style="-fx-background-color: #a8d5ba; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
-                        <Button fx:id="backButton" text="Back" onAction="#goToBackConsultation"/>
+
 
 
                     </HBox>
