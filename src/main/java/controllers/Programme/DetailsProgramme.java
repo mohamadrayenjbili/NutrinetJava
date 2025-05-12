@@ -1,43 +1,40 @@
 package controllers.Programme;
 
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.stage.Stage;
-import models.*;
-import services.commentaire.CommentaireLikeService;
-import utils.session;
-import services.commentaire.CommentaireService;
-import javafx.geometry.Insets;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Map;
 import java.util.stream.Collectors;
+
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import models.Commentaire;
+import models.DeepInfra;
+import models.Programme;
+import models.User;
+import services.commentaire.CommentaireLikeService;
+import services.commentaire.CommentaireService;
+import utils.session;
 
 public class DetailsProgramme implements Initializable {
 
@@ -177,8 +174,8 @@ public class DetailsProgramme implements Initializable {
         lblVideoUrl.setText(p.getVideoUrl());
 
         if (p.getImage() != null && !p.getImage().isEmpty()) {
-            // Vous pouvez adapter le chemin vers l'image selon votre organisation de projet
-            Image image = new Image("file:src/main/resources/images/" + p.getImage());
+            // Charger l'image depuis le nouveau chemin
+            Image image = new Image("file:C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images\\" + p.getImage());
             imgProgramme.setImage(image);
         }
         // Réorganisation de l'affichage des commentaires

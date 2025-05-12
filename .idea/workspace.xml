@@ -4,17 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration de l'affichage de l'application">
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.0">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/AjouterConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/AjouterConsultationController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/DashboardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/services/user/log_historyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/services/user/log_historyService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AjouterConsultation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AjouterConsultation.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/DetailProduit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/ModifierProduit.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/ModifierProduit.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/produits.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/produits.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tokens/StoredCredential" beforeDir="false" afterPath="$PROJECT_DIR$/tokens/StoredCredential" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +153,7 @@
       <updated>1744653565488</updated>
       <workItem from="1746488796935" duration="3214000" />
       <workItem from="1746499817704" duration="504000" />
-      <workItem from="1746977922808" duration="19810000" />
+      <workItem from="1746977922808" duration="26956000" />
     </task>
     <task id="LOCAL-00016" summary="Correction des erreurs + amelioration interface">
       <option name="closed" value="true" />
@@ -174,7 +171,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747007993780</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="amelioration affichage 2.0">
+      <option name="closed" value="true" />
+      <created>1747076548726</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747076548726</updated>
+    </task>
+    <task id="LOCAL-00019" summary="amelioration affichage 2.0">
+      <option name="closed" value="true" />
+      <created>1747076602775</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747076602775</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,7 +208,8 @@
     <MESSAGE value="correction des erreurs" />
     <MESSAGE value="Correction des erreurs + amelioration interface" />
     <MESSAGE value="amelioration de l'affichage de l'application" />
-    <option name="LAST_COMMIT_MESSAGE" value="amelioration de l'affichage de l'application" />
+    <MESSAGE value="amelioration affichage 2.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

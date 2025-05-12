@@ -119,7 +119,7 @@ public class AjouterProgramme {
     }
 
     private String getProjectResourceImagePath() {
-        return System.getProperty("user.dir") + "/src/main/resources/images";
+        return "C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images";
     }
 
     private void showAlert(AlertType type, String title, String message) {
@@ -213,22 +213,27 @@ public class AjouterProgramme {
 
 package controllers.Programme;
 
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
-import javafx.scene.control.Alert.AlertType;
-import models.MailerSMTPService;
-import models.Programme;
-import services.Programme.ProgrammeService;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.UUID;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import models.MailerSMTPService;
+import models.Programme;
+import services.Programme.ProgrammeService;
 
 public class AjouterProgramme {
 
@@ -386,7 +391,7 @@ public class AjouterProgramme {
     }
 
     private String getProjectResourceImagePath() {
-        return System.getProperty("user.dir") + "/src/main/resources/images";
+        return "C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images";
     }
 
     private void showAlert(AlertType type, String title, String message) {
