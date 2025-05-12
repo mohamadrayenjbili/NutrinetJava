@@ -9,16 +9,135 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Rectangle?>
-
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.text.Font?>
-
 <?import javafx.scene.control.TextField?>
-<AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controllers.DetailsConsultationController"
-            prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #f4f6f9;">
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Region?>
 
-    <children>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.DetailsConsultationController"
+            prefHeight="600.0" prefWidth="1000.0"
+            style="-fx-background-color: linear-gradient(to right, #00897B, #4DB6AC);">
+
+    <!-- Left sidebar for navigation -->
+    <VBox AnchorPane.leftAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          style="-fx-background-color: linear-gradient(to right, #5AAC4E, #5AAC4E); -fx-background-radius: 0 20 20 0;"
+          prefWidth="220">
+
+        <VBox alignment="CENTER" spacing="15" style="-fx-padding: 30 10;">
+            <ImageView fitWidth="100" fitHeight="100" preserveRatio="true">
+                <Image url="@/images/app_logo.png" />
+            </ImageView>
+            <Label text="Nutrinet" style="-fx-text-fill: white; -fx-font-weight: bold;">
+                <font>
+                    <Font name="System Bold" size="22.0" />
+                </font>
+            </Label>
+            <Separator prefWidth="180" style="-fx-background-color: rgba(255,255,255,0.3);" />
+        </VBox>
+
+        <VBox spacing="5" VBox.vgrow="ALWAYS" style="-fx-padding: 20 15;">
+            <Button text="Boutique" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToAfficherProduitFront"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Nos Programmes" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#openSeifProgram"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Objectives" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;"
+                    onAction="#navigateToAfficherObjective">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z';"/>
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Consultations" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToMalek"
+                    style="-fx-background-color: rgba(255,255,255,0.4); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Forum" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToForum"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Les Reclamations" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToReclamation"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Profile" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToProfile"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+
+            <Button text="Settings" maxWidth="Infinity" alignment="BASELINE_LEFT"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+                </graphic>
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
+        </VBox>
+
+        <VBox alignment="BOTTOM_CENTER" spacing="10" style="-fx-padding: 20;">
+            <Button text="LOGOUT" maxWidth="Infinity" onAction="#handleLogout"
+                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15;">
+                <graphic>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z';" />
+                </graphic>
+                <font>
+                    <Font size="13.0" />
+                </font>
+            </Button>
+        </VBox>
+    </VBox>
+
+    <!-- Main content area -->
+    <StackPane AnchorPane.leftAnchor="240" AnchorPane.rightAnchor="20"
+               AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
         <VBox layoutX="30.0" layoutY="30.0" spacing="20">
 
             <!-- Titre -->
@@ -75,5 +194,5 @@
             </ListView>
 
         </VBox>
-    </children>
+    </StackPane>
 </AnchorPane>

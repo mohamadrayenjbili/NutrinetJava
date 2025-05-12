@@ -14,6 +14,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
 <AnchorPane xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controllers.DetailsClientConsultation"
             prefHeight="600.0" prefWidth="700.0" style="-fx-background-color: #f4f6f9;"
@@ -31,6 +32,13 @@
                 </font>
             </Label>
             <TextField fx:id="searchField" promptText="Rechercher par nom..." onKeyReleased="#rechercherConsultation" styleClass="text-field"/>
+
+            <Button fx:id="btnRetour" text="🏠 Accueil" onAction="#retourAccueil"
+                    styleClass="btn-panier" prefWidth="150" prefHeight="40">
+                <padding>
+                    <Insets top="10" right="20" bottom="10" left="20"/>
+                </padding>
+            </Button>
 
             <!-- Bouton pour ajouter une consultation -->
             <Button fx:id="btnAjouterConsultation" text="Ajouter une consultation"

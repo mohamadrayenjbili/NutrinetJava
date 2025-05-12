@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.0">
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AfficherProgrammeFront.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/AjouterProgramme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Programme/DetailsProgramme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsConsultationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsClient.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsClient.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/DetailsConsultation.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +151,7 @@
       <updated>1744653565488</updated>
       <workItem from="1746488796935" duration="3214000" />
       <workItem from="1746499817704" duration="504000" />
-      <workItem from="1746977922808" duration="26956000" />
+      <workItem from="1746977922808" duration="29149000" />
     </task>
     <task id="LOCAL-00016" summary="Correction des erreurs + amelioration interface">
       <option name="closed" value="true" />
@@ -187,7 +185,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747076602775</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="amelioration affichage 2.1">
+      <option name="closed" value="true" />
+      <created>1747084277380</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747084277380</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +215,8 @@
     <MESSAGE value="Correction des erreurs + amelioration interface" />
     <MESSAGE value="amelioration de l'affichage de l'application" />
     <MESSAGE value="amelioration affichage 2.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.0" />
+    <MESSAGE value="amelioration affichage 2.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.1" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
