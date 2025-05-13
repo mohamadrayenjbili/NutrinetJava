@@ -1,5 +1,7 @@
 package controllers.user;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import models.User;
+import utils.WindowUtils;
 import utils.session;
-
-import java.io.IOException;
 
 public class ProfileController {
 
@@ -45,15 +46,8 @@ public class ProfileController {
     @FXML
     private void handleBack() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/welcome.fxml"));
-            Parent root = loader.load();
-            Stage stage = new Stage();
-            stage.setTitle("Welcome");
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            // Close current window
-            nameLabel.getScene().getWindow().hide();
+            Stage stage = (Stage) nameLabel.getScene().getWindow();
+            WindowUtils.changeScene(stage, "/User/welcome.fxml", "Welcome");
         } catch (Exception e) {
             e.printStackTrace();
         }

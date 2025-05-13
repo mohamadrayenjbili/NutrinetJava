@@ -73,19 +73,19 @@
 
 /* Style des séries - Performances (série 0) */
 .default-color0.chart-series-line {
-    -fx-stroke: #3498db;
+    -fx-stroke: #4CAF50;
     -fx-stroke-width: 3px;
 }
 
 .default-color0.chart-line-symbol {
-    -fx-background-color: #3498db, white;
+    -fx-background-color: #4CAF50, white;
     -fx-background-insets: 0, 2;
     -fx-background-radius: 5px;
     -fx-padding: 5px;
 }
 
 .default-color0.chart-line-symbol:hover {
-    -fx-effect: dropshadow(gaussian, #3498db, 8, 0.6, 0, 0);
+    -fx-effect: dropshadow(gaussian, #4CAF50, 8, 0.6, 0, 0);
 }
 
 /* Style de la ligne d'objectif (série 1) */
@@ -177,12 +177,12 @@
 }
 
 .export-button {
-    -fx-background-color: #3498db;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
 }
 
 .export-button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #4CAF50;
 }
 
 .close-button {

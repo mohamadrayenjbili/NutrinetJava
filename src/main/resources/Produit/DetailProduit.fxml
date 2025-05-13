@@ -19,7 +19,8 @@
 
             <!-- En-tête avec image de fond -->
             <StackPane styleClass="header-container">
-                <Rectangle styleClass="header-background" width="1200" height="200"/>
+                <!-- ✅ Changement ici : ajout du style inline -->
+                <Rectangle styleClass="header-background" width="1200" height="200" style="-fx-fill: #4CAF50;"/>
                 <VBox alignment="CENTER_LEFT" spacing="10">
                     <padding>
                         <Insets left="40"/>
@@ -72,23 +73,6 @@
                 <!-- Colonne droite -->
                 <VBox spacing="20" minWidth="300">
                     <ImageView fx:id="imgProduit" fitWidth="300" fitHeight="300" styleClass="produit-image"/>
-
-                    <!-- Statistiques -->
-<!--                    <VBox styleClass="stats-card" spacing="15">-->
-<!--                        <Label text="Statistiques" styleClass="section-header"/>-->
-<!--                        <HBox spacing="20">-->
-<!--                            <VBox styleClass="stat-item" HBox.hgrow="ALWAYS">-->
-<!--                                <Label text="⭐" styleClass="stat-icon"/>-->
-<!--                                <Label text="Note" styleClass="stat-label"/>-->
-<!--                                <Label text="4.8/5" styleClass="stat-value"/>-->
-<!--                            </VBox>-->
-<!--                            <VBox styleClass="stat-item" HBox.hgrow="ALWAYS">-->
-<!--                                <Label text="👥" styleClass="stat-icon"/>-->
-<!--                                <Label text="Ventes" styleClass="stat-label"/>-->
-<!--                                <Label text="152" styleClass="stat-value"/>-->
-<!--                            </VBox>-->
-<!--                        </HBox>-->
-<!--                    </VBox>-->
                 </VBox>
             </HBox>
         </VBox>

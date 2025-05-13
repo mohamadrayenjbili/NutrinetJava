@@ -18,7 +18,7 @@
 }
 
 .header-background {
-    -fx-fill: linear-gradient(to right, #00897B, #4DB6AC);
+    -fx-fill: linear-gradient(to right, #4caf50, #4caf50);
     -fx-arc-height: 20;
     -fx-arc-width: 20;
 }
@@ -59,12 +59,12 @@
 }
 
 .video-link {
-    -fx-text-fill: #3498db;
+    -fx-text-fill: #4caf50;
     -fx-underline: false;
 }
 
 .video-link:hover {
-    -fx-text-fill: #2980b9;
+    -fx-text-fill: #4caf50;
 }
 
 /* Zone de description */
@@ -133,7 +133,7 @@
 }
 
 .submit-button {
-    -fx-background-color: #3498db;
+    -fx-background-color: #4caf50;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-padding: 8 20;
@@ -142,7 +142,7 @@
 }
 
 .submit-button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #4caf50;
 }
 
 /* Commentaires individuels */
@@ -359,33 +359,7 @@
 .btn-like:hover .heart {
     -fx-rotate: 5;
 }
-/* Ajoutez ces styles dans votre fichier modern_details.css
-.btn-like {
-    -fx-background-color: transparent;
-    -fx-padding: 8 12;
-    -fx-cursor: hand;
-    -fx-border-radius: 20;
-    -fx-background-radius: 20;
-    -fx-font-size: 14px;
-    -fx-font-family: "Segoe UI", sans-serif;
-    -fx-min-width: 60px;
-}
 
-.btn-like .like-icon {
-    -fx-font-family: "Segoe UI Emoji", "Segoe UI Symbol";
-    -fx-font-size: 16px;
-}
-
-.btn-like:hover {
-    -fx-background-color: rgba(244, 67, 54, 0.1);
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-}
-
-.btn-like.liked {
-    -fx-text-fill: #e74c3c;
-}
- */
 
 /* Ajoutez ces styles dans votre fichier modern_details.css */
 .btn-like {

@@ -1,5 +1,11 @@
 package controllers.Objective;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,26 +16,31 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.text.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.Objective;
 import services.IObjectiveService;
 import services.ObjectiveService;
-import java.io.IOException;
-import java.net.URL;
-import java.sql.SQLException;
-import java.time.format.DateTimeFormatter;
-import java.util.ResourceBundle;
+import utils.WindowUtils;
 
 public class AdminObjectiveController implements Initializable {
     @FXML private ListView<Objective> listObjectives;
     @FXML private TextField tfRecherche;
-    @FXML private Button btnRecherche;
+   // @FXML private Button tfRecherche;
     @FXML private Button btnAjouter;
     @FXML private Button btnActualiser;
     @FXML private Button btnRetour;
+    @FXML private Label welcomeLabel;
 
     private IObjectiveService objectiveService = new ObjectiveService();
     private ObservableList<Objective> objectivesList;
@@ -154,6 +165,116 @@ public class AdminObjectiveController implements Initializable {
             ((Stage) listObjectives.getScene().getWindow()).close();
         } catch (IOException e) {
             showAlert("Erreur", "Erreur lors de l'ouverture: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void goToAfficherProduitFront(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Produit/afficherProduitFront.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void openSeifProgram() {
+        try {
+            // Use the button's scene instead of welcomeLabel's scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Programme/AfficherProgrammeFront.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage from any available component
+            Stage stage = (Stage) listObjectives.getScene().getWindow();
+            Scene currentScene = stage.getScene();
+
+            // Set the new root
+            currentScene.setRoot(root);
+
+            // Add CSS if needed
+            String css = getClass().getResource("/Programme/modern_list.css").toExternalForm();
+            if (!currentScene.getStylesheets().contains(css)) {
+                currentScene.getStylesheets().add(css);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            showAlert("Erreur", "Erreur lors de l'ouverture du programme: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void navigateToAfficherObjective(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Objective/adminobjective.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToMalek(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/user/malek.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void naviguateToForum(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Forum/Forum.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void naviguateToReclamation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Reclamation/Reclamation.fxml"));
+            Scene scene = new Scene(loader.load());
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void goToProfile(ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            WindowUtils.changeScene(stage, "/user/profile.fxml", "Profile");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleLogout(ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            WindowUtils.changeScene(stage, "/user/sign_in.fxml", "Sign In");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

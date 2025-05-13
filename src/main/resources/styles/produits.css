@@ -127,11 +127,11 @@
 }
 
 .panier-button {
-    -fx-background-color: #2196F3;
+    -fx-background-color: #4CAF50;
 }
 
 .panier-button:hover {
-    -fx-background-color: #1976D2;
+    -fx-background-color: #4CAF50;
 }
 
 .souhaits-button {

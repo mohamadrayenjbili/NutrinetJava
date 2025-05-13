@@ -136,10 +136,11 @@ public class AfficherProduitsFrontController implements Initializable {
         // Image
         ImageView imageView = new ImageView();
         try {
-            imageView.setImage(new Image("file:src/main/resources/images/" + produit.getImage()));
+            imageView.setImage(new Image("file:C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images\\" + produit.getImage()));
         } catch (Exception ex) {
-            imageView.setImage(new Image("file:src/main/resources/images/default_produit.png"));
+            imageView.setImage(new Image("file:C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images\\default_produit.png"));
         }
+
         imageView.setFitWidth(300);
         imageView.setFitHeight(300);
         imageView.setPreserveRatio(false);
@@ -317,9 +318,12 @@ public class AfficherProduitsFrontController implements Initializable {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    
+    /**
+     * Méthode pour retourner à l'écran d'accueil
+     */
     @FXML
     private void retourAccueil(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/welcome.fxml"));
             Parent root = loader.load();

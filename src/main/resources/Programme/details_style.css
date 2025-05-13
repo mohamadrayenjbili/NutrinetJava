@@ -51,7 +51,7 @@
 
 /* Liens dynamiques */
 .link-label:hover {
-    -fx-text-fill: #2980b9;
+    -fx-text-fill: #4CAF50;
     -fx-underline: true;
     -fx-cursor: hand;
 }
@@ -125,7 +125,7 @@
 
 /* === Bouton "Envoyer le commentaire" === */
 .submit-button {
-    -fx-background-color: #3498db; /* Bleu */
+    -fx-background-color: #4CAF50; /* Bleu */
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 20;
@@ -137,9 +137,9 @@
 }
 
 .submit-button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #4caF50;
 }
 
 .submit-button:pressed {
-    -fx-background-color: #1f6fa3;
+    -fx-background-color: #4caf50;
 }

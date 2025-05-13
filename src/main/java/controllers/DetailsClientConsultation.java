@@ -1,23 +1,5 @@
 package controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import models.Consultation;
-import services.ConsultationService;
-
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -27,6 +9,33 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import models.Consultation;
+import services.ConsultationService;
+import utils.WindowUtils;
 
 public class DetailsClientConsultation implements Initializable {
 
@@ -40,6 +49,9 @@ public class DetailsClientConsultation implements Initializable {
     private Button btnAjouterConsultation;
     @FXML
     private Button btnCalendrier;
+
+    @FXML
+    private FlowPane flowProduits;
 
     private ConsultationService consultationService;
     private ObservableList<Consultation> consultationsObservableList;
@@ -114,7 +126,7 @@ public class DetailsClientConsultation implements Initializable {
                         String details = String.format("%s • %s • %s",
                                 consultation.getType(),
                                 formattedDate,
-                                getStatusStyled(consultation.getStatus()));
+                                consultation.getStatus());
 
                         String statusStyle = switch (consultation.getStatus().toLowerCase()) {
                             case "faite" -> "-fx-text-fill: #27ae60; -fx-font-weight: bold;";
@@ -134,10 +146,6 @@ public class DetailsClientConsultation implements Initializable {
                         setGraphic(container);
                     }
                 }
-
-                private String getStatusStyled(String status) {
-                    return status;
-                }
             });
 
         } catch (SQLException e) {
@@ -149,12 +157,8 @@ public class DetailsClientConsultation implements Initializable {
     @FXML
     private void handleAjouterConsultation() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterConsultation.fxml"));
-            Parent root = loader.load();
             Stage stage = (Stage) btnAjouterConsultation.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Ajouter une consultation");
-            stage.show();
+            WindowUtils.changeScene(stage, "/AjouterConsultation.fxml", "Ajouter une consultation");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -232,5 +236,24 @@ public class DetailsClientConsultation implements Initializable {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.showAndWait();
+    }
+
+    private void showAlert(String title, String message, Alert.AlertType type) {
+        Alert alert = new Alert(type);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    private void retourAccueil(ActionEvent event) {
+        try {
+            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            WindowUtils.changeScene(stage, "/User/welcome.fxml", "Accueil");
+        } catch (IOException ex) {
+            showAlert("Erreur", "Erreur lors de la navigation vers l'accueil: " + ex.getMessage(), Alert.AlertType.ERROR);
+            ex.printStackTrace();
+        }
     }
 }

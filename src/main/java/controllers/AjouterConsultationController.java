@@ -234,7 +234,7 @@ public class AjouterConsultationController {
     @FXML
     private void goToBackConsultation(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("BackConsultation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("/user/sign_in.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(root));

@@ -1,5 +1,12 @@
 package controllers.user;
 
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -9,20 +16,26 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import models.User;
 import services.user.log_historyService;
 import services.user.userlist;
+import utils.WindowUtils;
 import utils.session;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 public class userlistcontroller implements Initializable {
 
@@ -492,12 +505,8 @@ public class userlistcontroller implements Initializable {
     @FXML
     private void handleBack(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/dashboard.fxml"));
-            Scene dashboardScene = new Scene(loader.load());
-
             Stage stage = (Stage) usersListView.getScene().getWindow();
-            stage.setScene(dashboardScene);
-            stage.show();
+            WindowUtils.changeScene(stage, "/User/dashboard.fxml", "Dashboard");
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Error returning to dashboard: " + e.getMessage());
             e.printStackTrace();
@@ -507,12 +516,8 @@ public class userlistcontroller implements Initializable {
     @FXML
     private void navigateToLogHistory(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/User/log_history.fxml"));
-            Scene logHistoryScene = new Scene(loader.load());
-
             Stage stage = (Stage) usersListView.getScene().getWindow();
-            stage.setScene(logHistoryScene);
-            stage.show();
+            WindowUtils.changeScene(stage, "/User/log_history.fxml", "Log History");
         } catch (IOException e) {
             showAlert(Alert.AlertType.ERROR, "Error navigating to log history: " + e.getMessage());
             e.printStackTrace();

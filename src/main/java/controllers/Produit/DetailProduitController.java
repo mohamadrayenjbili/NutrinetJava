@@ -80,7 +80,7 @@ public class DetailProduitController implements Initializable {
 
             if (produit.getImage() != null && !produit.getImage().isEmpty()) {
                 try {
-                    Image image = new Image("file:src/main/resources/images/" + produit.getImage());
+                    Image image = new Image("file:C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images\\" + produit.getImage());
                     imgProduit.setImage(image);
                 } catch (Exception e) {
                     System.err.println("Erreur de chargement de l'image: " + e.getMessage());

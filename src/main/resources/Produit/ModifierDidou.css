@@ -1,0 +1,139 @@
+.root {
+    -fx-background-color: #f5f5f5;
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px 0;
+}
+
+.grid-pane {
+    -fx-padding: 20px;
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.text-field, .text-area, .combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 4px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: #4CAF50;
+    -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.2), 5, 0, 0, 0);
+}
+
+.button {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+    -fx-background-radius: 4px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #4CAF50;
+}
+
+.button:pressed {
+    -fx-background-color: #4CAF50;
+}
+
+#btnSupprimer {
+    -fx-background-color: #e74c3c;
+}
+
+#btnSupprimer:hover {
+    -fx-background-color: #c0392b;
+}
+
+#btnAnnuler {
+    -fx-background-color: #95a5a6;
+}
+
+#btnAnnuler:hover {
+    -fx-background-color: #7f8c8d;
+}
+
+.image-preview {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 4px;
+    -fx-padding: 5px;
+}
+
+.list-view {
+    -fx-background-color: white;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 4px;
+}
+
+.list-view .list-cell {
+    -fx-padding: 10px;
+    -fx-background-color: white;
+    -fx-border-color: transparent transparent #dcdcdc transparent;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #f5f5f5;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.label {
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 14px;
+}
+
+/* Style pour les messages d'erreur */
+[lblNomError], [lblPrixError], [lblDescError], [lblCategorieError], [lblStockError], [lblImageError] {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 12px;
+}
+
+/* Style pour le SplitPane */
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
+
+.split-pane-divider {
+    -fx-background-color: #dcdcdc;
+    -fx-padding: 1px;
+}
+
+/* Style pour le ScrollPane */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Style pour les titres de section */
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10px 0;
+} 

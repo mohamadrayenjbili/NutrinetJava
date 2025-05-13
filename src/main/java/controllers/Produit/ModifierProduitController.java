@@ -251,7 +251,7 @@ public class ModifierProduitController implements Initializable {
         // Charger et afficher l'image
         if (produit.getImage() != null && !produit.getImage().isEmpty()) {
             try {
-                String imagePath = "file:src/main/resources/images/" + produit.getImage();
+                String imagePath = "file:C:\\Users\\jbili\\OneDrive\\Bureau\\Nos Backups\\D+G+K+B+M+S +bahamarokhra\\public\\uploads\\images\\" + produit.getImage();
                 Image image = new Image(imagePath);
                 imagePreview.setImage(image);
             } catch (Exception e) {

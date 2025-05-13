@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="Correction des erreurs + amelioration interface">
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/WelcomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/ModifierDidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/ModifierDidou.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/detaildidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/detaildidou.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/details_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/details_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/modern_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/modern_details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/modern_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/modern_list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/chart.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/chart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/shopping.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/shopping.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +54,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/mohamadrayenjbili/NutrinetJava.git",
-    "accountId": "21f38e0d-9eb4-4540-992f-be9be6ea3dfd"
+    "accountId": "36f44735-f462-4f27-9b1c-300b28189cee"
   },
   "recentNewPullRequestHead": {
     "server": {
@@ -71,8 +82,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Maven.PiJava [javafx:run].executor": "Run",
+    "Maven.PiJava [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "#65 on seeeeeeeeeeeeeeeeiiiiiiiiiiiiiiii…fffff",
+    "git-widget-placeholder": "#67 on fixationD",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/edelr/Desktop/Java0605/NutrinetJava",
     "node.js.detected.package.eslint": "true",
@@ -132,8 +144,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.26053.27" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.26053.27" />
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
       </set>
     </attachedChunks>
   </component>
@@ -147,6 +159,7 @@
       <updated>1744653565488</updated>
       <workItem from="1746488796935" duration="3214000" />
       <workItem from="1746499817704" duration="504000" />
+      <workItem from="1746977922808" duration="37461000" />
     </task>
     <task id="LOCAL-00016" summary="Correction des erreurs + amelioration interface">
       <option name="closed" value="true" />
@@ -156,7 +169,55 @@
       <option name="project" value="LOCAL" />
       <updated>1746499934689</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="amelioration de l'affichage de l'application">
+      <option name="closed" value="true" />
+      <created>1747007993780</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1747007993780</updated>
+    </task>
+    <task id="LOCAL-00018" summary="amelioration affichage 2.0">
+      <option name="closed" value="true" />
+      <created>1747076548726</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1747076548726</updated>
+    </task>
+    <task id="LOCAL-00019" summary="amelioration affichage 2.0">
+      <option name="closed" value="true" />
+      <created>1747076602775</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1747076602775</updated>
+    </task>
+    <task id="LOCAL-00020" summary="amelioration affichage 2.1">
+      <option name="closed" value="true" />
+      <created>1747084277380</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1747084277380</updated>
+    </task>
+    <task id="LOCAL-00021" summary="amelioration affichage 2.2">
+      <option name="closed" value="true" />
+      <created>1747086551123</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1747086551123</updated>
+    </task>
+    <task id="LOCAL-00022" summary="amelioration affichage 2.3">
+      <option name="closed" value="true" />
+      <created>1747091345243</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747091345243</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,7 +237,12 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="correction des erreurs" />
     <MESSAGE value="Correction des erreurs + amelioration interface" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction des erreurs + amelioration interface" />
+    <MESSAGE value="amelioration de l'affichage de l'application" />
+    <MESSAGE value="amelioration affichage 2.0" />
+    <MESSAGE value="amelioration affichage 2.1" />
+    <MESSAGE value="amelioration affichage 2.2" />
+    <MESSAGE value="amelioration affichage 2.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

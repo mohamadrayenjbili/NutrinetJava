@@ -44,7 +44,7 @@
                     style="-fx-background-color: #43a047; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 10 24 10 24; -fx-background-radius: 10px;" />
 
             <Button fx:id="retourBtn"
-                    text="⬅️ Retour"
+                    text="⬅ Retour"
                     style="-fx-background-color: #1e88e5; -fx-text-fill: white; -fx-font-size: 15px; -fx-padding: 10 24 10 24; -fx-background-radius: 10px;" />
 
 
