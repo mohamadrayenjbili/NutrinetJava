@@ -36,10 +36,11 @@ import utils.WindowUtils;
 public class AdminObjectiveController implements Initializable {
     @FXML private ListView<Objective> listObjectives;
     @FXML private TextField tfRecherche;
-    @FXML private Button btnRecherche;
+   // @FXML private Button tfRecherche;
     @FXML private Button btnAjouter;
     @FXML private Button btnActualiser;
     @FXML private Button btnRetour;
+    @FXML private Label welcomeLabel;
 
     private IObjectiveService objectiveService = new ObjectiveService();
     private ObservableList<Objective> objectivesList;
@@ -181,15 +182,27 @@ public class AdminObjectiveController implements Initializable {
     }
 
     @FXML
-    private void openSeifProgram(ActionEvent event) {
+    private void openSeifProgram() {
         try {
+            // Use the button's scene instead of welcomeLabel's scene
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Programme/AfficherProgrammeFront.fxml"));
-            Scene scene = new Scene(loader.load());
-            Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
+            Parent root = loader.load();
+
+            // Get the current stage from any available component
+            Stage stage = (Stage) listObjectives.getScene().getWindow();
+            Scene currentScene = stage.getScene();
+
+            // Set the new root
+            currentScene.setRoot(root);
+
+            // Add CSS if needed
+            String css = getClass().getResource("/Programme/modern_list.css").toExternalForm();
+            if (!currentScene.getStylesheets().contains(css)) {
+                currentScene.getStylesheets().add(css);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
+            showAlert("Erreur", "Erreur lors de l'ouverture du programme: " + e.getMessage());
         }
     }
 

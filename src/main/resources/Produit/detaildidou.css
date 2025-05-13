@@ -18,7 +18,7 @@
 }
 
 .header-background {
-    -fx-fill: linear-gradient(to right, #2980b9, #3498db);
+    -fx-fill: linear-gradient(to right, #4CAF50, #4CAF50);
     -fx-arc-height: 20;
     -fx-arc-width: 20;
 }
@@ -156,7 +156,7 @@
 }
 
 .btn-ajouter-panier {
-    -fx-background-color: #3498db;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-background-radius: 20;
@@ -165,7 +165,7 @@
 }
 
 .btn-ajouter-panier:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #4CAF50;
 }
 
 .btn-ajouter-souhaits {

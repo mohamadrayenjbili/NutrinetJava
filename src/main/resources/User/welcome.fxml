@@ -31,20 +31,18 @@
 
         <VBox spacing="5" VBox.vgrow="ALWAYS" style="-fx-padding: 20 15;">
             <!-- ✅ Updated this button with action -->
-            <Button text="Boutique" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToAfficherProduitFront"
+            <Button text="🛍 Boutique" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToAfficherProduitFront"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
-                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
                 </graphic>
                 <font>
                     <Font size="14.0" />
                 </font>
             </Button>
 
-            <Button text="Nos Programmes" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#openSeifProgram"
+            <Button text="🌿 Nos Programmes" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#openSeifProgram"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
-                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
                 </graphic>
                 <font>
                     <Font size="14.0" />
@@ -55,14 +53,15 @@
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;"
                     onAction="#navigateToAfficherObjective">
                 <graphic>
-                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z';"/>
+                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
+
                 </graphic>
                 <font>
                     <Font size="14.0" />
                 </font>
             </Button>
 
-            <Button text="Consultations" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToMalek"
+            <Button text=" Consultations" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#goToMalek"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
                     <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
@@ -75,10 +74,9 @@
 
 
 
-            <Button text="Forum" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToForum"
+            <Button text="📚 Forum" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToForum"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
-                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
                 </graphic>
                 <font>
                     <Font size="14.0" />
@@ -89,10 +87,9 @@
 
 
 
-            <Button text="Les Reclamations" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToReclamation"
+            <Button text="📣 Les Reclamations" maxWidth="Infinity" alignment="BASELINE_LEFT" onAction="#naviguateToReclamation"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
-                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z';" />
                 </graphic>
                 <font>
                     <Font size="14.0" />
@@ -114,8 +111,6 @@
 
 
 
-
-
             <Button text="Settings" maxWidth="Infinity" alignment="BASELINE_LEFT"
                     style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15; -fx-graphic-text-gap: 10;">
                 <graphic>
@@ -128,17 +123,7 @@
 
         </VBox>
 
-        <VBox alignment="BOTTOM_CENTER" spacing="10" style="-fx-padding: 20;">
-            <Button text="LOGOUT" maxWidth="Infinity" onAction="#handleLogout"
-                    style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5; -fx-padding: 10 15;">
-                <graphic>
-                    <Region prefHeight="18" prefWidth="18" style="-fx-background-color: white; -fx-shape: 'M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z';" />
-                </graphic>
-                <font>
-                    <Font size="13.0" />
-                </font>
-            </Button>
-        </VBox>
+
     </VBox>
 
     <!-- Main content area -->

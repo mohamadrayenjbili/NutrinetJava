@@ -26,12 +26,12 @@
 }
 
 .text-field:focused, .text-area:focused, .combo-box:focused {
-    -fx-border-color: #3498db;
+    -fx-border-color: #4CAF50;
     -fx-effect: dropshadow(three-pass-box, rgba(52,152,219,0.2), 5, 0, 0, 0);
 }
 
 .button {
-    -fx-background-color: #3498db;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-padding: 8px 16px;
@@ -40,11 +40,11 @@
 }
 
 .button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #4CAF50;
 }
 
 .button:pressed {
-    -fx-background-color: #2472a4;
+    -fx-background-color: #4CAF50;
 }
 
 #btnSupprimer {
@@ -83,7 +83,7 @@
 }
 
 .list-view .list-cell:selected {
-    -fx-background-color: #3498db;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
 }
 

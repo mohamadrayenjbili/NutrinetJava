@@ -15,7 +15,7 @@
 
 /* En-tête */
 .header-section {
-    -fx-background-color: linear-gradient(to right, #4a90e2, #67b26f);
+    -fx-background-color: linear-gradient(to right, #4CAF50, #67b26f);
     -fx-padding: 40px;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 5);
 }
@@ -72,10 +72,10 @@
 }
 
 /* Quand le TextField est en focus, styliser le conteneur */
-.search-stack-container:focused-within {
-    -fx-border-color: #4a90e2;
-    -fx-border-width: 1.5;
-}
+/*.search-stack-container:focused-within {*/
+/*    -fx-border-color: #4CAF50;*/
+/*    -fx-border-width: 1.5;*/
+/*}*/
 
 .modern-combo {
     -fx-background-color: #f8f9fa;
@@ -90,7 +90,7 @@
 }
 
 .modern-combo:focused {
-    -fx-border-color: #4a90e2;
+    -fx-border-color: #4CAF50;
 }
 
 .modern-combo .arrow-button {
@@ -98,12 +98,12 @@
 }
 
 .modern-combo .arrow {
-    -fx-background-color: #4a90e2;
+    -fx-background-color: #4CAF50;
 }
 
 /* Boutons d'en-tête */
 .btn-panier, .btn-souhaits {
-    -fx-background-color: #4a90e2;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
     -fx-font-size: 14px;
     -fx-padding: 8 20;
@@ -114,7 +114,7 @@
 }
 
 .btn-panier:hover, .btn-souhaits:hover {
-    -fx-background-color: #357abd;
+    -fx-background-color: #4CAF50;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 5, 0, 0, 2);
 }
 
@@ -185,7 +185,7 @@
 
 /* Boutons de l'overlay */
 .overlay-btn-ajouter {
-    -fx-background-color: #4a90e2;
+    -fx-background-color: #4CAF50;
     -fx-text-fill: white;
     -fx-font-size: 20px;
     -fx-background-radius: 50%;
@@ -198,7 +198,7 @@
 }
 
 .overlay-btn-ajouter:hover {
-    -fx-background-color: #357abd;
+    -fx-background-color: #4CAF50;
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.3), 10, 0, 0, 0);
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
@@ -227,7 +227,7 @@
 }
 
 .overlay-btn-details:hover {
-    -fx-background-color: #70a1ff;
+    -fx-background-color: #4CAF50;
     -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.3), 10, 0, 0, 0);
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
@@ -253,11 +253,11 @@
 
 .scroll-bar:vertical .thumb,
 .scroll-bar:horizontal .thumb {
-    -fx-background-color: #3498db;
+    -fx-background-color: #4CAF50;
     -fx-background-radius: 5px;
 }
 
 .scroll-bar:vertical .thumb:hover,
 .scroll-bar:horizontal .thumb:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #4CAF50;
 }

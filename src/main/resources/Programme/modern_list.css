@@ -5,7 +5,7 @@
 
 /* Section d'en-tête */
 .header-section {
-    -fx-background-color: linear-gradient(to right, #00897B, #4DB6AC);
+    -fx-background-color: linear-gradient(to right, #4caf50, #4caf50);
     -fx-padding: 40 20;
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 5);
 }
@@ -40,7 +40,7 @@
 }
 
 .modern-search:focused {
-    -fx-border-color: #3498db;
+    -fx-border-color: #4caf50;
     -fx-background-color: white;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .modern-combo:focused {
-    -fx-border-color: #3498db;
+    -fx-border-color: #4caf50;
     -fx-background-color: white;
 }
 

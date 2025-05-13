@@ -4,13 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.2">
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/DetailsClientConsultation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Home.java" afterDir="false" />
+    <list default="true" id="dc3dae19-dc09-4003-96e2-77854985fa39" name="Changes" comment="amelioration affichage 2.3">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/Objective/AdminObjectiveController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/ProfileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/ProfileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/Sign_InController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/user/userlistcontroller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AdminObjective.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/ModifierDidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/ModifierDidou.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/detaildidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/detaildidou.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Produit/listdidou.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/details_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/details_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/modern_details.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/modern_details.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Programme/modern_list.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Programme/modern_list.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/User/welcome.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/reclamation/listReclamation.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/chart.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/chart.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles/shopping.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/styles/shopping.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +159,7 @@
       <updated>1744653565488</updated>
       <workItem from="1746488796935" duration="3214000" />
       <workItem from="1746499817704" duration="504000" />
-      <workItem from="1746977922808" duration="29820000" />
+      <workItem from="1746977922808" duration="37461000" />
     </task>
     <task id="LOCAL-00016" summary="Correction des erreurs + amelioration interface">
       <option name="closed" value="true" />
@@ -202,7 +209,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747086551123</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="amelioration affichage 2.3">
+      <option name="closed" value="true" />
+      <created>1747091345243</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1747091345243</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -226,7 +241,8 @@
     <MESSAGE value="amelioration affichage 2.0" />
     <MESSAGE value="amelioration affichage 2.1" />
     <MESSAGE value="amelioration affichage 2.2" />
-    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.2" />
+    <MESSAGE value="amelioration affichage 2.3" />
+    <option name="LAST_COMMIT_MESSAGE" value="amelioration affichage 2.3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
