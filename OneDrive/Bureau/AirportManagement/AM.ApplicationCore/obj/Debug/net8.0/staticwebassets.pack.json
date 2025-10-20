@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\jbili\\source\\repos\\AirportManagement\\AM.ApplicationCore\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\AM.ApplicationCore.bundle.scp.css",
+      "PackagePath": "staticwebassets\\AM.ApplicationCore.5b954aichx.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\jbili\\source\\repos\\AirportManagement\\AM.ApplicationCore\\wwwroot\\background.png",
+      "PackagePath": "staticwebassets\\background.png"
+    },
+    {
+      "Id": "C:\\Users\\jbili\\source\\repos\\AirportManagement\\AM.ApplicationCore\\wwwroot\\exampleJsInterop.js",
+      "PackagePath": "staticwebassets\\exampleJsInterop.js"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AM.ApplicationCore.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AM.ApplicationCore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AM.ApplicationCore.props",
+      "PackagePath": "build\\AM.ApplicationCore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AM.ApplicationCore.props",
+      "PackagePath": "buildMultiTargeting\\AM.ApplicationCore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AM.ApplicationCore.props",
+      "PackagePath": "buildTransitive\\AM.ApplicationCore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
